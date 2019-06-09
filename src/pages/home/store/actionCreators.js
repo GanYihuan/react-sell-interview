@@ -32,9 +32,33 @@ export const getHeaderData = () => async(dispatch) => {
     method: 'get',
     url: '/api/head.json'
   })
-  console.log(resp, 'resp---')
+  console.log(resp, 'getHeaderData---')
   dispatch({
     type: constants.HEAD_DATA,
     obj: resp.data
+  })
+}
+
+export const getListData = (page) => (dispatch) => { // page: CommentList.jsx 传递过来的参数
+  // dispatch({
+  //   type: CHANGEREADYSTATE,
+  //   obj: false
+  // })
+  axios({
+    method: 'get',
+    url: '/api/homelist.json'
+  }).then((resp) => {
+    console.log(resp, 'getListData---')
+    window.setTimeout(() => {
+      dispatch({
+        type: constants.LIST_DATA,
+        currentPage: page,
+        obj: resp.data
+      })
+      // dispatch({
+      //   type: constants.CHANGEREADYSTATE,
+      //   obj: true
+      // })
+    }, 1500)
   })
 }

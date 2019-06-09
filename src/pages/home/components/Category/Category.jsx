@@ -1,15 +1,19 @@
 ﻿import React from 'react'
-import { Link, NavLink } from 'react-router-dom'
 import { connect } from 'react-redux'
 import { Carousel } from 'antd-mobile'
 import { actionCreators } from '../../store'
 import './Category.scss'
 
 class Category extends React.Component {
-  componentDidMount() { // async, get ajax async data
+  constructor(props) {
+    super(props)
     const { addArticleList } = this.props
     addArticleList()
   }
+  // componentDidMount() { // async, get ajax async data
+  //   const { addArticleList } = this.props
+  //   addArticleList()
+  // }
   render() {
     const {
       items

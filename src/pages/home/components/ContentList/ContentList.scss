@@ -1,0 +1,19 @@
+﻿.list-content {
+  overflow: hidden;
+  padding-bottom: 50px;
+  .list-title {
+    margin-top: 14px;
+    margin-bottom: 5px;
+    text-align: center;
+    font-size: 16px;
+  }
+  .title-line {
+    display: inline-block;
+    border-bottom: 1px solid #949494;
+    margin-left: 4px;
+    margin-right: 4px;
+    margin-bottom: 4px;
+    width: 30px;
+    height: 1px;
+  }
+}
