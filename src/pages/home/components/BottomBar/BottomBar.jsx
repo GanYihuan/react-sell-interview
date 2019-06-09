@@ -28,6 +28,15 @@ class BottomBar extends React.Component {
                 <div className='tab-icon'></div>
                 <div className='btn-name'>{name}</div>
               </NavLink>
+              // <Link
+              //   className={cls}
+              //   activeClassName='active'
+              //   key={index}
+              //   to={'/' + item.get('key')}
+              // >
+              //   <div className='tab-icon'></div>
+              //   <div className='btn-name'>{name}</div>
+              // </Link>
             )
           })
         }
