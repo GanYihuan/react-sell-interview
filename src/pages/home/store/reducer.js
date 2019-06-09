@@ -30,5 +30,8 @@ export default (state = defaultState, action) => {
 }
 
 const getCategory = (state, action) => {
-  return { ...state, items: action.obj.data.primary_filter }
+  // return { ...state, items: action.obj.data.primary_filter }
+  return state.merge({
+    items: state.get('items').concat(fromJS(action.obj.data.primary_filter)) // imutable obj, use get()
+  })
 }
