@@ -5,17 +5,10 @@ import { actionCreators } from '../../store'
 import './Category.scss'
 
 class Category extends React.Component {
-  constructor(props) {
-    super(props)
-    this.fetchData()
+  componentDidMount() { // async, get ajax async data
+    const { addArticleList } = this.props
+    addArticleList()
   }
-  fetchData() {
-    this.props.addArticleList()
-  }
-  // componentDidMount() { // async, get ajax async data
-  //   const { addArticleList } = this.props
-  //   addArticleList()
-  // }
   render() {
     const {
       items
