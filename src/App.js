@@ -1,22 +1,21 @@
-import React from 'react'
-import {
-  Route,
-  Switch
-} from 'react-router-dom'
-// import Register from './container/register/register'
-// import AuthRoute from './component/authroute/authroute'
-// import GeniusInfo from './container/geniusinfo/geniusinfo'
-// import Login from './container/login/login'
-// import Dashboard from './component/dashboard/dashboard'
-// import BossInfo from './container/bossinfo/bossinfo'
-// import Chat from './component/chat/chat'
+import React, { Component } from 'react'
+import { Provider } from 'react-redux'
+import { BrowserRouter, Route } from 'react-router-dom'
+import store from './store'
+import Home from './pages/home/Home'
 
-class App extends React.Component {
+class App extends Component {
   render() {
     return (
-      <div>
-        App
-      </div>
+      <Provider store={store}>
+        <BrowserRouter>
+          <div>
+            <Route path='/home' exact component={Home} />
+            <Route path='/my' exact component={Home} />
+            <Route path='/order' exact component={Home} />
+          </div>
+        </BrowserRouter>
+      </Provider>
     )
   }
 }
