@@ -7,8 +7,10 @@ import './Category.scss'
 class Category extends React.Component {
   constructor(props) {
     super(props)
-    const { addArticleList } = this.props
-    addArticleList()
+    this.fetchData()
+  }
+  fetchData() {
+    this.props.addArticleList()
   }
   // componentDidMount() { // async, get ajax async data
   //   const { addArticleList } = this.props
@@ -20,7 +22,7 @@ class Category extends React.Component {
     } = this.props
     return (
       <div className='category-content'>
-        <Carousel dots={false}>
+        <Carousel className='slider' dots={false}>
           <div>
             {
               items.splice(8, 7).map((item, index) => {

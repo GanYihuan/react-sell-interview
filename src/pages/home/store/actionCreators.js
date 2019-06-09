@@ -32,7 +32,6 @@ export const getHeaderData = () => async(dispatch) => {
     method: 'get',
     url: '/api/head.json'
   })
-  console.log(resp, 'getHeaderData---')
   dispatch({
     type: constants.HEAD_DATA,
     obj: resp.data
@@ -48,7 +47,6 @@ export const getListData = (page) => (dispatch) => { // page: CommentList.jsx ä¼
     method: 'get',
     url: '/api/homelist.json'
   }).then((resp) => {
-    console.log(resp, 'getListData---')
     window.setTimeout(() => {
       dispatch({
         type: constants.LIST_DATA,

@@ -16,7 +16,7 @@ const defaultState = fromJS({
       key: 'my'
     }
   ],
-  articlePage: 'my',
+  articlePage: 'home',
   items: [],
   list: []
 })

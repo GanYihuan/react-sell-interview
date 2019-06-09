@@ -3342,6 +3342,11 @@ cssstyle@^1.0.0, cssstyle@^1.1.1:
   dependencies:
     cssom "0.3.x"
 
+csstype@^2.6.3:
+  version "2.6.5"
+  resolved "https://registry.npm.taobao.org/csstype/download/csstype-2.6.5.tgz#1cd1dff742ebf4d7c991470ae71e12bb6751e034"
+  integrity sha1-HNHf90Lr9NfJkUcK5x4Su2dR4DQ=
+
 currently-unhandled@^0.4.1:
   version "0.4.1"
   resolved "https://registry.npm.taobao.org/currently-unhandled/download/currently-unhandled-0.4.1.tgz#988df33feab191ef799a61369dd76c17adf957ea"
@@ -3353,6 +3358,16 @@ cyclist@~0.2.2:
   version "0.2.2"
   resolved "https://registry.npm.taobao.org/cyclist/download/cyclist-0.2.2.tgz#1b33792e11e914a2fd6d6ed6447464444e5fa640"
   integrity sha1-GzN5LhHpFKL9bW7WRHRkRE5fpkA=
+
+d3-ease@^1.0.3:
+  version "1.0.5"
+  resolved "https://registry.npm.taobao.org/d3-ease/download/d3-ease-1.0.5.tgz#8ce59276d81241b1b72042d6af2d40e76d936ffb"
+  integrity sha1-jOWSdtgSQbG3IELWry1A522Tb/s=
+
+d3-timer@^1.0.9:
+  version "1.0.9"
+  resolved "https://registry.npm.taobao.org/d3-timer/download/d3-timer-1.0.9.tgz#f7bb8c0d597d792ff7131e1c24a36dd471a471ba"
+  integrity sha1-97uMDVl9eS/3Ex4cJKNt1HGkcbo=
 
 damerau-levenshtein@^1.0.4:
   version "1.0.5"
@@ -6327,6 +6342,13 @@ jsx-ast-utils@^2.0.1:
   dependencies:
     array-includes "^3.0.3"
 
+kapellmeister@^3.0.1:
+  version "3.0.1"
+  resolved "https://registry.npm.taobao.org/kapellmeister/download/kapellmeister-3.0.1.tgz#419b715cd221acda3db79892caedf63e1c9f7d25"
+  integrity sha1-QZtxXNIhrNo9t5iSyu32PhyffSU=
+  dependencies:
+    d3-timer "^1.0.9"
+
 kareem@2.3.0:
   version "2.3.0"
   resolved "https://registry.npm.taobao.org/kareem/download/kareem-2.3.0.tgz#ef33c42e9024dce511eeaf440cd684f3af1fc769"
@@ -7339,6 +7361,17 @@ nth-check@^1.0.2, nth-check@~1.0.1:
   integrity sha1-sr0pXDfj3VijvwcAN2Zjuk2c8Fw=
   dependencies:
     boolbase "~1.0.0"
+
+nuka-carousel@^4.5.8:
+  version "4.5.8"
+  resolved "https://registry.npm.taobao.org/nuka-carousel/download/nuka-carousel-4.5.8.tgz#fbcf2a7597a23f94ad751f72a8841066c2634114"
+  integrity sha1-+88qdZeiP5StdR9yqIQQZsJjQRQ=
+  dependencies:
+    csstype "^2.6.3"
+    d3-ease "^1.0.3"
+    exenv "^1.2.0"
+    prop-types "^15.6.0"
+    react-move "^5.0.0"
 
 num2fraction@^1.2.2:
   version "1.2.2"
@@ -8617,7 +8650,7 @@ prompts@^2.0.1:
     kleur "^3.0.2"
     sisteransi "^1.0.0"
 
-prop-types@15.x, prop-types@^15.5.0, prop-types@^15.5.10, prop-types@^15.5.4, prop-types@^15.5.6, prop-types@^15.5.8, prop-types@^15.6.2, prop-types@^15.7.2:
+prop-types@15.x, prop-types@^15.5.0, prop-types@^15.5.10, prop-types@^15.5.4, prop-types@^15.5.6, prop-types@^15.5.8, prop-types@^15.6.0, prop-types@^15.6.2, prop-types@^15.7.2:
   version "15.7.2"
   resolved "https://registry.npm.taobao.org/prop-types/download/prop-types-15.7.2.tgz#52c41e75b8c87e72b9d9360e0206b99dcbffa6c5"
   integrity sha1-UsQedbjIfnK52TYOAga5ncv/psU=
@@ -8975,6 +9008,16 @@ react-loadable@^5.5.0:
   integrity sha1-WCJRZ509qGwyquLI5onFnxGW2MQ=
   dependencies:
     prop-types "^15.5.0"
+
+react-move@^5.0.0:
+  version "5.2.1"
+  resolved "https://registry.npm.taobao.org/react-move/download/react-move-5.2.1.tgz#2098cbb071538a487a815f54b73842c30aaa7628"
+  integrity sha1-IJjLsHFTikh6gV9UtzhCwwqqdig=
+  dependencies:
+    "@babel/runtime" "^7.3.4"
+    kapellmeister "^3.0.1"
+    prop-types "^15.7.2"
+    react-lifecycles-compat "^3.0.4"
 
 react-native-swipeout@^2.2.2:
   version "2.3.6"
