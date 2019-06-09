@@ -1,6 +1,7 @@
 ﻿import React from 'react'
 import { Link, NavLink } from 'react-router-dom'
 import { connect } from 'react-redux'
+import { Carousel } from 'antd-mobile'
 import { actionCreators } from '../../store'
 import './Category.scss'
 
@@ -15,16 +16,32 @@ class Category extends React.Component {
     } = this.props
     return (
       <div className='category-content'>
-        {
-          items.splice(0, 8).map((item, index) => {
-            return (
-              <div className='category-item' key={index}>
-                <img className='item-icon' src={item.get('url')} />
-                <p className='item-name'>{item.get('name')} name</p>
-              </div>
-            )
-          })
-        }
+        <Carousel autoplay dots={false}>
+          <div>
+            {
+              items.splice(8, 7).map((item, index) => {
+                return (
+                  <div className='category-item' key={index}>
+                    <img className='item-icon' src={item.get('url')} />
+                    <p className='item-name'>{item.get('name')}</p>
+                  </div>
+                )
+              })
+            }
+          </div>
+          <div>
+            {
+              items.splice(0, 8).map((item, index) => {
+                return (
+                  <div className='category-item' key={index}>
+                    <img className='item-icon' src={item.get('url')} />
+                    <p className='item-name'>{item.get('name')}</p>
+                  </div>
+                )
+              })
+            }
+          </div>
+        </Carousel>
       </div>
     )
   }
