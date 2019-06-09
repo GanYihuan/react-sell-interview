@@ -1,4 +1,5 @@
 ﻿import { fromJS } from 'immutable'
+import * as constants from './constants'
 
 const defaultState = fromJS({
   tabs: [
@@ -15,12 +16,19 @@ const defaultState = fromJS({
       key: 'my'
     }
   ],
-  articlePage: 'my'
+  articlePage: 'my',
+  items: []
 })
 
 export default (state = defaultState, action) => {
   switch (action.type) {
+    case constants.HEAD_DATA:
+      return getCategory(state, action)
     default:
       return state
   }
+}
+
+const getCategory = (state, action) => {
+  return { ...state, items: action.obj.data.primary_filter }
 }
