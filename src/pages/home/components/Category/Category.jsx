@@ -16,7 +16,7 @@ class Category extends React.Component {
     } = this.props
     return (
       <div className='category-content'>
-        <Carousel autoplay dots={false}>
+        <Carousel dots={false}>
           <div>
             {
               items.splice(8, 7).map((item, index) => {
