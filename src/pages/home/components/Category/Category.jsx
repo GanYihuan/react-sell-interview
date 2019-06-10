@@ -16,7 +16,7 @@ class Category extends React.Component {
     const {
       items
     } = this.props
-    const newList = items.toJS() // 搞了一晚上
+    const newList = items.toJS()
     return (
       <div className='category-content'>
         <Carousel className='slider' dots={false}>

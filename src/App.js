@@ -32,7 +32,7 @@ class App extends Component {
             <Switch>
               <Route path='/home' exact component={Home} />
               <Route path='/my' exact component={My} />
-              <Redirect to='/my' />
+              <Redirect to='/home' />
             </Switch>
           </Suspense>
         </BrowserRouter>
