@@ -1,6 +1,5 @@
 ﻿import React from 'react'
 import { connect } from 'react-redux'
-import { Carousel } from 'antd-mobile'
 import ListItem from '../../../../common/ListItem/ListItem'
 import { actionCreators } from '../../store'
 import './ContentList.scss'

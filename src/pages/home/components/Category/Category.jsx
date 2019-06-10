@@ -1,6 +1,5 @@
 ﻿import React from 'react'
 import { connect } from 'react-redux'
-// import { Carousel } from 'antd-mobile'
 import Carousel from 'nuka-carousel'
 import { withRouter } from 'react-router-dom'
 import { actionCreators } from '../../store'
