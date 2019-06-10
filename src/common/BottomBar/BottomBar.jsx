@@ -14,11 +14,11 @@ class BottomBar extends React.Component {
       <div className='bottom-bar'>
         {
           tabsArray.map((item, index) => {
-            let cls = item.key + ' btn-item'
+            const cls = item.key + ' btn-item'
             const name = item.name
-            if (item.key === articlePage) {
-              cls += ' active'
-            }
+            // if (item.key === articlePage) {
+            //   cls += ' active'
+            // }
             return (
               <NavLink
                 className={cls}

@@ -7,10 +7,6 @@ const defaultState = fromJS({
       key: 'home'
     },
     {
-      name: '订单',
-      key: 'order'
-    },
-    {
       name: '我的',
       key: 'my'
     }
