@@ -14,9 +14,9 @@ class BottomBar extends React.Component {
       <div className='bottom-bar'>
         {
           tabsArray.map((item, index) => {
-            let cls = item.get('key') + ' btn-item'
-            const name = item.get('name')
-            if (item.get('key') === articlePage) {
+            let cls = item.key + ' btn-item'
+            const name = item.name
+            if (item.key === articlePage) {
               cls += ' active'
             }
             return (
@@ -24,7 +24,7 @@ class BottomBar extends React.Component {
                 className={cls}
                 activeClassName='active'
                 key={index}
-                to={'/' + item.get('key')}
+                to={'/' + item.key}
               >
                 <div className='tab-icon'></div>
                 <div className='btn-name'>{name}</div>
