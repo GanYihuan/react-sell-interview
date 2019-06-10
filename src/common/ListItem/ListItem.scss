@@ -55,6 +55,13 @@
   margin-left: 0.2rem;
   overflow: hidden;
 }
+.clearnfix:after{
+  display: block;
+  height: 0;
+  visibility: hidden;
+  clear: both;
+  content: "";
+}
 .item .item-info .item-title {
   margin: 0.2rem 0;
   font-size: 1rem;
