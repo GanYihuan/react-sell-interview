@@ -17,28 +17,6 @@ class ContentList extends React.Component {
     const { addArticleList } = this.props
     addArticleList(this.page) // page = 0 -> 请求第一屏数据
   }
-  /**
-   * @description 下拉时加载数据
-   */
-  // loadPage() {
-  //   this.page++
-  //   if (this.page > 3) { // 最多滚动3次
-  //     this.setState({
-  //       isend: true // 停止滚动
-  //     })
-  //   } else {
-  //     this.fetchData(this.page)
-  //   }
-  // }
-  // fetchData(page) {
-  //   this.props.dispatch(getListData(page))
-  // }
-  // renderItems() {
-  //   const { list } = this.props
-  //   return list.map((item, index) => {
-  //     return <ListItem key={index} itemData={item}></ListItem>
-  //   })
-  // }
   render() {
     const { list } = this.props
     return (
@@ -48,9 +26,6 @@ class ContentList extends React.Component {
           <span>附近商家</span>
           <span className='title-line'></span>
         </h4>
-        {/* <ScrollView loadCallback={this.loadPage.bind(this)} isend={this.state.isend}>
-          {this.renderItems()}
-        </ScrollView> */}
         {
           list.map((item, index) => {
             return <ListItem key={index} itemData={item}></ListItem>
