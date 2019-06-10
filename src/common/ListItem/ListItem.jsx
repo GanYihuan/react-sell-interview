@@ -19,8 +19,8 @@ class ListItem extends React.Component {
     return num
   }
   renderMeituanFlag(data) {
-    if (data) {
-      return <div className='item-meituan-flag'>美团专送</div>
+    if (data > 0) {
+      return <div className='item-delivery-type'>美团专送</div>
     }
     return null
   }
@@ -29,8 +29,8 @@ class ListItem extends React.Component {
     return array.map((item, index) => {
       return (
         <div className='other-info' key={index}>
-          <img className='other-tag' src={item.icon_url}/>
-          <div className='other-content'>{item.info}</div>
+          <img className='other-tag' src={item.get('icon_url')}/>
+          <div className='other-content'>{item.get('info')}</div>
         </div>
       )
     })
@@ -41,10 +41,10 @@ class ListItem extends React.Component {
   render() {
     const data = this.props.itemData
     return (
-      <div className='r-item-content scale-1px'>
+      <div className='item border-bottom'>
         <img className='item-img' src={data.get('pic_url')} />
         {this.renderBrand(data.get('brand_type'))}
-        <div className='item-info-content'>
+        <div className='item-info'>
           <p className='item-title'>{data.get('name')}</p>
           <div className='item-desc clearfix'>
             <div className='item-score'><StarScore score={data.get('wm_poi_score')}/></div>

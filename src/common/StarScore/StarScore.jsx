@@ -2,8 +2,8 @@
 import './StarScore.scss'
 
 class StarScore extends React.Component {
-  renderScore() {
-    const wm_poi_score = this.props.score || ''
+  renderScore(scores) {
+    const wm_poi_score = scores || ''
     const score = wm_poi_score.toString()
     const scoreArray = score.split('.')
     const fullstar = parseInt(scoreArray[0]) // 满星个数
@@ -29,7 +29,8 @@ class StarScore extends React.Component {
     return starjsx
   }
   render() {
-    return <div className='star-score'>{this.renderScore()}</div>
+    const { score } = this.props
+    return <div className='star-score'>{this.renderScore(score)}</div>
   }
 }
 
