@@ -54,29 +54,6 @@ class ContentList extends React.Component {
         {
           list.map((item, index) => {
             return <ListItem key={index} itemData={item}></ListItem>
-            // const data = this.props.itemData
-            // return (
-            //   <div className='r-item-content scale-1px'>
-            //     <img className='item-img' src={item.get('pic_url')} />
-            //     {/* {this.renderBrand(item)} */}
-            //     <div className='item-info-content'>
-            //       <p className='item-title'>{item.get('name')}</p>
-            //       <div className='item-desc clearfix'>
-            //         {/* <div className='item-score'><StarScore score={data.wm_poi_score}/></div> */}
-            //         {/* <div className='item-count'>月售{this.renderMonthNum(item)}</div> */}
-            //         <div className='item-distance'>&nbsp;{item.get('distance')}</div>
-            //         <div className='item-time'>{item.get('mt_delivery_time')}&nbsp;|</div>
-            //       </div>
-            //       <div className='item-price'>
-            //         <div className='item-pre-price'>{item.get('min_price_tip')}</div>
-            //         {/* {this.renderMeituanFlag(item)} */}
-            //       </div>
-            //       <div className='item-others'>
-            //         {/* {this.renderOthers(item)} */}
-            //       </div>
-            //     </div>
-            //   </div>
-            // )
           })
         }
       </div>
