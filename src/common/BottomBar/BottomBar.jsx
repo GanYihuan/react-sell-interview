@@ -9,10 +9,11 @@ class BottomBar extends React.Component {
       articlePage,
       tabs
     } = this.props
+    const tabsArray = tabs.toJS()
     return (
       <div className='bottom-bar'>
         {
-          tabs.map((item, index) => {
+          tabsArray.map((item, index) => {
             let cls = item.get('key') + ' btn-item'
             const name = item.get('name')
             if (item.get('key') === articlePage) {
@@ -28,15 +29,6 @@ class BottomBar extends React.Component {
                 <div className='tab-icon'></div>
                 <div className='btn-name'>{name}</div>
               </NavLink>
-              // <Link
-              //   className={cls}
-              //   activeClassName='active'
-              //   key={index}
-              //   to={'/' + item.get('key')}
-              // >
-              //   <div className='tab-icon'></div>
-              //   <div className='btn-name'>{name}</div>
-              // </Link>
             )
           })
         }
@@ -46,8 +38,8 @@ class BottomBar extends React.Component {
 }
 
 const mapState = state => ({
-  articlePage: state.getIn(['home', 'articlePage']),
-  tabs: state.getIn(['home', 'tabs'])
+  articlePage: state.getIn(['bottombar', 'articlePage']),
+  tabs: state.getIn(['bottombar', 'tabs'])
 })
 
 const mapDispatch = dispatch => ({

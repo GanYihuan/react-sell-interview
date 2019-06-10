@@ -1,5 +1,5 @@
 ﻿import React, { PureComponent } from 'react'
-import BottomBar from './components/BottomBar/BottomBar'
+import BottomBar from '../../common/BottomBar/BottomBar'
 import Header from './components/Header/Header'
 import Category from './components/Category/Category'
 import ContentList from './components/ContentList/ContentList'

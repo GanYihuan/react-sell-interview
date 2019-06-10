@@ -1,5 +1,5 @@
 ﻿import React from 'react'
-// import BottomBar from './components/BottomBar/BottomBar'
+import BottomBar from '../../common/BottomBar/BottomBar'
 import './My.scss'
 
 class My extends React.Component {
@@ -24,7 +24,7 @@ class My extends React.Component {
             <p className='time'>服务时间:&nbsp;9:00-23:00</p>
           </div>
         </div>
-        {/* <BottomBar/> */}
+        <BottomBar/>
       </div>
     )
   }
