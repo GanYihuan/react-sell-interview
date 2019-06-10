@@ -1,4 +1,5 @@
 ﻿import React from 'react'
+import { Link } from 'react-router-dom'
 import BottomBar from '../../common/BottomBar/BottomBar'
 import './My.scss'
 
@@ -8,7 +9,9 @@ class My extends React.Component {
       <div>
         <div className='my'>
           <div className='header'>
-            <img className='avatar'/>
+            <Link to={'/login'}>
+              <img className='avatar'/>
+            </Link>
             <p className='nickname'>美团小骑手</p>
           </div>
           <div className='content'>
