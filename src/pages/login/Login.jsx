@@ -32,10 +32,10 @@ class Login extends React.Component {
           </Layout.Col>
         </Layout.Row>
         <Layout.Row>
-          <Layout.Col span='5' offset='4'>
+          <Layout.Col span='6' offset='4'>
             {
               this.state.show
-                ? <div className='tips'>
+                ? <div className='error'>
                   {this.state.error}
                 </div>
                 : ''
@@ -75,6 +75,26 @@ class Login extends React.Component {
     )
   }
   login() {
+    if (this.usernameRef.current.value === '') {
+      console.log('fu')
+      this.setState(() => {
+        return {
+          error: '请输入用户名',
+          show: true
+        }
+      })
+      return
+    }
+    if (this.passwordRef.current.value === '') {
+      console.log('fu2')
+      this.setState(() => {
+        return {
+          error: '请输入密码',
+          show: true
+        }
+      })
+      return
+    }
     axios
       .post('/users/signin', {
         username: window.encodeURIComponent(this.usernameRef.current.value), // encodeURIComponent: Encoding Chinese
@@ -85,17 +105,23 @@ class Login extends React.Component {
           if (data && data.code === 0) {
             this.props.history.push('/my')
           } else {
-            // this.error = data.msg
             this.setState(() => {
               return {
-                error: data.msg
+                error: data.msg,
+                show: true
               }
             })
-            console.log(this.state.error, 'error: data msg...')
+            console.log(this.state.error, 'err msg...')
           }
         } else {
           // this.error = `服务器出错`
-          // this.setState(this.error = '服务器出错')
+          // this.setState(() => {
+          //   return {
+          //     error: `服务器出错`,
+          //     show: true
+          //   }
+          // })
+          console.log(this.state.error, this.state.show, 'error: data msg...2')
         }
       })
   }
