@@ -11,6 +11,7 @@ class Register extends React.Component {
   constructor(props) {
     super(props)
     this.state = {
+      statusMsg: '',
       error: '',
       show: false,
       checked: '',
@@ -62,14 +63,10 @@ class Register extends React.Component {
         ]
       }
     }
-    this.usernameRef = React.createRef()
-    this.passwordRef = React.createRef()
     this.formRef = React.createRef()
-  }
-  onChange(key, value) {
-    this.setState({
-      form: Object.assign({}, this.state.form, { [key]: value })
-    })
+    this.usernameRef = React.createRef()
+    this.emailRef = React.createRef()
+    this.passwordRef = React.createRef()
   }
   render() {
     return (
@@ -97,16 +94,22 @@ class Register extends React.Component {
           <Layout.Col span='20'>
             <Form className='demo-form-inline' ref={this.formRef} model={this.state.form} rules={this.state.rules} labelWidth='100'>
               <Form.Item label='用户名' prop='username'>
-                <Input value={this.state.form.username} onChange={this.onChange.bind(this, 'username')} autoComplete='off'/>
+                <Input ref={this.usernameRef} value={this.state.form.username} onChange={this.onChange.bind(this, 'username')} autoComplete='off'/>
               </Form.Item>
               <Form.Item prop='email' label='邮箱'>
-                <Input value={this.state.form.email} onChange={this.onChange.bind(this, 'email')} autoComplete='off'></Input>
+                <Input ref={this.emailRef} value={this.state.form.email} onChange={this.onChange.bind(this, 'email')} autoComplete='off'></Input>
               </Form.Item>
               <Form.Item label='密码' prop='pass'>
-                <Input value={this.state.form.pass} onChange={this.onChange.bind(this, 'pass')} autoComplete='off'/>
+                <Input ref={this.passwordRef} value={this.state.form.pass} onChange={this.onChange.bind(this, 'pass')} autoComplete='off'/>
               </Form.Item>
               <Form.Item label='确认密码' prop='checkPass'>
                 <Input type='password' value={this.state.form.checkPass} onChange={this.onChange.bind(this, 'checkPass')} autoComplete='off' />
+              </Form.Item>
+              <Form.Item label='发送验证码'>
+                <Button onClick={() => this.sendMsg()}>发送验证码</Button>
+                <div className='status'>
+                  {this.state.statusMsg}
+                </div>
               </Form.Item>
               <Form.Item>
                 <Button className='btn-login' onClick={() => this.register()}>注册</Button>
@@ -117,43 +120,78 @@ class Register extends React.Component {
       </div>
     )
   }
+  onChange(key, value) {
+    this.setState({
+      form: Object.assign({}, this.state.form, { [key]: value })
+    })
+  }
   register() {
-    console.log('register')
-    // this.refs.formRef.validate((valid) => {
+    // this.refs.form.validate((valid) => {
     //   if (valid) {
     //     alert('submit!')
     //   } else {
-    //     console.log(valid, 'valid')
+    //     console.log('error submit!!')
     //     return false
     //   }
     // })
-    // console.log(this.formRef.current, 'register')
-    // this.formRef.current.validate(valid => {
-    //   console.log(valid, 'valid')
-    //   if (valid) {
-    //     console.log('valid')
-    //     axios
-    //       .post('/users/signup', {
-    //         username: window.encodeURIComponent(this.state.form.username),
-    //         password: CryptoJS.MD5(this.state.form.pass).toString(), // CryptoJS.MD5 encryption
-    //         email: this.state.form.email,
-    //         code: this.state.form.code
-    //       })
-    //       .then(({ status, data }) => {
-    //         if (status === 200) {
-    //           if (data && data.code === 0) {
-    //             location.href = '/login'
-    //           } else {
-    //             this.error = data.msg
-    //           }
-    //         } else {
-    //           this.error = `服务器出错，错误码:${status}`
-    //         }
-    //         setTimeout(() => {
-    //           this.error = ''
-    //         }, 1500)
-    //       })
-    //   }
+  }
+  sendMsg() {
+    let sendMsg = true
+    console.log(this.usernameRef.current.props.value, 'this.usernameRef.current.value')
+    if (!this.usernameRef.current.props.value || !this.emailRef.current.props.value || !this.passwordRef.current.props.value) {
+      sendMsg = false
+    }
+    console.log(sendMsg, 'send...')
+    if (!sendMsg) {
+      return
+    }
+    if (sendMsg) {
+      axios
+        .post('/users/verify', {
+          username: encodeURIComponent(this.usernameRef.current.props.value), // encodeURIComponent: Encoding Chinese
+          email: this.emailRef.current.props.value
+        })
+        .then(({ status, data }) => {
+          if (status === 200 && data && data.code === 0) { // After successful delivery, Verification code valid countdown
+            let count = 60
+            // this.statusMsg = `验证码已发送，剩余${count--}秒`
+            this.setState(() => {
+              return {
+                statusMsg: `验证码已发送，剩余${count--}秒`
+              }
+            })
+            this.timerid = setInterval(() => {
+              // this.statusMsg = `验证码已发送，剩余${count--}秒`
+              this.setState(() => {
+                return {
+                  statusMsg: `验证码已发送，剩余${count--}秒`
+                }
+              })
+              if (count === 0) {
+                clearInterval(this.timerid)
+                // this.statusMsg = ''
+                this.setState(() => {
+                  return {
+                    statusMsg: ''
+                  }
+                })
+              }
+            }, 1000)
+          } else {
+            // this.statusMsg = data.msg
+            this.setState(() => {
+              return {
+                statusMsg: data.msg
+              }
+            })
+          }
+        })
+    }
+    // this.refs['usernameRef'].validate('form.uername', valid => {
+    //   namePass = valid
+    // })
+    // this.usernameRef.validate('form.uername', valid => {
+    //   namePass = valid
     // })
   }
 }
