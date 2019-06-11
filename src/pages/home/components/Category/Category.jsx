@@ -5,7 +5,7 @@ import { withRouter } from 'react-router-dom'
 import { actionCreators } from '../../store'
 import './Category.scss'
 
-@ withRouter
+@withRouter
 class Category extends React.Component {
   componentDidMount() { // async, get ajax async data
     const { addArticleList } = this.props
