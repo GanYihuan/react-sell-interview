@@ -1,6 +1,6 @@
 ﻿import React from 'react'
 import { Link } from 'react-router-dom'
-import Header from '../../pages/home/components/Header/Header'
+import Header from '../home/components/Header/Header'
 import { Button, Layout, Input, Checkbox, Form } from 'element-react'
 import axios from 'axios'
 import CryptoJS from 'crypto-js'

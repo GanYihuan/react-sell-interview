@@ -8,6 +8,7 @@ const My = lazy(() => import(/* webpackChunkName: "My" */ './pages/my/My'))
 const Login = lazy(() => import(/* webpackChunkName: "My" */ './pages/login/Login'))
 const Register = lazy(() => import(/* webpackChunkName: "My" */ './pages/register/Register'))
 const Main = lazy(() => import(/* webpackChunkName: "My" */ './pages/main/Main'))
+const Menu = lazy(() => import(/* webpackChunkName: "My" */ './pages/main/Menu/Menu'))
 // forceRefresh: bool
 // 当设置为 true 时，在导航的过程中整个页面将会刷新。 只有当浏览器不支持 HTML5 的 history API 时，才设置为 true
 const supportsHistory = 'pushState' in window.history
@@ -38,6 +39,7 @@ class App extends Component {
               <Route path='/login' exact component={Login} />
               <Route path='/register' exact component={Register} />
               <Route path='/main' exact component={Main} />
+              <Route exact path='/menu' component={Menu}/>
               <Redirect to='/main' />
             </Switch>
           </Suspense>
