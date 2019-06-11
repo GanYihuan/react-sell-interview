@@ -29,6 +29,8 @@ class Register extends React.Component {
           { validator: (rule, value, callback) => {
             if (value === '') {
               callback(new Error('请输入用户名'))
+            } else {
+              callback()
             }
           } }
         ],
@@ -42,9 +44,6 @@ class Register extends React.Component {
             if (value === '') {
               callback(new Error('请输入密码'))
             } else {
-              if (this.state.form.checkPass !== '') {
-                this.refs.form.validateField('checkPass')
-              }
               callback()
             }
           } }
@@ -67,6 +66,7 @@ class Register extends React.Component {
     this.usernameRef = React.createRef()
     this.emailRef = React.createRef()
     this.passwordRef = React.createRef()
+    this.codeRef = React.createRef()
   }
   render() {
     return (
@@ -106,7 +106,14 @@ class Register extends React.Component {
                 <Input type='password' value={this.state.form.checkPass} onChange={this.onChange.bind(this, 'checkPass')} autoComplete='off' />
               </Form.Item>
               <Form.Item label='发送验证码'>
-                <Button onClick={() => this.sendMsg()}>发送验证码</Button>
+                <Layout.Row>
+                  <Layout.Col span='12'>
+                    <Button onClick={() => this.sendMsg()}>发送验证码</Button>
+                  </Layout.Col>
+                  <Layout.Col span='12'>
+                    <Input ref={this.codeRef} />
+                  </Layout.Col>
+                </Layout.Row>
                 <div className='status'>
                   {this.state.statusMsg}
                 </div>
@@ -126,18 +133,58 @@ class Register extends React.Component {
     })
   }
   register() {
-    // this.refs.form.validate((valid) => {
-    //   if (valid) {
-    //     alert('submit!')
-    //   } else {
-    //     console.log('error submit!!')
-    //     return false
-    //   }
-    // })
+    let register = true
+    if (!this.usernameRef.current.props.value || !this.emailRef.current.props.value || !this.passwordRef.current.props.value) {
+      register = false
+    }
+    if (!register) {
+      return
+    }
+    if (register) {
+      console.log(register, 'register...')
+      axios
+        .post('/users/signup', {
+          username: window.encodeURIComponent(this.usernameRef.current.props.value),
+          password: CryptoJS.MD5(this.passwordRef.current.props.value).toString(), // CryptoJS.MD5 encryption
+          email: this.emailRef.current.props.value,
+          code: this.codeRef.current.props.value
+        })
+        .then(({ status, data }) => {
+          if (status === 200) {
+            let count = 60
+            if (data && data.code === 0) {
+              this.props.history.push('/login')
+            } else {
+              console.log(data.msg, 'data.msg')
+              this.setState(() => {
+                return {
+                  statusMsg: `验证码已发送，剩余${count--}秒`,
+                  error: data.msg
+                }
+              })
+            }
+          } else {
+            this.setState(() => {
+              return {
+                statusMsg: `服务器出错，错误码:${status}`,
+                error: data.msg
+              }
+            })
+          }
+          setTimeout(() => {
+            this.error = ''
+            this.setState(() => {
+              return {
+                error: ''
+              }
+            })
+          }, 1500)
+        })
+    }
   }
   sendMsg() {
     let sendMsg = true
-    console.log(this.usernameRef.current.props.value, 'this.usernameRef.current.value')
+    // console.log(this.usernameRef.current.props.value, 'this.usernameRef.current.value')
     if (!this.usernameRef.current.props.value || !this.emailRef.current.props.value || !this.passwordRef.current.props.value) {
       sendMsg = false
     }
