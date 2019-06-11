@@ -154,14 +154,12 @@ class Register extends React.Component {
         .then(({ status, data }) => {
           if (status === 200 && data && data.code === 0) { // After successful delivery, Verification code valid countdown
             let count = 60
-            // this.statusMsg = `验证码已发送，剩余${count--}秒`
             this.setState(() => {
               return {
                 statusMsg: `验证码已发送，剩余${count--}秒`
               }
             })
             this.timerid = setInterval(() => {
-              // this.statusMsg = `验证码已发送，剩余${count--}秒`
               this.setState(() => {
                 return {
                   statusMsg: `验证码已发送，剩余${count--}秒`
@@ -169,7 +167,6 @@ class Register extends React.Component {
               })
               if (count === 0) {
                 clearInterval(this.timerid)
-                // this.statusMsg = ''
                 this.setState(() => {
                   return {
                     statusMsg: ''
@@ -178,7 +175,6 @@ class Register extends React.Component {
               }
             }, 1000)
           } else {
-            // this.statusMsg = data.msg
             this.setState(() => {
               return {
                 statusMsg: data.msg
@@ -187,12 +183,6 @@ class Register extends React.Component {
           }
         })
     }
-    // this.refs['usernameRef'].validate('form.uername', valid => {
-    //   namePass = valid
-    // })
-    // this.usernameRef.validate('form.uername', valid => {
-    //   namePass = valid
-    // })
   }
 }
 
