@@ -4,7 +4,7 @@ import axios from 'axios'
 import { Layout } from 'element-react'
 import BottomBar from '../../common/BottomBar/BottomBar'
 import 'element-theme-default'
-import './My.scss'
+import './My.styl'
 
 class My extends React.Component {
   constructor(props) {
