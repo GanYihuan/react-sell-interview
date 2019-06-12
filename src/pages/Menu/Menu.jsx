@@ -4,7 +4,7 @@ import { connect } from 'react-redux'
 // import MenuItem from './MenuItem/MenuItem.jsx'
 // import ShopBar from './ShopBar/ShopBar.jsx'
 import NavHeader from '../../common/NavHeader/NavHeader'
-import './Menu.scss'
+import './Menu.styl'
 
 /**
  * 点菜 tab 页面
@@ -77,7 +77,6 @@ class Menu extends React.Component {
           <div className='right-content'>
             {this.renderRight()}
           </div>
-          {/* <ShopBar /> */}
         </div>
       </div>
 

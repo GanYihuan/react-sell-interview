@@ -12,8 +12,8 @@ class NavHeader extends React.Component {
       return (
         <div className='tab-item' key={item.key}>
           <NavLink
-            className={item.className}
-            activeClassName='active'
+            className='btn-Item'
+            activeClassName='activeDes'
             replace={true}
             to={'/' + item.key}
           >
