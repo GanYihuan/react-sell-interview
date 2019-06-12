@@ -5,16 +5,17 @@
   MINUS_SELECTI_ITEM,
   SHOW_CHOOSE_CONTENT,
   CLEAR_CAR
-} from '../actions/actionTypes'
+} from './constants'
+import { fromJS } from 'immutable'
 
-const initState = {
+const initState = fromJS({
   listData: {
     food_spu_tags: []
   },
   currentLeftIndex: 0,
   showChooseContent: false,
   poiInfo: {}
-}
+})
 
 const itemClick = (state, action) => {
   return { ...state, currentLeftIndex: action.obj.currentLeftIndex }
@@ -65,7 +66,7 @@ const clearCar = (state) => {
   return { ...state, listData: JSON.parse(JSON.stringify(listData)) }
 }
 
-const menuReducer = (state = initState, action) => {
+export default (state = initState, action) => {
   switch (action.type) {
     case GET_LIST_DATA:
       return getListData(state, action)
@@ -83,5 +84,3 @@ const menuReducer = (state = initState, action) => {
       return state
   }
 }
-
-export default menuReducer

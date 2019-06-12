@@ -53,15 +53,16 @@ class Menu extends React.Component {
    * 渲染左边的列表
    */
   renderLeft() {
-    // const list = this.props.listData.food_spu_tags || []
-    // return list.map((item, index) => {
-    //   const cls = this.props.currentLeftIndex === index ? 'left-item active' : 'left-item'
-    //   return (
-    //     <div className={cls} key={index} onClick={() => this.itemClick(index)}>
-    //       <div className='item-text'>{item.icon ? <img className='item-icon' src={item.icon} /> : null}{item.name}</div>
-    //     </div>
-    //   )
-    // })
+    const { listData } = this.props
+    const list = listData.get('food_spu_tags') || []
+    return list.map((item, index) => {
+      const cls = this.props.currentLeftIndex === index ? 'left-item active' : 'left-item'
+      return (
+        <div className={cls} key={index} onClick={() => this.itemClick(index)}>
+          <div className='item-text'>{item.icon ? <img className='item-icon' src={item.icon} /> : null}{item.name}</div>
+        </div>
+      )
+    })
   }
   render() {
     return (
@@ -85,6 +86,7 @@ class Menu extends React.Component {
 }
 
 const mapState = state => ({
+  listData: state.getIn(['menu', 'listData'])
 })
 
 const mapDispatch = dispatch => ({
