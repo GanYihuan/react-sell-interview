@@ -2,7 +2,7 @@
 import { connect } from 'react-redux'
 // import { getRestanurantData } from '../actions/restanurantAction'
 import NavHeader from '../../common/NavHeader/NavHeader'
-import './Comment.scss'
+import Split from '../../common/Split/Split'
 import './Ratings.styl'
 
 class Comment extends React.Component {
@@ -21,42 +21,42 @@ class Comment extends React.Component {
     return (
       <div>
         <NavHeader/>
-        <div className='comment-inner'>
-          <div className='comment-score'>
-            <div className='mail-score-content'>
-              <div className='mail-score'>
-                {/* {data.comment_score ? data.comment_score.toFixed(1) : ''} */}1
+        <div className='ratings'>
+          <div class='ratings-content'>
+            <div class='overview'>
+              <div class='overview-left'>
+                <h1 class='score'>
+                </h1>
+                <div class='title'>
+                  综合评分
+                </div>
+                <div class='rank'>
+                  高于周边商家
+                </div>
               </div>
-              <div className='mail-text'>商家评价</div>
+              <div class='overview-right'>
+                <div class='score-wrapper'>
+                  <span class='title'>服务态度</span>
+                  <span class='score'>
+                    score
+                  </span>
+                </div>
+                <div class='score-wrapper'>
+                  <span class='title'>商品评分</span>
+                  <span class='score'>
+                    score
+                  </span>
+                </div>
+                <div class='delivery-wrapper'>
+                  <span class='title'>送达时间</span>
+                  <span class='delivery'>
+                    分钟
+                  </span>
+                </div>
+              </div>
             </div>
-            <div className='other-score-content'>
-              <div className='taste-score'>
-                <div className='taste-text'>口味</div>
-                <div className='taste-star-wrap'>
-                  {/* <StarScore score={data.food_score}/> */}2
-                </div>
-                <div className='taste-score-text'>
-                  {/* {data.food_score ? data.food_score.toFixed(1) : ''} */}3
-                </div>
-              </div>
-              <div className='package-score'>
-                <div className='package-text'>包装</div>
-                <div className='package-star-wrap'>
-                  {/* <StarScore score={data.pack_score}/> */}4
-                </div>
-                <div className='package-score-text'>
-                  {/* {data.pack_score} */}5
-                </div>
-              </div>
-            </div>
-            <div className='send-score-content'>
-              <div className='send-score'>
-                {/* {data.delivery_score} */}6
-              </div>
-              <div className='send-text'>商家评价</div>
-            </div>
+            <Split/>
           </div>
-          {/* <CommentList /> */}
         </div>
       </div>
     )
