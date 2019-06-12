@@ -40,9 +40,9 @@ class App extends Component {
               <Route path='/login' exact component={Login} />
               <Route path='/register' exact component={Register} />
               <Route exact path='/menu' component={Menu}/>
-              <Route exact path='/restanurant' component={Restanurant}/>
               <Route exact path='/ratings' component={Ratings}/>
-              <Redirect to='/menu' />
+              <Route exact path='/restanurant' component={Restanurant}/>
+              <Redirect to='/ratings' />
             </Switch>
           </Suspense>
         </BrowserRouter>
