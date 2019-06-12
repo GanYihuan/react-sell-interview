@@ -1,23 +1,15 @@
 ﻿import React from 'react'
 import { connect } from 'react-redux'
-// import { getRestanurantData } from '../actions/restanurantAction'
 import NavHeader from '../../common/NavHeader/NavHeader'
 import Split from '../../common/Split/Split'
 import './Ratings.styl'
 
 class Comment extends React.Component {
-  // constructor(props) {
-  //   super(props)
-  //   this.props.dispatch(getRestanurantData())
-  // }
-  // renderPayType(types) {
-  //   const array = types || []
-  //   return array.map((item, index) => {
-  //     return <p key={index} className='restanurant-pay-type res-section'><img className='icon' src={item.icon_url}/>{item.info}</p>
-  //   })
-  // }
   render() {
-    // const { resData } = this.props
+    const {
+      commentData
+    } = this.props
+    const commentDatas = commentData.toJS()
     return (
       <div>
         <NavHeader/>
@@ -26,6 +18,7 @@ class Comment extends React.Component {
             <div class='overview'>
               <div class='overview-left'>
                 <h1 class='score'>
+                  {commentDatas.score}
                 </h1>
                 <div class='title'>
                   综合评分
@@ -64,7 +57,7 @@ class Comment extends React.Component {
 }
 
 const mapState = state => ({
-  // resData: state.getIn('restanurant', 'resData')
+  commentData: state.getIn(['ratings', 'commentData'])
 })
 
 const mapDispatch = dispatch => ({
