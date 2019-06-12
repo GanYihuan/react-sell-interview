@@ -2,6 +2,7 @@
 import { connect } from 'react-redux'
 import NavHeader from '../../common/NavHeader/NavHeader'
 import Split from '../../common/Split/Split'
+import StarScore from '../../common/StarScore/StarScore'
 import { actionCreators } from './store'
 import './Ratings.styl'
 
@@ -15,7 +16,6 @@ class Ratings extends React.Component {
       commentData
     } = this.props
     const commentDatas = commentData.toJS()
-    console.log(commentDatas, 'Ratings component inside...')
     return (
       <div>
         <NavHeader/>
@@ -37,19 +37,19 @@ class Ratings extends React.Component {
                 <div className='score-wrapper'>
                   <span className='title'>服务态度</span>
                   <span className='score'>
-                    score
+                    <StarScore score={commentDatas.pack_score}/>
                   </span>
                 </div>
                 <div className='score-wrapper'>
                   <span className='title'>商品评分</span>
                   <span className='score'>
-                    score
+                    <StarScore score={commentDatas.food_score}/>
                   </span>
                 </div>
                 <div className='delivery-wrapper'>
                   <span className='title'>送达时间</span>
                   <span className='delivery'>
-                    分钟
+                    {commentDatas.avg_ship_time}分钟
                   </span>
                 </div>
               </div>
