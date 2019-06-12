@@ -3,6 +3,7 @@ import { connect } from 'react-redux'
 // import { getRestanurantData } from '../actions/restanurantAction'
 import NavHeader from '../../common/NavHeader/NavHeader'
 import './Comment.scss'
+import './Ratings.styl'
 
 class Comment extends React.Component {
   // constructor(props) {

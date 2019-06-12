@@ -9,7 +9,7 @@ const defaultState = fromJS({
     },
     {
       name: '评价',
-      key: 'comment'
+      key: 'ratings'
     },
     {
       name: '商家',
