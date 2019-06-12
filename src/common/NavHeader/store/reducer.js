@@ -5,15 +5,18 @@ const defaultState = fromJS({
   tabs: [
     {
       name: '点菜',
-      key: 'menu'
+      key: 'menu',
+      className: 'menu btn-Item'
     },
     {
       name: '评价',
-      key: 'ratings'
+      key: 'ratings',
+      className: 'ratings btn-Item'
     },
     {
       name: '商家',
-      key: 'restanurant'
+      key: 'restanurant',
+      className: 'restanurant btn-Item'
     }
   ]
 })
