@@ -3,6 +3,7 @@ import { connect } from 'react-redux'
 // import { getListData, itemClick } from '../actions/menuAction'
 // import MenuItem from './MenuItem/MenuItem.jsx'
 // import ShopBar from './ShopBar/ShopBar.jsx'
+import NavHeader from '../../common/NavHeader/NavHeader'
 import './Menu.scss'
 
 /**
@@ -64,17 +65,21 @@ class Menu extends React.Component {
   }
   render() {
     return (
-      <div className='menu-inner'>
-        <div className='left-bar'>
-          <div className='left-bar-inner'>
-            {this.renderLeft()}
+      <div>
+        <NavHeader/>
+        <div className='menu-inner'>
+          <div className='left-bar'>
+            <div className='left-bar-inner'>
+              {this.renderLeft()}
+            </div>
           </div>
+          <div className='right-content'>
+            {this.renderRight()}
+          </div>
+          {/* <ShopBar /> */}
         </div>
-        <div className='right-content'>
-          {this.renderRight()}
-        </div>
-        {/* <ShopBar /> */}
       </div>
+
     )
   }
 }
