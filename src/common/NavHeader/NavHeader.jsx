@@ -1,8 +1,9 @@
 ﻿import React from 'react'
 import { connect } from 'react-redux'
-import { NavLink } from 'react-router-dom'
+import { NavLink, withRouter } from 'react-router-dom'
 import './NavHeader.scss'
 
+@withRouter
 class NavHeader extends React.Component {
   renderTabs() {
     const { tabs } = this.props
@@ -21,7 +22,9 @@ class NavHeader extends React.Component {
       )
     })
   }
-  goBack() {}
+  goBack() {
+    this.props.history.push(`/my`)
+  }
   render() {
     return (
       <div className='detail'>

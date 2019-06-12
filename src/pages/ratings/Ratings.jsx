@@ -2,47 +2,53 @@
 import { connect } from 'react-redux'
 import NavHeader from '../../common/NavHeader/NavHeader'
 import Split from '../../common/Split/Split'
+import { actionCreators } from './store'
 import './Ratings.styl'
 
-class Comment extends React.Component {
+class Ratings extends React.Component {
+  componentDidMount() { // async, get ajax async data
+    const { addArticleList } = this.props
+    addArticleList()
+  }
   render() {
     const {
       commentData
     } = this.props
     const commentDatas = commentData.toJS()
+    console.log(commentDatas, 'Ratings component inside...')
     return (
       <div>
         <NavHeader/>
         <div className='ratings'>
-          <div class='ratings-content'>
-            <div class='overview'>
-              <div class='overview-left'>
-                <h1 class='score'>
-                  {commentDatas.score}
+          <div className='ratings-content'>
+            <div className='overview'>
+              <div className='overview-left'>
+                <h1 className='score'>
+                  {commentDatas.food_score}
                 </h1>
-                <div class='title'>
+                <div className='title'>
                   综合评分
                 </div>
-                <div class='rank'>
-                  高于周边商家
+                <div className='rank'>
+                  高于周边商家 {commentDatas.comment_praise_ratio}%
                 </div>
               </div>
-              <div class='overview-right'>
-                <div class='score-wrapper'>
-                  <span class='title'>服务态度</span>
-                  <span class='score'>
+              <div className='overview-right'>
+                <div className='score-wrapper'>
+                  <span className='title'>服务态度</span>
+                  <span className='score'>
                     score
                   </span>
                 </div>
-                <div class='score-wrapper'>
-                  <span class='title'>商品评分</span>
-                  <span class='score'>
+                <div className='score-wrapper'>
+                  <span className='title'>商品评分</span>
+                  <span className='score'>
                     score
                   </span>
                 </div>
-                <div class='delivery-wrapper'>
-                  <span class='title'>送达时间</span>
-                  <span class='delivery'>
+                <div className='delivery-wrapper'>
+                  <span className='title'>送达时间</span>
+                  <span className='delivery'>
                     分钟
                   </span>
                 </div>
@@ -61,9 +67,12 @@ const mapState = state => ({
 })
 
 const mapDispatch = dispatch => ({
+  addArticleList() {
+    dispatch(actionCreators.getListData())
+  }
 })
 
 export default connect(
   mapState,
   mapDispatch
-)(Comment)
+)(Ratings)

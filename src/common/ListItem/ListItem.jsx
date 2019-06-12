@@ -1,8 +1,10 @@
 ﻿import React from 'react'
 import { connect } from 'react-redux'
+import { withRouter } from 'react-router-dom'
 import StarScore from '../../common/StarScore/StarScore'
 import './ListItem.scss'
 
+@withRouter
 class ListItem extends React.Component {
   renderBrand(data) {
     if (data) {
@@ -38,10 +40,13 @@ class ListItem extends React.Component {
   goDetail(data) {
     window.location.href = './detail.html?id=' + data.id
   }
+  goMenu() {
+    this.props.history.push(`/menu`)
+  }
   render() {
     const data = this.props.itemData
     return (
-      <div className='item border-bottom'>
+      <div className='item border-bottom' onClick={() => this.goMenu()}>
         <img className='item-img' src={data.get('pic_url')} />
         {this.renderBrand(data.get('brand_type'))}
         <div className='item-info'>

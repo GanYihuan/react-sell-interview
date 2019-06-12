@@ -76,7 +76,6 @@ class Login extends React.Component {
   }
   login() {
     if (this.usernameRef.current.value === '') {
-      console.log('fu')
       this.setState(() => {
         return {
           error: '请输入用户名',
@@ -86,7 +85,6 @@ class Login extends React.Component {
       return
     }
     if (this.passwordRef.current.value === '') {
-      console.log('fu2')
       this.setState(() => {
         return {
           error: '请输入密码',
@@ -111,7 +109,6 @@ class Login extends React.Component {
                 show: true
               }
             })
-            console.log(this.state.error, 'err msg...')
           }
         } else {
           // this.error = `服务器出错`

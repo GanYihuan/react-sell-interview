@@ -5,16 +5,6 @@ const defaultState = fromJS({
   commentList: []
 })
 
-const getListData = (state, action) => {
-  let list = []
-  if (state.commentList.length > 0) {
-    list = state.commentList.concat(action.obj.data.comments)
-  } else {
-    list = action.obj.data.comments
-  }
-  return { ...state, commentData: action.obj.data, commentList: list }
-}
-
 export default (state = defaultState, action) => {
   switch (action.type) {
     case 'COMMENT_LIST_DATA':
@@ -22,4 +12,10 @@ export default (state = defaultState, action) => {
     default:
       return state
   }
+}
+
+const getListData = (state, action) => {
+  return state.merge({
+    commentData: state.get('commentData').concat(fromJS(action.obj.data)) // imutable obj, use get()
+  })
 }

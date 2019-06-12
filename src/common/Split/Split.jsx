@@ -5,7 +5,7 @@ import './Split.styl'
 class Split extends React.Component {
   render() {
     return (
-      <div class='split' />
+      <div className='split' />
     )
   }
 }
