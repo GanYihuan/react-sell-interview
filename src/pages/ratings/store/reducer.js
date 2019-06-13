@@ -23,7 +23,6 @@ const getListData = (state, action) => {
 }
 
 const getRatingtData = (state, action) => {
-  console.log(action.obj.data, 'xx')
   return state.merge({
     ratingData: state.get('ratingData').concat(fromJS(action.obj.data)) // imutable obj, use get()
   })
