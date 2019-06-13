@@ -31,9 +31,9 @@ class Menu extends React.Component {
               {this.renderRight()}
             </div>
           </div>
-          <ShopBar/>
-          {/* {this.renderShopCar()} */}
         </div>
+        <ShopBar/>
+        {/* {this.renderShopCar()} */}
       </div>
     )
   }

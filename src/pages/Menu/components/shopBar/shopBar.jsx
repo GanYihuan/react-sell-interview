@@ -4,9 +4,6 @@ import { showChoose, addSelectItem, minusSelectItem, clearCar } from '../../stor
 import './shopBar.scss'
 
 class ShopBar extends React.Component {
-  /**
-   * 获取总价
-   */
   getTotalPrice() {
     const listData = this.props.listData.food_spu_tags || []
     let totalPrice = 0
@@ -32,27 +29,18 @@ class ShopBar extends React.Component {
       chooseList
     }
   }
-  /**
-   * 添加菜品数量
-   */
   addSelectItem(item) {
     this.props.dispatch(addSelectItem({
       index: item._index,
       outIndex: item._outIndex
     }))
   }
-  /**
-   * 减少菜品数量
-   */
   minusSelectItem(item) {
     this.props.dispatch(minusSelectItem({
       index: item._index,
       outIndex: item._outIndex
     }))
   }
-  /**
-   * @description: 购物车里面的每一项
-   */
   renderChooseItem(data) {
     const array = data.chooseList || []
     return array.map((item, index) => {
@@ -69,18 +57,12 @@ class ShopBar extends React.Component {
       )
     })
   }
-  /**
-   * 打开或隐藏购物车已选择列表
-   */
   openChooseContent() {
     const flag = this.props.showChooseContent
     this.props.dispatch(showChoose({
       flag: !flag
     }))
   }
-  /**
-   * 晴空购物车
-   */
   clearCar() {
     this.props.dispatch(clearCar())
     this.props.dispatch(showChoose({
@@ -119,8 +101,8 @@ class ShopBar extends React.Component {
 
 export default connect(
   state => ({
-    listData: state.menuReducer.listData,
-    showChooseContent: state.menuReducer.showChooseContent
+    listData: state.getIn(['menu', 'listData']),
+    showChooseContent: state.getIn(['menu', 'showChooseContent'])
   })
 )(ShopBar)
 
