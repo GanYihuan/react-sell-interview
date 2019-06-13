@@ -60,8 +60,10 @@ class NavHeader extends React.Component {
             <div
               className='support'
             >
-              <span className='icon'/>
-              <span className='text'></span>
+              <span className='icon decrease'/>
+              <span className='text'>
+                {navHeader.getIn(['infos', 0])}
+              </span>
             </div>
             <div
               className='support-count'
