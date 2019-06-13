@@ -73,6 +73,7 @@ class Ratings extends React.Component {
                     return (
                       <li
                         className='rating-item'
+                        key={index}
                       >
                         <div className='avatar'>
                           <img

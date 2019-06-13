@@ -78,7 +78,7 @@ class Restanurant extends React.Component {
               <div className='title'>
                 商家实景
               </div>
-              <Scroll refresh={this.state.refreshScroll} onScroll='y'>
+              <Scroll refresh={this.state.refreshScroll} scrollY={true}>
                 <div className='pic-wrapper'>
                   <div className='pic-list'>
                     <div className='pic-item'>
