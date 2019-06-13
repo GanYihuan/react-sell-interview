@@ -15,26 +15,26 @@ class RatingSelect extends React.Component {
           <span
             className='block positive'
           >
-          positive
-            <span className='count'>count}</span>
+            positive
+            <span className='count'>count</span>
           </span>
           <span
             className='block positive'
           >
-          positive
+            positive
             <span className='count'>count</span>
           </span>
           <span
             className='block negative'
           >
-          negative
+            negative
             <span className='count'>count</span>
           </span>
         </div>
         <div
           className='switch'
         >
-          <span className='icon-check_circle' />
+          <i className='el-icon-edit'></i>
           <span className='text'>只看有内容的评价</span>
         </div>
       </div>
