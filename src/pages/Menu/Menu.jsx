@@ -9,23 +9,26 @@ class Menu extends React.Component {
   constructor(props) {
     super(props)
     this.state = {
-      refreshScroll: false
+      refreshScroll: false,
+      classMap: ['decrease', 'discount', 'special', 'invoice', 'guarantee']
     }
   }
   render() {
     return (
       <div>
         <NavHeader/>
-        <div className='menu-inner'>
-          <div className='left-bar'>
-            <Scroll refresh={this.state.refreshScroll}>
-              <div className='left-bar-inner'>
-                {this.renderLeft()}
-              </div>
-            </Scroll>
-          </div>
-          <div className='right-content'>
-            {this.renderRight()}
+        <div className='goods'>
+          <div className='menu-wrapper'>
+            <div className='left-bar'>
+              <Scroll refresh={this.state.refreshScroll}>
+                <div className='menu-wrapper'>
+                  {this.renderLeft()}
+                </div>
+              </Scroll>
+            </div>
+            <div className='right-content'>
+              {this.renderRight()}
+            </div>
           </div>
         </div>
       </div>
@@ -39,10 +42,16 @@ class Menu extends React.Component {
     const { menuData, currentLeftIndex } = this.props
     const menuDatas = menuData.toJS()
     return menuDatas.map((item, index) => {
-      const cls = currentLeftIndex === index ? 'left-item active' : 'left-item'
+      const cls = currentLeftIndex === index ? 'menu-item current' : 'menu-item'
+      const iconF = (type) => {
+        const mapN = this.state.classMap[type]
+        return (
+          `icon ${mapN}`
+        )
+      }
       return (
         <div className={cls} key={index} onClick={() => this.itemClick(index)}>
-          <div className='item-text'>{item.type > 1 ? <img className='item-icon' src={item.icon} /> : null}{item.name}</div>
+          <div className='text border-1px'>{item.type > 0 ? <img className={iconF(item.type)} /> : null}{item.name}</div>
         </div>
       )
     })
