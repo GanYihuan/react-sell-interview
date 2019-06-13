@@ -1,8 +1,9 @@
 ﻿import React from 'react'
 import { connect } from 'react-redux'
-import NavHeader from '../../common/NavHeader/NavHeader'
 import { actionCreators } from './store'
+import NavHeader from '../../common/NavHeader/NavHeader'
 import Scroll from '../../common/Scroll/scroll'
+import ShopBar from './components/shopBar/shopBar'
 import './Menu.styl'
 
 class Menu extends React.Component {
@@ -30,6 +31,8 @@ class Menu extends React.Component {
               {this.renderRight()}
             </div>
           </div>
+          <ShopBar/>
+          {/* {this.renderShopCar()} */}
         </div>
       </div>
     )
@@ -61,6 +64,41 @@ class Menu extends React.Component {
     dispathLeftItemClick(index)
   }
   renderRight() {
+  }
+  renderShopCar() {
+    const { menuData } = this.props
+    const menuDatas = menuData.toJS()
+    return (
+      <div className='shopCart'>
+        <div className='content' onClick={() => this.toggleList()}>
+          <div className='content-left'>
+            <div className='logo-wrapper'>
+              <div className='logo'>
+                {/* <i className='icon-shopping_cart'></i> */}
+                <i className='iconfont'>&#xe607;</i>
+              </div>
+              <div className='num'></div>
+            </div>
+            <div className='price'></div>
+            <div className='desc'>另需配送费元</div>
+          </div>
+          <div className='content-right'>
+            <div className='pay'></div>
+          </div>
+        </div>
+        <div className='ball-container'>
+          <div v-for='(ball, index) in balls' >
+            <transition
+              name='drop'
+            >
+              <div className='ball' v-show='ball.show'>
+                <div className='inner inner-hook'></div>
+              </div>
+            </transition>
+          </div>
+        </div>
+      </div>
+    )
   }
 }
 

@@ -1,0 +1,130 @@
+﻿.shop-bar {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  z-index: 99;
+  .bottom-content {
+    display: flex;
+    height: 50px;
+    background-color: rgba(51, 51, 51, 0.9);
+  }
+  .shop-icon {
+    position: relative;
+    margin-top: -15px;
+    margin-left: 12px;
+    width: 55px;
+    height: 56px;
+    background-image: url('./img/shop-icon.png');
+    background-size: cover;
+  }
+  .price-content {
+    flex: 1;
+    padding-top: 8px;
+    padding-left: 7px;
+  }
+  .total-price {
+    font-size: 20px;
+    color: #fff;
+  }
+  .other-price {
+    margin-top: 2px;
+    font-size: 12px;
+    color: #999;
+  }
+  .dot-num {
+    position: absolute;
+    top: 2px;
+    right: 0;
+    border: 1px solid #fff;
+    border-radius: 50%;
+    width: 15px;
+    height: 15px;
+    line-height: 16px;
+    text-align: center;
+    font-size: 12px;
+    color: #fff;
+    background-color: #fb4e44;
+  }
+  .submit-btn {
+    width: 110px;
+    height: 100%;
+    line-height: 50px;
+    text-align: center;
+    font-size: 16px;
+    color: #333;
+    background-color: #ffd161;
+  }
+  .choose-content {
+    background-color: #fff;
+  }
+  .content-top {
+    height: 35px;
+    background-color: #f4f4f4;
+    font-size: 11px;
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+  }
+  .clear-car {
+    margin-left: 10px;
+    margin-right: 5px;
+    &:before {
+      content: '';
+      width: 13px;
+      height: 13px;
+      display: block;
+      background-image: url('./img/clear.jpeg');
+      background-size: cover;
+
+      float: left;
+      margin: -1px;
+      margin-right: 2px;
+    }
+  }
+  .choose-item {
+    display: flex;
+    font-size: 15px;
+    color: #2f2f2f;
+    height: 35px;
+    align-items: center;
+    padding-top: 10px;
+    padding-bottom: 10px;
+    border-bottom: 1px solid #ddd;
+    .price {
+      margin-left: 5px;
+      margin-right: 25px;
+    }
+  }
+  .item-name {
+    flex: 1;
+    padding-left: 10px;
+  }
+  .select-content {
+    position: relative;
+    display: flex;
+    margin-right: 8px;
+  }
+  .plus {
+    width: 25px;
+    height: 25px;
+    background-size: 100% 100%;
+    background-image: url('./img/plus.png');
+  }
+  .minus {
+    width: 25px;
+    height: 26px;
+    background-size: 100% 100%;
+    background-image: url('./img/minus.png');
+  }
+  .count {
+    font-size: 15px;
+    color: #2f2f2f;
+    width: 20px;
+    height: 25px;
+    line-height: 25px;
+    margin-left: 2px;
+    margin-right: 2px;
+    text-align: center;
+  }
+}
