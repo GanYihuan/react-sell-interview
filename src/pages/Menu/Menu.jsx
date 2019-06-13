@@ -4,6 +4,7 @@ import { actionCreators } from './store'
 import NavHeader from '../../common/NavHeader/NavHeader'
 import Scroll from '../../common/Scroll/scroll'
 import ShopBar from './components/shopBar/shopBar'
+import MenuItem from './components/MenuItem/MenuItem'
 import './Menu.styl'
 
 class Menu extends React.Component {
@@ -28,7 +29,7 @@ class Menu extends React.Component {
               </Scroll>
             </div>
             <div className='right-content'>
-              {this.renderRight()}
+              {/* {this.renderRight()} */}
             </div>
           </div>
         </div>
@@ -37,7 +38,7 @@ class Menu extends React.Component {
       </div>
     )
   }
-  componentDidMount() { // async, get ajax async data
+  componentDidMount() {
     const { dispathMenuData } = this.props
     dispathMenuData()
   }
@@ -64,6 +65,27 @@ class Menu extends React.Component {
     dispathLeftItemClick(index)
   }
   renderRight() {
+    const index = this.props.currentLeftIndex
+    const array = this.props.listData.food_spu_tags || []
+    const currentItem = array[index]
+    if (currentItem) {
+      const title = <p className='right-title' key={1}>{currentItem.name}</p>
+      return [
+        title,
+        <div className='right-list' key={2}><div className='right-list-inner'>{this.renderRightList(currentItem.spus)}</div></div>
+      ]
+    } else {
+      return null
+    }
+  }
+  renderRightList(array) {
+    const _array = array || []
+    return _array.map((item, index) => {
+      if (!item.chooseCount) {
+        item.chooseCount = 0
+      }
+      return <MenuItem key={index} data={item} _index={index}></MenuItem>
+    })
   }
   renderShopCar() {
     const { menuData } = this.props
@@ -74,8 +96,7 @@ class Menu extends React.Component {
           <div className='content-left'>
             <div className='logo-wrapper'>
               <div className='logo'>
-                {/* <i className='icon-shopping_cart'></i> */}
-                <i className='iconfont'>&#xe607;</i>
+                <i className='icon-shopping_cart'></i>
               </div>
               <div className='num'></div>
             </div>

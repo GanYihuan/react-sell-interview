@@ -1,15 +1,42 @@
 ﻿import React from 'react'
 import { connect } from 'react-redux'
 import { showChoose, addSelectItem, minusSelectItem, clearCar } from '../../store/actionCreators'
-import './shopBar.scss'
+import './shopBar.styl'
 
 class ShopBar extends React.Component {
+  render() {
+    const shipping_fee = this.props.listData.poi_info ? this.props.listData.poi_info.shipping_fee : 0
+    const data = this.getTotalPrice()
+    return (
+      <div className='shop-bar'>
+        {
+          this.props.showChooseContent
+            ? <div className='choose-content'>
+              <div className='content-top'>
+                <div className='clear-car' onClick={() => this.clearCar()}>清空购物车</div>
+              </div>
+              {this.renderChooseItem(data)}
+            </div>
+            : null
+        }
+        <div className='bottom-content'>
+          <div className='shop-icon' onClick={() => this.openChooseContent()}>
+            {data.dotNum > 0 ? <div className='dot-num'>{data.dotNum}</div> : null}
+          </div>
+          <div className='price-content'>
+            <p className='total-price'>¥{data.totalPrice}</p>
+            <p className='other-price'>另需配送&nbsp;¥{shipping_fee}</p>
+          </div>
+          <div className='submit-btn'>去结算</div>
+        </div>
+      </div>
+    )
+  }
   getTotalPrice() {
     const listData = this.props.listData.food_spu_tags || []
     let totalPrice = 0
     let dotNum = 0
     const chooseList = []
-    // chrome redux -> state -> menuReducer -> listData
     for (let i = 0; i < listData.length; i++) {
       const spus = listData[i].spus || []
       for (let j = 0; j < spus.length; j++) {
@@ -68,34 +95,6 @@ class ShopBar extends React.Component {
     this.props.dispatch(showChoose({
       flag: false
     }))
-  }
-  render() {
-    const shipping_fee = this.props.listData.poi_info ? this.props.listData.poi_info.shipping_fee : 0
-    const data = this.getTotalPrice()
-    return (
-      <div className='shop-bar'>
-        {
-          this.props.showChooseContent
-            ? <div className='choose-content'>
-              <div className='content-top'>
-                <div className='clear-car' onClick={() => this.clearCar()}>清空购物车</div>
-              </div>
-              {this.renderChooseItem(data)}
-            </div>
-            : null
-        }
-        <div className='bottom-content'>
-          <div className='shop-icon' onClick={() => this.openChooseContent()}>
-            {data.dotNum > 0 ? <div className='dot-num'>{data.dotNum}</div> : null}
-          </div>
-          <div className='price-content'>
-            <p className='total-price'>¥{data.totalPrice}</p>
-            <p className='other-price'>另需配送&nbsp;¥{shipping_fee}</p>
-          </div>
-          <div className='submit-btn'>去结算</div>
-        </div>
-      </div>
-    )
   }
 }
 
