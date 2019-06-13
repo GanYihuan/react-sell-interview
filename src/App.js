@@ -42,7 +42,7 @@ class App extends Component {
               <Route exact path='/menu' component={Menu}/>
               <Route exact path='/ratings' component={Ratings}/>
               <Route exact path='/restanurant' component={Restanurant}/>
-              <Redirect to='/ratings' />
+              <Redirect to='/restanurant' />
             </Switch>
           </Suspense>
         </BrowserRouter>

@@ -1,5 +1,4 @@
-﻿import { fromJS } from 'immutable'
-import axios from 'axios'
+﻿import axios from 'axios'
 
 export const getCommentData = () => async(dispatch) => {
   const resp = await axios({
