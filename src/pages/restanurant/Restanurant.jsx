@@ -75,13 +75,27 @@ class Restanurant extends React.Component {
             </div>
             <Split/>
             <div className='pics'>
-              <div className='title'>商家实景</div>
-              <div className='pic-wrapper'>
-                <div className='pic-list'>
-                  <div className='pic-item'>
+              <div className='title'>
+                商家实景
+              </div>
+              <Scroll refresh={this.state.refreshScroll} onScroll='y'>
+                <div className='pic-wrapper'>
+                  <div className='pic-list'>
+                    <div className='pic-item'>
+                      <img src={restanurantData.getIn(['pics', 0])}/>
+                    </div>
+                    <div className='pic-item'>
+                      <img src={restanurantData.getIn(['pics', 1])}/>
+                    </div>
+                    <div className='pic-item'>
+                      <img src={restanurantData.getIn(['pics', 2])}/>
+                    </div>
+                    <div className='pic-item'>
+                      <img src={restanurantData.getIn(['pics', 3])}/>
+                    </div>
                   </div>
                 </div>
-              </div>
+              </Scroll>
             </div>
           </div>
         </Scroll>
