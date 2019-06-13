@@ -36,10 +36,10 @@ class Menu extends React.Component {
     dispathMenuData()
   }
   renderLeft() {
-    const { menuData } = this.props
+    const { menuData, currentLeftIndex } = this.props
     const menuDatas = menuData.toJS()
     return menuDatas.map((item, index) => {
-      const cls = this.props.currentLeftIndex === index ? 'left-item active' : 'left-item'
+      const cls = currentLeftIndex === index ? 'left-item active' : 'left-item'
       return (
         <div className={cls} key={index} onClick={() => this.itemClick(index)}>
           <div className='item-text'>{item.type > 1 ? <img className='item-icon' src={item.icon} /> : null}{item.name}</div>
@@ -47,18 +47,25 @@ class Menu extends React.Component {
       )
     })
   }
-  itemClick() {}
+  itemClick(index) {
+    const { dispathLeftItemClick } = this.props
+    dispathLeftItemClick(index)
+  }
   renderRight() {
   }
 }
 
 const mapState = state => ({
-  menuData: state.getIn(['menu', 'menuData'])
+  menuData: state.getIn(['menu', 'menuData']),
+  currentLeftIndex: state.getIn(['menu', 'currentLeftIndex'])
 })
 
 const mapDispatch = dispatch => ({
   dispathMenuData() {
     dispatch(actionCreators.getMenuData())
+  },
+  dispathLeftItemClick(index) {
+    dispatch(actionCreators.getLeftItemIndex(index))
   }
 })
 

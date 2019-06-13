@@ -10,3 +10,10 @@ export const getMenuData = () => async(dispatch) => {
     obj: resp.data
   })
 }
+
+export const getLeftItemIndex = (index) => (dispatch) => {
+  dispatch({
+    type: 'LEFT_ITEM_INDEX',
+    obj: index
+  })
+}
