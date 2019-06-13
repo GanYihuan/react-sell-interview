@@ -1,21 +1,27 @@
 ﻿import React from 'react'
 import { connect } from 'react-redux'
+import moment from 'moment'
 import NavHeader from '../../common/NavHeader/NavHeader'
 import Split from '../../common/Split/Split'
+import RatingSelect from '../../common/RatingSelect/RatingSelect'
 import StarScore from '../../common/StarScore/StarScore'
 import { actionCreators } from './store'
 import './Ratings.styl'
 
 class Ratings extends React.Component {
   componentDidMount() { // async, get ajax async data
-    const { addArticleList } = this.props
-    addArticleList()
+    const { dispathgetListData, dispathgetRatingData } = this.props
+    dispathgetListData()
+    dispathgetRatingData()
   }
   render() {
     const {
-      commentData
+      commentData,
+      ratingData
     } = this.props
     const commentDatas = commentData.toJS()
+    const ratingDatas = ratingData.toJS()
+    const recommendDta = ratingDatas.recommend
     return (
       <div>
         <NavHeader/>
@@ -55,20 +61,73 @@ class Ratings extends React.Component {
               </div>
             </div>
             <Split/>
+            <RatingSelect
+              selectType='a'
+              onClick={this.selectRating}
+              ratingDatas={ratingDatas}
+            />
+            <div className='rating-wrapper border-1px'>
+              <ul>
+                {
+                  ratingDatas.map((item, index) => {
+                    return (
+                      <li
+                        className='rating-item'
+                      >
+                        <div className='avatar'>
+                          <img
+                            src={item.avatar}
+                            alt='avatar'
+                            width='28'
+                            height='28'
+                          />
+                        </div>
+                        <div className='content'>
+                          <h1 className='name'>
+                            {item.username}
+                          </h1>
+                          <div className='star-wrapper'>
+                            <StarScore score={item.score}/>
+                            <span
+                              className='delivery'
+                            >
+                              {item.deliveryTime}分钟送达
+                            </span>
+                          </div>
+                          <div className='text'>
+                            {item.text}
+                          </div>
+                          <div className='time'>
+                            {this.formatDate(item.rateTime)}
+                          </div>
+                        </div>
+                      </li>
+                    )
+                  })
+                }
+              </ul>
+            </div>
           </div>
         </div>
       </div>
     )
   }
+  formatDate(time) {
+    return moment(time).format('YYYY-MM-DD hh:mm:ss')
+  }
 }
 
 const mapState = state => ({
-  commentData: state.getIn(['ratings', 'commentData'])
+  commentData: state.getIn(['ratings', 'commentData']),
+  ratingData: state.getIn(['ratings', 'ratingData'])
 })
 
 const mapDispatch = dispatch => ({
-  addArticleList() {
-    dispatch(actionCreators.getListData())
+  dispathgetListData() {
+    dispatch(actionCreators.getCommentData())
+  },
+  dispathgetRatingData() {
+    dispatch(actionCreators.getRatingsData())
   }
 })
 
