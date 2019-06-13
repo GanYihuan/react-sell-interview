@@ -97,6 +97,15 @@ class Restanurant extends React.Component {
                 </div>
               </Scroll>
             </div>
+            <Split/>
+            <div className='info'>
+              <h1 className='title border-1px'>商家信息</h1>
+              <div className='info-item'>{restanurantData.getIn(['supports', 0, 'description'])}</div>
+              <div className='info-item'>{restanurantData.getIn(['supports', 1, 'description'])}</div>
+              <div className='info-item'>{restanurantData.getIn(['supports', 2, 'description'])}</div>
+              <div className='info-item'>{restanurantData.getIn(['supports', 3, 'description'])}</div>
+              <div className='info-item'>{restanurantData.getIn(['supports', 4, 'description'])}</div>
+            </div>
           </div>
         </Scroll>
       </div>
