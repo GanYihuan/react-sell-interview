@@ -25,7 +25,7 @@ export default (state = initState, action) => {
     case 'MINUS_SELECTI_ITEM':
       return state.set('chooseCount', action.obj)
     case 'fuck':
-      return state.set('fuck', action.obj)
+      return fuck(state, action)
     case 'GET_LIST_DATA':
       return getListData(state, action)
     // case 'LEFT_CLICK':
@@ -42,6 +42,12 @@ export default (state = initState, action) => {
 const getMenu = (state, action) => {
   return state.merge({
     menuData: state.get('menuData').concat(fromJS(action.obj.data)) // imutable obj, use get()
+  })
+}
+
+const fuck = (state, action) => {
+  return state.merge({
+    fuck: state.get('fuck') + 1
   })
 }
 

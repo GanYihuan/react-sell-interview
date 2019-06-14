@@ -7,9 +7,7 @@ import './cartControl.styl'
 class cartControl extends React.Component {
   render() {
     const { chooseCount, fuck } = this.props
-    console.log(fuck, 'fuck')
-    console.log(chooseCount, 'chooseCount render')
-    const hideDesc = chooseCount === 0 ? 'cart-decrease hideDesc' : 'cart-decrease'
+    const hideDesc = fuck === 0 ? 'cart-decrease hideDesc' : 'cart-decrease'
     return (
       <div className='cartControl-wrapper'>
         <CSSTransition
@@ -20,19 +18,19 @@ class cartControl extends React.Component {
             <span className='inner icon-remove_circle_outline' onClick={() => this.minusSelectItem()}></span>
           </div>
         </CSSTransition>
-        <span className='cart-count'>{chooseCount}</span>
+        <span className='cart-count'>{fuck}</span>
         <span className='cart-add icon-add_circle' onClick={() => this.addSelectItem()}></span>
       </div>
     )
   }
   addSelectItem() {
-    const { dispathaddSelectItem, chooseCount } = this.props
-    const passCount = chooseCount === 0 ? 0 : chooseCount + 1
-    dispathaddSelectItem(passCount)
+    const { dispathaddSelectItem, fuck } = this.props
+    console.log(fuck, 'fuck ***')
+    dispathaddSelectItem()
   }
   minusSelectItem() {
-    const { dispathminusSelectItem, chooseCount } = this.props
-    const passCount = chooseCount === 0 ? 0 : chooseCount - 1
+    const { dispathminusSelectItem, fuck } = this.props
+    const passCount = fuck === 0 ? 0 : fuck - 1
     dispathminusSelectItem(passCount)
   }
 }

@@ -40,10 +40,10 @@ export const getLeftItemIndex = (index) => (dispatch) => {
   })
 }
 
-export const fuck = (count) => (dispatch) => {
+export const fuck = () => (dispatch) => {
   dispatch({
     type: 'fuck',
-    obj: count
+    obj: 1
   })
 }
 
