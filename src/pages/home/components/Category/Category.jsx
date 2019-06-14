@@ -1,11 +1,9 @@
 ﻿import React from 'react'
 import { connect } from 'react-redux'
 import Carousel from 'nuka-carousel'
-import { withRouter } from 'react-router-dom'
 import { actionCreators } from '../../store'
 import './Category.scss'
 
-@withRouter
 class Category extends React.Component {
   componentDidMount() { // async, get ajax async data
     const { addArticleList } = this.props
