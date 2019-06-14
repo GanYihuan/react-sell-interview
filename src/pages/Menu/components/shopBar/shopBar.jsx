@@ -4,13 +4,19 @@ import { actionCreators } from '../../store'
 import './shopBar.styl'
 
 class ShopBar extends React.Component {
+  componentDidMount() {
+    const { dispathaddSelectItem, dispatchgetFoodData, dispathNavHeader } = this.props
+    dispathaddSelectItem()
+    dispatchgetFoodData()
+    dispathNavHeader()
+  }
   render() {
-    const { foodData } = this.props
+    const { foodData, navHeader } = this.props
     const foodDatas = foodData.toJS()
     // const shipping_fee = listData.getIn(['poi_info', 'poi_info']) ? this.props.listData.poi_info.shipping_fee : 0
     const data = this.getTotalPrice()
     return (
-      <div className='shop-bar'>
+      <div className='shopCart'>
         {
           this.props.showChooseContent
             ? <div className='choose-content'>
@@ -21,23 +27,41 @@ class ShopBar extends React.Component {
             </div>
             : null
         }
-        <div className='bottom-content'>
-          <div className='shop-icon' onClick={() => this.openChooseContent()}>
-            {/* {data.dotNum > 0 ? <div className='dot-num'>{data.dotNum}</div> : null} */}
+        <div className='content'>
+          <div className='content-left'>
+            <div className='logo-wrapper' onClick={() => this.openChooseContent()}>
+              {/* {data.dotNum > 0 ? <div className='dot-num'>{data.dotNum}</div> : null} */}
+              <div className='logo'>
+                <i className='icon-shopping_cart'></i>
+              </div>
+              <div className='num' v-show='totalCount>0'>1</div>
+            </div>
+            <div className='price'>￥{this.getTotalPrice()}</div>
+            <div className='desc'>另需配送费￥{navHeader.get('deliveryPrice')}</div>
           </div>
-          <div className='price-content'>
-            <p className='total-price'>totalPrice</p>
-            <p className='other-price'>另需配送&nbsp;¥{foodDatas.price}</p>
+          <div className='content-right'>
+            <div className='pay'>{this.payDesc()}</div>
           </div>
-          <div className='submit-btn'>去结算</div>
         </div>
       </div>
     )
   }
-  componentDidMount() {
-    const { dispathaddSelectItem, dispatchgetFoodData } = this.props
-    dispathaddSelectItem()
-    dispatchgetFoodData()
+  payDesc() {
+    if (this.totalPrice === 0) {
+      return `￥${this.minPrice}元起送`
+    } else if (this.totalPrice < this.minPrice) {
+      const diff = this.minPrice - this.totalPrice
+      return `还差￥${diff}元起送`
+    } else {
+      return '去结算'
+    }
+  }
+  totalPrice() {
+    let total = 0
+    this.selectFoods.forEach(food => {
+      total += food.price * food.count
+    })
+    return total
   }
   getTotalPrice() {
     const { foodData } = this.props
@@ -70,6 +94,7 @@ class ShopBar extends React.Component {
     //   totalPrice,
     //   chooseList
     // }
+    return '100'
   }
   addSelectItem(item) {
     const { dispathaddSelectItem } = this.props
@@ -78,6 +103,11 @@ class ShopBar extends React.Component {
   minusSelectItem(item) {
     const { dispathminusSelectItem } = this.props
     dispathminusSelectItem(item)
+  }
+  openChooseContent() {
+    const { showChooseContent, dispathshowChoose } = this.props
+    const flag = showChooseContent
+    dispathshowChoose(flag)
   }
   renderChooseItem(data) {
     const array = data.chooseList || []
@@ -95,19 +125,14 @@ class ShopBar extends React.Component {
       )
     })
   }
-  openChooseContent() {
-    const { showChooseContent } = this.props
-    const flag = showChooseContent
-    const { dispathshowChoose } = this.props
-    dispathshowChoose(flag)
-  }
   clearCar() {
   }
 }
 
 const mapState = state => ({
   foodData: state.getIn(['menu', 'foodData']),
-  showChooseContent: state.getIn(['menu', 'showChooseContent'])
+  showChooseContent: state.getIn(['menu', 'showChooseContent']),
+  navHeader: state.getIn(['menu', 'navHeader'])
 })
 
 const mapDispatch = dispatch => ({
@@ -122,6 +147,9 @@ const mapDispatch = dispatch => ({
   },
   dispathshowChoose() {
     dispatch(actionCreators.showChoose())
+  },
+  dispathNavHeader() {
+    dispatch(actionCreators.getNevHeader())
   }
 })
 

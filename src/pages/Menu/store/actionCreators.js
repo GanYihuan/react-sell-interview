@@ -1,5 +1,16 @@
 ﻿import axios from 'axios'
 
+export const getNevHeader = () => async(dispatch) => {
+  const resp = await axios({
+    method: 'get',
+    url: '/api/navheader.json'
+  })
+  dispatch({
+    type: 'NEVHEADER_DATA',
+    obj: resp.data
+  })
+}
+
 export const getMenuData = () => async(dispatch) => {
   const resp = await axios({
     method: 'get',
