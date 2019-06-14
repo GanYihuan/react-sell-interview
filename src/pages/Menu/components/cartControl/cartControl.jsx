@@ -24,9 +24,10 @@ class cartControl extends React.Component {
     )
   }
   addSelectItem() {
-    const { dispathaddSelectItem, fuck, foodData, currentLeftIndex, num } = this.props
+    const { dispathaddSelectItem, fuck, foodData, currentLeftIndex, num, cartControlCount } = this.props
     const foodDatas = foodData.toJS()
-    console.log(foodDatas[num].cartControlCount, 'foodData cartControl!')
+    // console.log(foodDatas[num].cartControlCount, 'foodData cartControl!')
+    console.log(cartControlCount, 'cartControlCount')
     dispathaddSelectItem()
   }
   minusSelectItem() {
@@ -39,7 +40,8 @@ const mapState = state => ({
   chooseCount: state.getIn(['menu', 'chooseCount']),
   fuck: state.getIn(['menu', 'fuck']),
   foodData: state.getIn(['menu', 'foodData']),
-  currentLeftIndex: state.getIn(['menu', 'currentLeftIndex'])
+  currentLeftIndex: state.getIn(['menu', 'currentLeftIndex']),
+  cartControlCount: state.getIn(['menu', 'cartControlCount'])
 })
 
 const mapDispatch = dispatch => ({

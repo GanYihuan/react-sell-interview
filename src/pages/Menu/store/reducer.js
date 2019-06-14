@@ -1,4 +1,5 @@
 ﻿import { fromJS } from 'immutable'
+import cartControl from '../components/cartControl/cartControl'
 
 const initState = fromJS({
   menuData: [],
@@ -9,7 +10,8 @@ const initState = fromJS({
   showChooseContent: false,
   chooseCount: 0,
   currentLeftIndex: 0,
-  fuck: 0
+  fuck: 0,
+  cartControlCount: 0
 })
 
 export default (state = initState, action) => {
@@ -47,14 +49,14 @@ const getMenu = (state, action) => {
 
 const fuck = (state, action) => {
   return state.merge({
-    fuck: state.get('fuck') + 1
+    fuck: state.get('fuck') + 1,
+    // foodData: state.foodData.get(fromJS(action.num)).get('cartControlCount') + 1
+    // cartControlCount = state.get('foodData').get(fromJS(action.num)).set('cartControlCount', (state.get('fuck') - 1))
+    foodData: state.get('foodData').setIn([fromJS(action.num), 'cartControlCount'], state.get('fuck'))
   })
 }
 
 const fucker = (state, action) => {
-  // const foodData = state.foodData
-  // const currentItem = foodData[state.currentLeftIndex]
-  // currentItem.cartControlCount--
   return state.merge({
     fuck: state.get('fuck') - 1
   })
