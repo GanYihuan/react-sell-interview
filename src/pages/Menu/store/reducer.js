@@ -21,16 +21,16 @@ export default (state = initState, action) => {
       return state.set('currentLeftIndex', action.obj)
     case 'ADD_SELECTI_ITEM':
       return state.set('chooseCount', action.obj)
-    case 'MINUS_SELECTI_ITEM':
-      return state.set('chooseCount', action.obj)
+    // case 'MINUS_SELECTI_ITEM':
+    //   return state.set('chooseCount', action.obj)
     case 'GET_LIST_DATA':
       return getListData(state, action)
-    case 'LEFT_CLICK':
-      return itemClick(state, action)
-    case 'SHOW_CHOOSE_CONTENT':
-      return chooseContent(state, action)
-    case 'CLEAR_CAR':
-      return clearCar(state, action)
+    // case 'LEFT_CLICK':
+    //   return itemClick(state, action)
+    // case 'SHOW_CHOOSE_CONTENT':
+    //   return chooseContent(state, action)
+    // case 'CLEAR_CAR':
+    //   return clearCar(state, action)
     default:
       return state
   }
@@ -48,11 +48,11 @@ const getNevHeader = (state, action) => {
   })
 }
 
-const itemClick = (state, action) => {
-  return state.merge({
-    currentLeftIndex: state.get('currentLeftIndex').concat(fromJS(action.obj.currentLeftIndex)) // imutable obj, use get()
-  })
-}
+// const itemClick = (state, action) => {
+//   return state.merge({
+//     currentLeftIndex: state.get('currentLeftIndex').concat(fromJS(action.obj.currentLeftIndex)) // imutable obj, use get()
+//   })
+// }
 
 const getListData = (state, action) => {
   return state.merge({
@@ -60,20 +60,20 @@ const getListData = (state, action) => {
   })
 }
 
-const chooseContent = (state, action) => {
-  return state.merge({
-    showChooseContent: state.get('showChooseContent').concat(fromJS(action.obj))
-  })
-}
+// const chooseContent = (state, action) => {
+//   return state.merge({
+//     showChooseContent: state.get('showChooseContent').concat(fromJS(action.obj))
+//   })
+// }
 
-const clearCar = (state) => {
-  const listData = state.listData
-  const list = listData.food_spu_tags || [] // 找到外层，左边 list 列表
-  for (let i = 0; i < list.length; i++) {
-    const spus = list[i].spus || []
-    for (let j = 0; j < spus.length; j++) {
-      spus[j].chooseCount = 0
-    }
-  }
-  return { ...state, listData: JSON.parse(JSON.stringify(listData)) }
-}
+// const clearCar = (state) => {
+//   const listData = state.listData
+//   const list = listData.food_spu_tags || [] // 找到外层，左边 list 列表
+//   for (let i = 0; i < list.length; i++) {
+//     const spus = list[i].spus || []
+//     for (let j = 0; j < spus.length; j++) {
+//       spus[j].chooseCount = 0
+//     }
+//   }
+//   return { ...state, listData: JSON.parse(JSON.stringify(listData)) }
+// }
