@@ -25,11 +25,13 @@ class cartControl extends React.Component {
     )
   }
   addSelectItem() {
-    const { dispathaddSelectItem, num } = this.props
+    const { dispathaddSelectItem, fuck, foodData, currentLeftIndex, num } = this.props
+    const foodDatas = foodData.toJS()
+    console.log(foodDatas[num].cartControlCount, 'foodData cartControlCount!')
     dispathaddSelectItem(num)
   }
   minusSelectItem() {
-    const { dispathminusSelectItem, num } = this.props
+    const { dispathminusSelectItem, fuck } = this.props
     dispathminusSelectItem()
   }
 }

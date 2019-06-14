@@ -43,8 +43,7 @@ export default (state = initState, action) => {
 const fuck = (state, action) => {
   return state.merge({
     fuck: state.get('fuck') + 1,
-    // foodData: state.get('foodData').update(state.get('foodData', fromJS(action.num), 'cartControlCount'), v => v + 1)
-    foodData: state.get('foodData', fromJS(action.num)).update('cartControlCount', val => val + 1)
+    foodData: state.get('foodData').updateIn(['foodData', fromJS(action.num), 'cartControlCount'], val => val + 1)
   })
 }
 

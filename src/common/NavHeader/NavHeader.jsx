@@ -43,6 +43,7 @@ class NavHeader extends React.Component {
         <div className='content-wrapper'>
           <div
             className='back'
+            onClick={() => this.goBack()}
           >
             <i className='icon-arrow_lift' />
           </div>

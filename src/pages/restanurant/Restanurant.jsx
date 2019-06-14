@@ -12,8 +12,7 @@ class Restanurant extends React.Component {
   constructor(props) {
     super(props)
     this.state = {
-      refreshScroll: false,
-      scrollY: true
+      refreshScroll: false
     }
   }
   componentDidMount() { // async, get ajax async data
@@ -79,8 +78,8 @@ class Restanurant extends React.Component {
               <div className='title'>
                 商家实景
               </div>
-              <Scroll refresh={this.state.refreshScroll} scrollY={this.state.scrollY}>
-                <div className='pic-wrapper'>
+              <div className='pic-wrapper'>
+                <Scroll direction='horizontal'>
                   <div className='pic-list'>
                     <div className='pic-item'>
                       <img src={restanurantData.getIn(['pics', 0])}/>
@@ -95,8 +94,8 @@ class Restanurant extends React.Component {
                       <img src={restanurantData.getIn(['pics', 3])}/>
                     </div>
                   </div>
-                </div>
-              </Scroll>
+                </Scroll>
+              </div>
             </div>
             <Split/>
             <div className='info'>
