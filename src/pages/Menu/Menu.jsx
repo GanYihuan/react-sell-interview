@@ -37,7 +37,6 @@ class Menu extends React.Component {
           </Scroll>
         </div>
         <ShopBar/>
-        {/* {this.renderShopCar()} */}
       </div>
     )
   }
@@ -116,40 +115,6 @@ class Menu extends React.Component {
       }
       return <MenuItem key={index} data={item} _index={index}></MenuItem>
     })
-  }
-  renderShopCar() {
-    const { menuData } = this.props
-    const menuDatas = menuData.toJS()
-    return (
-      <div className='shopCart'>
-        <div className='content' onClick={() => this.toggleList()}>
-          <div className='content-left'>
-            <div className='logo-wrapper'>
-              <div className='logo'>
-                <i className='icon-shopping_cart'></i>
-              </div>
-              <div className='num'></div>
-            </div>
-            <div className='price'></div>
-            <div className='desc'>另需配送费元</div>
-          </div>
-          <div className='content-right'>
-            <div className='pay'></div>
-          </div>
-        </div>
-        <div className='ball-container'>
-          <div v-for='(ball, index) in balls' >
-            <transition
-              name='drop'
-            >
-              <div className='ball' v-show='ball.show'>
-                <div className='inner inner-hook'></div>
-              </div>
-            </transition>
-          </div>
-        </div>
-      </div>
-    )
   }
 }
 

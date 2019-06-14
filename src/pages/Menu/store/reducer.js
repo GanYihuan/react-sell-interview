@@ -7,8 +7,9 @@ const initState = fromJS({
   poiInfo: {},
   navHeader: {},
   showChooseContent: false,
+  chooseCount: 0,
   currentLeftIndex: 0,
-  chooseCount: 0
+  fuck: 0
 })
 
 export default (state = initState, action) => {
@@ -21,8 +22,10 @@ export default (state = initState, action) => {
       return state.set('currentLeftIndex', action.obj)
     case 'ADD_SELECTI_ITEM':
       return state.set('chooseCount', action.obj)
-    // case 'MINUS_SELECTI_ITEM':
-    //   return state.set('chooseCount', action.obj)
+    case 'MINUS_SELECTI_ITEM':
+      return state.set('chooseCount', action.obj)
+    case 'fuck':
+      return state.set('fuck', action.obj)
     case 'GET_LIST_DATA':
       return getListData(state, action)
     // case 'LEFT_CLICK':
@@ -47,12 +50,6 @@ const getNevHeader = (state, action) => {
     navHeader: state.get('navHeader').concat(fromJS(action.obj.data)) // imutable obj, use get()
   })
 }
-
-// const itemClick = (state, action) => {
-//   return state.merge({
-//     currentLeftIndex: state.get('currentLeftIndex').concat(fromJS(action.obj.currentLeftIndex)) // imutable obj, use get()
-//   })
-// }
 
 const getListData = (state, action) => {
   return state.merge({

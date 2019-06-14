@@ -40,17 +40,24 @@ export const getLeftItemIndex = (index) => (dispatch) => {
   })
 }
 
-export const addSelectItem = (count) => (dispatch) => {
+export const fuck = (count) => (dispatch) => {
   dispatch({
-    type: 'ADD_SELECTI_ITEM',
+    type: 'fuck',
     obj: count
   })
 }
 
-export const minusSelectItem = (count) => (dispatch) => {
+export const addSelectItem = (index) => (dispatch) => {
+  dispatch({
+    type: 'ADD_SELECTI_ITEM',
+    obj: index
+  })
+}
+
+export const minusSelectItem = (index) => (dispatch) => {
   dispatch({
     type: 'MINUS_SELECTI_ITEM',
-    obj: count
+    obj: index
   })
 }
 
