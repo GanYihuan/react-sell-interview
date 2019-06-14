@@ -70,7 +70,7 @@ class ShopBar extends React.Component {
     const totalPrice = 0
     const dotNum = 0
     for (let i = 0; i < foodDatas.length; i++) {
-      console.log(foodDatas[i])
+      // console.log(foodDatas[i])
     }
     // const listData = this.props.listData.food_spu_tags || []
     // let totalPrice = 0

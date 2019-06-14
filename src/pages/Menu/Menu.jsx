@@ -28,10 +28,12 @@ class Menu extends React.Component {
                 </div>
               </Scroll>
             </div>
-            <div className='right-content'>
-              {/* {this.renderRight()} */}
-            </div>
           </div>
+          <Scroll refresh={this.state.refreshScroll}>
+            <div className='foods-wrapper'>
+              {this.renderRight()}
+            </div>
+          </Scroll>
         </div>
         <ShopBar/>
         {/* {this.renderShopCar()} */}
@@ -66,18 +68,44 @@ class Menu extends React.Component {
     dispathLeftItemClick(index)
   }
   renderRight() {
-    const index = this.props.currentLeftIndex
-    const array = this.props.listData.food_spu_tags || []
-    const currentItem = array[index]
-    if (currentItem) {
-      const title = <p className='right-title' key={1}>{currentItem.name}</p>
-      return [
-        title,
-        <div className='right-list' key={2}><div className='right-list-inner'>{this.renderRightList(currentItem.spus)}</div></div>
-      ]
-    } else {
-      return null
-    }
+    const { menuData, foodData, currentLeftIndex } = this.props
+    const foodDatas = foodData.toJS()
+    const menuDatas = menuData.toJS()
+    // const index = this.props.currentLeftIndex
+    // const array = this.props.listData.food_spu_tags || []
+    // const currentItem = foodDatas[currentLeftIndex] || []
+    // console.log(foodDatas, 'foodData..')
+    const cl = 'food-list food-list-hook'
+    return foodDatas.map((item, index) => {
+      return (
+        <div className={cl} key={index}>
+          <h1 className='title'>{menuDatas.name}</h1>
+          <ul>
+            <li
+              className='food-item border-1px'
+            >
+              <div className='icon'>
+                <img />
+              </div>
+              <div className='content'>
+                <h2 className='name'>name</h2>
+                <p className='desc'>description</p>
+                <div className='extra'>
+                  <span className='count'>月售 sellCount 份</span><span>好评率 rating%</span>
+                </div>
+                <div className='price'>
+                  <span className='now'>￥price</span>
+                  <span className='old' v-show='food.oldPrice'>￥oldPrice</span>
+                </div>
+                <div className='cartControl-wrapper'>
+                  <cartControl></cartControl>
+                </div>
+              </div>
+            </li>
+          </ul>
+        </div>
+      )
+    })
   }
   renderRightList(array) {
     const _array = array || []
