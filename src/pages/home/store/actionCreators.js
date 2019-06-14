@@ -12,25 +12,14 @@ export const getHeaderData = () => async(dispatch) => {
   })
 }
 
-export const getListData = (page) => (dispatch) => { // page: CommentList.jsx 传递过来的参数
-  // dispatch({
-  //   type: CHANGEREADYSTATE,
-  //   obj: false
-  // })
-  axios({
+export const getListData = (page) => async(dispatch) => { // page: CommentList.jsx 传递过来的参数
+  const resp = await axios({
     method: 'get',
     url: '/api/homelist.json'
-  }).then((resp) => {
-    window.setTimeout(() => {
-      dispatch({
-        type: constants.LIST_DATA,
-        currentPage: page,
-        obj: resp.data
-      })
-      // dispatch({
-      //   type: constants.CHANGEREADYSTATE,
-      //   obj: true
-      // })
-    }, 1500)
+  })
+  dispatch({
+    type: constants.LIST_DATA,
+    currentPage: page,
+    obj: resp.data
   })
 }
