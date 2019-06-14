@@ -1,6 +1,7 @@
 ﻿{
   "data": [
     {
+      "cartControlCount": 0,
       "name": "皮蛋瘦肉粥",
       "price": 10,
       "oldPrice": "21",
@@ -35,6 +36,7 @@
       "image": "http://fuss10.elemecdn.com/c/cd/c12745ed8a5171e13b427dbc39401jpeg.jpeg?imageView2/1/w/750/h/750"
     },
     {
+      "cartControlCount": 0,
       "name": "扁豆焖面",
       "price": 14,
       "oldPrice": "21",
@@ -69,6 +71,7 @@
       "image": "http://fuss10.elemecdn.com/c/6b/29e3d29b0db63d36f7c500bca31d8jpeg.jpeg?imageView2/1/w/750/h/750"
     },
     {
+      "cartControlCount": 0,
       "name": "葱花饼",
       "price": 10,
       "oldPrice": "21",
@@ -103,6 +106,7 @@
       "image": "http://fuss10.elemecdn.com/f/28/a51e7b18751bcdf871648a23fd3b4jpeg.jpeg?imageView2/1/w/750/h/750"
     },
     {
+      "cartControlCount": 0,
       "name": "牛肉馅饼",
       "price": 14,
       "oldPrice": "21",
@@ -137,6 +141,7 @@
       "image": "http://fuss10.elemecdn.com/d/b9/bcab0e8ad97758e65ae5a62b2664ejpeg.jpeg?imageView2/1/w/750/h/750"
     },
     {
+      "cartControlCount": 0,
       "name": "招牌猪肉白菜锅贴/10个",
       "price": 17,
       "oldPrice": "21",
@@ -171,6 +176,7 @@
       "image": "http://fuss10.elemecdn.com/7/72/9a580c1462ca1e4d3c07e112bc035jpeg.jpeg?imageView2/1/w/750/h/750"
     },
     {
+      "cartControlCount": 0,
       "name": "南瓜粥",
       "price": 9,
       "oldPrice": "21",
@@ -204,6 +210,7 @@
       "image": "http://fuss10.elemecdn.com/8/a6/453f65f16b1391942af11511b7a90jpeg.jpeg?imageView2/1/w/750/h/750"
     },
     {
+      "cartControlCount": 0,
       "name": "红豆薏米美肤粥",
       "price": 12,
       "oldPrice": "21",
@@ -238,6 +245,7 @@
       "image": "http://fuss10.elemecdn.com/d/22/260bd78ee6ac6051136c5447fe307jpeg.jpeg?imageView2/1/w/750/h/750"
     },
     {
+      "cartControlCount": 0,
       "name": "八宝酱菜",
       "price": 4,
       "oldPrice": "21",
@@ -272,6 +280,7 @@
       "image": "http://fuss10.elemecdn.com/9/b5/469d8854f9a3a03797933fd01398bjpeg.jpeg?imageView2/1/w/750/h/750"
     },
     {
+      "cartControlCount": 0,
       "name": "红枣山药糙米粥",
       "price": 10,
       "oldPrice": "21",
@@ -306,6 +315,7 @@
       "image": "http://fuss10.elemecdn.com/9/b5/469d8854f9a3a03797933fd01398bjpeg.jpeg?imageView2/1/w/750/h/750"
     },
     {
+      "cartControlCount": 0,
       "name": "糊塌子",
       "price": 10,
       "oldPrice": "21",
