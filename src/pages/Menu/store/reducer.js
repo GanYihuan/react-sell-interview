@@ -11,7 +11,7 @@ const initState = fromJS({
   chooseCount: 0,
   currentLeftIndex: 0,
   fuck: 0,
-  cartControlCount: 0
+  price: {}
 })
 
 export default (state = initState, action) => {
@@ -41,24 +41,25 @@ export default (state = initState, action) => {
   }
 }
 
-const getMenu = (state, action) => {
-  return state.merge({
-    menuData: state.get('menuData').concat(fromJS(action.obj.data)) // imutable obj, use get()
-  })
-}
-
 const fuck = (state, action) => {
   return state.merge({
     fuck: state.get('fuck') + 1,
-    // foodData: state.foodData.get(fromJS(action.num)).get('cartControlCount') + 1
-    // cartControlCount = state.get('foodData').get(fromJS(action.num)).set('cartControlCount', (state.get('fuck') - 1))
-    foodData: state.get('foodData').setIn([fromJS(action.num), 'cartControlCount'], state.get('fuck'))
+    price: state.get('foodData').get(fromJS(action.num)),
+    // foodData: state.get('foodData').setIn([fromJS(action.num), 'cartControlCount'], state.get('foodData', fromJS(action.num)).get('cartControlCount'))
+    // foodData: state.get('foodData').setIn([fromJS(action.num), 'cartControlCount'], state.get('foodData').get(fromJS(action.num)).get('price'))
+    foodData: state.get('foodData').setIn([fromJS(action.num), 'cartControlCount'], 1)
   })
 }
 
 const fucker = (state, action) => {
   return state.merge({
     fuck: state.get('fuck') - 1
+  })
+}
+
+const getMenu = (state, action) => {
+  return state.merge({
+    menuData: state.get('menuData').concat(fromJS(action.obj.data)) // imutable obj, use get()
   })
 }
 

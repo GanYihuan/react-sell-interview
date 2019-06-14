@@ -47,10 +47,10 @@ export const fuck = () => (dispatch) => {
   })
 }
 
-export const addSelectItem = (index) => (dispatch) => {
+export const addSelectItem = (num) => (dispatch) => {
   dispatch({
     type: 'ADD_SELECTI_ITEM',
-    obj: index
+    num: num
   })
 }
 
