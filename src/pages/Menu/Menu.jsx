@@ -76,33 +76,39 @@ class Menu extends React.Component {
     // const currentItem = foodDatas[currentLeftIndex] || []
     // console.log(foodDatas, 'foodData..')
     const cl = 'food-list food-list-hook'
-    return foodDatas.map((item, index) => {
+    return menuDatas.map((item, index) => {
       return (
         <div className={cl} key={index}>
-          <h1 className='title'>{menuDatas.name}</h1>
-          <ul>
-            <li
-              className='food-item border-1px'
-            >
-              <div className='icon'>
-                <img />
-              </div>
-              <div className='content'>
-                <h2 className='name'>name</h2>
-                <p className='desc'>description</p>
-                <div className='extra'>
-                  <span className='count'>月售 sellCount 份</span><span>好评率 rating%</span>
-                </div>
-                <div className='price'>
-                  <span className='now'>￥price</span>
-                  <span className='old' v-show='food.oldPrice'>￥oldPrice</span>
-                </div>
-                <div className='cartControl-wrapper'>
-                  <cartControl></cartControl>
-                </div>
-              </div>
-            </li>
-          </ul>
+          <h1 className='title'>{item.name}</h1>
+          <div>
+            {
+              foodDatas.map((iitem, iindex) => {
+                return (
+                  <div
+                    className='food-item border-1px'
+                  >
+                    <div className='icon'>
+                      <img src={iitem.icon}/>
+                    </div>
+                    <div className='content'>
+                      <h2 className='name'>{iitem.name}</h2>
+                      <p className='desc'>{iitem.description}</p>
+                      <div className='extra'>
+                        <span className='count'>月售 {iitem.sellCount} 份</span><span>好评率 {iitem.rating}%</span>
+                      </div>
+                      <div className='price'>
+                        <span className='now'>￥{iitem.price}</span>
+                        <span className='old' v-show='food.oldPrice'>￥{iitem.oldPrice}</span>
+                      </div>
+                      <div className='cartControl-wrapper'>
+                        <cartControl></cartControl>
+                      </div>
+                    </div>
+                  </div>
+                )
+              })
+            }
+          </div>
         </div>
       )
     })

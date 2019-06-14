@@ -3,7 +3,7 @@
     {
       "name": "皮蛋瘦肉粥",
       "price": 10,
-      "oldPrice": "",
+      "oldPrice": "21",
       "description": "咸粥",
       "sellCount": 229,
       "rating": 100,
@@ -37,7 +37,7 @@
     {
       "name": "扁豆焖面",
       "price": 14,
-      "oldPrice": "",
+      "oldPrice": "21",
       "description": "",
       "sellCount": 188,
       "rating": 96,
@@ -71,7 +71,7 @@
     {
       "name": "葱花饼",
       "price": 10,
-      "oldPrice": "",
+      "oldPrice": "21",
       "description": "",
       "sellCount": 124,
       "rating": 85,
@@ -105,7 +105,7 @@
     {
       "name": "牛肉馅饼",
       "price": 14,
-      "oldPrice": "",
+      "oldPrice": "21",
       "description": "",
       "sellCount": 114,
       "rating": 91,
@@ -139,7 +139,7 @@
     {
       "name": "招牌猪肉白菜锅贴/10个",
       "price": 17,
-      "oldPrice": "",
+      "oldPrice": "21",
       "description": "",
       "sellCount": 101,
       "rating": 78,
@@ -173,7 +173,7 @@
     {
       "name": "南瓜粥",
       "price": 9,
-      "oldPrice": "",
+      "oldPrice": "21",
       "description": "甜粥",
       "sellCount": 91,
       "rating": 100,
@@ -206,7 +206,7 @@
     {
       "name": "红豆薏米美肤粥",
       "price": 12,
-      "oldPrice": "",
+      "oldPrice": "21",
       "description": "甜粥",
       "sellCount": 86,
       "rating": 100,
@@ -240,7 +240,7 @@
     {
       "name": "八宝酱菜",
       "price": 4,
-      "oldPrice": "",
+      "oldPrice": "21",
       "description": "",
       "sellCount": 84,
       "rating": 100,
@@ -274,7 +274,7 @@
     {
       "name": "红枣山药糙米粥",
       "price": 10,
-      "oldPrice": "",
+      "oldPrice": "21",
       "description": "",
       "sellCount": 81,
       "rating": 91,
@@ -308,7 +308,7 @@
     {
       "name": "糊塌子",
       "price": 10,
-      "oldPrice": "",
+      "oldPrice": "21",
       "description": "",
       "sellCount": 80,
       "rating": 93,
