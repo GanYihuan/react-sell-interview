@@ -96,7 +96,7 @@ class Menu extends React.Component {
                         <span className='now'>￥{iitem.price}</span>
                         <span className='old'>￥{iitem.oldPrice}</span>
                       </div>
-                      <CartControl/>
+                      <CartControl num={iindex}/>
                     </div>
                   </div>
                 )

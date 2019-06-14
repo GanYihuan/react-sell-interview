@@ -23,7 +23,7 @@ export default (state = initState, action) => {
     case 'ADD_SELECTI_ITEM':
       return fuck(state, action)
     case 'MINUS_SELECTI_ITEM':
-      return state.set('chooseCount', action.obj)
+      return fucker(state, action)
     case 'fuck':
       return fuck(state, action)
     case 'GET_LIST_DATA':
@@ -48,6 +48,15 @@ const getMenu = (state, action) => {
 const fuck = (state, action) => {
   return state.merge({
     fuck: state.get('fuck') + 1
+  })
+}
+
+const fucker = (state, action) => {
+  // const foodData = state.foodData
+  // const currentItem = foodData[state.currentLeftIndex]
+  // currentItem.cartControlCount--
+  return state.merge({
+    fuck: state.get('fuck') - 1
   })
 }
 

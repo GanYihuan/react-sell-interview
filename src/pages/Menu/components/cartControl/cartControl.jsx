@@ -7,7 +7,7 @@ import './cartControl.styl'
 class cartControl extends React.Component {
   render() {
     const { chooseCount, fuck } = this.props
-    const hideDesc = fuck === 0 ? 'cart-decrease hideDesc' : 'cart-decrease'
+    const hideDesc = fuck === 1 ? 'cart-decrease hideDesc' : 'cart-decrease'
     return (
       <div className='cartControl-wrapper'>
         <CSSTransition
@@ -18,26 +18,28 @@ class cartControl extends React.Component {
             <span className='inner icon-remove_circle_outline' onClick={() => this.minusSelectItem()}></span>
           </div>
         </CSSTransition>
-        <span className='cart-count'>{fuck}</span>
+        <span className='cart-count'>{fuck - 1}</span>
         <span className='cart-add icon-add_circle' onClick={() => this.addSelectItem()}></span>
       </div>
     )
   }
   addSelectItem() {
-    const { dispathaddSelectItem, fuck } = this.props
-    console.log(fuck, 'fuck ***')
+    const { dispathaddSelectItem, fuck, foodData, currentLeftIndex, num } = this.props
+    const foodDatas = foodData.toJS()
+    console.log(foodDatas[num].cartControlCount, 'foodData cartControl!')
     dispathaddSelectItem()
   }
   minusSelectItem() {
     const { dispathminusSelectItem, fuck } = this.props
-    const passCount = fuck === 0 ? 0 : fuck - 1
-    dispathminusSelectItem(passCount)
+    dispathminusSelectItem()
   }
 }
 
 const mapState = state => ({
   chooseCount: state.getIn(['menu', 'chooseCount']),
-  fuck: state.getIn(['menu', 'fuck'])
+  fuck: state.getIn(['menu', 'fuck']),
+  foodData: state.getIn(['menu', 'foodData']),
+  currentLeftIndex: state.getIn(['menu', 'currentLeftIndex'])
 })
 
 const mapDispatch = dispatch => ({
