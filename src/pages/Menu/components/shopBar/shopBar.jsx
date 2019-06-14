@@ -35,9 +35,9 @@ class ShopBar extends React.Component {
     )
   }
   componentDidMount() {
-    const { dispathaddSelectItem, dispathgetListData } = this.props
+    const { dispathaddSelectItem, dispatchgetFoodData } = this.props
     dispathaddSelectItem()
-    dispathgetListData()
+    dispatchgetFoodData()
   }
   getTotalPrice() {
     const { foodData } = this.props
@@ -102,10 +102,6 @@ class ShopBar extends React.Component {
     dispathshowChoose(flag)
   }
   clearCar() {
-    // this.props.dispatch(clearCar())
-    // this.props.dispatch(showChoose({
-    //   flag: false
-    // }))
   }
 }
 
@@ -121,8 +117,8 @@ const mapDispatch = dispatch => ({
   dispathminusSelectItem() {
     dispatch(actionCreators.minusSelectItem())
   },
-  dispathgetListData() {
-    dispatch(actionCreators.getListData())
+  dispatchgetFoodData() {
+    dispatch(actionCreators.getFoodData())
   },
   dispathshowChoose() {
     dispatch(actionCreators.showChoose())

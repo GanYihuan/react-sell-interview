@@ -39,8 +39,9 @@ class Menu extends React.Component {
     )
   }
   componentDidMount() {
-    const { dispathMenuData } = this.props
+    const { dispathMenuData, dispatchgetFoodData } = this.props
     dispathMenuData()
+    dispatchgetFoodData()
   }
   renderLeft() {
     const { menuData, currentLeftIndex } = this.props
@@ -125,7 +126,8 @@ class Menu extends React.Component {
 
 const mapState = state => ({
   menuData: state.getIn(['menu', 'menuData']),
-  currentLeftIndex: state.getIn(['menu', 'currentLeftIndex'])
+  currentLeftIndex: state.getIn(['menu', 'currentLeftIndex']),
+  foodData: state.getIn(['menu', 'foodData'])
 })
 
 const mapDispatch = dispatch => ({
@@ -134,6 +136,9 @@ const mapDispatch = dispatch => ({
   },
   dispathLeftItemClick(index) {
     dispatch(actionCreators.getLeftItemIndex(index))
+  },
+  dispatchgetFoodData() {
+    dispatch(actionCreators.getFoodData())
   }
 })
 

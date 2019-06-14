@@ -11,7 +11,7 @@ export const getMenuData = () => async(dispatch) => {
   })
 }
 
-export const getListData = () => async(dispatch) => {
+export const getFoodData = () => async(dispatch) => {
   const resp = await axios({
     method: 'get',
     url: '/api/food.json'
