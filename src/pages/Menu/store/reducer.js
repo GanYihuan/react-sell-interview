@@ -21,7 +21,7 @@ export default (state = initState, action) => {
     case 'LEFT_ITEM_INDEX':
       return state.set('currentLeftIndex', action.obj)
     case 'ADD_SELECTI_ITEM':
-      return state.set('chooseCount', action.obj)
+      return fuck(state, action)
     case 'MINUS_SELECTI_ITEM':
       return state.set('chooseCount', action.obj)
     case 'fuck':
