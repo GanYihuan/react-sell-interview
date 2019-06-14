@@ -5,6 +5,7 @@ import NavHeader from '../../common/NavHeader/NavHeader'
 import Scroll from '../../common/Scroll/scroll'
 import ShopBar from './components/shopBar/shopBar'
 import MenuItem from './components/MenuItem/MenuItem'
+import CartControl from './components/cartControl/cartControl'
 import './Menu.styl'
 
 class Menu extends React.Component {
@@ -71,14 +72,9 @@ class Menu extends React.Component {
     const { menuData, foodData, currentLeftIndex } = this.props
     const foodDatas = foodData.toJS()
     const menuDatas = menuData.toJS()
-    // const index = this.props.currentLeftIndex
-    // const array = this.props.listData.food_spu_tags || []
-    // const currentItem = foodDatas[currentLeftIndex] || []
-    // console.log(foodDatas, 'foodData..')
-    const cl = 'food-list food-list-hook'
     return menuDatas.map((item, index) => {
       return (
-        <div className={cl} key={index}>
+        <div className='food-list food-list-hook' key={index}>
           <h1 className='title'>{item.name}</h1>
           <div>
             {
@@ -86,6 +82,7 @@ class Menu extends React.Component {
                 return (
                   <div
                     className='food-item border-1px'
+                    key={iindex}
                   >
                     <div className='icon'>
                       <img src={iitem.icon}/>
@@ -98,11 +95,9 @@ class Menu extends React.Component {
                       </div>
                       <div className='price'>
                         <span className='now'>￥{iitem.price}</span>
-                        <span className='old' v-show='food.oldPrice'>￥{iitem.oldPrice}</span>
+                        <span className='old'>￥{iitem.oldPrice}</span>
                       </div>
-                      <div className='cartControl-wrapper'>
-                        <cartControl></cartControl>
-                      </div>
+                      <CartControl/>
                     </div>
                   </div>
                 )

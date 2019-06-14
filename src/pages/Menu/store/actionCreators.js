@@ -40,6 +40,20 @@ export const getLeftItemIndex = (index) => (dispatch) => {
   })
 }
 
+export const addSelectItem = (count) => (dispatch) => {
+  dispatch({
+    type: 'ADD_SELECTI_ITEM',
+    obj: count
+  })
+}
+
+export const minusSelectItem = (count) => (dispatch) => {
+  dispatch({
+    type: 'MINUS_SELECTI_ITEM',
+    obj: count
+  })
+}
+
 export const itemClick = (obj) => {
   return {
     type: 'LEFT_CLICK',
@@ -47,30 +61,16 @@ export const itemClick = (obj) => {
   }
 }
 
-export const addSelectItem = (obj) => {
-  return {
-    type: 'ADD_SELECTI_ITEM',
-    obj: obj
-  }
-}
-
-export const minusSelectItem = (obj) => {
-  return {
-    type: 'MINUS_SELECTI_ITEM',
-    obj: obj
-  }
-}
-
-export const showChoose = (obj) => {
-  return {
+export const showChoose = (obj) => (dispatch) => {
+  dispatch({
     type: 'SHOW_CHOOSE_CONTENT',
     obj: obj
-  }
+  })
 }
 
-export const clearCar = (obj) => {
-  return {
+export const clearCar = (obj) => (dispatch) => {
+  dispatch({
     type: 'CLEAR_CAR',
     obj: obj
-  }
+  })
 }
