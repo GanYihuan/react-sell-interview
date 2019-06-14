@@ -11,6 +11,17 @@ export const getMenuData = () => async(dispatch) => {
   })
 }
 
+export const getListData = () => async(dispatch) => {
+  const resp = await axios({
+    method: 'get',
+    url: '/api/food.json'
+  })
+  dispatch({
+    type: 'GET_LIST_DATA',
+    obj: resp.data
+  })
+}
+
 export const getLeftItemIndex = (index) => (dispatch) => {
   dispatch({
     type: 'LEFT_ITEM_INDEX',
@@ -24,17 +35,6 @@ export const itemClick = (obj) => {
     obj: obj
   }
 }
-
-// export const getListData = () => async(dispatch) => {
-//   const resp = await axios({
-//     method: 'get',
-//     url: '/json/food.json'
-//   })
-//   dispatch({
-//     type: 'GET_LIST_DATA',
-//     obj: resp.data
-//   })
-// }
 
 export const addSelectItem = (obj) => {
   return {

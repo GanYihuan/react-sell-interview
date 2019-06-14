@@ -1,11 +1,13 @@
 ﻿import React from 'react'
 import { connect } from 'react-redux'
-import { showChoose, addSelectItem, minusSelectItem, clearCar } from '../../store/actionCreators'
+import { actionCreators } from '../../store'
 import './shopBar.styl'
 
 class ShopBar extends React.Component {
   render() {
-    const shipping_fee = this.props.listData.poi_info ? this.props.listData.poi_info.shipping_fee : 0
+    const { foodData } = this.props
+    const foodDatas = foodData.toJS()
+    // const shipping_fee = listData.getIn(['poi_info', 'poi_info']) ? this.props.listData.poi_info.shipping_fee : 0
     const data = this.getTotalPrice()
     return (
       <div className='shop-bar'>
@@ -21,52 +23,61 @@ class ShopBar extends React.Component {
         }
         <div className='bottom-content'>
           <div className='shop-icon' onClick={() => this.openChooseContent()}>
-            {data.dotNum > 0 ? <div className='dot-num'>{data.dotNum}</div> : null}
+            {/* {data.dotNum > 0 ? <div className='dot-num'>{data.dotNum}</div> : null} */}
           </div>
           <div className='price-content'>
-            <p className='total-price'>¥{data.totalPrice}</p>
-            <p className='other-price'>另需配送&nbsp;¥{shipping_fee}</p>
+            <p className='total-price'>totalPrice</p>
+            <p className='other-price'>另需配送&nbsp;¥{foodDatas.price}</p>
           </div>
           <div className='submit-btn'>去结算</div>
         </div>
       </div>
     )
   }
+  componentDidMount() {
+    const { dispathaddSelectItem, dispathgetListData } = this.props
+    dispathaddSelectItem()
+    dispathgetListData()
+  }
   getTotalPrice() {
-    const listData = this.props.listData.food_spu_tags || []
-    let totalPrice = 0
-    let dotNum = 0
+    const { foodData } = this.props
+    const foodDatas = foodData.toJS()
     const chooseList = []
-    for (let i = 0; i < listData.length; i++) {
-      const spus = listData[i].spus || []
-      for (let j = 0; j < spus.length; j++) {
-        const chooseCount = spus[j].chooseCount
-        if (chooseCount > 0) {
-          dotNum += chooseCount
-          spus[j]._index = j
-          spus[j]._outIndex = i
-          chooseList.push(spus[j])
-          totalPrice += spus[j].min_price * chooseCount
-        }
-      }
+    const totalPrice = 0
+    const dotNum = 0
+    for (let i = 0; i < foodDatas.length; i++) {
+      console.log(foodDatas[i])
     }
-    return {
-      dotNum,
-      totalPrice,
-      chooseList
-    }
+    // const listData = this.props.listData.food_spu_tags || []
+    // let totalPrice = 0
+    // let dotNum = 0
+    // const chooseList = []
+    // for (let i = 0; i < listData.length; i++) {
+    //   const spus = listData[i].spus || []
+    //   for (let j = 0; j < spus.length; j++) {
+    //     const chooseCount = spus[j].chooseCount
+    //     if (chooseCount > 0) {
+    //       dotNum += chooseCount
+    //       spus[j]._index = j
+    //       spus[j]._outIndex = i
+    //       chooseList.push(spus[j])
+    //       totalPrice += spus[j].min_price * chooseCount
+    //     }
+    //   }
+    // }
+    // return {
+    //   dotNum,
+    //   totalPrice,
+    //   chooseList
+    // }
   }
   addSelectItem(item) {
-    this.props.dispatch(addSelectItem({
-      index: item._index,
-      outIndex: item._outIndex
-    }))
+    const { dispathaddSelectItem } = this.props
+    dispathaddSelectItem(item)
   }
   minusSelectItem(item) {
-    this.props.dispatch(minusSelectItem({
-      index: item._index,
-      outIndex: item._outIndex
-    }))
+    const { dispathminusSelectItem } = this.props
+    dispathminusSelectItem(item)
   }
   renderChooseItem(data) {
     const array = data.chooseList || []
@@ -85,23 +96,40 @@ class ShopBar extends React.Component {
     })
   }
   openChooseContent() {
-    const flag = this.props.showChooseContent
-    this.props.dispatch(showChoose({
-      flag: !flag
-    }))
+    const { showChooseContent } = this.props
+    const flag = showChooseContent
+    const { dispathshowChoose } = this.props
+    dispathshowChoose(flag)
   }
   clearCar() {
-    this.props.dispatch(clearCar())
-    this.props.dispatch(showChoose({
-      flag: false
-    }))
+    // this.props.dispatch(clearCar())
+    // this.props.dispatch(showChoose({
+    //   flag: false
+    // }))
   }
 }
 
-export default connect(
-  state => ({
-    listData: state.getIn(['menu', 'listData']),
-    showChooseContent: state.getIn(['menu', 'showChooseContent'])
-  })
-)(ShopBar)
+const mapState = state => ({
+  foodData: state.getIn(['menu', 'foodData']),
+  showChooseContent: state.getIn(['menu', 'showChooseContent'])
+})
 
+const mapDispatch = dispatch => ({
+  dispathaddSelectItem() {
+    dispatch(actionCreators.addSelectItem())
+  },
+  dispathminusSelectItem() {
+    dispatch(actionCreators.minusSelectItem())
+  },
+  dispathgetListData() {
+    dispatch(actionCreators.getListData())
+  },
+  dispathshowChoose() {
+    dispatch(actionCreators.showChoose())
+  }
+})
+
+export default connect(
+  mapState,
+  mapDispatch
+)(ShopBar)

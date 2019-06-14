@@ -6,7 +6,9 @@ const initState = fromJS({
   listData: {
     food_spu_tags: []
   },
-  showChooseContent: false
+  foodData: [],
+  showChooseContent: false,
+  poiInfo: {}
 })
 
 export default (state = initState, action) => {
@@ -39,27 +41,35 @@ const getMenu = (state, action) => {
 }
 
 const itemClick = (state, action) => {
-  return { ...state, currentLeftIndex: action.obj.currentLeftIndex }
+  return state.merge({
+    currentLeftIndex: state.get('currentLeftIndex').concat(fromJS(action.obj.currentLeftIndex)) // imutable obj, use get()
+  })
 }
 
 const getListData = (state, action) => {
-  if (state.listData.food_spu_tags.length > 0) {
-    return { ...state }
-  }
-  return { ...state, poiInfo: action.obj.data, listData: action.obj.data || { food_spu_tags: [] }}
+  // if (state.listData.food_spu_tags.length > 0) {
+  //   return { ...state }
+  // }
+  // return { ...state, poiInfo: action.obj.data, listData: action.obj.data || { food_spu_tags: [] }}
+  return state.merge({
+    foodData: state.get('foodData').concat(fromJS(action.obj.data))
+  })
 }
 
 const addSelectItem = (state, action) => {
-  return { ...state, listData: dealWithSelectItem(state, action, 'ADD_SELECTI_ITEM') }
+  return state.merge({
+    listData: state.get('listData', 'food_spu_tags').concat(fromJS(action.obj))
+  })
 }
 
 const minusSelectItem = (state, action) => {
   return { ...state, listData: dealWithSelectItem(state, action, 'MINUS_SELECTI_ITEM') }
 }
 
-// 购物车显示否？
 const chooseContent = (state, action) => {
-  return { ...state, showChooseContent: action.obj.flag }
+  return state.merge({
+    showChooseContent: state.get('showChooseContent').concat(fromJS(action.obj))
+  })
 }
 
 const dealWithSelectItem = (state, action, type) => {
