@@ -10,8 +10,7 @@ const initState = fromJS({
   showChooseContent: false,
   chooseCount: 0,
   currentLeftIndex: 0,
-  fuck: 0,
-  price: {}
+  fuck: 0
 })
 
 export default (state = initState, action) => {
@@ -44,10 +43,8 @@ export default (state = initState, action) => {
 const fuck = (state, action) => {
   return state.merge({
     fuck: state.get('fuck') + 1,
-    price: state.get('foodData').get(fromJS(action.num)),
-    // foodData: state.get('foodData').setIn([fromJS(action.num), 'cartControlCount'], state.get('foodData', fromJS(action.num)).get('cartControlCount'))
-    // foodData: state.get('foodData').setIn([fromJS(action.num), 'cartControlCount'], state.get('foodData').get(fromJS(action.num)).get('price'))
-    foodData: state.get('foodData').setIn([fromJS(action.num), 'cartControlCount'], 1)
+    // foodData: state.get('foodData').update(state.get('foodData', fromJS(action.num), 'cartControlCount'), v => v + 1)
+    foodData: state.get('foodData', fromJS(action.num)).update('cartControlCount', val => val + 1)
   })
 }
 
