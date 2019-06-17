@@ -2,8 +2,8 @@
 import { Link } from 'react-router-dom'
 import axios from 'axios'
 import { Layout } from 'element-react'
-import BottomBar from '../../common/BottomBar/BottomBar'
 import 'element-theme-default'
+import BottomBar from '../../common/BottomBar/BottomBar'
 import './My.styl'
 
 class My extends React.Component {

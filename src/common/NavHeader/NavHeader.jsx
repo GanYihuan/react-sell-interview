@@ -74,9 +74,7 @@ class NavHeader extends React.Component {
             </div>
           </div>
         </div>
-        <div
-          className='bulletin-wrapper'
-        >
+        <div className='bulletin-wrapper'>
           <span className='bulletin-title' /><span className='bulletin-text'>{navHeader.get('bulletin')}</span>
           <i className='icon-keyboard_arrow_right' />
         </div>

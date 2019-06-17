@@ -1,10 +1,10 @@
 ﻿import React from 'react'
 import { Link } from 'react-router-dom'
-import Header from '../home/components/Header/Header'
 import { Button, Layout, Input, Checkbox, Form } from 'element-react'
 import axios from 'axios'
 import CryptoJS from 'crypto-js'
 import 'element-theme-default'
+import Header from '../home/components/Header/Header'
 import './Register.styl'
 
 class Register extends React.Component {
@@ -141,7 +141,7 @@ class Register extends React.Component {
       return
     }
     if (register) {
-      console.log(register, 'register...')
+      // console.log(register, 'register...')
       axios
         .post('/users/signup', {
           username: window.encodeURIComponent(this.usernameRef.current.props.value),
@@ -155,7 +155,7 @@ class Register extends React.Component {
             if (data && data.code === 0) {
               this.props.history.push('/login')
             } else {
-              console.log(data.msg, 'data.msg')
+              // console.log(data.msg, 'data.msg')
               this.setState(() => {
                 return {
                   statusMsg: `验证码已发送，剩余${count--}秒`,
@@ -188,7 +188,7 @@ class Register extends React.Component {
     if (!this.usernameRef.current.props.value || !this.emailRef.current.props.value || !this.passwordRef.current.props.value) {
       sendMsg = false
     }
-    console.log(sendMsg, 'send...')
+    // console.log(sendMsg, 'send...')
     if (!sendMsg) {
       return
     }

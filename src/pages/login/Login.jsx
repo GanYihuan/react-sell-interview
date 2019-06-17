@@ -1,10 +1,10 @@
 ﻿import React from 'react'
 import { Link } from 'react-router-dom'
-import Header from '../../pages/home/components/Header/Header'
 import { Button, Layout, Input, Checkbox } from 'element-react'
 import axios from 'axios'
 import CryptoJS from 'crypto-js'
 import 'element-theme-default'
+import Header from '../../pages/home/components/Header/Header'
 import './Login.styl'
 
 class Login extends React.Component {

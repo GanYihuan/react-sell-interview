@@ -75,9 +75,7 @@ class Restanurant extends React.Component {
             </div>
             <Split/>
             <div className='pics'>
-              <div className='title'>
-                商家实景
-              </div>
+              <div className='title'>商家实景</div>
               <div className='pic-wrapper'>
                 <Scroll direction='horizontal'>
                   <div className='pic-list'>
