@@ -48,6 +48,7 @@ class NavHeader extends React.Component {
             <i className='icon-arrow_lift' />
           </div>
           <div className='avatar'>
+            {/* tate.get() 获取对象 immutable 定义的 redux 数据 */}
             <img src={navHeader.get('avatar')} />
           </div>
           <div className='content'>

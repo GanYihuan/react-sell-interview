@@ -1,6 +1,6 @@
 ﻿import React from 'react'
-import { connect } from 'react-redux'
-import Carousel from 'nuka-carousel'
+import { connect } from 'react-redux' // 将 store 中的数据作为 props 绑定到组件上
+import Carousel from 'nuka-carousel' // 实现轮播图组件功能, 首页里的图标轮播组件
 import { actionCreators } from '../../store'
 import './Category.scss'
 
@@ -13,7 +13,7 @@ class Category extends React.Component {
     const {
       items
     } = this.props
-    const newList = items.toJS()
+    const newList = items.toJS() // toJS() 处理获取过来的数组 (redux 数据使其成为 immutable 数据)
     return (
       <div className='category-content'>
         <Carousel className='slider' dots={false}>
@@ -47,13 +47,13 @@ class Category extends React.Component {
   }
 }
 
-const mapState = state => ({
-  items: state.getIn(['home', 'items'])
+const mapState = state => ({ // mapStateToProps 将 store 中的数据作为 props 绑定到组件上
+  items: state.getIn(['home', 'items']) // 获取 redux 的数据(其成为 immutable 数据)
 })
 
-const mapDispatch = dispatch => ({
+const mapDispatch = dispatch => ({ // mapDispatchToProps 将 action 作为 props 绑定到组件上
   addArticleList() {
-    dispatch(actionCreators.getHeaderData())
+    dispatch(actionCreators.getHeaderData()) // dispatch() 调用 action
   }
 })
 

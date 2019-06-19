@@ -39,14 +39,7 @@ const getCategory = (state, action) => {
 }
 
 const getContentListData = (state, action) => {
-  if (action.currentPage === 0) { // action.currentPage -> contentListAction.js pass data (currentPage: page)
-    return state.merge({
-      list: state.get('list').concat(fromJS(action.obj.data.poilist)) // imutable obj, use get()
-    })
-  } else {
-    const list = state.list
-    return state.merge({
-      list: state.get('list').concat(fromJS(action.obj.data.poilist)) // imutable obj, use get()
-    })
-  }
+  return state.merge({
+    list: state.get('list').concat(fromJS(action.obj.data.poilist)) // imutable obj, use get()
+  })
 }

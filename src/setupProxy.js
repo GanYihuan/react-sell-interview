@@ -6,9 +6,3 @@ module.exports = function(app) {
     // cookieDomainRewrite: "http://localhost:3000"
   }))
 }
-
-// "proxy": {
-//   "/users": {
-//     "target": "http://localhost:3001"
-//   }
-// },

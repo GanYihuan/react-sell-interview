@@ -12,14 +12,13 @@ export const getHeaderData = () => async(dispatch) => {
   })
 }
 
-export const getListData = (page) => async(dispatch) => { // page: CommentList.jsx 传递过来的参数
+export const getListData = () => async(dispatch) => { // page: CommentList.jsx 传递过来的参数
   const resp = await axios({
     method: 'get',
     url: '/api/homelist.json'
   })
   dispatch({
     type: constants.LIST_DATA,
-    currentPage: page,
     obj: resp.data
   })
 }

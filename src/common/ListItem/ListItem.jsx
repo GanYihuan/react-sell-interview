@@ -37,9 +37,6 @@ class ListItem extends React.Component {
       )
     })
   }
-  goDetail(data) {
-    window.location.href = './detail.html?id=' + data.id
-  }
   goMenu() {
     this.props.history.push(`/restanurant`)
   }

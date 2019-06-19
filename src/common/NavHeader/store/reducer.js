@@ -23,7 +23,8 @@ export default (state = defaultState, action) => {
   switch (action.type) {
     case 'HEAD_DATA':
       return getNavHeader(state, action)
-    default: return state
+    default:
+      return state
   }
 }
 

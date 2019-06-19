@@ -34,6 +34,7 @@ class My extends React.Component {
       <div>
         <div className='my'>
           <div className='header'>
+            {/* <Link> 实现锚点连接跳转 */}
             <Link to={'/login'}>
               <img className='avatar'/>
             </Link>
