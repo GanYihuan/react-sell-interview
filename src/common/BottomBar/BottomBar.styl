@@ -1,0 +1,42 @@
+﻿.bottom-bar
+  display: flex
+  position: fixed
+  bottom: 0
+  width: 100%
+  height: 3.125rem
+  border-top: .0625rem solid #b6b6b6
+  background-color: rgba(246, 246, 246, 0.95)
+  .btn-item
+    display: flex
+    flex: 1
+    flex-direction: column
+    justify-content: center
+    align-items: center
+    font-size: .6875rem
+    text-decoration: none
+    color: #999
+    .tab-icon
+      margin-bottom: .25rem
+      width: 1.5625rem
+      height: 1.5625rem
+      background-size: cover
+    &.active
+      color: #000
+    &.my
+      .tab-icon
+        background-image: url("./img/myIcon.png")
+      &.active
+        .tab-icon
+          background-image: url("./img/myIconActive.png")
+    &.order
+      .tab-icon
+        background-image: url("./img/orderIcon.png")
+      &.active
+        .tab-icon
+          background-image: url("./img/orderIconActive.png")
+    &.home
+      .tab-icon
+        background-image: url("./img/homeIcon.png")
+      &.active
+        .tab-icon
+          background-image: url("./img/homeIconActive.png")

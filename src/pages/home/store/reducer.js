@@ -34,12 +34,14 @@ export default (state = defaultState, action) => {
 
 const getCategory = (state, action) => {
   return state.merge({
-    items: state.get('items').concat(fromJS(action.obj.data.primary_filter))
+    // items: state.get('items').concat(fromJS(action.obj.data.primary_filter))
+    items: state.get('items').concat(fromJS(action.obj))
   })
 }
 
 const getContentListData = (state, action) => {
   return state.merge({
-    list: state.get('list').concat(fromJS(action.obj.data.poilist))
+    // list: state.get('list').concat(fromJS(action.obj.data.poilist))
+    list: state.get('list').concat(fromJS(action.obj))
   })
 }

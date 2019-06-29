@@ -11,6 +11,8 @@ class ContentList extends Component {
   }
   render() {
     const { list } = this.props
+    // console.log(list.toJS(), 'list--')
+    const listArray = list.toJS()
     return (
       <div className='list-content'>
         <h4 className='list-title'>
@@ -19,7 +21,7 @@ class ContentList extends Component {
           <span className='title-line'></span>
         </h4>
         {
-          list.map((item, index) => {
+          listArray.map((item, index) => {
             return <ListItem key={index} itemData={item}></ListItem>
           })
         }

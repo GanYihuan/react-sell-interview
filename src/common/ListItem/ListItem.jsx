@@ -26,17 +26,6 @@ class ListItem extends Component {
     }
     return null
   }
-  renderOthers(data) {
-    const array = data
-    return array.map((item, index) => {
-      return (
-        <div className='other-info' key={index}>
-          <img className='other-tag' src={item.get('icon_url')}/>
-          <div className='other-content'>{item.get('info')}</div>
-        </div>
-      )
-    })
-  }
   goMenu() {
     this.props.history.push(`/restanurant`) // withRouter
   }
@@ -44,22 +33,19 @@ class ListItem extends Component {
     const { itemData } = this.props
     return (
       <div className='item border-bottom' onClick={() => this.goMenu()}>
-        <img className='item-img' src={itemData.get('pic_url')} />
-        {this.renderBrand(itemData.get('brand_type'))}
+        <img className='item-img' src={itemData.pic_url} />
+        {this.renderBrand(itemData.brand_type)}
         <div className='item-info'>
-          <p className='item-title'>{itemData.get('name')}</p>
+          <p className='item-title'>{itemData.name}</p>
           <div className='item-desc clearfix'>
-            <div className='item-score'><StarScore score={itemData.get('wm_poi_score')}/></div>
-            <div className='item-count'>月售{this.renderMonthNum(itemData.get('month_sale_num'))}</div>
-            <div className='item-distance'>&nbsp;{itemData.get('distance')}</div>
-            <div className='item-time'>{itemData.get('mt_delivery_time')}&nbsp;|</div>
+            <div className='item-score'><StarScore score={itemData.wm_poi_score}/></div>
+            <div className='item-count'>月售{this.renderMonthNum(itemData.month_sale_num)}</div>
+            <div className='item-distance'>&nbsp;{itemData.distance}</div>
+            <div className='item-time'>{itemData.mt_delivery_time}&nbsp;|</div>
           </div>
           <div className='item-price'>
-            <div className='item-pre-price'>{itemData.get('min_price_tip')}</div>
-            {this.renderMeituanFlag(itemData.get('delivery_type'))}
-          </div>
-          <div className='item-others'>
-            {this.renderOthers(itemData.get('discounts2'))}
+            <div className='item-pre-price'>{itemData.min_price_tip}</div>
+            {this.renderMeituanFlag(itemData.delivery_type)}
           </div>
         </div>
       </div>
