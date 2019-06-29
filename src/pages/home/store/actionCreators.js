@@ -6,6 +6,7 @@ export const getHeaderData = () => async(dispatch) => {
     method: 'get',
     url: '/api/head.json'
   })
+  // const { status, data: { goods }} = await axios.get('/goods/getGood')
   dispatch({
     type: constants.HEAD_DATA,
     obj: resp.data

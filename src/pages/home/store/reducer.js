@@ -34,12 +34,12 @@ export default (state = defaultState, action) => {
 
 const getCategory = (state, action) => {
   return state.merge({
-    items: state.get('items').concat(fromJS(action.obj.data.primary_filter)) // imutable obj, use get()
+    items: state.get('items').concat(fromJS(action.obj.data.primary_filter))
   })
 }
 
 const getContentListData = (state, action) => {
   return state.merge({
-    list: state.get('list').concat(fromJS(action.obj.data.poilist)) // imutable obj, use get()
+    list: state.get('list').concat(fromJS(action.obj.data.poilist))
   })
 }
