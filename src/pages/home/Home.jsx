@@ -1,5 +1,6 @@
 ﻿import React from 'react'
-import BottomBar from '../../common/BottomBar/BottomBar'
+import BottomBar from 'BottomBar/BottomBar'
+import Split from 'Split/Split'
 import Header from './components/Header/Header'
 import Category from './components/Category/Category'
 import ContentList from './components/ContentList/ContentList'
@@ -10,6 +11,7 @@ class Home extends React.Component {
       <div>
         <Header/>
         <Category/>
+        <Split/>
         <ContentList/>
         <BottomBar/>
       </div>

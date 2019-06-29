@@ -82,7 +82,14 @@ module.exports = {
   proxySetup: resolveApp('src/setupProxy.js'),
   appNodeModules: resolveApp('node_modules'),
   publicUrl: getPublicUrl(resolveApp('package.json')),
-  servedPath: getServedPath(resolveApp('package.json'))
+  servedPath: getServedPath(resolveApp('package.json')),
+
+  src: path.resolve(__dirname, '../src'),
+  component: path.resolve(__dirname, '../src/component'),
+  common: path.resolve(__dirname, '../src/common'),
+  actions: path.resolve(__dirname, '../src/actions'),
+  pages: path.resolve(__dirname, '../src/pages'),
+  store: path.resolve(__dirname, '../src/store')
 }
 
 module.exports.moduleFileExtensions = moduleFileExtensions

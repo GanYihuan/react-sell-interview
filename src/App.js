@@ -12,7 +12,6 @@ const Restanurant = lazy(() => import(/* webpackChunkName: "My" */ './pages/rest
 const Ratings = lazy(() => import(/* webpackChunkName: "My" */ './pages/ratings/Ratings'))
 // forceRefresh: bool
 // 当设置为 true 时，在导航的过程中整个页面将会刷新。 只有当浏览器不支持 HTML5 的 history API 时，才设置为 true
-// const supportsHistory = 'pushState' in window.history
 const supportsHistory = false
 
 class App extends Component {
