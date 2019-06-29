@@ -2,9 +2,10 @@
 import { Link } from 'react-router-dom'
 import { Button, Layout, Input, Checkbox, Form } from 'element-react'
 import axios from 'axios'
+import Header from 'home/components/Header/Header'
 import CryptoJS from 'crypto-js'
+import { Notyf } from 'notyf'
 import 'element-theme-default'
-import Header from '../home/components/Header/Header'
 import './Register.styl'
 
 class Register extends Component {
@@ -12,8 +13,6 @@ class Register extends Component {
     super(props)
     this.state = {
       statusMsg: '',
-      error: '',
-      show: false,
       checked: '',
       username: '',
       pass: '1',
@@ -73,24 +72,6 @@ class Register extends Component {
       <div className='login-page'>
         <Header/>
         <Layout.Row>
-          <Layout.Col span='16' offset='4'>
-            <div className='form'>
-              注册账号
-            </div>
-          </Layout.Col>
-        </Layout.Row>
-        <Layout.Row>
-          <Layout.Col span='6' offset='4'>
-            {
-              this.state.show
-                ? <div className='error'>
-                  {this.state.error}
-                </div>
-                : ''
-            }
-          </Layout.Col>
-        </Layout.Row>
-        <Layout.Row>
           <Layout.Col span='20'>
             <Form className='demo-form-inline' ref={this.formRef} model={this.state.form} rules={this.state.rules} labelWidth='100'>
               <Form.Item label='用户名' prop='username'>
@@ -119,7 +100,10 @@ class Register extends Component {
                 </div>
               </Form.Item>
               <Form.Item>
-                <Button className='btn-login' onClick={() => this.register()}>注册</Button>
+                <Button className='btn' type='warning' onClick={() => this.login()}>登录</Button>
+              </Form.Item>
+              <Form.Item>
+                <Button className='btn' type='warning' onClick={() => this.register()}>注册</Button>
               </Form.Item>
             </Form>
           </Layout.Col>
@@ -132,16 +116,20 @@ class Register extends Component {
       form: Object.assign({}, this.state.form, { [key]: value })
     })
   }
+  login() {
+    this.props.history.push('/login')
+  }
   register() {
+    const notyf = new Notyf()
     let register = true
     if (!this.usernameRef.current.props.value || !this.emailRef.current.props.value || !this.passwordRef.current.props.value) {
       register = false
+      notyf.error('请输入信息')
     }
     if (!register) {
       return
     }
     if (register) {
-      // console.log(register, 'register...')
       axios
         .post('/users/signup', {
           username: window.encodeURIComponent(this.usernameRef.current.props.value),
@@ -155,40 +143,29 @@ class Register extends Component {
             if (data && data.code === 0) {
               this.props.history.push('/login')
             } else {
-              // console.log(data.msg, 'data.msg')
+              notyf.error(`${data.msg}`)
               this.setState(() => {
                 return {
-                  statusMsg: `验证码已发送，剩余${count--}秒`,
-                  error: data.msg
+                  statusMsg: `验证码已发送，剩余${count--}秒`
                 }
               })
             }
           } else {
+            notyf.error(`${data.msg}`)
             this.setState(() => {
               return {
-                statusMsg: `服务器出错，错误码:${status}`,
-                error: data.msg
+                statusMsg: `服务器出错，错误码:${status}`
               }
             })
           }
-          setTimeout(() => {
-            this.error = ''
-            this.setState(() => {
-              return {
-                error: ''
-              }
-            })
-          }, 1500)
         })
     }
   }
   sendMsg() {
     let sendMsg = true
-    // console.log(this.usernameRef.current.props.value, 'this.usernameRef.current.value')
     if (!this.usernameRef.current.props.value || !this.emailRef.current.props.value || !this.passwordRef.current.props.value) {
       sendMsg = false
     }
-    // console.log(sendMsg, 'send...')
     if (!sendMsg) {
       return
     }

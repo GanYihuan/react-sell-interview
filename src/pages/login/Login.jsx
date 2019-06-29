@@ -5,7 +5,6 @@ import axios from 'axios'
 import Header from 'home/components/Header/Header'
 import CryptoJS from 'crypto-js'
 import { Notyf } from 'notyf'
-import 'notyf/notyf.min.css' // for React and Vue
 import 'element-theme-default'
 import './Login.styl'
 
@@ -34,14 +33,12 @@ class Login extends Component {
         </Layout.Row>
         <Layout.Row>
           <Layout.Col span='16' offset='4'>
-            {/* <input className='input' ref={this.usernameRef} placeholder='请输入用户名' /> */}
-            <Input className='input' ref={this.usernameRef} placeholder='请输入用户名' />
+            <Input className='input' ref={this.usernameRef} placeholder='请输入用户名' icon='information' />
           </Layout.Col>
         </Layout.Row>
         <Layout.Row>
           <Layout.Col span='16' offset='4'>
-            {/* <input className='input' ref={this.passwordRef} placeholder='请输入密码'/> */}
-            <Input className='input' ref={this.passwordRef} placeholder='请输入密码' />
+            <Input className='input' ref={this.passwordRef} placeholder='请输入密码' icon='edit' />
           </Layout.Col>
         </Layout.Row>
         <Layout.Row>
@@ -83,7 +80,7 @@ class Login extends Component {
             notyf.error(`${data.msg}`)
           }
         } else {
-          console.log(this.state.error, this.state.show, 'error: data msg...2')
+          notyf.error('服务器错误!')
         }
       })
   }
