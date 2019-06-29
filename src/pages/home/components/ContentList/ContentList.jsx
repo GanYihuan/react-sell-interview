@@ -2,7 +2,7 @@
 import { connect } from 'react-redux'
 import ListItem from 'ListItem/ListItem'
 import { actionCreators } from 'home/store'
-import './ContentList.scss'
+import './ContentList.styl'
 
 class ContentList extends Component {
   componentDidMount() { // async, get ajax async data

@@ -1,7 +1,7 @@
 ﻿import React from 'react'
 import { connect } from 'react-redux'
 import { addSelectItem, minusSelectItem } from '../../store/actionCreators'
-import './MenuItem.scss'
+import './MenuItem.styl'
 
 class MenuItem extends React.Component {
   addSelectItem() {

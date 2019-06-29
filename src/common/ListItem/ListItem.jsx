@@ -2,7 +2,7 @@
 import { connect } from 'react-redux'
 import { withRouter } from 'react-router-dom'
 import StarScore from 'StarScore/StarScore'
-import './ListItem.scss'
+import './ListItem.styl'
 
 @withRouter
 class ListItem extends Component {
