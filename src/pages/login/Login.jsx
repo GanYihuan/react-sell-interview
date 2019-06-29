@@ -1,18 +1,19 @@
 ﻿import React, { Component } from 'react'
-import { Link } from 'react-router-dom'
+import { Link, withRouter } from 'react-router-dom'
 import { Button, Layout, Input, Checkbox } from 'element-react'
 import axios from 'axios'
+import Header from 'home/components/Header/Header'
 import CryptoJS from 'crypto-js'
+import { Notyf } from 'notyf'
+import 'notyf/notyf.min.css' // for React and Vue
 import 'element-theme-default'
-import Header from '../../pages/home/components/Header/Header'
 import './Login.styl'
 
+@withRouter
 class Login extends Component {
   constructor(props) {
     super(props)
     this.state = {
-      error: '',
-      show: false,
       checked: '',
       username: '',
       password: '1'
@@ -32,17 +33,6 @@ class Login extends Component {
           </Layout.Col>
         </Layout.Row>
         <Layout.Row>
-          <Layout.Col span='6' offset='4'>
-            {
-              this.state.show
-                ? <div className='error'>
-                  {this.state.error}
-                </div>
-                : ''
-            }
-          </Layout.Col>
-        </Layout.Row>
-        <Layout.Row>
           <Layout.Col span='16' offset='4'>
             <input className='input' ref={this.usernameRef} placeholder='请输入用户名' />
           </Layout.Col>
@@ -54,43 +44,28 @@ class Login extends Component {
         </Layout.Row>
         <Layout.Row>
           <Layout.Col span='16' offset='4'>
-            <div className='foot'>
-              <Checkbox></Checkbox>
-              7天内自动登录
-              <Link
-                className='link'
-                to='/register'
-              >
-                注册账号
-              </Link>
-            </div>
+            <Button className='btn' type='warning' onClick={() => this.login()}>登录</Button>
           </Layout.Col>
         </Layout.Row>
         <Layout.Row>
           <Layout.Col span='16' offset='4'>
-            <Button className='btn-login' onClick={() => this.login()}>登录</Button>
+            <Button className='btn' type='warning' onClick={() => this.register()}>注册</Button>
           </Layout.Col>
         </Layout.Row>
       </div>
     )
   }
+  register() {
+    this.props.history.push('/register')
+  }
   login() {
+    const notyf = new Notyf()
     if (this.usernameRef.current.value === '') {
-      this.setState(() => {
-        return {
-          error: '请输入用户名',
-          show: true
-        }
-      })
+      notyf.error('请输入用户名')
       return
     }
     if (this.passwordRef.current.value === '') {
-      this.setState(() => {
-        return {
-          error: '请输入密码',
-          show: true
-        }
-      })
+      notyf.error('请输入密码')
       return
     }
     axios
@@ -103,21 +78,9 @@ class Login extends Component {
           if (data && data.code === 0) {
             this.props.history.push('/my')
           } else {
-            this.setState(() => {
-              return {
-                error: data.msg,
-                show: true
-              }
-            })
+            notyf.error(`${data.msg}`)
           }
         } else {
-          // this.error = `服务器出错`
-          // this.setState(() => {
-          //   return {
-          //     error: `服务器出错`,
-          //     show: true
-          //   }
-          // })
           console.log(this.state.error, this.state.show, 'error: data msg...2')
         }
       })
