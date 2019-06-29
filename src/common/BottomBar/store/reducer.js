@@ -1,6 +1,6 @@
 ﻿import { fromJS } from 'immutable'
 
-const defaultState = fromJS({
+const defaultState = fromJS({ // 原生js转immutable对象
   tabs: [
     {
       name: '首页',

@@ -1,24 +1,21 @@
-﻿import React from 'react'
+﻿import React, { Component } from 'react'
 import { Link, NavLink } from 'react-router-dom'
 import { connect } from 'react-redux'
 import './BottomBar.scss'
 
-class BottomBar extends React.Component {
+class BottomBar extends Component {
   render() {
     const {
       articlePage,
       tabs
     } = this.props
-    const tabsArray = tabs.toJS()
+    const tabsArray = tabs.toJS() // immutable 对象转原生 js
     return (
       <div className='bottom-bar'>
         {
           tabsArray.map((item, index) => {
             const cls = item.key + ' btn-item'
             const name = item.name
-            // if (item.key === articlePage) {
-            //   cls += ' active'
-            // }
             return (
               <NavLink
                 className={cls}
