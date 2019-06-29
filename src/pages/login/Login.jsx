@@ -13,12 +13,16 @@ class Login extends Component {
   constructor(props) {
     super(props)
     this.state = {
-      checked: '',
-      username: '',
-      password: '1'
+      form: {
+        name: '',
+        pwd: ''
+      }
     }
-    this.usernameRef = React.createRef()
-    this.passwordRef = React.createRef()
+  }
+  onChange(key, value) {
+    this.setState({
+      form: Object.assign(this.state.form, { [key]: value })
+    })
   }
   render() {
     return (
@@ -33,12 +37,12 @@ class Login extends Component {
         </Layout.Row>
         <Layout.Row>
           <Layout.Col span='16' offset='4'>
-            <Input className='input' ref={this.usernameRef} placeholder='请输入用户名' icon='information' />
+            <Input className='input' ref='name' placeholder='请输入用户名' icon='information' value={this.state.form.name} onChange={this.onChange.bind(this, 'name')} />
           </Layout.Col>
         </Layout.Row>
         <Layout.Row>
           <Layout.Col span='16' offset='4'>
-            <Input className='input' ref={this.passwordRef} placeholder='请输入密码' icon='edit' />
+            <Input className='input' ref='password' placeholder='请输入密码' icon='edit' value={this.state.form.pwd} onChange={this.onChange.bind(this, 'pwd')} type='password'/>
           </Layout.Col>
         </Layout.Row>
         <Layout.Row>
@@ -59,18 +63,18 @@ class Login extends Component {
   }
   login() {
     const notyf = new Notyf()
-    if (this.usernameRef.current.value === '') {
+    if (this.refs.name.props.value === '') {
       notyf.error('请输入用户名')
       return
     }
-    if (this.passwordRef.current.value === '') {
+    if (this.refs.password.props.value === '') {
       notyf.error('请输入密码')
       return
     }
     axios
       .post('/users/signin', {
-        username: window.encodeURIComponent(this.usernameRef.current.value), // encodeURIComponent: Encoding Chinese
-        password: CryptoJS.MD5(this.passwordRef.current.value).toString() // CryptoJS.MD5 encryption
+        username: window.encodeURIComponent(this.refs.name.props.value), // encodeURIComponent: Encoding Chinese
+        password: CryptoJS.MD5(this.refs.password.props.value).toString() // CryptoJS.MD5 encryption
       })
       .then(({ status, data }) => {
         if (status === 200) {
