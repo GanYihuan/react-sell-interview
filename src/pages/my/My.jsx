@@ -3,7 +3,7 @@ import { Link } from 'react-router-dom'
 import axios from 'axios'
 import { Layout } from 'element-react'
 import 'element-theme-default'
-import BottomBar from '../../common/BottomBar/BottomBar'
+import BottomBar from 'BottomBar/BottomBar'
 import './My.styl'
 
 class My extends Component {
@@ -34,9 +34,8 @@ class My extends Component {
       <div>
         <div className='my'>
           <div className='header'>
-            {/* <Link> 实现锚点连接跳转 */}
             <Link to={'/login'}>
-              <img className='avatar'/>
+              <img className='icon'/>
             </Link>
             <p className='nickname'>{this.state.user}</p>
           </div>
@@ -44,29 +43,19 @@ class My extends Component {
             <ul className='items'>
               <li className='address'>
                 <Layout.Row>
-                  <Layout.Col span='5'>
-                    你的用户名
-                  </Layout.Col>
-                  <Layout.Col span='5' offset='1'>
-                    {this.state.user}
-                  </Layout.Col>
+                  <Layout.Col span='5'>用户名</Layout.Col>
+                  <Layout.Col span='5' offset='1'>{this.state.user}</Layout.Col>
                 </Layout.Row>
               </li>
             </ul>
             <ul className='items'>
-              <li className='address'>
+              <li className='email'>
                 <Layout.Row>
-                  <Layout.Col span='5'>
-                    Email 地址
-                  </Layout.Col>
-                  <Layout.Col span='5' offset='1'>
-                    {this.state.email}
-                  </Layout.Col>
+                  <Layout.Col span='5'>Email 地址</Layout.Col>
+                  <Layout.Col span='5' offset='1'>{this.state.email}</Layout.Col>
                 </Layout.Row>
               </li>
             </ul>
-            <p className='tel'>客服电话:&nbsp;101-097-77</p>
-            <p className='time'>服务时间:&nbsp;9:00-23:00</p>
           </div>
         </div>
         <BottomBar/>
