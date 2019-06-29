@@ -11,7 +11,6 @@ class ContentList extends Component {
   }
   render() {
     const { list } = this.props
-    // console.log(list.toJS(), 'list--')
     const listArray = list.toJS()
     return (
       <div className='list-content'>

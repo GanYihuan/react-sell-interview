@@ -1,9 +1,9 @@
-﻿import React from 'react'
+﻿import React, { Component } from 'react'
 import { connect } from 'react-redux'
 import { addSelectItem, minusSelectItem } from '../../store/actionCreators'
 import './MenuItem.styl'
 
-class MenuItem extends React.Component {
+class MenuItem extends Component {
   addSelectItem() {
     this.props.dispatch(addSelectItem({
       index: this.props._index

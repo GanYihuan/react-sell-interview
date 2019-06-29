@@ -1,9 +1,9 @@
-﻿import React from 'react'
+﻿import React, { Component } from 'react'
 import { connect } from 'react-redux'
 import { actionCreators } from '../../store'
 import './shopBar.styl'
 
-class ShopBar extends React.Component {
+class ShopBar extends Component {
   componentDidMount() {
     const { dispathaddSelectItem, dispatchgetFoodData, dispathNavHeader } = this.props
     dispathaddSelectItem()

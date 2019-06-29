@@ -1,4 +1,4 @@
-﻿import React from 'react'
+﻿import React, { Component } from 'react'
 import { Link } from 'react-router-dom'
 import axios from 'axios'
 import { Layout } from 'element-react'
@@ -6,7 +6,7 @@ import 'element-theme-default'
 import BottomBar from '../../common/BottomBar/BottomBar'
 import './My.styl'
 
-class My extends React.Component {
+class My extends Component {
   constructor(props) {
     super(props)
     this.state = {

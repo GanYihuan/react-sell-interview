@@ -1,9 +1,9 @@
-﻿import React from 'react'
+﻿import React, { Component } from 'react'
 import { Link, NavLink } from 'react-router-dom'
 import { connect } from 'react-redux'
 import './ScrollView.styl'
 
-class ScrollView extends React.Component {
+class ScrollView extends Component {
   constructor(props) {
     super(props)
     this._onLoadPage = this.onLoadPage.bind(this)

@@ -1,11 +1,11 @@
-﻿import React from 'react'
+﻿import React, { Component } from 'react'
 import { connect } from 'react-redux'
 import { NavLink, withRouter } from 'react-router-dom'
 import { actionCreators } from './store'
 import './NavHeader.styl'
 
 @withRouter
-class NavHeader extends React.Component {
+class NavHeader extends Component {
   componentDidMount() { // async, get ajax async data
     const { addArticleList } = this.props
     addArticleList()

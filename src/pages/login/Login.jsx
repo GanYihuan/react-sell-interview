@@ -1,4 +1,4 @@
-﻿import React from 'react'
+﻿import React, { Component } from 'react'
 import { Link } from 'react-router-dom'
 import { Button, Layout, Input, Checkbox } from 'element-react'
 import axios from 'axios'
@@ -7,7 +7,7 @@ import 'element-theme-default'
 import Header from '../../pages/home/components/Header/Header'
 import './Login.styl'
 
-class Login extends React.Component {
+class Login extends Component {
   constructor(props) {
     super(props)
     this.state = {

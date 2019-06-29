@@ -1,4 +1,4 @@
-﻿import React from 'react'
+﻿import React, { Component } from 'react'
 import { connect } from 'react-redux'
 import BScroll from 'better-scroll'
 import NavHeader from '../../common/NavHeader/NavHeader'
@@ -8,7 +8,7 @@ import Scroll from '../../common/Scroll/scroll'
 import { actionCreators } from './store'
 import './Restanurant.styl'
 
-class Restanurant extends React.Component {
+class Restanurant extends Component {
   constructor(props) {
     super(props)
     this.state = {

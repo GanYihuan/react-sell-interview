@@ -1,10 +1,10 @@
-﻿import React from 'react'
+﻿import React, { Component } from 'react'
 import { connect } from 'react-redux'
 import { CSSTransition } from 'react-transition-group'
 import { actionCreators } from '../../store/index'
 import './cartControl.styl'
 
-class cartControl extends React.Component {
+class cartControl extends Component {
   render() {
     const { chooseCount, fuck, foodData, num } = this.props
     const foodDatas = foodData.toJS()

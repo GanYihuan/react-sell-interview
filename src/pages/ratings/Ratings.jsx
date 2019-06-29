@@ -1,4 +1,4 @@
-﻿import React from 'react'
+﻿import React, { Component } from 'react'
 import { connect } from 'react-redux'
 import moment from 'moment'
 import NavHeader from '../../common/NavHeader/NavHeader'
@@ -9,7 +9,7 @@ import Scroll from '../../common/Scroll/scroll'
 import { actionCreators } from './store'
 import './Ratings.styl'
 
-class Ratings extends React.Component {
+class Ratings extends Component {
   constructor(props) {
     super(props)
     this.state = {

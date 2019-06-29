@@ -1,10 +1,10 @@
-﻿import React from 'react'
+﻿import React, { Component } from 'react'
 import ReactDOM from 'react-dom'
 import PropTypes from 'prop-types'
 import BScroll from 'better-scroll'
 import './scroll.styl'
 
-class Scroll extends React.Component {
+class Scroll extends Component {
   componentDidUpdate() {
     // 组件更新后，如果实例化了better-scroll并且需要刷新就调用refresh()函数
     if (this.bScroll && this.props.refresh === true) {

@@ -1,4 +1,4 @@
-﻿import React from 'react'
+﻿import React, { Component } from 'react'
 import { Link } from 'react-router-dom'
 import { Button, Layout, Input, Checkbox, Form } from 'element-react'
 import axios from 'axios'
@@ -7,7 +7,7 @@ import 'element-theme-default'
 import Header from '../home/components/Header/Header'
 import './Register.styl'
 
-class Register extends React.Component {
+class Register extends Component {
   constructor(props) {
     super(props)
     this.state = {

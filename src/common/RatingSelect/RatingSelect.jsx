@@ -1,8 +1,8 @@
-﻿import React from 'react'
+﻿import React, { Component } from 'react'
 import 'element-theme-default'
 import './RatingSelect.styl'
 
-class RatingSelect extends React.Component {
+class RatingSelect extends Component {
   constructor(props) {
     super(props)
     this.state = {

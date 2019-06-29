@@ -1,8 +1,8 @@
-﻿import React from 'react'
+﻿import React, { Component } from 'react'
 import { connect } from 'react-redux'
 import './Split.styl'
 
-class Split extends React.Component {
+class Split extends Component {
   render() {
     return (
       <div className='split' />
