@@ -1,0 +1,94 @@
+﻿{
+    "_id" : ObjectId("5c0a2d02f04fe944fd1c45ed"),
+    "username" : "a",
+    "password" : "d41d8cd98f00b204e9800998ecf8427e",
+    "__v" : 0
+}
+
+{
+    "_id" : ObjectId("5c0a30d646413146b9ad15ec"),
+    "username" : "b",
+    "password" : "c4ca4238a0b923820dcc509a6f75849b",
+    "email" : "m15012856094@163.com",
+    "__v" : 0
+}
+
+{
+    "_id" : ObjectId("5c0a92b98da38a71f4f0c85b"),
+    "username" : "c",
+    "password" : "c4ca4238a0b923820dcc509a6f75849b",
+    "email" : "m15012856094@163.com",
+    "__v" : 0
+}
+
+{
+    "_id" : ObjectId("5c131b6f08b9461cb77ab2db"),
+    "username" : "d",
+    "password" : "c4ca4238a0b923820dcc509a6f75849b",
+    "email" : "5383520052@qq.com",
+    "__v" : 0
+}
+
+{
+    "_id" : ObjectId("5c2675a442442f376a2fbf29"),
+    "username" : "q",
+    "password" : "c4ca4238a0b923820dcc509a6f75849b",
+    "email" : "583520052@qq.com",
+    "__v" : 0
+}
+
+{
+    "_id" : ObjectId("5ce3cc55f7257c5c585cc4c0"),
+    "username" : "w",
+    "password" : "c4ca4238a0b923820dcc509a6f75849b",
+    "email" : "583520052@qq.com",
+    "__v" : 0
+}
+
+{
+    "_id" : ObjectId("5cfcd864f6f6bba5a7939479"),
+    "username" : "1",
+    "password" : "c4ca4238a0b923820dcc509a6f75849b",
+    "email" : "583520052@qq.com",
+    "__v" : 0
+}
+
+{
+    "_id" : ObjectId("5cfcdd0ef6f6bba5a793947a"),
+    "username" : "2",
+    "password" : "c4ca4238a0b923820dcc509a6f75849b",
+    "email" : "583520052@qq.com",
+    "__v" : 0
+}
+
+{
+    "_id" : ObjectId("5cfcdd42f6f6bba5a793947b"),
+    "username" : "3",
+    "password" : "c4ca4238a0b923820dcc509a6f75849b",
+    "email" : "583520052@qq.com",
+    "__v" : 0
+}
+
+{
+    "_id" : ObjectId("5cfff50a511c4068dbaa405d"),
+    "username" : "6",
+    "password" : "c4ca4238a0b923820dcc509a6f75849b",
+    "email" : "583520052@qq.com",
+    "__v" : 0
+}
+
+{
+    "_id" : ObjectId("5d1506304dac8bf659c2d289"),
+    "username" : "r",
+    "password" : "c4ca4238a0b923820dcc509a6f75849b",
+    "email" : "583520052@qq.com",
+    "__v" : 0
+}
+
+{
+    "_id" : ObjectId("5d1571794dac8bf659c2d28a"),
+    "username" : "y",
+    "password" : "c4ca4238a0b923820dcc509a6f75849b",
+    "email" : "583520052@qq.com",
+    "__v" : 0
+}
