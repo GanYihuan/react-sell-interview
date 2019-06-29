@@ -1,20 +1,13 @@
-﻿import React from 'react'
+﻿import React, { Component } from 'react'
 import { connect } from 'react-redux'
-import ListItem from '../../../../common/ListItem/ListItem'
-import { actionCreators } from '../../store'
+import ListItem from 'ListItem/ListItem'
+import { actionCreators } from 'home/store'
 import './ContentList.scss'
 
-class ContentList extends React.Component {
-  // constructor(props) {
-  //   super(props)
-  //   this.page = 0 // 记录当前页码
-  //   this.state = { // 标识页面是否可以滚动
-  //     isend: false
-  //   }
-  // }
+class ContentList extends Component {
   componentDidMount() { // async, get ajax async data
     const { addArticleList } = this.props
-    addArticleList() // page = 0 -> 请求第一屏数据
+    addArticleList()
   }
   render() {
     const { list } = this.props

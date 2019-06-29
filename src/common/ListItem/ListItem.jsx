@@ -1,11 +1,11 @@
-﻿import React from 'react'
+﻿import React, { Component } from 'react'
 import { connect } from 'react-redux'
 import { withRouter } from 'react-router-dom'
-import StarScore from '../../common/StarScore/StarScore'
+import StarScore from 'StarScore/StarScore'
 import './ListItem.scss'
 
 @withRouter
-class ListItem extends React.Component {
+class ListItem extends Component {
   renderBrand(data) {
     if (data) {
       return <div className='brand brand-pin'>品牌</div>
@@ -38,28 +38,28 @@ class ListItem extends React.Component {
     })
   }
   goMenu() {
-    this.props.history.push(`/restanurant`)
+    this.props.history.push(`/restanurant`) // withRouter
   }
   render() {
-    const data = this.props.itemData
+    const { itemData } = this.props
     return (
       <div className='item border-bottom' onClick={() => this.goMenu()}>
-        <img className='item-img' src={data.get('pic_url')} />
-        {this.renderBrand(data.get('brand_type'))}
+        <img className='item-img' src={itemData.get('pic_url')} />
+        {this.renderBrand(itemData.get('brand_type'))}
         <div className='item-info'>
-          <p className='item-title'>{data.get('name')}</p>
+          <p className='item-title'>{itemData.get('name')}</p>
           <div className='item-desc clearfix'>
-            <div className='item-score'><StarScore score={data.get('wm_poi_score')}/></div>
-            <div className='item-count'>月售{this.renderMonthNum(data.get('month_sale_num'))}</div>
-            <div className='item-distance'>&nbsp;{data.get('distance')}</div>
-            <div className='item-time'>{data.get('mt_delivery_time')}&nbsp;|</div>
+            <div className='item-score'><StarScore score={itemData.get('wm_poi_score')}/></div>
+            <div className='item-count'>月售{this.renderMonthNum(itemData.get('month_sale_num'))}</div>
+            <div className='item-distance'>&nbsp;{itemData.get('distance')}</div>
+            <div className='item-time'>{itemData.get('mt_delivery_time')}&nbsp;|</div>
           </div>
           <div className='item-price'>
-            <div className='item-pre-price'>{data.get('min_price_tip')}</div>
-            {this.renderMeituanFlag(data.get('delivery_type'))}
+            <div className='item-pre-price'>{itemData.get('min_price_tip')}</div>
+            {this.renderMeituanFlag(itemData.get('delivery_type'))}
           </div>
           <div className='item-others'>
-            {this.renderOthers(data.get('discounts2'))}
+            {this.renderOthers(itemData.get('discounts2'))}
           </div>
         </div>
       </div>

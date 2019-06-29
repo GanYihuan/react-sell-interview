@@ -1,7 +1,11 @@
-﻿import React from 'react'
+﻿import React, { Component } from 'react'
 import './StarScore.scss'
 
-class StarScore extends React.Component {
+class StarScore extends Component {
+  render() {
+    const { score } = this.props
+    return <div className='star-score'>{this.renderScore(score)}</div>
+  }
   renderScore(scores) {
     const wm_poi_score = scores || ''
     const score = wm_poi_score.toString()
@@ -27,10 +31,6 @@ class StarScore extends React.Component {
       }
     }
     return starjsx
-  }
-  render() {
-    const { score } = this.props
-    return <div className='star-score'>{this.renderScore(score)}</div>
   }
 }
 

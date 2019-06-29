@@ -1,7 +1,7 @@
 ﻿简介：使用 react, 实现一个餐馆点餐 App
 
 react lazy & Suspense 实现代码拆分。lazy 懒加载组件, Suspense 维护子组件的 loading
-react-router-dom, <BrowserRouter> 对 Router 的封装, <Switch> 将多个 <Route> 包裹在一起, <Route> 路由匹配, <Redirect> 页面重定向, <Link> 锚点连接, <NavLink> 自定义样式锚点连接
+react-router-dom, <BrowserRouter> 对 Router 的封装, <Switch> 将多个 <Route> 包裹在一起, <Route> 路由匹配, <Redirect> 页面重定向, <Link> 锚点连接, <NavLink> 自定义样式锚点连接, <withRouter> 函数返回一个组件。返回的组件外层是Route
 react-redux, Provider 为整个 App 传递 store, mapStateToProps 将 store 中的数据作为 props 绑定到组件上， mapDispatchToProps 将 action 作为 props 绑定到组件上, connect() 调用 mapStateToProps, mapDispatchToProps
 redux-thunk, action dispatch 之后，到达 reducer 之前, 调用异步接口请求数据
 redux, compose 开启 chrome redux 插件, applyMiddleware 将所有中间件组成一个数组，依次执行, createStore 创建 store
