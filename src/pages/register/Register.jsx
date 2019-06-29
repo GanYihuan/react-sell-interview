@@ -13,9 +13,6 @@ class Register extends Component {
     super(props)
     this.state = {
       statusMsg: '',
-      checked: '',
-      username: '',
-      pass: '1',
       form: {
         username: '',
         pass: '',
@@ -61,11 +58,6 @@ class Register extends Component {
         ]
       }
     }
-    this.formRef = React.createRef()
-    this.usernameRef = React.createRef()
-    this.emailRef = React.createRef()
-    this.passwordRef = React.createRef()
-    this.codeRef = React.createRef()
   }
   render() {
     return (
@@ -73,15 +65,15 @@ class Register extends Component {
         <Header/>
         <Layout.Row>
           <Layout.Col span='20'>
-            <Form className='demo-form-inline' ref={this.formRef} model={this.state.form} rules={this.state.rules} labelWidth='100'>
+            <Form className='demo-form-inline' ref='form' model={this.state.form} rules={this.state.rules} labelWidth='100'>
               <Form.Item label='用户名' prop='username'>
-                <Input ref={this.usernameRef} value={this.state.form.username} onChange={this.onChange.bind(this, 'username')} autoComplete='off'/>
+                <Input ref='name' value={this.state.form.username} onChange={this.onChange.bind(this, 'username')} autoComplete='off'/>
               </Form.Item>
               <Form.Item prop='email' label='邮箱'>
-                <Input ref={this.emailRef} value={this.state.form.email} onChange={this.onChange.bind(this, 'email')} autoComplete='off'></Input>
+                <Input ref='email' value={this.state.form.email} onChange={this.onChange.bind(this, 'email')} autoComplete='off'></Input>
               </Form.Item>
               <Form.Item label='密码' prop='pass'>
-                <Input ref={this.passwordRef} value={this.state.form.pass} onChange={this.onChange.bind(this, 'pass')} autoComplete='off'/>
+                <Input ref='password' value={this.state.form.pass} onChange={this.onChange.bind(this, 'pass')} autoComplete='off'/>
               </Form.Item>
               <Form.Item label='确认密码' prop='checkPass'>
                 <Input type='password' value={this.state.form.checkPass} onChange={this.onChange.bind(this, 'checkPass')} autoComplete='off' />
@@ -92,7 +84,7 @@ class Register extends Component {
                     <Button onClick={() => this.sendMsg()}>发送验证码</Button>
                   </Layout.Col>
                   <Layout.Col span='12'>
-                    <Input ref={this.codeRef} />
+                    <Input ref='code' />
                   </Layout.Col>
                 </Layout.Row>
                 <div className='status'>
@@ -122,7 +114,7 @@ class Register extends Component {
   register() {
     const notyf = new Notyf()
     let register = true
-    if (!this.usernameRef.current.props.value || !this.emailRef.current.props.value || !this.passwordRef.current.props.value) {
+    if (!this.refs.name.props.value || !this.refs.email.props.value || !this.refs.password.props.value) {
       register = false
       notyf.error('请输入信息')
     }
@@ -132,10 +124,10 @@ class Register extends Component {
     if (register) {
       axios
         .post('/users/signup', {
-          username: window.encodeURIComponent(this.usernameRef.current.props.value),
-          password: CryptoJS.MD5(this.passwordRef.current.props.value).toString(), // CryptoJS.MD5 encryption
-          email: this.emailRef.current.props.value,
-          code: this.codeRef.current.props.value
+          username: window.encodeURIComponent(this.refs.name.props.value),
+          password: CryptoJS.MD5(this.refs.password.props.value).toString(), // CryptoJS.MD5 encryption
+          email: this.refs.email.props.value,
+          code: this.refs.code.props.value
         })
         .then(({ status, data }) => {
           if (status === 200) {
@@ -163,7 +155,7 @@ class Register extends Component {
   }
   sendMsg() {
     let sendMsg = true
-    if (!this.usernameRef.current.props.value || !this.emailRef.current.props.value || !this.passwordRef.current.props.value) {
+    if (!this.refs.name.props.value || !this.refs.email.props.value || !this.refs.password.props.value) {
       sendMsg = false
     }
     if (!sendMsg) {
@@ -172,8 +164,8 @@ class Register extends Component {
     if (sendMsg) {
       axios
         .post('/users/verify', {
-          username: encodeURIComponent(this.usernameRef.current.props.value), // encodeURIComponent: Encoding Chinese
-          email: this.emailRef.current.props.value
+          username: encodeURIComponent(this.refs.name.props.value), // encodeURIComponent: Encoding Chinese
+          email: this.refs.email.props.value
         })
         .then(({ status, data }) => {
           if (status === 200 && data && data.code === 0) { // After successful delivery, Verification code valid countdown
