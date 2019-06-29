@@ -9,6 +9,7 @@ immutable, redux-immutable 提供的 combineReducers 实现 immutable, fromJS() 
 nuka-carousel 实现图标轮播图功能
 moment 评论界面的时间格式处理
 
+
 axios 前端请求，后端配置了用户名密码信息的后端数据接口, 前端请求该接口
 element-react, 实现 Layout 布局, 表单验证. 用于注册界面填写的密码，邮箱，验证码
 crypto-js 用于注册界面, 注册时输入密码需要加密传输到后端数据接口里
