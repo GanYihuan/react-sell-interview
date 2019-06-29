@@ -34,12 +34,14 @@ class Login extends Component {
         </Layout.Row>
         <Layout.Row>
           <Layout.Col span='16' offset='4'>
-            <input className='input' ref={this.usernameRef} placeholder='请输入用户名' />
+            {/* <input className='input' ref={this.usernameRef} placeholder='请输入用户名' /> */}
+            <Input className='input' ref={this.usernameRef} placeholder='请输入用户名' />
           </Layout.Col>
         </Layout.Row>
         <Layout.Row>
           <Layout.Col span='16' offset='4'>
-            <input className='input' ref={this.passwordRef} placeholder='请输入密码'/>
+            {/* <input className='input' ref={this.passwordRef} placeholder='请输入密码'/> */}
+            <Input className='input' ref={this.passwordRef} placeholder='请输入密码' />
           </Layout.Col>
         </Layout.Row>
         <Layout.Row>
