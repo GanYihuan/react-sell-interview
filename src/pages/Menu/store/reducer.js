@@ -21,9 +21,9 @@ export default (state = initState, action) => {
       return getNevHeader(state, action)
     case constants.LEFT_ITEM_INDEX:
       return state.set('currentLeftIndex', action.obj)
-    case 'ADD_SELECTI_ITEM':
+    case constants.ADD_SELECTI_ITEM:
       return fuck(state, action)
-    case 'MINUS_SELECTI_ITEM':
+    case constants.MINUS_SELECTI_ITEM:
       return fucker(state, action)
     case 'fuck':
       return fuck(state, action)

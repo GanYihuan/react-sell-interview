@@ -26,6 +26,20 @@ export const getLeftItemIndex = (index) => (dispatch) => {
   })
 }
 
+export const addSelectItem = (num) => (dispatch) => {
+  dispatch({
+    type: constants.ADD_SELECTI_ITEM,
+    num: num
+  })
+}
+
+export const minusSelectItem = (index) => (dispatch) => {
+  dispatch({
+    type: constants.MINUS_SELECTI_ITEM,
+    obj: index
+  })
+}
+
 export const getNevHeader = () => async(dispatch) => {
   const resp = await axios({
     method: 'get',
@@ -52,20 +66,6 @@ export const fuck = () => (dispatch) => {
   dispatch({
     type: 'fuck',
     obj: 1
-  })
-}
-
-export const addSelectItem = (num) => (dispatch) => {
-  dispatch({
-    type: 'ADD_SELECTI_ITEM',
-    num: num
-  })
-}
-
-export const minusSelectItem = (index) => (dispatch) => {
-  dispatch({
-    type: 'MINUS_SELECTI_ITEM',
-    obj: index
   })
 }
 
