@@ -11,7 +11,8 @@ class Restanurant extends Component {
   constructor(props) {
     super(props)
     this.state = {
-      refreshScroll: false
+      refreshScroll: false,
+      classMap: ['decrease', 'discount', 'special', 'invoice', 'guarantee']
     }
   }
   componentDidMount() { // async, get ajax async data
@@ -68,8 +69,17 @@ class Restanurant extends Component {
                 </div>
                 <div className='supports'>
                   <div className='support-item border-1px'>
-                    <div className='icon'></div>
-                    <div className='text'>{restanurantData.get('bulletin')}</div>
+                    {this.support()}
+                    {/* {
+                      restanurantData.toJS().supports.map((item, index) => {
+                        return (
+                          <div>
+                            <div className={this.state.classMap[item.type]}></div>
+                            <div className='text'>{item.description}</div>
+                          </div>
+                        )
+                      })
+                    } */}
                   </div>
                 </div>
               </div>
@@ -109,6 +119,19 @@ class Restanurant extends Component {
         </div>
       </div>
     )
+  }
+  support() {
+    const { restanurantData } = this.props
+    const supports = restanurantData.toJS().supports
+    console.log(supports, 'const support --- 1')
+    // return supports.map((item, index) => {
+    //   return (
+    //     <div>
+    //       <div className={this.state.classMap[item.type]}></div>
+    //       <div className='text'>{item.description}</div>
+    //     </div>
+    //   )
+    // })
   }
 }
 

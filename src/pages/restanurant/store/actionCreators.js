@@ -9,7 +9,6 @@ export const getRestanurantData = () => async(dispatch) => { // redux-thunk, act
       obj: sellers
     })
   }
-  console.log(sellers, 'sellers-actioncreator')
   // const resp = await axios({
   //   method: 'get',
   //   url: '/api/navheader.json'
