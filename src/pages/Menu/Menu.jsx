@@ -13,7 +13,7 @@ class Menu extends Component {
   constructor(props) {
     super(props)
     this.state = {
-      refreshScroll: false,
+      element: 0,
       classMap: ['decrease', 'discount', 'special', 'invoice', 'guarantee']
     }
   }
@@ -24,14 +24,14 @@ class Menu extends Component {
         <div className='goods'>
           <div className='menu-wrapper'>
             <div className='left-bar'>
-              <Scroll refresh={this.state.refreshScroll}>
+              <Scroll>
                 <div className='menu-wrapper'>
                   {this.renderLeft()}
                 </div>
               </Scroll>
             </div>
           </div>
-          <Scroll refresh={this.state.refreshScroll}>
+          <Scroll element={this.state.element}>
             <div className='foods-wrapper'>
               {this.renderRight()}
             </div>
@@ -45,6 +45,15 @@ class Menu extends Component {
     const { dispathMenuData, dispatchgetFoodData } = this.props
     dispathMenuData()
     dispatchgetFoodData()
+    // if (!event._constructed) {
+    //   return
+    // }
+    // const el = foodList[index]
+    // this.foodsScroll.scrollToElement(el, 300)
+
+    // if (!this.bScroll) {
+    //   this.mScroll = new BScroll(this.refs.menu, {})
+    // }
   }
   renderLeft() {
     const { menuData, currentLeftIndex } = this.props
@@ -67,6 +76,11 @@ class Menu extends Component {
   itemClick(index) {
     const { dispathLeftItemClick } = this.props
     dispathLeftItemClick(index)
+    this.setState(() => {
+      return {
+        element: index
+      }
+    })
     // if (!event._constructed) {
     //   return
     // }
@@ -80,7 +94,7 @@ class Menu extends Component {
     const menuDatas = menuData.toJS()
     return menuDatas.map((item, index) => {
       return (
-        <div className='food-list food-list-hook' key={index}>
+        <div className='food-list food-list-hook' key={index} ref='foodList'>
           <h1 className='title'>{item.name}</h1>
           <div>
             {
@@ -112,15 +126,6 @@ class Menu extends Component {
           </div>
         </div>
       )
-    })
-  }
-  renderRightList(array) {
-    const _array = array || []
-    return _array.map((item, index) => {
-      if (!item.chooseCount) {
-        item.chooseCount = 0
-      }
-      return <MenuItem key={index} data={item} _index={index}></MenuItem>
     })
   }
 }
