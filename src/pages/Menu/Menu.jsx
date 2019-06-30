@@ -1,11 +1,9 @@
 ﻿import React, { Component } from 'react'
 import { connect } from 'react-redux'
+import BScroll from 'better-scroll'
 import { actionCreators } from './store'
 import NavHeader from 'NavHeader/NavHeader'
-import Scroll from 'Scroll/scroll'
-import BScroll from 'better-scroll'
 import ShopBar from './components/shopBar/shopBar'
-import MenuItem from './components/MenuItem/MenuItem'
 import CartControl from './components/cartControl/cartControl'
 import './Menu.styl'
 
