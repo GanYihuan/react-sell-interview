@@ -1,4 +1,5 @@
 ﻿import axios from 'axios'
+import * as constants from './constants'
 
 export const getNevHeader = () => async(dispatch) => {
   const resp = await axios({
@@ -12,14 +13,21 @@ export const getNevHeader = () => async(dispatch) => {
 }
 
 export const getMenuData = () => async(dispatch) => {
-  const resp = await axios({
-    method: 'get',
-    url: '/api/menu.json'
-  })
-  dispatch({
-    type: 'MENU_DATA',
-    obj: resp.data
-  })
+  const { status, data: { goods }} = await axios.get('/goods/getGood')
+  if (status === 200) {
+    dispatch({
+      type: constants.MENU_DATA,
+      obj: goods
+    })
+  }
+  // const resp = await axios({
+  //   method: 'get',
+  //   url: '/api/menu.json'
+  // })
+  // dispatch({
+  //   type: 'MENU_DATA',
+  //   obj: resp.data
+  // })
 }
 
 export const getFoodData = () => async(dispatch) => {

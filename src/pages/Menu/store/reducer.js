@@ -15,7 +15,7 @@ const initState = fromJS({
 
 export default (state = initState, action) => {
   switch (action.type) {
-    case 'MENU_DATA':
+    case constants.MENU_DATA:
       return getMenu(state, action)
     case 'NEVHEADER_DATA':
       return getNevHeader(state, action)
@@ -34,6 +34,13 @@ export default (state = initState, action) => {
   }
 }
 
+const getMenu = (state, action) => {
+  return state.merge({
+    // menuData: state.get('menuData').concat(fromJS(action.obj.data)) // imutable obj, use get()
+    menuData: state.get('menuData').concat(fromJS(action.obj)) // imutable obj, use get()
+  })
+}
+
 const fuck = (state, action) => {
   return state.merge({
     fuck: state.get('fuck') + 1,
@@ -44,12 +51,6 @@ const fuck = (state, action) => {
 const fucker = (state, action) => {
   return state.merge({
     fuck: state.get('fuck') - 1
-  })
-}
-
-const getMenu = (state, action) => {
-  return state.merge({
-    menuData: state.get('menuData').concat(fromJS(action.obj.data)) // imutable obj, use get()
   })
 }
 
