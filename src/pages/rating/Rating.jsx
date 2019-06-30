@@ -48,14 +48,16 @@ class Rating extends Component {
                 <div className='overview-right'>
                   <div className='score-wrapper'>
                     <span className='title'>服务态度</span>
+                    <StarScore score={ratingData.get('foodScore')} size={36}/>
                     <span className='score'>
-                      <StarScore score={ratingData.get('score')}/>
+                      {ratingData.get('serviceScore')} 分
                     </span>
                   </div>
                   <div className='score-wrapper'>
                     <span className='title'>商品评分</span>
+                    <StarScore score={ratingData.get('foodScore')} size={36}/>
                     <span className='score'>
-                      <StarScore score={ratingData.get('foodScore')}/>
+                      {ratingData.get('score')} 分
                     </span>
                   </div>
                   <div className='delivery-wrapper'>
@@ -94,7 +96,7 @@ class Rating extends Component {
                               {item.username}
                             </h1>
                             <div className='star-wrapper'>
-                              <StarScore score={item.score}/>
+                              <StarScore score={item.score} size={24}/>
                               <span
                                 className='delivery'
                               >

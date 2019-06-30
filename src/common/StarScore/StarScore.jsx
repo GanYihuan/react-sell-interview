@@ -3,34 +3,33 @@ import './StarScore.styl'
 
 class StarScore extends Component {
   render() {
-    const { score } = this.props
-    return <div className='star-score'>{this.renderScore(score)}</div>
-  }
-  renderScore(scores) {
-    const wm_poi_score = scores || ''
-    const score = wm_poi_score.toString()
-    const scoreArray = score.split('.')
-    const fullstar = parseInt(scoreArray[0]) // 满星个数
-    const halfstar = parseInt(scoreArray[1]) >= 5 ? 1 : 0 // 半星个数
-    const nullstar = 5 - fullstar - halfstar // 0星个数
-    const starjsx = []
-    // 渲染满星
-    for (let i = 0; i < fullstar; i++) {
-      starjsx.push(<div key={i + 'full'} className='star fullstar'></div>)
+    const { score, size } = this.props
+    const LENGTH = 5
+    const CLS_ON = 'on'
+    const CLS_HALF = 'half'
+    const CLS_OFF = 'off'
+    const result = []
+    const scores = Math.floor(score * 2) / 2 /* Math.floor: 4.9 -> 4, Math.ceil: 4.1 -> 5 */
+    const hasDecimal = scores % 1 !== 0 /* If there is a decimal, half star */
+    const integer = Math.floor(scores) /* Full star */
+    for (let i = 0; i < integer; i++) {
+      result.push(CLS_ON)
     }
-    // 渲染满星
-    if (halfstar) {
-      for (let j = 0; j < halfstar; j++) {
-        starjsx.push(<div key={j + 'half'} className='star halfstar'></div>)
-      }
+    if (hasDecimal) {
+      result.push(CLS_HALF)
     }
-    // 渲染0星
-    if (nullstar) {
-      for (let k = 0; k < nullstar; k++) {
-        starjsx.push(<div key={k + 'null'} className='star nullstar'></div>)
-      }
+    while (result.length < LENGTH) {
+      result.push(CLS_OFF)
     }
-    return starjsx
+    return result.map((item, index) => {
+      const starWrapper = 'star' + ` star-${size}`
+      const starItem = item + ' star-item'
+      return (
+        <div className={starWrapper} key={index}>
+          <span className={starItem}></span>
+        </div>
+      )
+    })
   }
 }
 
