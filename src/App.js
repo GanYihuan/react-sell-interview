@@ -3,13 +3,13 @@ import { Provider } from 'react-redux'
 import { BrowserRouter, Route, Switch, Redirect } from 'react-router-dom'
 import store from './store'
 
-const Home = lazy(() => import(/* webpackChunkName: "Home" */ './pages/home/Home')) // lazy & Suspense 实现代码拆分
-const My = lazy(() => import(/* webpackChunkName: "My" */ './pages/my/My'))
-const Login = lazy(() => import(/* webpackChunkName: "My" */ './pages/login/Login'))
-const Register = lazy(() => import(/* webpackChunkName: "My" */ './pages/register/Register'))
-const Menu = lazy(() => import(/* webpackChunkName: "My" */ './pages/menu/Menu'))
-const Restanurant = lazy(() => import(/* webpackChunkName: "My" */ './pages/restanurant/Restanurant'))
-const Ratings = lazy(() => import(/* webpackChunkName: "My" */ './pages/ratings/Ratings'))
+const Home = lazy(() => import(/* webpackChunkName: "Home" */ 'home/Home')) // lazy & Suspense 实现代码拆分
+const My = lazy(() => import(/* webpackChunkName: "My" */ 'my/My'))
+const Login = lazy(() => import(/* webpackChunkName: "My" */ 'login/Login'))
+const Register = lazy(() => import(/* webpackChunkName: "My" */ 'register/Register'))
+const Menu = lazy(() => import(/* webpackChunkName: "My" */ 'menu/Menu'))
+const Restanurant = lazy(() => import(/* webpackChunkName: "My" */ 'restanurant/Restanurant'))
+const Ratings = lazy(() => import(/* webpackChunkName: "My" */ 'ratings/Ratings'))
 // forceRefresh: bool
 // 当设置为 true 时，在导航的过程中整个页面将会刷新。 只有当浏览器不支持 HTML5 的 history API 时，才设置为 true
 const supportsHistory = false
@@ -29,9 +29,9 @@ class App extends Component {
               <Route path='/my' exact component={My} />
               <Route path='/login' exact component={Login} />
               <Route path='/register' exact component={Register} />
-              <Route exact path='/menu' component={Menu}/>
-              <Route exact path='/ratings' component={Ratings}/>
-              <Route exact path='/restanurant' component={Restanurant}/>
+              <Route path='/menu' component={Menu}/>
+              <Route path='/ratings' component={Ratings}/>
+              <Route path='/restanurant' component={Restanurant}/>
               {/* <Redirect> 用于页面重定向 */}
               <Redirect to='/home' />
             </Switch>
