@@ -19,7 +19,7 @@ export default (state = initState, action) => {
       return getMenu(state, action)
     case 'NEVHEADER_DATA':
       return getNevHeader(state, action)
-    case 'LEFT_ITEM_INDEX':
+    case constants.LEFT_ITEM_INDEX:
       return state.set('currentLeftIndex', action.obj)
     case 'ADD_SELECTI_ITEM':
       return fuck(state, action)

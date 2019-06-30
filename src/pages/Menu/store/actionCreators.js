@@ -1,17 +1,6 @@
 ﻿import axios from 'axios'
 import * as constants from './constants'
 
-export const getNevHeader = () => async(dispatch) => {
-  const resp = await axios({
-    method: 'get',
-    url: '/api/navheader.json'
-  })
-  dispatch({
-    type: 'NEVHEADER_DATA',
-    obj: resp.data
-  })
-}
-
 export const getMenuData = () => async(dispatch) => {
   const { status, data: { goods }} = await axios.get('/goods/getGood')
   if (status === 200) {
@@ -30,6 +19,24 @@ export const getMenuData = () => async(dispatch) => {
   // })
 }
 
+export const getLeftItemIndex = (index) => (dispatch) => {
+  dispatch({
+    type: constants.LEFT_ITEM_INDEX,
+    obj: index
+  })
+}
+
+export const getNevHeader = () => async(dispatch) => {
+  const resp = await axios({
+    method: 'get',
+    url: '/api/navheader.json'
+  })
+  dispatch({
+    type: 'NEVHEADER_DATA',
+    obj: resp.data
+  })
+}
+
 export const getFoodData = () => async(dispatch) => {
   const resp = await axios({
     method: 'get',
@@ -38,13 +45,6 @@ export const getFoodData = () => async(dispatch) => {
   dispatch({
     type: 'GET_LIST_DATA',
     obj: resp.data
-  })
-}
-
-export const getLeftItemIndex = (index) => (dispatch) => {
-  dispatch({
-    type: 'LEFT_ITEM_INDEX',
-    obj: index
   })
 }
 
