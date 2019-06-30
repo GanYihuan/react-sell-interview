@@ -20,7 +20,6 @@ class Menu extends Component {
   render() {
     const { menuData, currentLeftIndex } = this.props
     const menuDatas = menuData.toJS()
-    // const currentFood = menuData.toJS()[currentLeftIndex]
     const currentFood = menuData.toJS()[0]
     console.log(currentFood, 'currentFood...')
     return (
