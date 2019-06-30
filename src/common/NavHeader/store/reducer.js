@@ -21,7 +21,7 @@ const defaultState = fromJS({
 
 export default (state = defaultState, action) => {
   switch (action.type) {
-    case 'HEAD_DATA':
+    case constants.NAVHEADER:
       return getNavHeader(state, action)
     default:
       return state
@@ -30,6 +30,7 @@ export default (state = defaultState, action) => {
 
 const getNavHeader = (state, action) => {
   return state.merge({
-    navHeader: state.get('navHeader').concat(fromJS(action.obj.data)) // imutable obj, use get()
+    // navHeader: state.get('navHeader').concat(fromJS(action.obj.data)) // imutable obj, use get()
+    navHeader: state.get('navHeader').concat(fromJS(action.obj))
   })
 }

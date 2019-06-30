@@ -1,1 +1,1 @@
-﻿
+﻿export const NAVHEADER = 'NAVHEADER'
