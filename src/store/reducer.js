@@ -4,7 +4,7 @@ import { reducer as bottombarReducer } from '../common/BottomBar/store'
 import { reducer as mainReducer } from '../common/NavHeader/store'
 import { reducer as menuReducer } from '../pages/menu/store'
 import { reducer as restanurantReducer } from '../pages/restanurant/store'
-import { reducer as ratingsReducer } from '../pages/ratings/store'
+import { reducer as ratingsReducer } from '../pages/rating/store'
 
 const reducer = combineReducers({
   home: homeReducer,

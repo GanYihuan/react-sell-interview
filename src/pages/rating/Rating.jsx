@@ -1,15 +1,15 @@
 ﻿import React, { Component } from 'react'
 import { connect } from 'react-redux'
 import moment from 'moment'
-import NavHeader from '../../common/NavHeader/NavHeader'
-import Split from '../../common/Split/Split'
-import RatingSelect from '../../common/RatingSelect/RatingSelect'
-import StarScore from '../../common/StarScore/StarScore'
-import Scroll from '../../common/Scroll/scroll'
+import NavHeader from 'NavHeader/NavHeader'
+import Split from 'Split/Split'
+import RatingSelect from 'RatingSelect/RatingSelect'
+import StarScore from 'StarScore/StarScore'
+import Scroll from 'Scroll/scroll'
 import { actionCreators } from './store'
-import './Ratings.styl'
+import './Rating.styl'
 
-class Ratings extends Component {
+class Rating extends Component {
   constructor(props) {
     super(props)
     this.state = {
@@ -144,4 +144,4 @@ const mapDispatch = dispatch => ({
 export default connect(
   mapState,
   mapDispatch
-)(Ratings)
+)(Rating)

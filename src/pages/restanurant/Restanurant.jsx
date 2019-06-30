@@ -123,7 +123,7 @@ class Restanurant extends Component {
   support() {
     const { restanurantData } = this.props
     const supports = restanurantData.toJS().supports
-    console.log(supports, 'const support --- 1')
+    console.log(supports, 'const support --- 1') // 输出两次 ?
     // return supports.map((item, index) => {
     //   return (
     //     <div>
