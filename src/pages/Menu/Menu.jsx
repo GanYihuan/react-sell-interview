@@ -113,9 +113,11 @@ class Menu extends Component {
     }
   }
   itemClick(index) {
-    const { dispathLeftItemClick } = this.props
+    const { dispathLeftItemClick, currentLeftIndex } = this.props
     dispathLeftItemClick(index)
-    console.log(this.props.currentLeftIndex, 'left index...')
+    const foodList = this.refs.food.getElementsByClassName('food-list-hook')
+    const el = foodList[currentLeftIndex]
+    this.fScroll.scrollToElement(el, 300)
   }
 }
 
