@@ -106,6 +106,30 @@ class Rating extends Component {
                             <div className='text'>
                               {item.text}
                             </div>
+                            {/* <div
+                              v-show="rating.recommend && rating.recommend.length"
+                              class="recommend"
+                            >
+                              <span class="icon-thumb_up" />
+                              <span
+                                v-for="(item, index2) in rating.recommend"
+                                :key="index2"
+                                class="item"
+                              >{{ item }}</span>
+                            </div> */}
+                            <div className='recommend'>
+                              {
+                                item.recommend.length > 0
+                                  ? <span class='icon-thumb_up' /> : null
+                              }
+                              {
+                                item.recommend.map((item, index) => {
+                                  return (
+                                    <span className='item' key={index}>{item}</span>
+                                  )
+                                })
+                              }
+                            </div>
                             <div className='time'>
                               {this.formatDate(item.rateTime)}
                             </div>
