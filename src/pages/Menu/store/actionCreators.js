@@ -26,17 +26,17 @@ export const getLeftItemIndex = (index) => (dispatch) => {
   })
 }
 
-export const addSelectItem = (num) => (dispatch) => {
+export const addSelectItem = (index, findex) => (dispatch) => {
   dispatch({
     type: constants.ADD_SELECTI_ITEM,
-    num: num
+    index: index,
+    findex: findex
   })
 }
 
-export const minusSelectItem = (index) => (dispatch) => {
+export const minusSelectItem = () => (dispatch) => {
   dispatch({
-    type: constants.MINUS_SELECTI_ITEM,
-    obj: index
+    type: constants.MINUS_SELECTI_ITEM
   })
 }
 

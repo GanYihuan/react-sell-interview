@@ -9,26 +9,25 @@ const initState = fromJS({
   navHeader: {},
   showChooseContent: false,
   chooseCount: 0,
-  currentLeftIndex: 0,
-  fuck: 0
+  currentLeftIndex: 0
 })
 
 export default (state = initState, action) => {
   switch (action.type) {
     case constants.MENU_DATA:
       return getMenu(state, action)
-    case 'NEVHEADER_DATA':
-      return getNevHeader(state, action)
     case constants.LEFT_ITEM_INDEX:
       return state.set('currentLeftIndex', action.obj)
     case constants.ADD_SELECTI_ITEM:
-      return fuck(state, action)
+      return addSelectItem(state, action)
     case constants.MINUS_SELECTI_ITEM:
-      return fucker(state, action)
-    case 'fuck':
-      return fuck(state, action)
+      return minusSelectItem(state, action)
+    // case 'fuck':
+    //   return fuck(state, action)
     case 'GET_LIST_DATA':
       return getListData(state, action)
+    case 'NEVHEADER_DATA':
+      return getNevHeader(state, action)
     default:
       return state
   }
@@ -37,20 +36,19 @@ export default (state = initState, action) => {
 const getMenu = (state, action) => {
   return state.merge({
     // menuData: state.get('menuData').concat(fromJS(action.obj.data)) // imutable obj, use get()
-    menuData: state.get('menuData').concat(fromJS(action.obj)) // imutable obj, use get()
+    menuData: state.get('menuData').concat(fromJS(action.obj))
   })
 }
 
-const fuck = (state, action) => {
+const addSelectItem = (state, action) => {
+  // state.menuData.update(fromJS(action.index), fromJS(action.findex), item => item.set('chooseCount', 2))
   return state.merge({
-    fuck: state.get('fuck') + 1,
-    foodData: state.get('foodData').updateIn(['foodData', fromJS(action.num), 'cartControlCount'], val => val + 1)
+    // menuData: state.get('menuData').updateIn([fromJS(action.index), 'foods', fromJS(action.findex)], item => item.set('chooseCount', 1))
   })
 }
 
-const fucker = (state, action) => {
+const minusSelectItem = (state, action) => {
   return state.merge({
-    fuck: state.get('fuck') - 1
   })
 }
 

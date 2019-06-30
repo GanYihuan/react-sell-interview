@@ -11,15 +11,14 @@ class Menu extends Component {
   constructor(props) {
     super(props)
     this.state = {
-      element: 0,
       classMap: ['decrease', 'discount', 'special', 'invoice', 'guarantee']
     }
   }
   render() {
     const { menuData, currentLeftIndex } = this.props
     const menuDatas = menuData.toJS()
+    console.log(menuDatas, 'menuDatas---')
     const currentFood = menuData.toJS()[0]
-    console.log(currentFood, 'currentFood...')
     return (
       <div>
         <NavHeader/>
@@ -76,7 +75,7 @@ class Menu extends Component {
                                     <span className='now'>￥{fitem.price}</span>
                                     <span className='old'>￥{fitem.oldPrice}</span>
                                   </div>
-                                  <CartControl num={findex}/>
+                                  <CartControl chooseCount={fitem.chooseCount} index={index} findex={findex}/>
                                 </div>
                               </div>
                             )
