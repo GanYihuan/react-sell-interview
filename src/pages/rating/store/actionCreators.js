@@ -20,19 +20,19 @@ export const getCommentData = () => async(dispatch) => {
 }
 
 export const getRatingsData = () => async(dispatch) => {
-  // const { status, data: { sellers }} = await axios.get('/sellers/getSellers')
-  // if (status === 200) {
-  //   dispatch({
-  //     type: constants.RATING_DATA,
-  //     obj: sellers
-  //   })
-  // }
-  const resp = await axios({
-    method: 'get',
-    url: '/api/ratings.json'
-  })
-  dispatch({
-    type: 'RATING_DATA',
-    obj: resp.data
-  })
+  const { status, data: { sellers }} = await axios.get('/sellers/getSeller')
+  if (status === 200) {
+    dispatch({
+      type: constants.RATING_DATA,
+      obj: sellers
+    })
+  }
+  // const resp = await axios({
+  //   method: 'get',
+  //   url: '/api/ratings.json'
+  // })
+  // dispatch({
+  //   type: 'RATING_DATA',
+  //   obj: resp.data
+  // })
 }

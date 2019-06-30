@@ -2,8 +2,8 @@
 import * as constants from './constants'
 
 const defaultState = fromJS({
-  commentData: {},
-  ratingData: []
+  commentData: [],
+  ratingData: {}
 })
 
 export default (state = defaultState, action) => {
@@ -26,7 +26,7 @@ const getCommentListData = (state, action) => {
 
 const getRatingtData = (state, action) => {
   return state.merge({
-    ratingData: state.get('ratingData').concat(fromJS(action.obj.data)) // imutable obj, use get()
-    // ratingData: state.get('ratingData').concat(fromJS(action.obj)) // imutable obj, use get()
+    // ratingData: state.get('ratingData').concat(fromJS(action.obj.data)) // imutable obj, use get()
+    ratingData: state.get('ratingData').concat(fromJS(action.obj)) // imutable obj, use get()
   })
 }

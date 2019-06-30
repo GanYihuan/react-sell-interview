@@ -27,8 +27,6 @@ class Rating extends Component {
       ratingData
     } = this.props
     const commentDatas = commentData.toJS()
-    const ratingDatas = ratingData.toJS()
-    const recommendDta = ratingDatas.recommend
     return (
       <div>
         <NavHeader/>
@@ -38,46 +36,46 @@ class Rating extends Component {
               <div className='overview'>
                 <div className='overview-left'>
                   <h1 className='score'>
-                    {commentDatas.food_score}
+                    {ratingData.get('foodScore')}
                   </h1>
                   <div className='title'>
                   综合评分
                   </div>
                   <div className='rank'>
-                  高于周边商家 {commentDatas.comment_praise_ratio}%
+                  高于周边商家 {ratingData.get('rankRate')}%
                   </div>
                 </div>
                 <div className='overview-right'>
                   <div className='score-wrapper'>
                     <span className='title'>服务态度</span>
                     <span className='score'>
-                      <StarScore score={commentDatas.pack_score}/>
+                      <StarScore score={ratingData.get('score')}/>
                     </span>
                   </div>
                   <div className='score-wrapper'>
                     <span className='title'>商品评分</span>
                     <span className='score'>
-                      <StarScore score={commentDatas.food_score}/>
+                      <StarScore score={ratingData.get('foodScore')}/>
                     </span>
                   </div>
                   <div className='delivery-wrapper'>
                     <span className='title'>送达时间</span>
                     <span className='delivery'>
-                      {commentDatas.avg_ship_time}分钟
+                      {ratingData.get('deliveryTime')}分钟
                     </span>
                   </div>
                 </div>
               </div>
               <Split/>
-              <RatingSelect
+              {/* <RatingSelect
                 selectType='a'
                 onClick={this.selectRating}
                 ratingDatas={ratingDatas}
-              />
+              /> */}
               <div className='rating-wrapper border-1px'>
                 <ul>
                   {
-                    ratingDatas.map((item, index) => {
+                    commentDatas.map((item, index) => {
                       return (
                         <li
                           className='rating-item'
