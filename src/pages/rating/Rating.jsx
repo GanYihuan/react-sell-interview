@@ -120,7 +120,7 @@ class Rating extends Component {
                             <div className='recommend'>
                               {
                                 item.recommend.length > 0
-                                  ? <span class='icon-thumb_up' /> : null
+                                  ? <span className='icon-thumb_up' /> : null
                               }
                               {
                                 item.recommend.map((item, index) => {
