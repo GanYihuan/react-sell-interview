@@ -1,17 +1,23 @@
 ﻿import React, { Component } from 'react'
 import { connect } from 'react-redux'
 import { NavLink, withRouter } from 'react-router-dom'
+import { CSSTransition, TransitionGroup } from 'react-transition-group'
+import StarScore from 'StarScore/StarScore'
 import { actionCreators } from './store'
 import './NavHeader.styl'
 
 @withRouter
 class NavHeader extends Component {
+  constructor(props) {
+    super(props)
+    this.state = {
+      detailShow: false,
+      classMap: ['decrease', 'discount', 'special', 'invoice', 'guarantee']
+    }
+  }
   componentDidMount() { // async, get ajax async data
     const { addArticleList } = this.props
     addArticleList()
-    this.state = {
-      classMap: ['decrease', 'discount', 'special', 'invoice', 'guarantee']
-    }
   }
   renderTabs() {
     const { tabs } = this.props
@@ -35,6 +41,21 @@ class NavHeader extends Component {
   goBack() {
     this.props.history.push(`/my`)
   }
+  showDetail() {
+    this.setState(() => {
+      return {
+        detailShow: !this.state.detailShow
+      }
+    })
+    console.log(this.state.detailShow, 'detailshow---')
+  }
+  hideDetail() {
+    this.setState(() => {
+      return {
+        detailShow: !this.state.detailShow
+      }
+    })
+  }
   render() {
     const { tabs, navHeader } = this.props
     const tabsArray = tabs.toJS()
@@ -48,7 +69,6 @@ class NavHeader extends Component {
             <i className='icon-arrow_lift' />
           </div>
           <div className='avatar'>
-            {/* tate.get() 获取对象 immutable 定义的 redux 数据 */}
             <img src={navHeader.get('avatar')} />
           </div>
           <div className='content'>
@@ -69,6 +89,7 @@ class NavHeader extends Component {
             </div>
             <div
               className='support-count'
+              onClick={() => this.showDetail()}
             >
               <span className='count'>{navHeader.get('deliveryPrice')}个</span>
               <i className='icon-keyboard_arrow_right' />
@@ -85,6 +106,55 @@ class NavHeader extends Component {
         <div className='tab border-1px'>
           {this.renderTabs()}
         </div>
+        {
+          this.state.detailShow
+            ? <CSSTransition in={this.state.detailShow} timeout ={1000} classNames ='fade' unmountOnExit appear={true}>
+              <div className='detail'>
+                <div className='detail-wrapper clearfix'>
+                  <div className='detail-main'>
+                    <h1 className='name'>
+                      {navHeader.get('name')}
+                    </h1>
+                    <div className='star-wrapper'>
+                      <StarScore score={navHeader.get('foodScore')} size={48}/>
+                    </div>
+                    <div className='title'>
+                      <div className='line' />
+                      <div className='text'>
+                      优惠信息
+                      </div>
+                      <div className='line' />
+                    </div>
+                    <ul className='supports'>
+                      <li
+                        className='support-item'
+                      >
+                        <span className='icon'/>
+                        <span className='text'>
+                        </span>
+                      </li>
+                    </ul>
+                    <div className='title'>
+                      <div className='line' />
+                      <div className='text'>
+                      商家公告
+                      </div>
+                      <div className='line' />
+                    </div>
+                    <div className='bulletin'>
+                      <p className='content'>
+                        {navHeader.get('bulletin')}
+                      </p>
+                    </div>
+                  </div>
+                </div>
+                <div className='detail-close' onClick={() => this.hideDetail()}>
+                  <i className='icon-close' />
+                </div>
+              </div>
+            </CSSTransition>
+            : null
+        }
       </div>
     )
   }
