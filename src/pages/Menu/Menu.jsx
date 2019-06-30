@@ -18,24 +18,80 @@ class Menu extends Component {
     }
   }
   render() {
+    const { menuData, currentLeftIndex } = this.props
+    const menuDatas = menuData.toJS()
+    // const currentFood = menuData.toJS()[currentLeftIndex]
+    const currentFood = menuData.toJS()[0]
+    console.log(currentFood, 'currentFood...')
     return (
       <div>
         <NavHeader/>
         <div className='goods'>
           <div className='menu-wrapper'>
             <div className='left-bar'>
-              <Scroll>
+              <div className='scroll-view' ref='menu'>
                 <div className='menu-wrapper'>
-                  {this.renderLeft()}
+                  {
+                    menuDatas.map((item, index) => {
+                      const cls = currentLeftIndex === index ? 'menu-item current' : 'menu-item'
+                      const iconF = (type) => {
+                        const mapN = this.state.classMap[type]
+                        return (
+                          `icon ${mapN}`
+                        )
+                      }
+                      return (
+                        <div className={cls} key={index} onClick={() => this.itemClick(index)}>
+                          <div className='text border-1px'>{item.type > 0 ? <img className={iconF(item.type)} /> : null}{item.name}</div>
+                        </div>
+                      )
+                    })
+                  }
                 </div>
-              </Scroll>
+              </div>
             </div>
           </div>
-          <Scroll element={this.state.element}>
+          <div className='scroll-view' ref='food'>
             <div className='foods-wrapper'>
-              {this.renderRight()}
+              {
+                menuDatas.map((item, index) => {
+                  return (
+                    <div className='food-list food-list-hook' key={index} ref='foodList'>
+                      <h1 className='title'>{item.name}</h1>
+                      <div>
+                        {
+                          item.foods.map((fitem, findex) => {
+                            return (
+                              <div
+                                className='food-item border-1px'
+                                key={findex}
+                              >
+                                <div className='icon'>
+                                  <img src={fitem.icon}/>
+                                </div>
+                                <div className='content'>
+                                  <h2 className='name'>{fitem.name}</h2>
+                                  <p className='desc'>{fitem.description}</p>
+                                  <div className='extra'>
+                                    <span className='count'>月售 {fitem.sellCount} 份</span><span>好评率 {fitem.rating}%</span>
+                                  </div>
+                                  <div className='price'>
+                                    <span className='now'>￥{fitem.price}</span>
+                                    <span className='old'>￥{fitem.oldPrice}</span>
+                                  </div>
+                                  <CartControl num={findex}/>
+                                </div>
+                              </div>
+                            )
+                          })
+                        }
+                      </div>
+                    </div>
+                  )
+                })
+              }
             </div>
-          </Scroll>
+          </div>
         </div>
         <ShopBar/>
       </div>
@@ -44,89 +100,22 @@ class Menu extends Component {
   componentDidMount() {
     const { dispathMenuData, dispatchgetFoodData } = this.props
     dispathMenuData()
-    dispatchgetFoodData()
-    // if (!event._constructed) {
-    //   return
-    // }
-    // const el = foodList[index]
-    // this.foodsScroll.scrollToElement(el, 300)
-
-    // if (!this.bScroll) {
-    //   this.mScroll = new BScroll(this.refs.menu, {})
-    // }
-  }
-  renderLeft() {
-    const { menuData, currentLeftIndex } = this.props
-    const menuDatas = menuData.toJS()
-    return menuDatas.map((item, index) => {
-      const cls = currentLeftIndex === index ? 'menu-item current' : 'menu-item'
-      const iconF = (type) => {
-        const mapN = this.state.classMap[type]
-        return (
-          `icon ${mapN}`
-        )
-      }
-      return (
-        <div className={cls} key={index} onClick={() => this.itemClick(index)}>
-          <div className='text border-1px'>{item.type > 0 ? <img className={iconF(item.type)} /> : null}{item.name}</div>
-        </div>
-      )
-    })
+    // dispatchgetFoodData()
+    if (!this.mScroll) {
+      this.mScroll = new BScroll(this.refs.menu, {
+        click: true
+      })
+    }
+    if (!this.fScroll) {
+      this.fScroll = new BScroll(this.refs.food, {
+        click: true
+      })
+    }
   }
   itemClick(index) {
     const { dispathLeftItemClick } = this.props
     dispathLeftItemClick(index)
-    this.setState(() => {
-      return {
-        element: index
-      }
-    })
-    // if (!event._constructed) {
-    //   return
-    // }
-    // const foodList = this.$refs.foodsWrapper.getElementsByClassName('food-list-hook')
-    // const el = foodList[index]
-    // /* better-scroll: target: element, duration: 300ms */
-    // this.foodsScroll.scrollToElement(el, 300)
-  }
-  renderRight() {
-    const { menuData } = this.props
-    const menuDatas = menuData.toJS()
-    return menuDatas.map((item, index) => {
-      return (
-        <div className='food-list food-list-hook' key={index} ref='foodList'>
-          <h1 className='title'>{item.name}</h1>
-          <div>
-            {
-              item.foods.map((fitem, iindex) => {
-                return (
-                  <div
-                    className='food-item border-1px'
-                    key={iindex}
-                  >
-                    <div className='icon'>
-                      <img src={fitem.icon}/>
-                    </div>
-                    <div className='content'>
-                      <h2 className='name'>{fitem.name}</h2>
-                      <p className='desc'>{fitem.description}</p>
-                      <div className='extra'>
-                        <span className='count'>月售 {fitem.sellCount} 份</span><span>好评率 {fitem.rating}%</span>
-                      </div>
-                      <div className='price'>
-                        <span className='now'>￥{fitem.price}</span>
-                        <span className='old'>￥{fitem.oldPrice}</span>
-                      </div>
-                      <CartControl num={iindex}/>
-                    </div>
-                  </div>
-                )
-              })
-            }
-          </div>
-        </div>
-      )
-    })
+    console.log(this.props.currentLeftIndex, 'left index...')
   }
 }
 
@@ -141,10 +130,10 @@ const mapDispatch = dispatch => ({
   },
   dispathLeftItemClick(index) {
     dispatch(actionCreators.getLeftItemIndex(index))
-  },
-  dispatchgetFoodData() {
-    dispatch(actionCreators.getFoodData())
   }
+  // dispatchgetFoodData() {
+  //   dispatch(actionCreators.getFoodData())
+  // }
 })
 
 export default connect(
