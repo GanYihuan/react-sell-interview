@@ -18,10 +18,9 @@ class Scroll extends Component {
         scrollX: this.props.direction === 'horizontal',
         scrollY: this.props.direction === 'vertical',
         // 实时派发scroll事件
-        probeType: 3,
+        probeType: this.props.probeType,
         click: this.props.click
       })
-
       if (this.props.onScroll) {
         this.bScroll.on('scroll', (scroll) => {
           this.props.onScroll(scroll)
@@ -52,16 +51,16 @@ Scroll.defaultProps = {
   direction: 'vertical',
   click: true,
   refresh: false,
-  onScroll: null
+  onScroll: null,
+  probeType: 3
 }
 
 Scroll.propTypes = {
   direction: PropTypes.oneOf(['vertical', 'horizontal']),
-  // 是否启用点击
-  click: PropTypes.bool,
-  // 是否刷新
-  refresh: PropTypes.bool,
-  onScroll: PropTypes.func
+  click: PropTypes.bool, // 是否启用点击
+  refresh: PropTypes.bool, // 是否刷新
+  onScroll: PropTypes.func,
+  probeType: PropTypes.number
 }
 
 export default Scroll

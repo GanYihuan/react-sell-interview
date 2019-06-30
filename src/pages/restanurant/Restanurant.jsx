@@ -31,7 +31,7 @@ class Restanurant extends Component {
                 <div className='overview'>
                   <h1 className='title'>{restanurantData.get('name')}</h1>
                   <div className='desc border-1px'>
-                    <StarScore score={restanurantData.get('score')}/>
+                    <StarScore score={restanurantData.get('score')} size={36}/>
                     <span className='text'>{restanurantData.get('score')}</span>
                     <span className='text'>月售{restanurantData.get('sellCount')}单</span>
                   </div>
