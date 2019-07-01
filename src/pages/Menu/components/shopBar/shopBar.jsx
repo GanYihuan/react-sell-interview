@@ -1,5 +1,7 @@
 ﻿import React, { Component } from 'react'
 import { connect } from 'react-redux'
+import { CSSTransition } from 'react-transition-group'
+import CartControl from '../cartControl/cartControl'
 import { actionCreators } from '../../store'
 import './shopBar.styl'
 
@@ -7,26 +9,51 @@ class ShopBar extends Component {
   constructor(props) {
     super(props)
     this.state = {
-      totalPrice: 0
+      totalPrice: 0,
+      showChoose: false
     }
   }
   render() {
-    const { shopCarTotal, navHeader } = this.props
+    const { shopCarTotal, navHeader, menuData, shopCarData } = this.props
+    const shopCarDatas = shopCarData.toJS()
+    console.log(shopCarDatas, 'shopCarDatas...')
     return (
       <div className='shopCart'>
         {
-          this.props.showChooseContent
-            ? <div className='choose-content'>
-              <div className='content-top'>
-                <div className='clear-car' onClick={() => this.clearCar()}>清空购物车</div>
+          this.state.showChoose
+            ? <CSSTransition
+              timeout ={1000}
+              classNames ='fade'
+            >
+              <div className='shopCart-list'>
+                <div className='list-header'>
+                  <h1 className='title'>购物车里面</h1>
+                  <div className='empty' onClick={() => this.clearCar()}>清空购物车</div>
+                </div>
+                <div className='list-content'>
+                  <ul>
+                    {
+                      shopCarDatas.map((item, index) => {
+                        return (
+                          <li className='shopCart-food' key={index}>
+                            <span className='name'>{ item.name }</span>
+                            <div className='price'>
+                              <span>￥{item.price * item.chooseCount}</span>
+                            </div>
+                            <CartControl chooseCount={item.chooseCount} index={item.index} findex={item.findex}/>
+                          </li>
+                        )
+                      })
+                    }
+                  </ul>
+                </div>
               </div>
-              {/* {this.renderChooseItem(data)} */}
-            </div>
+            </CSSTransition>
             : null
         }
         <div className='content'>
-          <div className='content-left'>
-            <div className='logo-wrapper' onClick={() => this.openChooseContent()}>
+          <div className='content-left' onClick={() => this.openChoose()}>
+            <div className='logo-wrapper'>
               <div className='logo'>
                 <i className='icon-shopping_cart'></i>
               </div>
@@ -39,19 +66,16 @@ class ShopBar extends Component {
             <div className='pay'>{this.payDesc()}</div>
           </div>
         </div>
+        <div className='ball-container'></div>
       </div>
     )
   }
   payDesc() {
-    const { menuData, navHeader } = this.props
-    const foodss = menuData.toJS()
+    const { shopCarData, navHeader } = this.props
+    const shopCarDatas = shopCarData.toJS()
     let totalPrice = 0
-    for (const i of foodss) {
-      for (const j of i.foods) {
-        if (j.chooseCount > 0) {
-          totalPrice = totalPrice + j.chooseCount * j.price
-        }
-      }
+    for (const i of shopCarDatas) {
+      totalPrice = totalPrice + i.price
     }
     if (totalPrice === 0) {
       return `￥${navHeader.get('minPrice')}元起送`
@@ -63,22 +87,20 @@ class ShopBar extends Component {
     }
   }
   getTotalPrice() {
-    const { menuData } = this.props
-    const foodss = menuData.toJS()
+    const { shopCarData } = this.props
+    const shopCarDatas = shopCarData.toJS()
     let totalPrice = 0
-    for (const i of foodss) {
-      for (const j of i.foods) {
-        if (j.chooseCount > 0) {
-          totalPrice = totalPrice + j.chooseCount * j.price
-        }
-      }
+    for (const i of shopCarDatas) {
+      totalPrice = totalPrice + i.price
     }
     return totalPrice
   }
-  openChooseContent() {
-    const { showChooseContent, dispathshowChoose } = this.props
-    const flag = showChooseContent
-    dispathshowChoose(flag)
+  openChoose() {
+    this.setState(() => {
+      return {
+        showChoose: !this.state.showChoose
+      }
+    })
   }
   renderChooseItem(data) {
     const array = data.chooseList || []
@@ -90,6 +112,11 @@ class ShopBar extends Component {
     })
   }
   clearCar() {
+    this.setState(() => {
+      return {
+        showChoose: !this.state.showChoose
+      }
+    })
   }
 }
 
@@ -97,7 +124,8 @@ const mapState = state => ({
   showChooseContent: state.getIn(['menu', 'showChooseContent']),
   shopCarTotal: state.getIn(['menu', 'shopCarTotal']),
   navHeader: state.getIn(['main', 'navHeader']),
-  menuData: state.getIn(['menu', 'menuData'])
+  menuData: state.getIn(['menu', 'menuData']),
+  shopCarData: state.getIn(['menu', 'shopCarData'])
 })
 
 const mapDispatch = dispatch => ({

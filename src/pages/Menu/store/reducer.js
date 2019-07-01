@@ -9,7 +9,8 @@ const initState = fromJS({
   showChooseContent: false,
   chooseCount: 0,
   currentLeftIndex: 0,
-  shopCarTotal: 0
+  shopCarTotal: 0,
+  shopCarData: []
 })
 
 export default (state = initState, action) => {
@@ -42,13 +43,15 @@ const getMenu = (state, action) => {
 
 const addSelectItem = (state, action) => {
   return state.merge({
-    menuData: state.get('menuData').updateIn([fromJS(action.index), 'foods', fromJS(action.findex), 'chooseCount'], function(x) { return x + 1 })
+    menuData: state.get('menuData').updateIn([fromJS(action.index), 'foods', fromJS(action.findex), 'chooseCount'], function(x) { return x + 1 }),
+    shopCarData: state.get('shopCarData').push(state.get('menuData').getIn([fromJS(action.index), 'foods', fromJS(action.findex)]))
   })
 }
 
 const minusSelectItem = (state, action) => {
   return state.merge({
-    menuData: state.get('menuData').updateIn([fromJS(action.index), 'foods', fromJS(action.findex), 'chooseCount'], function(x) { return x - 1 })
+    menuData: state.get('menuData').updateIn([fromJS(action.index), 'foods', fromJS(action.findex), 'chooseCount'], function(x) { return x - 1 }),
+    shopCarData: state.get('shopCarData').shift(state.get('menuData').getIn([fromJS(action.index), 'foods', fromJS(action.findex)]))
   })
 }
 
