@@ -42,11 +42,29 @@ export const minusSelectItem = (index, findex) => (dispatch) => {
   })
 }
 
+export const addshopCarData = (index, findex) => (dispatch) => {
+  dispatch({
+    type: constants.ADDSHOPCARDATA,
+    index: index,
+    findex: findex
+  })
+}
+
+export const decshopCarData = (index, findex) => (dispatch) => {
+  dispatch({
+    type: constants.DECSHOPCARDATA,
+    index: index,
+    findex: findex
+  })
+}
+
 export const addshopCarTotal = () => (dispatch) => {
   dispatch({
     type: constants.ADDSHOPCARTOTAL
   })
 }
+
+//
 
 export const decshopCarTotal = () => (dispatch) => {
   dispatch({

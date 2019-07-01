@@ -27,6 +27,10 @@ export default (state = initState, action) => {
       return state.update('shopCarTotal', function(x) { return x + 1 })
     case constants.DECSHOPCARTOTAL:
       return state.update('shopCarTotal', function(x) { return x - 1 })
+    case constants.ADDSHOPCARDATA:
+      return addshopCarData(state, action)
+    case constants.DECSHOPCARDATA:
+      return decshopCarData(state, action)
     case 'GET_LIST_DATA':
       return getListData(state, action)
     default:
@@ -43,14 +47,26 @@ const getMenu = (state, action) => {
 
 const addSelectItem = (state, action) => {
   return state.merge({
-    menuData: state.get('menuData').updateIn([fromJS(action.index), 'foods', fromJS(action.findex), 'chooseCount'], function(x) { return x + 1 }),
+    menuData: state.get('menuData').updateIn([fromJS(action.index), 'foods', fromJS(action.findex), 'chooseCount'], function(x) { return x + 1 })
+    // shopCarData: state.get('shopCarData').push(state.get('menuData').getIn([fromJS(action.index), 'foods', fromJS(action.findex)]))
+  })
+}
+
+const addshopCarData = (state, action) => {
+  return state.merge({
     shopCarData: state.get('shopCarData').push(state.get('menuData').getIn([fromJS(action.index), 'foods', fromJS(action.findex)]))
   })
 }
 
 const minusSelectItem = (state, action) => {
   return state.merge({
-    menuData: state.get('menuData').updateIn([fromJS(action.index), 'foods', fromJS(action.findex), 'chooseCount'], function(x) { return x - 1 }),
+    menuData: state.get('menuData').updateIn([fromJS(action.index), 'foods', fromJS(action.findex), 'chooseCount'], function(x) { return x - 1 })
+    // shopCarData: state.get('shopCarData').shift(state.get('menuData').getIn([fromJS(action.index), 'foods', fromJS(action.findex)]))
+  })
+}
+
+const decshopCarData = (state, action) => {
+  return state.merge({
     shopCarData: state.get('shopCarData').shift(state.get('menuData').getIn([fromJS(action.index), 'foods', fromJS(action.findex)]))
   })
 }
