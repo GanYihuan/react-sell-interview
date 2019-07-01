@@ -59,6 +59,7 @@ class NavHeader extends Component {
   render() {
     const { tabs, navHeader } = this.props
     const tabsArray = tabs.toJS()
+    const supports = navHeader.toJS().supports
     return (
       <div className='header'>
         <div className='content-wrapper'>
@@ -126,13 +127,19 @@ class NavHeader extends Component {
                       <div className='line' />
                     </div>
                     <ul className='supports'>
-                      <li
-                        className='support-item'
-                      >
-                        <span className='icon'/>
-                        <span className='text'>
-                        </span>
-                      </li>
+                      {
+                        supports !== undefined
+                          ? supports.map((item, index) => {
+                            const icon = this.state.classMap[item.type] + ' icon'
+                            return (
+                              <li key={index} className='support-item'>
+                                <span className={icon}></span>
+                                <span className='text'>{item.description}</span>
+                              </li>
+                            )
+                          })
+                          : null
+                      }
                     </ul>
                     <div className='title'>
                       <div className='line' />
