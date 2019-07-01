@@ -4,17 +4,8 @@ import { actionCreators } from '../../store'
 import './shopBar.styl'
 
 class ShopBar extends Component {
-  componentDidMount() {
-    const { dispathaddSelectItem, dispatchgetFoodData, dispathNavHeader } = this.props
-    dispathaddSelectItem()
-    dispatchgetFoodData()
-    dispathNavHeader()
-  }
   render() {
-    const { foodData, navHeader } = this.props
-    const foodDatas = foodData.toJS()
-    // const shipping_fee = listData.getIn(['poi_info', 'poi_info']) ? this.props.listData.poi_info.shipping_fee : 0
-    const data = this.getTotalPrice()
+    const { shopCarTotal, navHeader } = this.props
     return (
       <div className='shopCart'>
         {
@@ -23,18 +14,17 @@ class ShopBar extends Component {
               <div className='content-top'>
                 <div className='clear-car' onClick={() => this.clearCar()}>清空购物车</div>
               </div>
-              {this.renderChooseItem(data)}
+              {/* {this.renderChooseItem(data)} */}
             </div>
             : null
         }
         <div className='content'>
           <div className='content-left'>
             <div className='logo-wrapper' onClick={() => this.openChooseContent()}>
-              {/* {data.dotNum > 0 ? <div className='dot-num'>{data.dotNum}</div> : null} */}
               <div className='logo'>
                 <i className='icon-shopping_cart'></i>
               </div>
-              <div className='num' v-show='totalCount>0'>1</div>
+              {shopCarTotal > 0 ? <div className='num'>{shopCarTotal}</div> : null}
             </div>
             <div className='price'>￥{this.getTotalPrice()}</div>
             <div className='desc'>另需配送费￥{navHeader.get('deliveryPrice')}</div>
@@ -64,45 +54,18 @@ class ShopBar extends Component {
     return total
   }
   getTotalPrice() {
-    const { foodData } = this.props
-    const foodDatas = foodData.toJS()
-    const chooseList = []
-    const totalPrice = 0
-    const dotNum = 0
-    for (let i = 0; i < foodDatas.length; i++) {
-      // console.log(foodDatas[i])
+    const { menuData } = this.props
+    const foodss = menuData.toJS()
+    let totalPrice = 0
+    for (const i of foodss) {
+      for (const j of i.foods) {
+        if (j.chooseCount > 0) {
+          console.log(j)
+          totalPrice = totalPrice + j.chooseCount * j.price
+        }
+      }
     }
-    // const listData = this.props.listData.food_spu_tags || []
-    // let totalPrice = 0
-    // let dotNum = 0
-    // const chooseList = []
-    // for (let i = 0; i < listData.length; i++) {
-    //   const spus = listData[i].spus || []
-    //   for (let j = 0; j < spus.length; j++) {
-    //     const chooseCount = spus[j].chooseCount
-    //     if (chooseCount > 0) {
-    //       dotNum += chooseCount
-    //       spus[j]._index = j
-    //       spus[j]._outIndex = i
-    //       chooseList.push(spus[j])
-    //       totalPrice += spus[j].min_price * chooseCount
-    //     }
-    //   }
-    // }
-    // return {
-    //   dotNum,
-    //   totalPrice,
-    //   chooseList
-    // }
-    return '100'
-  }
-  addSelectItem(item) {
-    const { dispathaddSelectItem } = this.props
-    dispathaddSelectItem(item)
-  }
-  minusSelectItem(item) {
-    const { dispathminusSelectItem } = this.props
-    dispathminusSelectItem(item)
+    return totalPrice
   }
   openChooseContent() {
     const { showChooseContent, dispathshowChoose } = this.props
@@ -114,13 +77,6 @@ class ShopBar extends Component {
     return array.map((item, index) => {
       return (
         <div className='choose-item' key={index}>
-          <div className='item-name'>{item.name}</div>
-          <div className='price'>¥{item.min_price * item.chooseCount}</div>
-          <div className='select-content'>
-            <div className='minus' onClick={() => this.minusSelectItem(item)}></div>
-            <div className='count'>{item.chooseCount}</div>
-            <div className='plus' onClick={() => this.addSelectItem(item)}></div>
-          </div>
         </div>
       )
     })
@@ -130,26 +86,15 @@ class ShopBar extends Component {
 }
 
 const mapState = state => ({
-  foodData: state.getIn(['menu', 'foodData']),
   showChooseContent: state.getIn(['menu', 'showChooseContent']),
-  navHeader: state.getIn(['menu', 'navHeader'])
+  shopCarTotal: state.getIn(['menu', 'shopCarTotal']),
+  navHeader: state.getIn(['main', 'navHeader']),
+  menuData: state.getIn(['menu', 'menuData'])
 })
 
 const mapDispatch = dispatch => ({
-  dispathaddSelectItem() {
-    dispatch(actionCreators.addSelectItem())
-  },
-  dispathminusSelectItem() {
-    dispatch(actionCreators.minusSelectItem())
-  },
-  dispatchgetFoodData() {
-    dispatch(actionCreators.getFoodData())
-  },
   dispathshowChoose() {
     dispatch(actionCreators.showChoose())
-  },
-  dispathNavHeader() {
-    dispatch(actionCreators.getNevHeader())
   }
 })
 

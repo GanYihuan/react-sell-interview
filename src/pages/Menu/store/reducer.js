@@ -6,7 +6,6 @@ const initState = fromJS({
   listData: {},
   foodData: [],
   poiInfo: {},
-  navHeader: {},
   showChooseContent: false,
   chooseCount: 0,
   currentLeftIndex: 0,
@@ -29,8 +28,6 @@ export default (state = initState, action) => {
       return state.update('shopCarTotal', function(x) { return x - 1 })
     case 'GET_LIST_DATA':
       return getListData(state, action)
-    case 'NEVHEADER_DATA':
-      return getNevHeader(state, action)
     default:
       return state
   }
@@ -52,12 +49,6 @@ const addSelectItem = (state, action) => {
 const minusSelectItem = (state, action) => {
   return state.merge({
     menuData: state.get('menuData').updateIn([fromJS(action.index), 'foods', fromJS(action.findex), 'chooseCount'], function(x) { return x - 1 })
-  })
-}
-
-const getNevHeader = (state, action) => {
-  return state.merge({
-    navHeader: state.get('navHeader').concat(fromJS(action.obj.data))
   })
 }
 

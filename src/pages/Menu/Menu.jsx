@@ -108,10 +108,10 @@ class Menu extends Component {
   }
   shouldComponentUpdate(nextProps, nextState) {
     if (nextProps.menuData !== this.props.menuData) {
-      console.log(nextProps.menuData.toJS(), this.props.menuData.toJS(), 'should true menuData')
+      // console.log(nextProps.menuData.toJS(), this.props.menuData.toJS(), 'should true menuData')
       return true
     } else {
-      console.log(nextProps.menuData.toJS(), this.props.menuData.toJS(), 'should false menuData')
+      // console.log(nextProps.menuData.toJS(), this.props.menuData.toJS(), 'should false menuData')
       return false
     }
   }
