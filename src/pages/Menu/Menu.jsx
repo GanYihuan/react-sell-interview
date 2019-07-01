@@ -55,7 +55,6 @@ class Menu extends Component {
                       <div>
                         {
                           item.foods.map((fitem, findex) => {
-                            console.log(fitem.chooseCount, 'chooseCount Menu render')
                             return (
                               <div
                                 className='food-item border-1px'

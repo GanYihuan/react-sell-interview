@@ -7,10 +7,8 @@ import './cartControl.styl'
 class cartControl extends Component {
   render() {
     const { chooseCount, index, findex } = this.props
-    console.log(chooseCount, 'chooseCount cartControl render')
     return (
       <div className='cartControl-wrapper'>
-        {/* { chooseCount > 0 ? <span className='cart-count'>{chooseCount}</span> : null } */}
         {
           chooseCount > 0
             ? <CSSTransition
@@ -32,10 +30,8 @@ class cartControl extends Component {
   }
   shouldComponentUpdate(nextProps, nextState) {
     if (nextProps.chooseCount !== this.props.chooseCount) {
-      console.log(nextProps.chooseCount, '>>>', this.props.chooseCount, 'should true chooseCount')
       return true
     } else {
-      console.log(nextProps.chooseCount, '>>>', this.props.chooseCount, 'should false chooseCount')
       return false
     }
   }
