@@ -1,6 +1,7 @@
-﻿import React, { Component } from 'react'
+﻿import React, { Component, Fragment } from 'react'
 import { connect } from 'react-redux'
 import { CSSTransition } from 'react-transition-group'
+import BScroll from 'better-scroll'
 import CartControl from '../cartControl/cartControl'
 import { actionCreators } from '../../store'
 import './shopBar.styl'
@@ -18,58 +19,77 @@ class ShopBar extends Component {
     const shopCarDatas = shopCarData.toJS()
     console.log(shopCarDatas, 'shopCarDatas...')
     return (
-      <div className='shopCart'>
+      <Fragment>
+        <div className='shopCart'>
+          {
+            this.state.showChoose
+              ? <CSSTransition
+                timeout={ 1000 }
+                classNames='fade'
+              >
+                <div className='shopCart-list'>
+                  <div className='list-header'>
+                    <h1 className='title'>购物车里面</h1>
+                    <div className='empty' onClick={() => this.clearCar()}>清空购物车</div>
+                  </div>
+                  <div className='list-content' ref='listContent'>
+                    <ul>
+                      {
+                        shopCarDatas.map((item, index) => {
+                          return (
+                            <li className='shopCart-food' key={index}>
+                              <span className='name'>{ item.name }</span>
+                              <div className='price'>
+                                <span>￥{item.price * item.chooseCount}</span>
+                              </div>
+                              <CartControl chooseCount={item.chooseCount} index={item.index} findex={item.findex}/>
+                            </li>
+                          )
+                        })
+                      }
+                    </ul>
+                  </div>
+                </div>
+              </CSSTransition>
+              : null
+          }
+          <div className='content'>
+            <div className='content-left' onClick={() => this.openChoose()}>
+              <div className='logo-wrapper'>
+                <div className='logo'>
+                  <i className='icon-shopping_cart'></i>
+                </div>
+                {shopCarTotal > 0 ? <div className='num'>{shopCarTotal}</div> : null}
+              </div>
+              <div className='price'>￥{this.getTotalPrice()}</div>
+              <div className='desc'>另需配送费￥{navHeader.get('deliveryPrice')}</div>
+            </div>
+            <div className='content-right'>
+              <div className='pay'>{this.payDesc()}</div>
+            </div>
+          </div>
+          <div className='ball-container'></div>
+        </div>
         {
           this.state.showChoose
             ? <CSSTransition
               timeout ={1000}
               classNames ='fade'
             >
-              <div className='shopCart-list'>
-                <div className='list-header'>
-                  <h1 className='title'>购物车里面</h1>
-                  <div className='empty' onClick={() => this.clearCar()}>清空购物车</div>
-                </div>
-                <div className='list-content'>
-                  <ul>
-                    {
-                      shopCarDatas.map((item, index) => {
-                        return (
-                          <li className='shopCart-food' key={index}>
-                            <span className='name'>{ item.name }</span>
-                            <div className='price'>
-                              <span>￥{item.price * item.chooseCount}</span>
-                            </div>
-                            <CartControl chooseCount={item.chooseCount} index={item.index} findex={item.findex}/>
-                          </li>
-                        )
-                      })
-                    }
-                  </ul>
-                </div>
-              </div>
+              <div className='list-mask'/>
             </CSSTransition>
             : null
         }
-        <div className='content'>
-          <div className='content-left' onClick={() => this.openChoose()}>
-            <div className='logo-wrapper'>
-              <div className='logo'>
-                <i className='icon-shopping_cart'></i>
-              </div>
-              {shopCarTotal > 0 ? <div className='num'>{shopCarTotal}</div> : null}
-            </div>
-            <div className='price'>￥{this.getTotalPrice()}</div>
-            <div className='desc'>另需配送费￥{navHeader.get('deliveryPrice')}</div>
-          </div>
-          <div className='content-right'>
-            <div className='pay'>{this.payDesc()}</div>
-          </div>
-        </div>
-        <div className='ball-container'></div>
-      </div>
+      </Fragment>
     )
   }
+  // componentDidMount() {
+  //   if (!this.lScroll) {
+  //     this.lScroll = new BScroll(this.refs.listContent, {
+  //       click: true
+  //     })
+  //   }
+  // }
   payDesc() {
     const { shopCarData, navHeader } = this.props
     const shopCarDatas = shopCarData.toJS()
