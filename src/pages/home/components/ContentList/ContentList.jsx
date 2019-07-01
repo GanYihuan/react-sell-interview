@@ -12,6 +12,7 @@ class ContentList extends Component {
   render() {
     const { list } = this.props
     const listArray = list.toJS()
+    console.log(listArray, 'listArray---')
     return (
       <div className='list-content'>
         <h4 className='list-title'>

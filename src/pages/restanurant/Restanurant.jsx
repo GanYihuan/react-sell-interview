@@ -11,7 +11,6 @@ class Restanurant extends Component {
   constructor(props) {
     super(props)
     this.state = {
-      refreshScroll: false,
       classMap: ['decrease', 'discount', 'special', 'invoice', 'guarantee']
     }
   }
@@ -21,11 +20,12 @@ class Restanurant extends Component {
   }
   render() {
     const { restanurantData } = this.props
+    const supports = restanurantData.toJS().supports
     return (
       <div>
         <NavHeader/>
         <div className='seller'>
-          <Scroll refresh={this.state.refreshScroll}>
+          <Scroll>
             <div className='seller-wrapper'>
               <div className='seller-content'>
                 <div className='overview'>
@@ -68,19 +68,19 @@ class Restanurant extends Component {
                   <div className='content'>{restanurantData.get('bulletin')}</div>
                 </div>
                 <div className='supports'>
-                  <div className='support-item border-1px'>
-                    {this.support()}
-                    {/* {
-                      restanurantData.toJS().supports.map((item, index) => {
+                  {
+                    supports !== undefined
+                      ? supports.map((item, index) => {
+                        const icon = this.state.classMap[item.type] + ' icon'
                         return (
-                          <div>
-                            <div className={this.state.classMap[item.type]}></div>
-                            <div className='text'>{item.description}</div>
+                          <div key={index} className='support-item border-1px'>
+                            <span className={icon}></span>
+                            <span className='text'>{item.description}</span>
                           </div>
                         )
                       })
-                    } */}
-                  </div>
+                      : null
+                  }
                 </div>
               </div>
               <Split/>
@@ -119,19 +119,6 @@ class Restanurant extends Component {
         </div>
       </div>
     )
-  }
-  support() {
-    const { restanurantData } = this.props
-    const supports = restanurantData.toJS().supports
-    console.log(supports, 'const support --- 1') // 输出两次 ?
-    // return supports.map((item, index) => {
-    //   return (
-    //     <div>
-    //       <div className={this.state.classMap[item.type]}></div>
-    //       <div className='text'>{item.description}</div>
-    //     </div>
-    //   )
-    // })
   }
 }
 
