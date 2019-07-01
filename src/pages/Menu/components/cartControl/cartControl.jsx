@@ -6,7 +6,7 @@ import './cartControl.styl'
 
 class cartControl extends Component {
   render() {
-    const { chooseCount, index, findex, shopCarTotal } = this.props
+    const { chooseCount, index, findex } = this.props
     console.log(chooseCount, 'chooseCount cartControl render')
     return (
       <div className='cartControl-wrapper'>
@@ -21,7 +21,7 @@ class cartControl extends Component {
                 <div className='cart-decrease'>
                   <span className='inner icon-remove_circle_outline' onClick={() => this.minusSelectItem(index, findex)}></span>
                 </div>
-                <span className='cart-count'>{chooseCount} {shopCarTotal}</span>
+                <span className='cart-count'>{chooseCount}</span>
               </Fragment>
             </CSSTransition>
             : null
@@ -40,13 +40,14 @@ class cartControl extends Component {
     }
   }
   addSelectItem(index, findex) {
-    const { dispathaddSelectItem, dispathshopCarTotal } = this.props
+    const { dispathaddSelectItem, dispathaddshopCarTotal } = this.props
     dispathaddSelectItem(index, findex)
-    dispathshopCarTotal()
+    dispathaddshopCarTotal()
   }
   minusSelectItem(index, findex) {
-    const { dispathminusSelectItem } = this.props
+    const { dispathminusSelectItem, dispathdecshopCarTotal } = this.props
     dispathminusSelectItem(index, findex)
+    dispathdecshopCarTotal()
   }
 }
 
@@ -54,7 +55,6 @@ const mapState = state => ({
 //   foodData: state.getIn(['menu', 'foodData']),
 //   currentLeftIndex: state.getIn(['menu', 'currentLeftIndex']),
 //   price: state.getIn(['menu', 'price'])
-  shopCarTotal: state.getIn(['menu', 'shopCarTotal'])
 })
 
 const mapDispatch = dispatch => ({
@@ -64,8 +64,11 @@ const mapDispatch = dispatch => ({
   dispathminusSelectItem(index, findex) {
     dispatch(actionCreators.minusSelectItem(index, findex))
   },
-  dispathshopCarTotal() {
-    dispatch(actionCreators.shopCarTotal())
+  dispathaddshopCarTotal() {
+    dispatch(actionCreators.addshopCarTotal())
+  },
+  dispathdecshopCarTotal() {
+    dispatch(actionCreators.decshopCarTotal())
   }
 })
 

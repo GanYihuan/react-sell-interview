@@ -42,9 +42,15 @@ export const minusSelectItem = (index, findex) => (dispatch) => {
   })
 }
 
-export const shopCarTotal = () => (dispatch) => {
+export const addshopCarTotal = () => (dispatch) => {
   dispatch({
-    type: constants.SHOPCARTOTAL
+    type: constants.ADDSHOPCARTOTAL
+  })
+}
+
+export const decshopCarTotal = () => (dispatch) => {
+  dispatch({
+    type: constants.DECSHOPCARTOTAL
   })
 }
 

@@ -23,8 +23,10 @@ export default (state = initState, action) => {
       return addSelectItem(state, action)
     case constants.MINUS_SELECTI_ITEM:
       return minusSelectItem(state, action)
-    case constants.SHOPCARTOTAL:
+    case constants.ADDSHOPCARTOTAL:
       return state.update('shopCarTotal', function(x) { return x + 1 })
+    case constants.DECSHOPCARTOTAL:
+      return state.update('shopCarTotal', function(x) { return x - 1 })
     case 'GET_LIST_DATA':
       return getListData(state, action)
     case 'NEVHEADER_DATA':
