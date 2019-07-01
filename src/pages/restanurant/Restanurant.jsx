@@ -1,5 +1,6 @@
 ﻿import React, { Component } from 'react'
 import { connect } from 'react-redux'
+import BScroll from 'better-scroll'
 import NavHeader from 'NavHeader/NavHeader'
 import StarScore from 'StarScore/StarScore'
 import Split from 'Split/Split'
@@ -14,13 +15,11 @@ class Restanurant extends Component {
       classMap: ['decrease', 'discount', 'special', 'invoice', 'guarantee']
     }
   }
-  componentDidMount() { // async, get ajax async data
-    const { dispathRestaurantData } = this.props
-    dispathRestaurantData()
-  }
   render() {
     const { restanurantData } = this.props
     const supports = restanurantData.toJS().supports
+    const pics = restanurantData.toJS().pics
+    const infos = restanurantData.toJS().infos
     return (
       <div>
         <NavHeader/>
@@ -86,39 +85,52 @@ class Restanurant extends Component {
               <Split/>
               <div className='pics'>
                 <div className='title'>商家实景</div>
-                <div className='pic-wrapper'>
-                  <Scroll direction='horizontal'>
-                    <div className='pic-list'>
-                      <div className='pic-item'>
-                        <img src={restanurantData.getIn(['pics', 0])}/>
-                      </div>
-                      <div className='pic-item'>
-                        <img src={restanurantData.getIn(['pics', 1])}/>
-                      </div>
-                      <div className='pic-item'>
-                        <img src={restanurantData.getIn(['pics', 2])}/>
-                      </div>
-                      <div className='pic-item'>
-                        <img src={restanurantData.getIn(['pics', 3])}/>
-                      </div>
-                    </div>
-                  </Scroll>
+                <div className='scroll-view' ref='merchant'>
+                  <div className='pic-wrapper'>
+                    {
+                      pics !== undefined
+                        ? pics.map((item, index) => {
+                          return (
+                            <div className='pic-item' key={index}>
+                              <img src={item}/>
+                            </div>
+                          )
+                        }) : null
+                    }
+                  </div>
                 </div>
               </div>
               <Split/>
               <div className='info'>
                 <h1 className='title border-1px'>商家信息</h1>
-                <div className='info-item'>{restanurantData.getIn(['supports', 0, 'description'])}</div>
-                <div className='info-item'>{restanurantData.getIn(['supports', 1, 'description'])}</div>
-                <div className='info-item'>{restanurantData.getIn(['supports', 2, 'description'])}</div>
-                <div className='info-item'>{restanurantData.getIn(['supports', 3, 'description'])}</div>
-                <div className='info-item'>{restanurantData.getIn(['supports', 4, 'description'])}</div>
+                {
+                  infos !== undefined
+                    ? infos.map((item, index) => {
+                      return (
+                        <div key={index} className='info-item'>
+                          <span className='text'>{item}</span>
+                        </div>
+                      )
+                    })
+                    : null
+                }
               </div>
             </div>
           </Scroll>
         </div>
       </div>
     )
+  }
+  componentDidMount() { // async, get ajax async data
+    const { dispathRestaurantData } = this.props
+    dispathRestaurantData()
+    if (!this.mScroll) {
+      this.mScroll = new BScroll(this.refs.merchant, {
+        click: true,
+        scrollX: true, /* horizontal scroll */
+        eventPassthrough: 'vertical' /* ignore vertical scroll */
+      })
+    }
   }
 }
 

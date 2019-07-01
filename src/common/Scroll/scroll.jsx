@@ -26,7 +26,9 @@ class Scroll extends Component {
       this.bScroll = new BScroll(this.refs.scrollView, {
         // 实时派发scroll事件
         probeType: this.props.probeType,
-        click: this.props.click
+        click: this.props.click,
+        scrollX: this.props.scrollX,
+        eventPassthrough: this.props.eventPassthrough
       })
       if (this.props.onScroll) {
         this.bScroll.on('scroll', (scroll) => {
@@ -59,7 +61,9 @@ Scroll.defaultProps = {
   click: true,
   refresh: false,
   onScroll: null,
-  probeType: 3
+  probeType: 3,
+  scrollX: false,
+  eventPassthrough: 'horizontal'
 }
 
 Scroll.propTypes = {
@@ -67,7 +71,9 @@ Scroll.propTypes = {
   click: PropTypes.bool, // 是否启用点击
   refresh: PropTypes.bool, // 是否刷新
   onScroll: PropTypes.func,
-  probeType: PropTypes.number
+  probeType: PropTypes.number,
+  scrollX: PropTypes.bool,
+  eventPassthrough: PropTypes.oneOf(['vertical', 'horizontal'])
 }
 
 export default Scroll
