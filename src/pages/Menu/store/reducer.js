@@ -9,7 +9,8 @@ const initState = fromJS({
   navHeader: {},
   showChooseContent: false,
   chooseCount: 0,
-  currentLeftIndex: 0
+  currentLeftIndex: 0,
+  shopCarTotal: 0
 })
 
 export default (state = initState, action) => {
@@ -22,6 +23,8 @@ export default (state = initState, action) => {
       return addSelectItem(state, action)
     case constants.MINUS_SELECTI_ITEM:
       return minusSelectItem(state, action)
+    case constants.SHOPCARTOTAL:
+      return state.update('shopCarTotal', function(x) { return x + 1 })
     case 'GET_LIST_DATA':
       return getListData(state, action)
     case 'NEVHEADER_DATA':
@@ -34,7 +37,6 @@ export default (state = initState, action) => {
 const getMenu = (state, action) => {
   return state.merge({
     // menuData: state.get('menuData').concat(fromJS(action.obj.data))
-    // menuData: state.get('menuData').concat(fromJS(action.obj))
     menuData: fromJS(action.obj)
   })
 }

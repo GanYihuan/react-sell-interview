@@ -42,6 +42,12 @@ export const minusSelectItem = (index, findex) => (dispatch) => {
   })
 }
 
+export const shopCarTotal = () => (dispatch) => {
+  dispatch({
+    type: constants.SHOPCARTOTAL
+  })
+}
+
 export const getNevHeader = () => async(dispatch) => {
   const resp = await axios({
     method: 'get',
