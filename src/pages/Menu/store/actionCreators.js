@@ -34,9 +34,11 @@ export const addSelectItem = (index, findex) => (dispatch) => {
   })
 }
 
-export const minusSelectItem = () => (dispatch) => {
+export const minusSelectItem = (index, findex) => (dispatch) => {
   dispatch({
-    type: constants.MINUS_SELECTI_ITEM
+    type: constants.MINUS_SELECTI_ITEM,
+    index: index,
+    findex: findex
   })
 }
 

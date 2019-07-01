@@ -10,15 +10,6 @@ class cartControl extends Component {
     console.log(chooseCount, 'chooseCount cartControl render')
     return (
       <div className='cartControl-wrapper'>
-        {/* <CSSTransition
-          timeout ={1000}
-          classNames ='fade'
-        >
-          <div className='cart-decrease'>
-            <span className='inner icon-remove_circle_outline' onClick={() => this.minusSelectItem()}></span>
-          </div>
-        </CSSTransition> */}
-        {/* { chooseCount > 0 ? <span className='cart-count'>{index} {findex} {chooseCount}</span> : null } */}
         {/* { chooseCount > 0 ? <span className='cart-count'>{chooseCount}</span> : null } */}
         {
           chooseCount > 0
@@ -28,7 +19,7 @@ class cartControl extends Component {
             >
               <Fragment>
                 <div className='cart-decrease'>
-                  <span className='inner icon-remove_circle_outline' onClick={() => this.minusSelectItem()}></span>
+                  <span className='inner icon-remove_circle_outline' onClick={() => this.minusSelectItem(index, findex)}></span>
                 </div>
                 <span className='cart-count'>{chooseCount}</span>
               </Fragment>
@@ -45,16 +36,16 @@ class cartControl extends Component {
       return true
     } else {
       console.log(nextProps.chooseCount, '>>>', this.props.chooseCount, 'should false chooseCount')
-      return true
+      return false
     }
   }
   addSelectItem(index, findex) {
     const { dispathaddSelectItem } = this.props
     dispathaddSelectItem(index, findex)
   }
-  minusSelectItem() {
+  minusSelectItem(index, findex) {
     const { dispathminusSelectItem } = this.props
-    dispathminusSelectItem()
+    dispathminusSelectItem(index, findex)
   }
 }
 
@@ -68,8 +59,8 @@ const mapDispatch = dispatch => ({
   dispathaddSelectItem(index, findex) {
     dispatch(actionCreators.addSelectItem(index, findex))
   },
-  dispathminusSelectItem(count) {
-    dispatch(actionCreators.minusSelectItem(count))
+  dispathminusSelectItem(index, findex) {
+    dispatch(actionCreators.minusSelectItem(index, findex))
   }
 })
 
