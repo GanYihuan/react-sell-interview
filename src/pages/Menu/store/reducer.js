@@ -22,8 +22,6 @@ export default (state = initState, action) => {
       return addSelectItem(state, action)
     case constants.MINUS_SELECTI_ITEM:
       return minusSelectItem(state, action)
-    // case 'fuck':
-    //   return fuck(state, action)
     case 'GET_LIST_DATA':
       return getListData(state, action)
     case 'NEVHEADER_DATA':
@@ -35,26 +33,26 @@ export default (state = initState, action) => {
 
 const getMenu = (state, action) => {
   return state.merge({
-    // menuData: state.get('menuData').concat(fromJS(action.obj.data)) // imutable obj, use get()
+    // menuData: state.get('menuData').concat(fromJS(action.obj.data))
     menuData: state.get('menuData').concat(fromJS(action.obj))
   })
 }
 
 const addSelectItem = (state, action) => {
-  // state.menuData.update(fromJS(action.index), fromJS(action.findex), item => item.set('chooseCount', 2))
   return state.merge({
-    // menuData: state.get('menuData').updateIn([fromJS(action.index), 'foods', fromJS(action.findex)], item => item.set('chooseCount', 1))
+    menuData: state.get('menuData').updateIn([fromJS(action.index), 'foods', fromJS(action.findex), 'chooseCount'], function(x) { return x + 1 })
   })
 }
 
 const minusSelectItem = (state, action) => {
   return state.merge({
+    menuData: state.get('menuData').updateIn([fromJS(action.index), 'foods', fromJS(action.findex), 'chooseCount'], function(x) { return x - 1 })
   })
 }
 
 const getNevHeader = (state, action) => {
   return state.merge({
-    navHeader: state.get('navHeader').concat(fromJS(action.obj.data)) // imutable obj, use get()
+    navHeader: state.get('navHeader').concat(fromJS(action.obj.data))
   })
 }
 

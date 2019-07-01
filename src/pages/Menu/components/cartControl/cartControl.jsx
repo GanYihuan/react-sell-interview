@@ -18,7 +18,8 @@ class cartControl extends Component {
             <span className='inner icon-remove_circle_outline' onClick={() => this.minusSelectItem()}></span>
           </div>
         </CSSTransition>
-        { chooseCount === 0 ? <span className='cart-count'>{index} {findex}</span> : null }
+        {/* { chooseCount === 0 ? <span className='cart-count'>{index} {findex} {chooseCount}</span> : null } */}
+        { chooseCount >= 0 ? <span className='cart-count'>{chooseCount}</span> : null }
         {/* {
           chooseCount === 0
             ? <CSSTransition
@@ -36,11 +37,18 @@ class cartControl extends Component {
       </div>
     )
   }
-  addSelectItem() {
-    const { dispathaddSelectItem, foodData, currentLeftIndex, num } = this.props
-    const foodDatas = foodData.toJS()
-    // console.log(foodDatas[num].cartControlCount, 'foodData cartControlCount!')
-    dispathaddSelectItem(num)
+  // shouldComponentUpdate(nextProps, nextState) {
+  //   if (nextProps.chooseCount !== this.props.chooseCount) {
+  //     console.log(nextProps.chooseCount, this.props.chooseCount, 'should true chooseCount')
+  //     return true
+  //   } else {
+  //     console.log(nextProps.chooseCount, this.props.chooseCount, 'should false chooseCount')
+  //     return false
+  //   }
+  // }
+  addSelectItem(index, findex) {
+    const { dispathaddSelectItem } = this.props
+    dispathaddSelectItem(index, findex)
   }
   minusSelectItem() {
     const { dispathminusSelectItem } = this.props
@@ -56,8 +64,8 @@ const mapState = state => ({
 })
 
 const mapDispatch = dispatch => ({
-  dispathaddSelectItem(count) {
-    dispatch(actionCreators.addSelectItem(count))
+  dispathaddSelectItem(index, findex) {
+    dispatch(actionCreators.addSelectItem(index, findex))
   },
   dispathminusSelectItem(count) {
     dispatch(actionCreators.minusSelectItem(count))
