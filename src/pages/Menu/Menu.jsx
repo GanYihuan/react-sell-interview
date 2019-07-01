@@ -6,7 +6,6 @@ import NavHeader from 'NavHeader/NavHeader'
 import ShopBar from './components/shopBar/shopBar'
 import CartControl from './components/cartControl/cartControl'
 import './Menu.styl'
-import { is } from 'immutable'
 
 class Menu extends Component {
   constructor(props) {
@@ -18,8 +17,6 @@ class Menu extends Component {
   render() {
     const { menuData, currentLeftIndex } = this.props
     const menuDatas = menuData.toJS()
-    console.log(menuDatas, 'menuDatas---')
-    const currentFood = menuData.toJS()[0]
     return (
       <div>
         <NavHeader/>
@@ -58,6 +55,7 @@ class Menu extends Component {
                       <div>
                         {
                           item.foods.map((fitem, findex) => {
+                            console.log(fitem.chooseCount, 'chooseCount Menu render')
                             return (
                               <div
                                 className='food-item border-1px'
@@ -109,33 +107,14 @@ class Menu extends Component {
       })
     }
   }
-  // shouldComponentUpdate(nextProps, nextState) {
-  //   if (nextProps.menuData !== this.props.menuData) {
-  //     console.log(nextProps.menuData.toJS(), this.props.menuData.toJS(), 'should true menuData')
-  //     return true
-  //   } else {
-  //     console.log(nextProps.menuData.toJS(), this.props.menuData.toJS(), 'should false menuData')
-  //     return false
-  //   }
-  // }
-  shouldComponentUpdate(nextProps = {}, nextState = {}) {
-    const thisProps = this.props || {}; const thisState = this.state || {}
-    if (Object.keys(thisProps).length !== Object.keys(nextProps).length ||
-        Object.keys(thisProps).length !== Object.keys(nextProps).length
-    ) {
+  shouldComponentUpdate(nextProps, nextState) {
+    if (nextProps.menuData !== this.props.menuData) {
+      console.log(nextProps.menuData.toJS(), this.props.menuData.toJS(), 'should true menuData')
       return true
+    } else {
+      console.log(nextProps.menuData.toJS(), this.props.menuData.toJS(), 'should false menuData')
+      return false
     }
-    for (const key in nextProps) {
-      if (thisProps[key] !== nextProps[key] || !is(thisProps[key], nextProps[key])) {
-        return true
-      }
-    }
-    for (const key in nextProps) {
-      if (thisState[key] !== nextState[key] || !is(thisState[key], nextState[key])) {
-        return true
-      }
-    }
-    return false
   }
   itemClick(index) {
     const { dispathLeftItemClick, currentLeftIndex } = this.props

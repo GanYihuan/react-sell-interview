@@ -34,7 +34,8 @@ export default (state = initState, action) => {
 const getMenu = (state, action) => {
   return state.merge({
     // menuData: state.get('menuData').concat(fromJS(action.obj.data))
-    menuData: state.get('menuData').concat(fromJS(action.obj))
+    // menuData: state.get('menuData').concat(fromJS(action.obj))
+    menuData: fromJS(action.obj)
   })
 }
 
