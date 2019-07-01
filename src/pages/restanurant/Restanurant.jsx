@@ -1,4 +1,4 @@
-﻿import React, { Component } from 'react'
+﻿import React, { Component, Fragment } from 'react'
 import { connect } from 'react-redux'
 import BScroll from 'better-scroll'
 import NavHeader from 'NavHeader/NavHeader'
@@ -6,12 +6,14 @@ import StarScore from 'StarScore/StarScore'
 import Split from 'Split/Split'
 import Scroll from 'Scroll/scroll'
 import { actionCreators } from './store'
+import { saveToLocal, loadFromLocal } from 'storage'
 import './Restanurant.styl'
 
 class Restanurant extends Component {
   constructor(props) {
     super(props)
     this.state = {
+      favorite: false,
       classMap: ['decrease', 'discount', 'special', 'invoice', 'guarantee']
     }
   }
@@ -34,9 +36,12 @@ class Restanurant extends Component {
                     <span className='text'>{restanurantData.get('score')}</span>
                     <span className='text'>月售{restanurantData.get('sellCount')}单</span>
                   </div>
-                  <div className='favorite'>
-                    <span className='icon-favorite'></span>
-                    <span className='text'>收藏</span>
+                  <div className='favorite' onClick={() => this.favoriteClick()}>
+                    {
+                      this.state.favorite === false
+                        ? <Fragment><span className='icon-favorite'></span><span className='text'>收藏</span></Fragment>
+                        : <Fragment><span className='icon-favorite active'></span><span className='text'>已收藏</span></Fragment>
+                    }
                   </div>
                   <ul className='remark'>
                     <li className='block'>
@@ -122,7 +127,7 @@ class Restanurant extends Component {
     )
   }
   componentDidMount() { // async, get ajax async data
-    const { dispathRestaurantData } = this.props
+    const { dispathRestaurantData, restanurantData } = this.props
     dispathRestaurantData()
     if (!this.mScroll) {
       this.mScroll = new BScroll(this.refs.merchant, {
@@ -131,6 +136,21 @@ class Restanurant extends Component {
         eventPassthrough: 'vertical' /* ignore vertical scroll */
       })
     }
+    const loadfavorite = loadFromLocal(restanurantData.get('id'), 'favorite', false)
+    this.setState(() => {
+      return {
+        favorite: loadfavorite
+      }
+    })
+  }
+  favoriteClick() {
+    const { restanurantData } = this.props
+    this.setState(() => {
+      return {
+        favorite: !this.state.favorite
+      }
+    })
+    saveToLocal(restanurantData.get('id'), 'favorite', this.state.favorite)
   }
 }
 

@@ -89,7 +89,8 @@ module.exports = {
   common: path.resolve(__dirname, '../src/common'),
   actions: path.resolve(__dirname, '../src/actions'),
   pages: path.resolve(__dirname, '../src/pages'),
-  store: path.resolve(__dirname, '../src/store')
+  store: path.resolve(__dirname, '../src/store'),
+  utils: path.resolve(__dirname, '../src/utils')
 }
 
 module.exports.moduleFileExtensions = moduleFileExtensions
