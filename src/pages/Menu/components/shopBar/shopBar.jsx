@@ -4,6 +4,12 @@ import { actionCreators } from '../../store'
 import './shopBar.styl'
 
 class ShopBar extends Component {
+  constructor(props) {
+    super(props)
+    this.state = {
+      totalPrice: 0
+    }
+  }
   render() {
     const { shopCarTotal, navHeader } = this.props
     return (
@@ -37,21 +43,24 @@ class ShopBar extends Component {
     )
   }
   payDesc() {
-    if (this.totalPrice === 0) {
-      return `￥${this.minPrice}元起送`
-    } else if (this.totalPrice < this.minPrice) {
-      const diff = this.minPrice - this.totalPrice
+    const { menuData, navHeader } = this.props
+    const foodss = menuData.toJS()
+    let totalPrice = 0
+    for (const i of foodss) {
+      for (const j of i.foods) {
+        if (j.chooseCount > 0) {
+          totalPrice = totalPrice + j.chooseCount * j.price
+        }
+      }
+    }
+    if (totalPrice === 0) {
+      return `￥${navHeader.get('minPrice')}元起送`
+    } else if (totalPrice < navHeader.get('minPrice')) {
+      const diff = navHeader.get('minPrice') - totalPrice
       return `还差￥${diff}元起送`
     } else {
       return '去结算'
     }
-  }
-  totalPrice() {
-    let total = 0
-    this.selectFoods.forEach(food => {
-      total += food.price * food.count
-    })
-    return total
   }
   getTotalPrice() {
     const { menuData } = this.props
@@ -60,7 +69,6 @@ class ShopBar extends Component {
     for (const i of foodss) {
       for (const j of i.foods) {
         if (j.chooseCount > 0) {
-          console.log(j)
           totalPrice = totalPrice + j.chooseCount * j.price
         }
       }
