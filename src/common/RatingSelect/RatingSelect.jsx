@@ -1,4 +1,4 @@
-﻿import React, { Component } from 'react'
+﻿import React, { Component, Fragment } from 'react'
 import { connect } from 'react-redux'
 import PropTypes from 'prop-types'
 import './RatingSelect.styl'
@@ -11,7 +11,8 @@ class RatingSelect extends Component {
       NEGATIVE: 1,
       ALL: 2,
       EVENT_TOGGLE: 'toggle',
-      EVENT_SELECT: 'select'
+      EVENT_SELECT: 'select',
+      switch: false
     }
   }
   render() {
@@ -44,23 +45,42 @@ class RatingSelect extends Component {
             <span className='count'>{badComment.length}</span>
           </span>
         </div>
-        <div
-          className='switch'
-          onClick={() => { this.toggleContent() }}
-        >
-          <i className='icon-check_circle'></i>
-          <span className='text'>只看差评</span>
-        </div>
+        {
+          this.state.switch
+            ? <Fragment>
+              <div
+                className='switch active'
+                onClick={() => { this.toggleContent() }}
+              >
+                <i className='icon-check_circle'></i>
+                <span className='text'>只看差评</span>
+              </div>
+            </Fragment>
+            : <Fragment>
+              <div
+                className='switch'
+                onClick={() => { this.toggleContent() }}
+              >
+                <i className='icon-check_circle'></i>
+                <span className='text'>只看差评</span>
+              </div>
+            </Fragment>
+        }
       </div>
     )
   }
   select(type) {}
-  toggleContent() {}
+  toggleContent() {
+    this.setState(() => {
+      return {
+        switch: !this.state.switch
+      }
+    })
+  }
 }
 
 RatingSelect.defaultProps = {
   selectType: 'ALL'
-  // ratings: [],
 }
 
 RatingSelect.propTypes = {

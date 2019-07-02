@@ -5,17 +5,12 @@ import NavHeader from 'NavHeader/NavHeader'
 import Split from 'Split/Split'
 import RatingSelect from 'RatingSelect/RatingSelect'
 import StarScore from 'StarScore/StarScore'
-import Scroll from 'Scroll/scroll'
+import Scroll from 'Scroll/scroll' // delete
+import BScroll from 'better-scroll'
 import { actionCreators } from './store'
 import './Rating.styl'
 
 class Rating extends Component {
-  constructor(props) {
-    super(props)
-    this.state = {
-      refreshScroll: false
-    }
-  }
   componentDidMount() { // async, get ajax async data
     const { dispathgetListData, dispathgetRatingData } = this.props
     dispathgetListData()
@@ -30,7 +25,7 @@ class Rating extends Component {
     return (
       <div>
         <NavHeader/>
-        <Scroll refresh={this.state.refreshScroll}>
+        <Scroll>
           <div className='ratings'>
             <div className='ratings-content'>
               <div className='overview'>
