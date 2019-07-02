@@ -15,9 +15,16 @@ class ShopBar extends Component {
     }
   }
   render() {
+    function compare(property) {
+      return function(a, b) {
+        var value1 = a[property]
+        var value2 = b[property]
+        return value2 - value1
+      }
+    }
     const { shopCarTotal, navHeader, menuData, shopCarData } = this.props
     const temp = shopCarData.toJS()
-    const shopCarDatas = temp.filter(a => a.chooseCount === Math.max(...temp.filter(b => b.name === a.name).map(({ chooseCount }) => chooseCount)))
+    const shopCarDatas = temp.filter(a => a.chooseCount === Math.max(...temp.filter(b => b.name === a.name).map(({ chooseCount }) => chooseCount))).sort(compare('sellCount'))
     console.log(shopCarDatas, 'shopCarDatas...')
     return (
       <Fragment>
@@ -43,7 +50,7 @@ class ShopBar extends Component {
                               <div className='price'>
                                 <span>￥{item.price * item.chooseCount}</span>
                               </div>
-                              <CartControl chooseCount={item.chooseCount} index={item.index} findex={item.findex}/>
+                              <CartControl chooseCount={item.chooseCount} index={item.index} findex={item.findex} shopCarIndex={index}/>
                             </div>
                           )
                         })
@@ -119,9 +126,8 @@ class ShopBar extends Component {
     })
   }
   clearCar() {
-    // const { dispathClearShopCarData } = this.props
-    // dispathClearShopCarData()
-    console.log('bug!')
+    const { dispathClearShopCarData } = this.props
+    dispathClearShopCarData()
   }
 }
 

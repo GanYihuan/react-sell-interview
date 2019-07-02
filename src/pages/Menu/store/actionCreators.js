@@ -50,11 +50,10 @@ export const addshopCarData = (index, findex) => (dispatch) => {
   })
 }
 
-export const decshopCarData = (index, findex) => (dispatch) => {
+export const decshopCarData = (shopCarIndex) => (dispatch) => {
   dispatch({
     type: constants.DECSHOPCARDATA,
-    index: index,
-    findex: findex
+    shopCarIndex: shopCarIndex
   })
 }
 
@@ -72,6 +71,6 @@ export const decshopCarTotal = () => (dispatch) => {
 
 export const clearShopCartData = () => (dispatch) => {
   dispatch({
-    type: constants.DECSHOPCARTOTAL
+    type: constants.CLEARSHOPCARTDATA
   })
 }

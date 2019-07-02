@@ -42,10 +42,12 @@ class cartControl extends Component {
     dispathdecaddshopCarData(index, findex)
   }
   minusSelectItem(index, findex) {
-    const { dispathminusSelectItem, dispathdecshopCarTotal, dispathdecdecshopCarData } = this.props
+    const { dispathminusSelectItem, dispathdecshopCarTotal, dispathdecdecshopCarData, chooseCount, shopCarIndex } = this.props
     dispathminusSelectItem(index, findex)
     dispathdecshopCarTotal()
-    dispathdecdecshopCarData(index, findex)
+    if (chooseCount === 1) {
+      dispathdecdecshopCarData(shopCarIndex)
+    }
   }
 }
 
@@ -68,8 +70,8 @@ const mapDispatch = dispatch => ({
   dispathdecaddshopCarData(index, findex) {
     dispatch(actionCreators.addshopCarData(index, findex))
   },
-  dispathdecdecshopCarData(index, findex) {
-    dispatch(actionCreators.decshopCarData(index, findex))
+  dispathdecdecshopCarData(shopCarIndex) {
+    dispatch(actionCreators.decshopCarData(shopCarIndex))
   }
 })
 

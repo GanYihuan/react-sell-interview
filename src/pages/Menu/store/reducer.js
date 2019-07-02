@@ -56,7 +56,7 @@ const addSelectItem = (state, action) => {
 
 const addshopCarData = (state, action) => {
   return state.merge({
-    shopCarData: state.get('shopCarData').push(state.get('menuData').getIn([fromJS(action.index), 'foods', fromJS(action.findex)]))
+    shopCarData: state.get('shopCarData').insert(0, state.get('menuData').getIn([fromJS(action.index), 'foods', fromJS(action.findex)]))
   })
 }
 
@@ -69,7 +69,7 @@ const minusSelectItem = (state, action) => {
 
 const decshopCarData = (state, action) => {
   return state.merge({
-    shopCarData: state.get('shopCarData').pop(state.get('menuData').getIn([fromJS(action.index), 'foods', fromJS(action.findex)]))
+    shopCarData: state.get('shopCarData').delete(fromJS(action.shopCarIndex))
   })
 }
 
@@ -81,6 +81,7 @@ const getListData = (state, action) => {
 
 const clearShopCarData = (state, action) => {
   return state.merge({
-    shopCarData: state.get('shopCarData').clear()
+    shopCarData: state.get('shopCarData').clear(),
+    shopCarTotal: state.set('shopCarTotal', 0)
   })
 }
