@@ -17,6 +17,7 @@ class Menu extends Component {
   render() {
     const { menuData, currentLeftIndex } = this.props
     const menuDatas = menuData.toJS()
+    console.log(currentLeftIndex, 'currentLeftIndex..')
     return (
       <div>
         <NavHeader/>
@@ -106,15 +107,15 @@ class Menu extends Component {
       })
     }
   }
-  shouldComponentUpdate(nextProps, nextState) {
-    if (nextProps.menuData !== this.props.menuData) {
-      // console.log(nextProps.menuData.toJS(), this.props.menuData.toJS(), 'should true menuData')
-      return true
-    } else {
-      // console.log(nextProps.menuData.toJS(), this.props.menuData.toJS(), 'should false menuData')
-      return false
-    }
-  }
+  // shouldComponentUpdate(nextProps, nextState) {
+  //   if (nextProps.menuData !== this.props.menuData) {
+  //     // console.log(nextProps.menuData.toJS(), this.props.menuData.toJS(), 'should true menuData')
+  //     return true
+  //   } else {
+  //     // console.log(nextProps.menuData.toJS(), this.props.menuData.toJS(), 'should false menuData')
+  //     return false
+  //   }
+  // }
   itemClick(index) {
     const { dispathLeftItemClick, currentLeftIndex } = this.props
     dispathLeftItemClick(index)
