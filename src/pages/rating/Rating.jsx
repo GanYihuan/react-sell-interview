@@ -25,8 +25,8 @@ class Rating extends Component {
     return (
       <div>
         <NavHeader/>
-        <Scroll>
-          <div className='ratings'>
+        <div className='ratings'>
+          <Scroll>
             <div className='ratings-content'>
               <div className='overview'>
                 <div className='overview-left'>
@@ -65,9 +65,9 @@ class Rating extends Component {
               </div>
               <Split/>
               <RatingSelect
-                // @select="selectRating"
-                // @toggle="toggleContent"
-                // ratings={}
+              // @select="selectRating"
+              // @toggle="toggleContent"
+              // ratings={}
                 selectType={2}
                 onClick={() => { this.toggleContent() }}
               />
@@ -127,8 +127,9 @@ class Rating extends Component {
                 </ul>
               </div>
             </div>
-          </div>
-        </Scroll>
+          </Scroll>
+          <div className='seller'></div>
+        </div>
       </div>
     )
   }
