@@ -44,7 +44,7 @@ class cartControl extends Component {
   minusSelectItem(index, findex) {
     const { dispathminusSelectItem, dispathdecshopCarTotal, dispathdecdecshopCarData } = this.props
     dispathminusSelectItem(index, findex)
-    dispathdecshopCarTotal(index, findex)
+    dispathdecshopCarTotal()
     dispathdecdecshopCarData(index, findex)
   }
 }

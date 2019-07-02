@@ -64,8 +64,6 @@ export const addshopCarTotal = () => (dispatch) => {
   })
 }
 
-//
-
 export const decshopCarTotal = () => (dispatch) => {
   dispatch({
     type: constants.DECSHOPCARTOTAL

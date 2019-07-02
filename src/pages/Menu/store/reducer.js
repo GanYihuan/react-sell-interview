@@ -67,7 +67,7 @@ const minusSelectItem = (state, action) => {
 
 const decshopCarData = (state, action) => {
   return state.merge({
-    shopCarData: state.get('shopCarData').shift(state.get('menuData').getIn([fromJS(action.index), 'foods', fromJS(action.findex)]))
+    shopCarData: state.get('shopCarData').pop(state.get('menuData').getIn([fromJS(action.index), 'foods', fromJS(action.findex)]))
   })
 }
 

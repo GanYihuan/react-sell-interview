@@ -16,46 +16,14 @@ class ShopBar extends Component {
   }
   render() {
     const { shopCarTotal, navHeader, menuData, shopCarData } = this.props
-    const shopCarDatas = shopCarData.toJS()
-    console.log(shopCarDatas, 'shopCarDatas...')
-    // function unique1(array) {
-    //   var n = [] // 一个新的临时数组
-    //   // 遍历当前数组
-    //   for (var i = 0; i < array.length; i++) {
-    //     // 如果当前数组的第i已经保存进了临时数组，那么跳过，
-    //     // 否则把当前项push到临时数组里面
-    //     if (n.indexOf(array[i]) == -1) n.push(array[i])
-    //   }
-    //   return n
-    // }
-
-    // function uniquel(shopCarDatas) {
-    //   const newshopCarData = []
-    //   let shopName = ''
-    //   let newshopName = ''
-    //   let index = 0
-    //   for (const value of shopCarDatas) {
-    //     shopName = value.name
-    //   }
-    //   for (const key of shopCarDatas) {
-    //     index = key
-    //   }
-    //   for (const value of newshopCarData) {
-    //     newshopName = value.name
-    //   }
-    //   if (shopName === newshopName) {
-    //     console.log('1')
-    //   } else {
-    //     newshopCarData.push(shopCarDatas[index])
-    //   }
-    //   return newshopCarData
-    // }
-    const newshopCarData = uniquel()
+    const temp = shopCarData.toJS()
+    let shopCarDatas = []
+    shopCarDatas = temp.filter(a => a.chooseCount === Math.max(...temp.filter(b => b.name === a.name).map(({ chooseCount }) => chooseCount)))
     return (
       <Fragment>
         <div className='shopCart'>
           {
-            this.state.showChoose
+            this.state.showChoose && shopCarDatas.length > 0
               ? <CSSTransition
                 timeout={ 1000 }
                 classNames='fade'
@@ -65,29 +33,30 @@ class ShopBar extends Component {
                     <h1 className='title'>购物车里面</h1>
                     <div className='empty' onClick={() => this.clearCar()}>清空购物车</div>
                   </div>
-                  <div className='list-content' ref='listContent'>
-                    <ul>
+                  <div className='scroll-view' ref='listContent'>
+                    <div className='list-content'>
                       {
-                        newshopCarData.map((item, index) => {
+                        // shopCarDatas.length === 0 ? this.setState(() => { return { showChoose: false } }) :
+                        shopCarDatas.map((item, index) => {
                           return (
-                            <li className='shopCart-food' key={index}>
+                            <div className='shopCart-food' key={index}>
                               <span className='name'>{ item.name }</span>
                               <div className='price'>
                                 <span>￥{item.price * item.chooseCount}</span>
                               </div>
                               <CartControl chooseCount={item.chooseCount} index={item.index} findex={item.findex}/>
-                            </li>
+                            </div>
                           )
                         })
                       }
-                    </ul>
+                    </div>
                   </div>
                 </div>
               </CSSTransition>
               : null
           }
           <div className='content'>
-            <div className='content-left' onClick={() => this.openChoose()}>
+            <div className='content-left' onClick={() => this.toggleShopCar()}>
               <div className='logo-wrapper'>
                 <div className='logo'>
                   <i className='icon-shopping_cart'></i>
@@ -116,18 +85,23 @@ class ShopBar extends Component {
       </Fragment>
     )
   }
-  // componentDidMount() {
-  //   if (!this.lScroll) {
-  //     this.lScroll = new BScroll(this.refs.listContent, {
-  //       click: true
-  //     })
-  //   }
+  componentDidMount() {
+  // if (!this.mScroll) {
+  //   this.mScroll = new BScroll(this.refs.listContent, {
+  //     click: true
+  //   })
   // }
+    // const { shopCarData } = this.props
+    // const shopCarDatas = shopCarData.toJS()
+    // if (shopCarDatas.lenght === 0) {
+    //   this.clearCar()
+    // }
+  }
   payDesc() {
     const { shopCarData, navHeader } = this.props
-    const shopCarDatas = shopCarData.toJS()
+    const temp = shopCarData.toJS()
     let totalPrice = 0
-    for (const i of shopCarDatas) {
+    for (const i of temp) {
       totalPrice = totalPrice + i.price
     }
     if (totalPrice === 0) {
@@ -141,14 +115,14 @@ class ShopBar extends Component {
   }
   getTotalPrice() {
     const { shopCarData } = this.props
-    const shopCarDatas = shopCarData.toJS()
+    const temp = shopCarData.toJS()
     let totalPrice = 0
-    for (const i of shopCarDatas) {
+    for (const i of temp) {
       totalPrice = totalPrice + i.price
     }
     return totalPrice
   }
-  openChoose() {
+  toggleShopCar() {
     this.setState(() => {
       return {
         showChoose: !this.state.showChoose
@@ -165,11 +139,7 @@ class ShopBar extends Component {
     })
   }
   clearCar() {
-    this.setState(() => {
-      return {
-        showChoose: !this.state.showChoose
-      }
-    })
+    console.log('clearCar')
   }
 }
 
