@@ -31,6 +31,8 @@ export default (state = initState, action) => {
       return addshopCarData(state, action)
     case constants.DECSHOPCARDATA:
       return decshopCarData(state, action)
+    case constants.CLEARSHOPCARTDATA:
+      return clearShopCarData(state, action)
     case 'GET_LIST_DATA':
       return getListData(state, action)
     default:
@@ -74,5 +76,11 @@ const decshopCarData = (state, action) => {
 const getListData = (state, action) => {
   return state.merge({
     foodData: state.get('foodData').concat(fromJS(action.obj.data))
+  })
+}
+
+const clearShopCarData = (state, action) => {
+  return state.merge({
+    shopCarData: state.get('shopCarData').clear()
   })
 }

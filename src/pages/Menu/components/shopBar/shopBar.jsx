@@ -17,13 +17,12 @@ class ShopBar extends Component {
   render() {
     const { shopCarTotal, navHeader, menuData, shopCarData } = this.props
     const temp = shopCarData.toJS()
-    let shopCarDatas = []
-    shopCarDatas = temp.filter(a => a.chooseCount === Math.max(...temp.filter(b => b.name === a.name).map(({ chooseCount }) => chooseCount)))
+    const shopCarDatas = temp.filter(a => a.chooseCount === Math.max(...temp.filter(b => b.name === a.name).map(({ chooseCount }) => chooseCount)))
     return (
       <Fragment>
         <div className='shopCart'>
           {
-            this.state.showChoose && shopCarDatas.length > 0
+            this.state.showChoose
               ? <CSSTransition
                 timeout={ 1000 }
                 classNames='fade'
@@ -61,7 +60,9 @@ class ShopBar extends Component {
                 <div className='logo'>
                   <i className='icon-shopping_cart'></i>
                 </div>
-                {shopCarTotal > 0 ? <div className='num'>{shopCarTotal}</div> : null}
+                {
+                  shopCarTotal > 0 ? <div className='num'>{shopCarTotal}</div> : null
+                }
               </div>
               <div className='price'>￥{this.getTotalPrice()}</div>
               <div className='desc'>另需配送费￥{navHeader.get('deliveryPrice')}</div>
@@ -139,7 +140,9 @@ class ShopBar extends Component {
     })
   }
   clearCar() {
-    console.log('clearCar')
+    // const { dispathClearShopCarData } = this.props
+    // dispathClearShopCarData()
+    console.log('bug!')
   }
 }
 
@@ -154,6 +157,9 @@ const mapState = state => ({
 const mapDispatch = dispatch => ({
   dispathshowChoose() {
     dispatch(actionCreators.showChoose())
+  },
+  dispathClearShopCarData() {
+    dispatch(actionCreators.clearShopCartData())
   }
 })
 
