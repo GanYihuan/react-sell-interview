@@ -18,6 +18,7 @@ class ShopBar extends Component {
     const { shopCarTotal, navHeader, menuData, shopCarData } = this.props
     const temp = shopCarData.toJS()
     const shopCarDatas = temp.filter(a => a.chooseCount === Math.max(...temp.filter(b => b.name === a.name).map(({ chooseCount }) => chooseCount)))
+    console.log(shopCarDatas, 'shopCarDatas...')
     return (
       <Fragment>
         <div className='shopCart'>
@@ -35,7 +36,6 @@ class ShopBar extends Component {
                   <div className='scroll-view' ref='listContent'>
                     <div className='list-content'>
                       {
-                        // shopCarDatas.length === 0 ? this.setState(() => { return { showChoose: false } }) :
                         shopCarDatas.map((item, index) => {
                           return (
                             <div className='shopCart-food' key={index}>
@@ -76,8 +76,8 @@ class ShopBar extends Component {
         {
           this.state.showChoose
             ? <CSSTransition
-              timeout ={1000}
-              classNames ='fade'
+              timeout ={1500}
+              classNames ='fold'
             >
               <div className='list-mask'/>
             </CSSTransition>
@@ -85,18 +85,6 @@ class ShopBar extends Component {
         }
       </Fragment>
     )
-  }
-  componentDidMount() {
-  // if (!this.mScroll) {
-  //   this.mScroll = new BScroll(this.refs.listContent, {
-  //     click: true
-  //   })
-  // }
-    // const { shopCarData } = this.props
-    // const shopCarDatas = shopCarData.toJS()
-    // if (shopCarDatas.lenght === 0) {
-    //   this.clearCar()
-    // }
   }
   payDesc() {
     const { shopCarData, navHeader } = this.props
@@ -128,15 +116,6 @@ class ShopBar extends Component {
       return {
         showChoose: !this.state.showChoose
       }
-    })
-  }
-  renderChooseItem(data) {
-    const array = data.chooseList || []
-    return array.map((item, index) => {
-      return (
-        <div className='choose-item' key={index}>
-        </div>
-      )
     })
   }
   clearCar() {

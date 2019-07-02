@@ -50,9 +50,6 @@ class cartControl extends Component {
 }
 
 const mapState = state => ({
-//   foodData: state.getIn(['menu', 'foodData']),
-//   currentLeftIndex: state.getIn(['menu', 'currentLeftIndex']),
-//   price: state.getIn(['menu', 'price'])
 })
 
 const mapDispatch = dispatch => ({
