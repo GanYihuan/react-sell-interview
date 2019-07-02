@@ -69,11 +69,13 @@ class Rating extends Component {
                 </div>
               </div>
               <Split/>
-              {/* <RatingSelect
-                selectType='a'
-                onClick={this.selectRating}
-                ratingDatas={ratingDatas}
-              /> */}
+              <RatingSelect
+                // @select="selectRating"
+                // @toggle="toggleContent"
+                // ratings={}
+                selectType={2}
+                onClick={() => { this.toggleContent() }}
+              />
               <div className='rating-wrapper border-1px'>
                 <ul>
                   {
