@@ -18,7 +18,7 @@ export default (state = initState, action) => {
     case constants.MENU_DATA:
       return getMenu(state, action)
     case constants.LEFT_ITEM_INDEX:
-      return state.set('currentLeftIndex', action.obj)
+      return state.set('currentLeftIndex', fromJS(action.obj))
     case constants.ADD_SELECTI_ITEM:
       return addSelectItem(state, action)
     case constants.MINUS_SELECTI_ITEM:
@@ -33,6 +33,8 @@ export default (state = initState, action) => {
       return decshopCarData(state, action)
     case constants.CLEARSHOPCARTDATA:
       return clearShopCarData(state, action)
+    case constants.CHANGELEFTINDEX:
+      return state.set('currentLeftIndex', fromJS(action.index))
     case 'GET_LIST_DATA':
       return getListData(state, action)
     default:

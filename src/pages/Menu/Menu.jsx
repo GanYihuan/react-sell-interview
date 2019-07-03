@@ -11,20 +11,21 @@ class Menu extends Component {
   constructor(props) {
     super(props)
     this.state = {
-      classMap: ['decrease', 'discount', 'special', 'invoice', 'guarantee']
+      classMap: ['decrease', 'discount', 'special', 'invoice', 'guarantee'],
+      listHeight: [], /* An array of the heights of each element on the right side */
+      scrollY: 0 // foodsScroll Real-time scroll position scrollY
     }
   }
   render() {
     const { menuData, currentLeftIndex } = this.props
     const menuDatas = menuData.toJS()
-    console.log(currentLeftIndex, 'currentLeftIndex..')
     return (
       <div>
         <NavHeader/>
         <div className='goods'>
           <div className='menu-wrapper'>
             <div className='left-bar'>
-              <div className='scroll-view' ref='menu'>
+              <div className='scroll-view' ref='menuWrapper'>
                 <div className='menu-wrapper'>
                   {
                     menuDatas.map((item, index) => {
@@ -46,12 +47,12 @@ class Menu extends Component {
               </div>
             </div>
           </div>
-          <div className='scroll-view' ref='food'>
+          <div className='scroll-view' ref='foodsWrapper'>
             <div className='foods-wrapper'>
               {
                 menuDatas.map((item, index) => {
                   return (
-                    <div className='food-list food-list-hook' key={index} ref='foodList'>
+                    <div className='food-list food-list-hook' key={index}>
                       <h1 className='title'>{item.name}</h1>
                       <div>
                         {
@@ -96,32 +97,60 @@ class Menu extends Component {
     const { dispathMenuData, dispatchgetFoodData } = this.props
     dispathMenuData()
     // dispatchgetFoodData()
+    this.foodsWrapperHeight()
     if (!this.mScroll) {
-      this.mScroll = new BScroll(this.refs.menu, {
+      this.mScroll = new BScroll(this.refs.menuWrapper, {
         click: true
       })
     }
     if (!this.fScroll) {
-      this.fScroll = new BScroll(this.refs.food, {
+      this.fScroll = new BScroll(this.refs.foodsWrapper, {
         click: true
       })
     }
+    this.fScroll.on('scroll', pos => {
+      this.setState(() => {
+        return {
+          scrollY: Math.abs(Math.round(pos.y))
+        }
+      })
+      console.log('scroll---')
+      this.changeLeftIndex()
+    })
   }
-  // shouldComponentUpdate(nextProps, nextState) {
-  //   if (nextProps.menuData !== this.props.menuData) {
-  //     // console.log(nextProps.menuData.toJS(), this.props.menuData.toJS(), 'should true menuData')
-  //     return true
-  //   } else {
-  //     // console.log(nextProps.menuData.toJS(), this.props.menuData.toJS(), 'should false menuData')
-  //     return false
-  //   }
-  // }
   itemClick(index) {
     const { dispathLeftItemClick, currentLeftIndex } = this.props
     dispathLeftItemClick(index)
-    const foodList = this.refs.food.getElementsByClassName('food-list-hook')
+    const foodList = this.refs.foodsWrapper.getElementsByClassName('food-list-hook')
     const el = foodList[currentLeftIndex]
     this.fScroll.scrollToElement(el, 300)
+  }
+  foodsWrapperHeight() {
+    const foodList = this.refs.foodsWrapper.getElementsByClassName('food-list-hook')
+    let height = 0
+    const setlistHeight = []
+    setlistHeight.push(height)
+    for (let i = 0; i < foodList.length; i++) {
+      const item = foodList[i]
+      height += item.clientHeight
+      setlistHeight.push(height)
+    }
+    this.setState(() => {
+      return {
+        listHeight: setlistHeight
+      }
+    })
+  }
+  changeLeftIndex() {
+    const { dispatchChangeLeftIndex } = this.props
+    for (let i = 0; i < this.state.listHeight.length; i++) {
+      const height1 = this.state.listHeight[i] /* The height of the current index value */
+      const height2 = this.state.listHeight[i + 1] /* Next height */
+      if (!height2 || (this.state.scrollY >= height1 && this.state.scrollY < height2)) {
+        dispatchChangeLeftIndex(i)
+      }
+    }
+    dispatchChangeLeftIndex(0)
   }
 }
 
@@ -136,6 +165,9 @@ const mapDispatch = dispatch => ({
   },
   dispathLeftItemClick(index) {
     dispatch(actionCreators.getLeftItemIndex(index))
+  },
+  dispatchChangeLeftIndex(index) {
+    dispatch(actionCreators.getChangeLeftIndex(index))
   }
   // dispatchgetFoodData() {
   //   dispatch(actionCreators.getFoodData())

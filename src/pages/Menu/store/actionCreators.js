@@ -74,3 +74,10 @@ export const clearShopCartData = () => (dispatch) => {
     type: constants.CLEARSHOPCARTDATA
   })
 }
+
+export const getChangeLeftIndex = (index) => (dispatch) => {
+  dispatch({
+    type: constants.CHANGELEFTINDEX,
+    index: index
+  })
+}
