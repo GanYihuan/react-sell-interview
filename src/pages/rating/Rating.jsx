@@ -22,6 +22,8 @@ class Rating extends Component {
       ratingData
     } = this.props
     const commentDatas = commentData.toJS()
+    const goodComment = commentDatas.filter(a => a.rateType === Math.max(0))
+    const badComment = commentDatas.filter(a => a.rateType === Math.max(1))
     return (
       <div>
         <NavHeader/>
@@ -65,10 +67,6 @@ class Rating extends Component {
               </div>
               <Split/>
               <RatingSelect
-              // @select="selectRating"
-              // @toggle="toggleContent"
-              // ratings={}
-                selectType={2}
                 onClick={() => { this.toggleContent() }}
               />
               <div className='rating-wrapper border-1px'>
