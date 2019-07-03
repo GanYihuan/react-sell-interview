@@ -1,5 +1,6 @@
 ﻿import axios from 'axios'
 import * as constants from './constants'
+import { async } from 'q'
 
 export const getCommentData = () => async(dispatch) => {
   const { status, data: { ratings }} = await axios.get('/ratings/getRating')
@@ -35,4 +36,11 @@ export const getRatingsData = () => async(dispatch) => {
   //   type: 'RATING_DATA',
   //   obj: resp.data
   // })
+}
+
+export const ratingSelectTypeBad = (number) => async(dispatch) => {
+  dispatch({
+    type: constants.RATINGSELECTTYPEBAD,
+    number: number
+  })
 }

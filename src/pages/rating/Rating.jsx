@@ -17,13 +17,12 @@ class Rating extends Component {
     dispathgetRatingData()
   }
   render() {
-    const {
-      commentData,
-      ratingData
-    } = this.props
+    const { commentData, ratingData, ratingSelectType } = this.props
     const commentDatas = commentData.toJS()
     const goodComment = commentDatas.filter(a => a.rateType === Math.max(0))
     const badComment = commentDatas.filter(a => a.rateType === Math.max(1))
+    let showComment = []
+    ratingSelectType === 1 ? showComment = badComment : ratingSelectType === 0 ? showComment = goodComment : showComment = commentDatas
     return (
       <div>
         <NavHeader/>
@@ -72,7 +71,7 @@ class Rating extends Component {
               <div className='rating-wrapper border-1px'>
                 <ul>
                   {
-                    commentDatas.map((item, index) => {
+                    showComment.map((item, index) => {
                       return (
                         <li
                           className='rating-item'
@@ -138,7 +137,8 @@ class Rating extends Component {
 
 const mapState = state => ({
   commentData: state.getIn(['ratings', 'commentData']),
-  ratingData: state.getIn(['ratings', 'ratingData'])
+  ratingData: state.getIn(['ratings', 'ratingData']),
+  ratingSelectType: state.getIn(['ratings', 'ratingSelectType'])
 })
 
 const mapDispatch = dispatch => ({

@@ -1,5 +1,6 @@
 ﻿import React, { Component, Fragment } from 'react'
 import { connect } from 'react-redux'
+import { actionCreators } from 'rating/store'
 import './RatingSelect.styl'
 
 class RatingSelect extends Component {
@@ -73,6 +74,7 @@ class RatingSelect extends Component {
     }
   }
   select(type) {
+    const { dispatchratingSelectTypeBad } = this.props
     this.setState(() => {
       return {
         selectType: type
@@ -84,12 +86,19 @@ class RatingSelect extends Component {
           switch: true
         }
       })
+      dispatchratingSelectTypeBad(1)
     } else {
       this.setState(() => {
         return {
           switch: false
         }
       })
+    }
+    if (type === 2) {
+      dispatchratingSelectTypeBad(2)
+    }
+    if (type === 0) {
+      dispatchratingSelectTypeBad(0)
     }
   }
 }
@@ -99,6 +108,9 @@ const mapState = state => ({
 })
 
 const mapDispatch = dispatch => ({
+  dispatchratingSelectTypeBad(number) {
+    dispatch(actionCreators.ratingSelectTypeBad(number))
+  }
 })
 
 export default connect(
