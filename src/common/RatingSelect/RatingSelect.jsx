@@ -12,7 +12,8 @@ class RatingSelect extends Component {
       ALL: 2,
       EVENT_TOGGLE: 'toggle',
       EVENT_SELECT: 'select',
-      switch: false
+      switch: false,
+      selectType: 2
     }
   }
   render() {
@@ -20,60 +21,61 @@ class RatingSelect extends Component {
     const commentDatas = commentData.toJS()
     const goodComment = commentDatas.filter(a => a.rateType === Math.max(0))
     const badComment = commentDatas.filter(a => a.rateType === Math.max(1))
+    const allClassName = this.state.selectType === 2 ? 'block active' : 'block'
+    const goodClassName = this.state.selectType === 0 ? 'block active' : 'block'
+    const badClassName = this.state.selectType === 1 ? 'block active' : 'block'
     return (
       <div className='ratingselect'>
         <div className='rating-type border-1px'>
           <span
-            className='block positive'
+            className={allClassName}
             onClick={() => { this.select(2) }}
           >
             全部
             <span className='count'>{commentDatas.length}</span>
           </span>
           <span
-            className='block positive'
+            className={goodClassName}
             onClick={() => { this.select(0) }}
           >
             好评
             <span className='count'>{goodComment.length}</span>
           </span>
           <span
-            className='block negative'
+            className={badClassName}
             onClick={() => { this.select(1) }}
           >
             差评
             <span className='count'>{badComment.length}</span>
           </span>
         </div>
-        {
-          this.state.switch
-            ? <Fragment>
-              <div
-                className='switch active'
-                onClick={() => { this.toggleContent() }}
-              >
-                <i className='icon-check_circle'></i>
-                <span className='text'>只看差评</span>
-              </div>
-            </Fragment>
-            : <Fragment>
-              <div
-                className='switch'
-                onClick={() => { this.toggleContent() }}
-              >
-                <i className='icon-check_circle'></i>
-                <span className='text'>只看差评</span>
-              </div>
-            </Fragment>
-        }
+        { this.onlyBadComment() }
       </div>
     )
   }
-  select(type) {}
+  onlyBadComment() {
+    const cls = this.state.switch ? 'switch active' : 'switch'
+    return (
+      <div
+        className={cls}
+        onClick={() => { this.toggleContent() }}
+      >
+        <i className='icon-check_circle'></i>
+        <span className='text'>只看差评</span>
+      </div>
+    )
+  }
   toggleContent() {
     this.setState(() => {
       return {
         switch: !this.state.switch
+      }
+    })
+  }
+  select(type) {
+    this.setState(() => {
+      return {
+        selectType: type
       }
     })
   }
