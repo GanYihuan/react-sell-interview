@@ -1,17 +1,11 @@
 ﻿import React, { Component, Fragment } from 'react'
 import { connect } from 'react-redux'
-import PropTypes from 'prop-types'
 import './RatingSelect.styl'
 
 class RatingSelect extends Component {
   constructor(props) {
     super(props)
     this.state = {
-      POSITIVE: 0,
-      NEGATIVE: 1,
-      ALL: 2,
-      EVENT_TOGGLE: 'toggle',
-      EVENT_SELECT: 'select',
       switch: false,
       selectType: 2
     }
@@ -66,11 +60,17 @@ class RatingSelect extends Component {
     )
   }
   toggleContent() {
+    if (this.state.switch === false) {
+      this.select(1)
+    }
     this.setState(() => {
       return {
         switch: !this.state.switch
       }
     })
+    if (this.state.switch === true) {
+      this.select(2)
+    }
   }
   select(type) {
     this.setState(() => {
@@ -78,15 +78,20 @@ class RatingSelect extends Component {
         selectType: type
       }
     })
+    if (type === 1) {
+      this.setState(() => {
+        return {
+          switch: true
+        }
+      })
+    } else {
+      this.setState(() => {
+        return {
+          switch: false
+        }
+      })
+    }
   }
-}
-
-RatingSelect.defaultProps = {
-  selectType: 'ALL'
-}
-
-RatingSelect.propTypes = {
-  selectType: PropTypes.number
 }
 
 const mapState = state => ({
