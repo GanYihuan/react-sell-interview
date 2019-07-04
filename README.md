@@ -1,5 +1,20 @@
 ## 餐馆点餐 App
 
+## 运行界面
+
+![首页](https://i.loli.net/2019/07/04/5d1d4f015690842261.png)
+![我的](https://i.loli.net/2019/07/04/5d1d4f141fb5d77037.png)
+![登录](https://i.loli.net/2019/07/04/5d1d4e71ac17883368.png)
+![注册](https://i.loli.net/2019/07/04/5d1d4f235b41891804.png)
+![点菜](https://i.loli.net/2019/07/04/5d1d4e94a0aee27856.png)
+![弹层](https://i.loli.net/2019/07/04/5d1d4e3cd2f7d33727.png)
+![购物车](https://i.loli.net/2019/07/04/5d1d4eb13c15f42999.png)
+![食物](https://i.loli.net/2019/07/04/5d1d4ef1a9ed494271.png)
+![评价](https://i.loli.net/2019/07/04/5d1d4ec34a76c97586.png)
+![商家](https://i.loli.net/2019/07/04/5d1d4ed3d288f28791.png)
+
+## 介绍
+
 简介：使用 react, 实现一个餐馆点餐 App。采用 koa2 编写后端数据, 使用 MongoDB 用来储存用户数据, 商家内容采取 axios 方式请求静态数据。stylus 编写样式。
 
 结构：

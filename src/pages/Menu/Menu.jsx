@@ -97,7 +97,6 @@ class Menu extends Component {
     const { dispathMenuData, dispatchgetFoodData } = this.props
     dispathMenuData()
     // dispatchgetFoodData()
-    this.foodsWrapperHeight()
     if (!this.mScroll) {
       this.mScroll = new BScroll(this.refs.menuWrapper, {
         click: true
@@ -105,16 +104,17 @@ class Menu extends Component {
     }
     if (!this.fScroll) {
       this.fScroll = new BScroll(this.refs.foodsWrapper, {
-        click: true
+        click: true,
+        probeType: 3
       })
     }
+    this.foodsWrapperHeight()
     this.fScroll.on('scroll', pos => {
       this.setState(() => {
         return {
           scrollY: Math.abs(Math.round(pos.y))
         }
       })
-      console.log('scroll---')
       this.changeLeftIndex()
     })
   }
