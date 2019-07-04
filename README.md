@@ -26,7 +26,7 @@
 7. element-react 样式框架实现布局
 8. git 管理项目
 
-### 前端部分:
+## 前端部分:
 1. http-proxy-middleware 配置代理， 代理到后端接口上
 2. react lazy & Suspense 实现代码拆分。lazy 懒加载组件, Suspense 维护子组件的 loading
 3. react-router-dom, <BrowserRouter> 对 Router 的封装, <Switch> 将多个 <Route> 包裹在一起, <Route> 路由匹配, <Redirect> 页面重定向, <Link> 锚点连接, <NavLink> 自定义样式锚点连接, <withRouter> 函数返回一个组件。返回的组件外层是 Route
@@ -43,6 +43,16 @@
 14. prop-types 对父组件传来的 props 进行检查
 15. react-transition-group, CSSTransition 用于编写商家界面的动画
 16. notyf 用于实现提示信息的插件, 当注册界面或者登录界面有错误信息时要显示提示
+
+## 后端部分：
+1. koa2 编写后端代码
+2. mongoose 用于连接 MongoDB, 创建 mongodb schema & model
+3. Robo 3T 管理 mongodb 数据库内容, postman 查看请求的数据
+4. koa-redis koa-generic-session 使用 redis session 数据库储存用户信息
+5. nodeMailer 实现发送电子邮件验证码
+6. koa-json koa-onerror koa-logger 实现 json 打印, koa 错误处理, koa 日志记录
+7. koa-passport passport-local 验证用户名对应的密码验证
+8. koa-bodyparser 针对请求报文的处理
 
 ## 结构
 
