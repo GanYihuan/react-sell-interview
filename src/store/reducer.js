@@ -6,6 +6,7 @@ import { reducer as menuReducer } from '../pages/menu/store'
 import { reducer as restanurantReducer } from '../pages/restanurant/store'
 import { reducer as ratingsReducer } from '../pages/rating/store'
 import { reducer as cityReducer } from '../pages/city/store'
+import { reducer as orderReducer } from '../pages/order/store'
 
 const reducer = combineReducers({
   home: homeReducer,
@@ -14,7 +15,8 @@ const reducer = combineReducers({
   menu: menuReducer,
   restanurant: restanurantReducer,
   ratings: ratingsReducer,
-  city: cityReducer
+  city: cityReducer,
+  order: orderReducer
 })
 
 export default reducer

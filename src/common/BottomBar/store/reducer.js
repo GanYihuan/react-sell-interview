@@ -7,6 +7,10 @@ const defaultState = fromJS({ // 原生js转immutable对象
       key: 'home'
     },
     {
+      name: '订单',
+      key: 'order'
+    },
+    {
       name: '我的',
       key: 'my'
     }

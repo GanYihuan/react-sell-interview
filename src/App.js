@@ -19,6 +19,8 @@ const Register = lazy(() => import(/* webpackChunkName: "My" */ 'register/Regist
 const Menu = lazy(() => import(/* webpackChunkName: "My" */ 'menu/Menu'))
 const Restanurant = lazy(() => import(/* webpackChunkName: "My" */ 'restanurant/Restanurant'))
 const Rating = lazy(() => import(/* webpackChunkName: "My" */ 'rating/Rating'))
+const Order = lazy(() => import(/* webpackChunkName: "My" */ 'order/Order'))
+const Evaluate = lazy(() => import(/* webpackChunkName: "My" */ 'order/Evaluate'))
 // forceRefresh: bool
 // 当设置为 true 时，在导航的过程中整个页面将会刷新。 只有当浏览器不支持 HTML5 的 history API 时，才设置为 true
 const supportsHistory = false
@@ -36,6 +38,8 @@ class App extends Component {
               {/* <Route> 组件路由匹配 */}
               <Route path='/home' exact component={Home} />
               <Route path='/city' exact component={City} />
+              <Route path='/order' exact component={Order} />
+              <Route path='/evaluate' exact component={Evaluate} />
               <Route path='/my' exact component={My} />
               <Route path='/login' exact component={Login} />
               <Route path='/register' exact component={Register} />
