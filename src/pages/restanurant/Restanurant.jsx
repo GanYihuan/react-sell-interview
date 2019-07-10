@@ -4,7 +4,7 @@ import BScroll from 'better-scroll'
 import NavHeader from 'NavHeader/NavHeader'
 import StarScore from 'StarScore/StarScore'
 import Split from 'Split/Split'
-import Scroll from 'Scroll/scroll'
+// import Scroll from 'Scroll/scroll'
 import { actionCreators } from './store'
 import { saveToLocal, loadFromLocal } from 'storage'
 import './Restanurant.styl'
@@ -25,95 +25,61 @@ class Restanurant extends Component {
     return (
       <div>
         <NavHeader/>
-        <div className='seller'>
-          <Scroll>
-            <div className='seller-wrapper'>
-              <div className='seller-content'>
-                <div className='overview'>
-                  <h1 className='title'>{restanurantData.get('name')}</h1>
-                  <div className='desc border-1px'>
-                    <StarScore score={restanurantData.get('score')} size={36}/>
-                    <span className='text'>{restanurantData.get('score')}</span>
-                    <span className='text'>月售{restanurantData.get('sellCount')}单</span>
-                  </div>
-                  <div className='favorite' onClick={() => this.favoriteClick()}>
-                    {
-                      this.state.favorite === false
-                        ? <Fragment><span className='icon-favorite'></span><span className='text'>收藏</span></Fragment>
-                        : <Fragment><span className='icon-favorite active'></span><span className='text'>已收藏</span></Fragment>
-                    }
-                  </div>
-                  <ul className='remark'>
-                    <li className='block'>
-                      <h2>起送价</h2>
-                      <div className='content'>
-                        <span className='stress'>{restanurantData.get('minPrice')}</span>元
-                      </div>
-                    </li>
-                    <li className='block'>
-                      <h2>商家配送</h2>
-                      <div className='content'>
-                        <span className='stress'>{restanurantData.get('deliveryPrice')}</span>元
-                      </div>
-                    </li>
-                    <li className='block'>
-                      <h2>平均配送时间</h2>
-                      <div className='content'>
-                        <span className='stress'>{restanurantData.get('deliveryTime')}</span>分钟
-                      </div>
-                    </li>
-                  </ul>
+        <div className='seller' ref='seller'>
+          {/* <Scroll> */}
+          <div className='seller-wrapper'>
+            <div className='seller-content'>
+              <div className='overview'>
+                <h1 className='title'>{restanurantData.get('name')}</h1>
+                <div className='desc border-1px'>
+                  <StarScore score={restanurantData.get('score')} size={36}/>
+                  <span className='text'>{restanurantData.get('score')}</span>
+                  <span className='text'>月售{restanurantData.get('sellCount')}单</span>
                 </div>
-              </div>
-              <Split/>
-              <div className='bulletin'>
-                <div className='title'>公告与活动</div>
-                <div className='content-wrapper border-1px'>
-                  <div className='content'>{restanurantData.get('bulletin')}</div>
-                </div>
-                <div className='supports'>
+                <div className='favorite' onClick={() => this.favoriteClick()}>
                   {
-                    supports !== undefined
-                      ? supports.map((item, index) => {
-                        const icon = this.state.classMap[item.type] + ' icon'
-                        return (
-                          <div key={index} className='support-item border-1px'>
-                            <span className={icon}></span>
-                            <span className='text'>{item.description}</span>
-                          </div>
-                        )
-                      })
-                      : null
+                    this.state.favorite === false
+                      ? <Fragment><span className='icon-favorite'></span><span className='text'>收藏</span></Fragment>
+                      : <Fragment><span className='icon-favorite active'></span><span className='text'>已收藏</span></Fragment>
                   }
                 </div>
+                <ul className='remark'>
+                  <li className='block'>
+                    <h2>起送价</h2>
+                    <div className='content'>
+                      <span className='stress'>{restanurantData.get('minPrice')}</span>元
+                    </div>
+                  </li>
+                  <li className='block'>
+                    <h2>商家配送</h2>
+                    <div className='content'>
+                      <span className='stress'>{restanurantData.get('deliveryPrice')}</span>元
+                    </div>
+                  </li>
+                  <li className='block'>
+                    <h2>平均配送时间</h2>
+                    <div className='content'>
+                      <span className='stress'>{restanurantData.get('deliveryTime')}</span>分钟
+                    </div>
+                  </li>
+                </ul>
               </div>
-              <Split/>
-              <div className='pics'>
-                <div className='title'>商家实景</div>
-                <div className='scroll-view' ref='merchant'>
-                  <div className='pic-wrapper'>
-                    {
-                      pics !== undefined
-                        ? pics.map((item, index) => {
-                          return (
-                            <div className='pic-item' key={index}>
-                              <img src={item}/>
-                            </div>
-                          )
-                        }) : null
-                    }
-                  </div>
-                </div>
+            </div>
+            <Split/>
+            <div className='bulletin'>
+              <div className='title'>公告与活动</div>
+              <div className='content-wrapper border-1px'>
+                <div className='content'>{restanurantData.get('bulletin')}</div>
               </div>
-              <Split/>
-              <div className='info'>
-                <h1 className='title border-1px'>商家信息</h1>
+              <div className='supports'>
                 {
-                  infos !== undefined
-                    ? infos.map((item, index) => {
+                  supports !== undefined
+                    ? supports.map((item, index) => {
+                      const icon = this.state.classMap[item.type] + ' icon'
                       return (
-                        <div key={index} className='info-item'>
-                          <span className='text'>{item}</span>
+                        <div key={index} className='support-item border-1px'>
+                          <span className={icon}></span>
+                          <span className='text'>{item.description}</span>
                         </div>
                       )
                     })
@@ -121,7 +87,41 @@ class Restanurant extends Component {
                 }
               </div>
             </div>
-          </Scroll>
+            <Split/>
+            <div className='pics'>
+              <div className='title'>商家实景</div>
+              <div className='scroll-view' ref='merchant'>
+                <div className='pic-wrapper'>
+                  {
+                    pics !== undefined
+                      ? pics.map((item, index) => {
+                        return (
+                          <div className='pic-item' key={index}>
+                            <img src={item}/>
+                          </div>
+                        )
+                      }) : null
+                  }
+                </div>
+              </div>
+            </div>
+            <Split/>
+            <div className='info'>
+              <h1 className='title border-1px'>商家信息</h1>
+              {
+                infos !== undefined
+                  ? infos.map((item, index) => {
+                    return (
+                      <div key={index} className='info-item'>
+                        <span className='text'>{item}</span>
+                      </div>
+                    )
+                  })
+                  : null
+              }
+            </div>
+          </div>
+          {/* </Scroll> */}
         </div>
       </div>
     )
@@ -134,6 +134,11 @@ class Restanurant extends Component {
         click: true,
         scrollX: true, /* horizontal scroll */
         eventPassthrough: 'vertical' /* ignore vertical scroll */
+      })
+    }
+    if (!this.sScroll) {
+      this.sScroll = new BScroll(this.refs.seller, {
+        click: true
       })
     }
     const loadfavorite = loadFromLocal(restanurantData.get('id'), 'favorite', false)

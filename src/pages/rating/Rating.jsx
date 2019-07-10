@@ -5,7 +5,7 @@ import NavHeader from 'NavHeader/NavHeader'
 import Split from 'Split/Split'
 import RatingSelect from 'RatingSelect/RatingSelect'
 import StarScore from 'StarScore/StarScore'
-import Scroll from 'Scroll/scroll' // delete
+// import Scroll from 'Scroll/scroll' // delete
 import BScroll from 'better-scroll'
 import { actionCreators } from './store'
 import './Rating.styl'
@@ -15,6 +15,11 @@ class Rating extends Component {
     const { dispathgetListData, dispathgetRatingData } = this.props
     dispathgetListData()
     dispathgetRatingData()
+    if (!this.rScroll) {
+      this.rScroll = new BScroll(this.refs.ratings, {
+        click: true
+      })
+    }
   }
   render() {
     const { commentData, ratingData, ratingSelectType } = this.props
@@ -26,105 +31,105 @@ class Rating extends Component {
     return (
       <div>
         <NavHeader/>
-        <div className='ratings'>
-          <Scroll>
-            <div className='ratings-content'>
-              <div className='overview'>
-                <div className='overview-left'>
-                  <h1 className='score'>
-                    {ratingData.get('foodScore')}
-                  </h1>
-                  <div className='title'>
+        <div className='ratings' ref='ratings'>
+          {/* <Scroll> */}
+          <div className='ratings-content'>
+            <div className='overview'>
+              <div className='overview-left'>
+                <h1 className='score'>
+                  {ratingData.get('foodScore')}
+                </h1>
+                <div className='title'>
                   综合评分
-                  </div>
-                  <div className='rank'>
-                  高于周边商家 {ratingData.get('rankRate')}%
-                  </div>
                 </div>
-                <div className='overview-right'>
-                  <div className='score-wrapper'>
-                    <span className='title'>服务态度</span>
-                    <StarScore score={ratingData.get('foodScore')} size={36}/>
-                    <span className='score'>
-                      {ratingData.get('serviceScore')} 分
-                    </span>
-                  </div>
-                  <div className='score-wrapper'>
-                    <span className='title'>商品评分</span>
-                    <StarScore score={ratingData.get('foodScore')} size={36}/>
-                    <span className='score'>
-                      {ratingData.get('score')} 分
-                    </span>
-                  </div>
-                  <div className='delivery-wrapper'>
-                    <span className='title'>送达时间</span>
-                    <span className='delivery'>
-                      {ratingData.get('deliveryTime')}分钟
-                    </span>
-                  </div>
+                <div className='rank'>
+                  高于周边商家 {ratingData.get('rankRate')}%
                 </div>
               </div>
-              <Split/>
-              <RatingSelect
-                onClick={() => { this.toggleContent() }}
-              />
-              <div className='rating-wrapper border-1px'>
-                <ul>
-                  {
-                    showComment.map((item, index) => {
-                      return (
-                        <li
-                          className='rating-item'
-                          key={index}
-                        >
-                          <div className='avatar'>
-                            <img
-                              src={item.avatar}
-                              alt='avatar'
-                              width='28'
-                              height='28'
-                            />
-                          </div>
-                          <div className='content'>
-                            <h1 className='name'>
-                              {item.username}
-                            </h1>
-                            <div className='star-wrapper'>
-                              <StarScore score={item.score} size={24}/>
-                              <span
-                                className='delivery'
-                              >
-                                {item.deliveryTime}分钟送达
-                              </span>
-                            </div>
-                            <div className='text'>
-                              {item.text}
-                            </div>
-                            <div className='recommend'>
-                              {
-                                item.recommend.length > 0
-                                  ? <span className='icon-thumb_up' /> : null
-                              }
-                              {
-                                item.recommend.map((item, index) => {
-                                  return (
-                                    <span className='item' key={index}>{item}</span>
-                                  )
-                                })
-                              }
-                            </div>
-                            <div className='time'>
-                              {this.formatDate(item.rateTime)}
-                            </div>
-                          </div>
-                        </li>
-                      )
-                    })
-                  }
-                </ul>
+              <div className='overview-right'>
+                <div className='score-wrapper'>
+                  <span className='title'>服务态度</span>
+                  <StarScore score={ratingData.get('foodScore')} size={36}/>
+                  <span className='score'>
+                    {ratingData.get('serviceScore')} 分
+                  </span>
+                </div>
+                <div className='score-wrapper'>
+                  <span className='title'>商品评分</span>
+                  <StarScore score={ratingData.get('foodScore')} size={36}/>
+                  <span className='score'>
+                    {ratingData.get('score')} 分
+                  </span>
+                </div>
+                <div className='delivery-wrapper'>
+                  <span className='title'>送达时间</span>
+                  <span className='delivery'>
+                    {ratingData.get('deliveryTime')}分钟
+                  </span>
+                </div>
               </div>
             </div>
-          </Scroll>
+            <Split/>
+            <RatingSelect
+              onClick={() => { this.toggleContent() }}
+            />
+            <div className='rating-wrapper border-1px'>
+              <ul>
+                {
+                  showComment.map((item, index) => {
+                    return (
+                      <li
+                        className='rating-item'
+                        key={index}
+                      >
+                        <div className='avatar'>
+                          <img
+                            src={item.avatar}
+                            alt='avatar'
+                            width='28'
+                            height='28'
+                          />
+                        </div>
+                        <div className='content'>
+                          <h1 className='name'>
+                            {item.username}
+                          </h1>
+                          <div className='star-wrapper'>
+                            <StarScore score={item.score} size={24}/>
+                            <span
+                              className='delivery'
+                            >
+                              {item.deliveryTime}分钟送达
+                            </span>
+                          </div>
+                          <div className='text'>
+                            {item.text}
+                          </div>
+                          <div className='recommend'>
+                            {
+                              item.recommend.length > 0
+                                ? <span className='icon-thumb_up' /> : null
+                            }
+                            {
+                              item.recommend.map((item, index) => {
+                                return (
+                                  <span className='item' key={index}>{item}</span>
+                                )
+                              })
+                            }
+                          </div>
+                          <div className='time'>
+                            {this.formatDate(item.rateTime)}
+                          </div>
+                        </div>
+                      </li>
+                    )
+                  })
+                }
+              </ul>
+            </div>
+          </div>
+          {/* </Scroll> */}
           <div className='seller'></div>
         </div>
       </div>
