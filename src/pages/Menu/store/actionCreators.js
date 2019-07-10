@@ -1,5 +1,6 @@
 ﻿import axios from 'axios'
 import * as constants from './constants'
+import { Notyf } from 'notyf' // 纯js消息通知插件
 
 export const getMenuData = () => async(dispatch) => {
   const { status, data: { goods }} = await axios.get('/goods/getGood')
@@ -80,4 +81,27 @@ export const getChangeLeftIndex = (index) => (dispatch) => {
     type: constants.CHANGELEFTINDEX,
     index: index
   })
+}
+
+export const Pay = (sellerName, sellerImage, menu, number, price) => (dispatch) => {
+  axios
+    .post('/orders/pay', {
+      sellerName: sellerName,
+      sellerImage: sellerImage,
+      menu: menu,
+      number: number,
+      price: price
+    })
+    .then(({ status, data }) => {
+      const notyf = new Notyf()
+      if (status === 200) {
+        if (data && data.code === 0) {
+          notyf.success(`${data.msg} 需要支付${this.totalPrice}元 到评价界面给个评价!`)
+        } else {
+          notyf.error(`${data.msg}`)
+        }
+      } else {
+        notyf.error(`服务器出错，错误码:${status}`)
+      }
+    })
 }

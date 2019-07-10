@@ -10,8 +10,10 @@ class ShopBar extends Component {
   constructor(props) {
     super(props)
     this.state = {
-      totalPrice: 0,
-      showChoose: false
+      tPrice: 0, // totalPrice
+      totalCount: 0, // totalCount
+      showChoose: false,
+      selectFoods: []
     }
   }
   render() {
@@ -25,7 +27,7 @@ class ShopBar extends Component {
     const { shopCarTotal, navHeader, menuData, shopCarData } = this.props
     const temp = shopCarData.toJS()
     const shopCarDatas = temp.filter(a => a.chooseCount === Math.max(...temp.filter(b => b.name === a.name).map(({ chooseCount }) => chooseCount))).sort(compare('sellCount'))
-    console.log(shopCarDatas, 'shopCarDatas...')
+    // console.log(shopCarDatas, 'shopCarDatas...')
     return (
       <Fragment>
         <div className='shopCart'>
@@ -75,10 +77,9 @@ class ShopBar extends Component {
               <div className='desc'>另需配送费￥{navHeader.get('deliveryPrice')}</div>
             </div>
             <div className='content-right'>
-              <div className='pay'>{this.payDesc()}</div>
+              <div className='pay' onClick={() => { this.pay() }}>{this.payDesc()}</div>
             </div>
           </div>
-          <div className='ball-container'></div>
         </div>
         {
           this.state.showChoose
@@ -92,6 +93,18 @@ class ShopBar extends Component {
         }
       </Fragment>
     )
+  }
+  componentDidMount() {
+    const { shopCarTotal, shopCarData } = this.props
+    const totalPrice = this.getTotalPrice()
+    const selectFoods = shopCarData.toJS()
+    this.setState(() => {
+      return {
+        tPrice: totalPrice,
+        totalCount: shopCarTotal,
+        selectFoods: selectFoods
+      }
+    })
   }
   payDesc() {
     const { shopCarData, navHeader } = this.props
@@ -129,6 +142,14 @@ class ShopBar extends Component {
     const { dispathClearShopCarData } = this.props
     dispathClearShopCarData()
   }
+  pay() {
+    const { dispathPay } = this.props
+    if (this.totalPrice < this.minPrice) {
+      return
+    }
+    const price = this.state.tPrice
+    dispathPay()
+  }
 }
 
 const mapState = state => ({
@@ -145,6 +166,14 @@ const mapDispatch = dispatch => ({
   },
   dispathClearShopCarData() {
     dispatch(actionCreators.clearShopCartData())
+  },
+  dispathPay() {
+    // sellerName: this.sellerName,
+    // sellerImage: this.sellerImage,
+    // menu: this.selectFoods,
+    // number: this.totalCount,
+    // price: this.totalPrice
+    dispatch(actionCreators.Pay())
   }
 })
 

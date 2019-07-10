@@ -39,7 +39,7 @@ class NavHeader extends Component {
     })
   }
   goBack() {
-    this.props.history.push(`/my`)
+    this.props.history.push(`/home`)
   }
   showDetail() {
     this.setState(() => {
