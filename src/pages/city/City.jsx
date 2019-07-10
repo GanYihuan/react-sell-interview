@@ -14,8 +14,6 @@ class City extends Component {
     } = this.props
     const hotCitys = hotCity.toJS()
     const citys = city.toJS()
-    const cityLength = citys.length
-    console.log(citys, 'cityLength...')
     return (
       <div className='City'>
         <div className='header' onClick={() => this.goBack()}>
@@ -34,67 +32,69 @@ class City extends Component {
           </div>
         </div>
         <div className='list' ref='list'>
-          <div className='area'>
-            <div className='title border-topbottom'>
+          <div>
+            <div className='area'>
+              <div className='title border-topbottom'>
               当前城市
-            </div>
-            <div className='button-list current'>
-              <div className='button-wrapper'>
-                <div className='button'>
+              </div>
+              <div className='button-list current'>
+                <div className='button-wrapper'>
+                  <div className='button'>
                   city
+                  </div>
                 </div>
               </div>
             </div>
-          </div>
-          <div className='area'>
-            <div className='title border-topbottom'>
+            <div className='area'>
+              <div className='title border-topbottom'>
               热门城市
-            </div>
-            <div className='button-list'>
-              {
-                hotCitys.map((item, index) => {
-                  return (
-                    <div
-                      className='button-wrapper'
-                      key={index}
-                    >
-                      <div className='button'>
-                        {item.name}
+              </div>
+              <div className='button-list'>
+                {
+                  hotCitys.map((item, index) => {
+                    return (
+                      <div
+                        className='button-wrapper'
+                        key={index}
+                      >
+                        <div className='button'>
+                          {item.name}
+                        </div>
                       </div>
-                    </div>
-                  )
-                })
-              }
+                    )
+                  })
+                }
+              </div>
             </div>
+            {
+              citys.map((item, index) => {
+                return (
+                  <div
+                    className='area cities'
+                    key={index}
+                  >
+                    <div className='title border-topbottom'>
+                      {item[0]}
+                    </div>
+                    <div className='item-list'>
+                      {
+                        item[1].map((jitem, jindex) => {
+                          return (
+                            <div
+                              className='item border-bottom'
+                              key={jindex}
+                            >
+                              {jitem.name}
+                            </div>
+                          )
+                        })
+                      }
+                    </div>
+                  </div>
+                )
+              })
+            }
           </div>
-          {
-            citys.map((item, index) => {
-              return (
-                <div
-                  className='area cities'
-                  key={index}
-                >
-                  <div className='title border-topbottom'>
-                    {item[0]}
-                  </div>
-                  <div className='item-list'>
-                    {
-                      item[1].map((jitem, jindex) => {
-                        return (
-                          <div
-                            className='item border-bottom'
-                            key={jindex}
-                          >
-                            {jitem.name}
-                          </div>
-                        )
-                      })
-                    }
-                  </div>
-                </div>
-              )
-            })
-          }
         </div>
       </div>
     )
@@ -102,10 +102,9 @@ class City extends Component {
   componentDidMount() {
     const { dispathCity } = this.props
     dispathCity()
-    if (!this.lScroll) {
-      this.lScroll = new BScroll(this.refs.list, {
-        click: true,
-        probeType: 3
+    if (!this.sScroll) {
+      this.sScroll = new BScroll(this.refs.list, {
+        click: true
       })
     }
   }
