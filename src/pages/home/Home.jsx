@@ -35,20 +35,20 @@ class Home extends Component {
 
     )
   }
-  componentDidMount() {
-    if (!this.Scroll) {
-      this.Scroll = new BScroll(this.refs.home, {
-        click: true,
-        probeType: 3
-      }).on('scroll', pos => {
-        this.setState(() => {
-          return {
-            ScrollY: pos.y
-          }
-        })
-      })
-    }
-  }
+  // componentDidMount() {
+  //   if (!this.Scroll) {
+  //     this.Scroll = new BScroll(this.refs.home, {
+  //       click: true,
+  //       probeType: 3
+  //     }).on('scroll', pos => {
+  //       this.setState(() => {
+  //         return {
+  //           ScrollY: pos.y
+  //         }
+  //       })
+  //     })
+  //   }
+  // }
 }
 
 export default Home
