@@ -22,4 +22,7 @@ module.exports = function(app) {
   app.use(proxy('/locations', {
     target: 'http://localhost:3000'
   }))
+  app.use(proxy('/orders', {
+    target: 'http://localhost:3000'
+  }))
 }

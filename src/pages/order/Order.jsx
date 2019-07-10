@@ -15,6 +15,9 @@ class Order extends Component {
     }
   }
   render() {
+    const { order } = this.props
+    const orders = order.toJS()
+    console.log(orders, 'orders...')
     return (
       <div>
         <div className='order'>
@@ -81,12 +84,20 @@ class Order extends Component {
       </div>
     )
   }
+  componentDidMount() {
+    const { dispathOrder } = this.props
+    dispathOrder()
+  }
 }
 
 const mapState = state => ({
+  order: state.getIn(['order', 'order'])
 })
 
 const mapDispatch = dispatch => ({
+  dispathOrder() {
+    dispatch(actionCreators.getOrderData())
+  }
 })
 
 export default connect(
