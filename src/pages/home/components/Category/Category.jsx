@@ -17,32 +17,6 @@ class Category extends Component {
     const newList = items.toJS() // toJS() immutable对象转原生js
     return (
       <div>
-        {/* <Carousel className='slider' dots={false}>
-          <div>
-            {
-              newList.splice(7, 8).map((item, index) => {
-                return (
-                  <div className='category-item' key={index}>
-                    <img className='item-icon' src={item.url} />
-                    <p className='item-name'>{item.name}</p>
-                  </div>
-                )
-              })
-            }
-          </div>
-          <div>
-            {
-              newList.splice(0, 8).map((item, index) => {
-                return (
-                  <div className='category-item' key={index}>
-                    <img className='item-icon' src={item.url} />
-                    <p className='item-name'>{item.name}</p>
-                  </div>
-                )
-              })
-            }
-          </div>
-        </Carousel> */}
         <Carousel>
           <div className='category'>
             {
