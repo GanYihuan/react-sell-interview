@@ -10,10 +10,7 @@ class ShopBar extends Component {
   constructor(props) {
     super(props)
     this.state = {
-      tPrice: 0, // totalPrice
-      totalCount: 0, // totalCount
-      showChoose: false,
-      selectFoods: []
+      showChoose: false
     }
   }
   render() {
@@ -27,7 +24,6 @@ class ShopBar extends Component {
     const { shopCarTotal, navHeader, menuData, shopCarData } = this.props
     const temp = shopCarData.toJS()
     const shopCarDatas = temp.filter(a => a.chooseCount === Math.max(...temp.filter(b => b.name === a.name).map(({ chooseCount }) => chooseCount))).sort(compare('sellCount'))
-    // console.log(shopCarDatas, 'shopCarDatas...')
     return (
       <Fragment>
         <div className='shopCart'>
@@ -94,18 +90,6 @@ class ShopBar extends Component {
       </Fragment>
     )
   }
-  componentDidMount() {
-    const { shopCarTotal, shopCarData } = this.props
-    const totalPrice = this.getTotalPrice()
-    const selectFoods = shopCarData.toJS()
-    this.setState(() => {
-      return {
-        tPrice: totalPrice,
-        totalCount: shopCarTotal,
-        selectFoods: selectFoods
-      }
-    })
-  }
   payDesc() {
     const { shopCarData, navHeader } = this.props
     const temp = shopCarData.toJS()
@@ -143,12 +127,14 @@ class ShopBar extends Component {
     dispathClearShopCarData()
   }
   pay() {
-    const { dispathPay } = this.props
+    const { dispathPay, name, img, shopCarTotal, shopCarData } = this.props
+    const shopCarDatas = shopCarData.toJS()
     if (this.totalPrice < this.minPrice) {
       return
     }
-    const price = this.state.tPrice
-    dispathPay()
+    const totalPrice = this.getTotalPrice()
+    // console.log(name, img, shopCarDatas, shopCarTotal, totalPrice, 'xxxx')
+    dispathPay(name, img, shopCarDatas, shopCarTotal, totalPrice)
   }
 }
 
@@ -167,13 +153,13 @@ const mapDispatch = dispatch => ({
   dispathClearShopCarData() {
     dispatch(actionCreators.clearShopCartData())
   },
-  dispathPay() {
+  dispathPay(sellerName, sellerImage, menu, number, price) {
     // sellerName: this.sellerName,
     // sellerImage: this.sellerImage,
     // menu: this.selectFoods,
     // number: this.totalCount,
     // price: this.totalPrice
-    dispatch(actionCreators.Pay())
+    dispatch(actionCreators.Pay(sellerName, sellerImage, menu, number, price))
   }
 })
 

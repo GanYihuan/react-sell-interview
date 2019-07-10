@@ -43,7 +43,7 @@ class App extends Component {
               <Route path='/my' exact component={My} />
               <Route path='/login' exact component={Login} />
               <Route path='/register' exact component={Register} />
-              <Route path='/menu' exact component={Menu}/>
+              <Route path='/menu/:name/:img' component={Menu}/>
               <Route path='/rating' exact component={Rating}/>
               <Route path='/restanurant' exact component={Restanurant}/>
               {/* <Redirect> 用于页面重定向 */}

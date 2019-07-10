@@ -96,7 +96,7 @@ export const Pay = (sellerName, sellerImage, menu, number, price) => (dispatch) 
       const notyf = new Notyf()
       if (status === 200) {
         if (data && data.code === 0) {
-          notyf.success(`${data.msg} 需要支付${this.totalPrice}元 到评价界面给个评价!`)
+          notyf.success(`${data.msg} 需要支付${price}元 到评价界面给个评价!`)
         } else {
           notyf.error(`${data.msg}`)
         }

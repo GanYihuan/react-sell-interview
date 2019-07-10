@@ -27,13 +27,13 @@ class ListItem extends Component {
       return <div className='item-delivery-type'>美团专送</div>
     }
   }
-  goMenu() {
-    this.props.history.push(`/restanurant`) // withRouter
+  goMenu(name, img) {
+    this.props.history.push(`/menu/${name}/${img}`) // withRouter
   }
   render() {
     const { itemData } = this.props
     return (
-      <div className='item border-bottom' onClick={() => this.goMenu()}>
+      <div className='item border-bottom' onClick={() => this.goMenu(itemData.name, encodeURIComponent(itemData.pic_url))}>
         <img className='item-img' src={itemData.pic_url} />
         {this.renderBrand(itemData.delivery_type)}
         <div className='item-info'>

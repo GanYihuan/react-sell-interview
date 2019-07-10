@@ -13,7 +13,9 @@ class Menu extends Component {
     this.state = {
       classMap: ['decrease', 'discount', 'special', 'invoice', 'guarantee'],
       listHeight: [], /* An array of the heights of each element on the right side */
-      scrollY: 0 // foodsScroll Real-time scroll position scrollY
+      scrollY: 0, // foodsScroll Real-time scroll position scrollY
+      name: '',
+      img: ''
     }
   }
   render() {
@@ -89,12 +91,22 @@ class Menu extends Component {
             </div>
           </div>
         </div>
-        <ShopBar/>
+        <ShopBar name={this.state.name} img={this.state.img} />
       </div>
     )
   }
   componentDidMount() {
-    const { dispathMenuData, dispatchgetFoodData } = this.props
+    const { dispathMenuData, dispatchgetFoodData, match } = this.props
+    console.log(match.params.name, 'name..')
+    console.log(decodeURIComponent(match.params.img), 'img..')
+    const name = match.params.name
+    const img = decodeURIComponent(match.params.img)
+    this.setState(() => {
+      return {
+        name: name,
+        img: img
+      }
+    })
     dispathMenuData()
     // dispatchgetFoodData()
     if (!this.mScroll) {
