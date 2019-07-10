@@ -10,7 +10,8 @@ class City extends Component {
   constructor(props) {
     super(props)
     this.state = {
-      alphabet: []
+      alphabet: [],
+      letter: ''
     }
   }
   render() {
@@ -113,6 +114,7 @@ class City extends Component {
                   ref='item'
                   className='item'
                   key={index}
+                  onClick={() => { this.handleLetterClick(item) }}
                 >
                   {item}
                 </li>
@@ -134,6 +136,14 @@ class City extends Component {
   }
   goBack() {
     this.props.history.push('/home')
+  }
+  handleLetterClick(item) {
+    this.setState(() => {
+      return {
+        letter: item
+      }
+    })
+    // const element = this.refs[item][0]
   }
 }
 
