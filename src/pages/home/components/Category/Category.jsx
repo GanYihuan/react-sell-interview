@@ -1,7 +1,7 @@
 ﻿import React, { Component } from 'react'
 import { connect } from 'react-redux' // 将 store 中的数据作为 props 绑定到组件上
-import Carousel from 'nuka-carousel' // 实现轮播图组件功能, 首页里的图标轮播组件
 import { actionCreators } from 'home/store/index'
+import Carousel from 'nuka-carousel' // 实现轮播图组件功能, 首页里的图标轮播组件
 import './Category.styl'
 
 class Category extends Component {
