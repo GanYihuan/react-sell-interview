@@ -10,8 +10,9 @@ class City extends Component {
   constructor(props) {
     super(props)
     this.state = {
-      alphabet: [],
-      letter: ''
+      keyword: '',
+      letter: '',
+      list: []
     }
   }
   render() {
@@ -21,43 +22,76 @@ class City extends Component {
     } = this.props
     const hotCitys = hotCity.toJS()
     const citys = city.toJS()
+    const temp = []
     for (const item of citys) {
-      this.state.alphabet.push(item[0])
+      temp.push(item[0])
     }
     return (
       <div className='City'>
-        <div className='header' onClick={() => this.goBack()}>
+        <div className='header'>
           城市选择
-          <div className='iconfont header-back'>
+          <div className='iconfont header-back' onClick={() => this.goBack()}>
             <i className='icon-arrow_lift' />
           </div>
         </div>
         <div className='search-wrapper'>
           <div className='search'>
             <input
+              value={ this.state.keyword }
+              ref={input => (this.second = input)}
+              onChange={() => this.handleInputChange()}
               className='search-input'
               type='text'
               placeholder='输入城市名或拼音'
             />
           </div>
+          {
+            this.state.keyword !== ''
+              ? <div
+                className='search-content'
+                ref='searchList'
+              >
+                <div>
+                  {
+                    this.state.list
+                      ? this.state.list.map((item, index) => {
+                        return (
+                          <div
+                            key={index}
+                            className='search-item border-bottom'
+                          >
+                            {item}
+                          </div>
+                        )
+                      })
+                      : <li
+                        className='search-item border-bottom'
+                      >
+                        没有找到匹配数据
+                      </li>
+                  }
+                </div>
+              </div>
+              : <div ref='searchList'><div></div></div>
+          }
         </div>
-        <div className='list' ref='list'>
+        <div className='list' ref={ div => { this.list = div }} ref='list'>
           <div>
             <div className='area'>
               <div className='title border-topbottom'>
-              当前城市
+                当前城市
               </div>
               <div className='button-list current'>
                 <div className='button-wrapper'>
                   <div className='button'>
-                  city
+                    city
                   </div>
                 </div>
               </div>
             </div>
             <div className='area'>
               <div className='title border-topbottom'>
-              热门城市
+                热门城市
               </div>
               <div className='button-list'>
                 {
@@ -106,22 +140,24 @@ class City extends Component {
             }
           </div>
         </div>
-        <ul className='alphabet'>
+        <div className='alphabet'>
           {
-            this.state.alphabet.map((item, index) => {
-              return (
-                <li
-                  ref='item'
-                  className='item'
-                  key={index}
-                  onClick={() => { this.handleLetterClick(item) }}
-                >
-                  {item}
-                </li>
-              )
-            })
+            this.state.keyword !== ''
+              ? null
+              : temp.map((item, index) => {
+                return (
+                  <div
+                    ref='item'
+                    className='item'
+                    key={index}
+                    onClick={() => { this.handleLetterClick(item) }}
+                  >
+                    {item}
+                  </div>
+                )
+              })
           }
-        </ul>
+        </div>
       </div>
     )
   }
@@ -133,17 +169,50 @@ class City extends Component {
         click: true
       })
     }
+    if (!this.eScroll) {
+      this.eScroll = new BScroll(this.refs.searchList, {
+        click: true
+      })
+    }
   }
   goBack() {
     this.props.history.push('/home')
   }
   handleLetterClick(item) {
+    // this.setState(() => {
+    //   return {
+    //     letter: item
+    //   }
+    // })
+    // const element = this.refs[item][0]
+    // this.sScroll.scrollToElement(this.list[item])
+  }
+  handleInputChange() {
+    const { city } = this.props
+    const citys = city.toJS()
     this.setState(() => {
       return {
-        letter: item
+        keyword: this.second.value
       }
     })
-    // const element = this.refs[item][0]
+    if (this.timer) {
+      clearTimeout(this.timer)
+    }
+    this.timer = setTimeout(() => { // Throttling function
+      const result = []
+      citys.forEach((item, index) => {
+        item[1].forEach((jitem, jindex) => {
+          if (jitem.name.indexOf(this.state.keyword) > -1 || jitem.spell.indexOf(this.state.keyword) > -1) {
+            result.push(jitem.name)
+          }
+        })
+      })
+      this.setState(() => {
+        return {
+          list: result
+        }
+      })
+    }, 100)
   }
 }
 
