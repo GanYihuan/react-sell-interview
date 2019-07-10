@@ -1,6 +1,8 @@
 ﻿import React, { Component } from 'react'
+import { withRouter } from 'react-router-dom'
 import './Header.styl'
 
+@withRouter
 class Header extends Component {
   render() {
     return (
@@ -9,12 +11,12 @@ class Header extends Component {
           <div className='bar-location'>
             <div className='location-icon' />
             <div className='location-text'>
-              city
+              深圳
             </div>
           </div>
           <div
             className='search-btn'
-            // @click="gotCity"
+            onClick={() => this.goCity()}
           >
             <input
               className='place-holder'
@@ -26,6 +28,9 @@ class Header extends Component {
         <img className='banner-img' src='//xs01.meituan.net/waimai_i/img/bannertemp.e8a6fa63.jpg'/>
       </div>
     )
+  }
+  goCity() {
+    this.props.history.push('/register')
   }
 }
 
