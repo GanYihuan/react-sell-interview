@@ -12,6 +12,7 @@ import store from './store'
 // import Rating from 'rating/Rating'
 
 const Home = lazy(() => import(/* webpackChunkName: "Home" */ 'home/Home')) // lazy & Suspense 实现代码拆分
+const City = lazy(() => import(/* webpackChunkName: "Home" */ 'city/City')) // lazy & Suspense 实现代码拆分
 const My = lazy(() => import(/* webpackChunkName: "My" */ 'my/My'))
 const Login = lazy(() => import(/* webpackChunkName: "My" */ 'login/Login'))
 const Register = lazy(() => import(/* webpackChunkName: "My" */ 'register/Register'))
@@ -34,6 +35,7 @@ class App extends Component {
               {/* <Switch> 组件可将多个 <Route> “包裹”在一起 */}
               {/* <Route> 组件路由匹配 */}
               <Route path='/home' exact component={Home} />
+              <Route path='/city' exact component={City} />
               <Route path='/my' exact component={My} />
               <Route path='/login' exact component={Login} />
               <Route path='/register' exact component={Register} />

@@ -30,7 +30,7 @@ class Header extends Component {
     )
   }
   goCity() {
-    this.props.history.push('/register')
+    this.props.history.push('/city')
   }
 }
 
