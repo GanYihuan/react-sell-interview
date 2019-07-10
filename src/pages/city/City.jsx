@@ -7,6 +7,12 @@ import './City.styl'
 
 @withRouter
 class City extends Component {
+  constructor(props) {
+    super(props)
+    this.state = {
+      alphabet: []
+    }
+  }
   render() {
     const {
       city,
@@ -14,6 +20,9 @@ class City extends Component {
     } = this.props
     const hotCitys = hotCity.toJS()
     const citys = city.toJS()
+    for (const item of citys) {
+      this.state.alphabet.push(item[0])
+    }
     return (
       <div className='City'>
         <div className='header' onClick={() => this.goBack()}>
@@ -96,6 +105,21 @@ class City extends Component {
             }
           </div>
         </div>
+        <ul className='alphabet'>
+          {
+            this.state.alphabet.map((item, index) => {
+              return (
+                <li
+                  ref='item'
+                  className='item'
+                  key={index}
+                >
+                  {item}
+                </li>
+              )
+            })
+          }
+        </ul>
       </div>
     )
   }
