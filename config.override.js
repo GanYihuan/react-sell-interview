@@ -1,8 +1,10 @@
 ﻿const { override, fixBabelImports, addWebpackAlias } = require('customize-cra')
 const path = require('path')
+
 function resolve(dir) {
   return path.join(__dirname, '.', dir)
 }
+
 module.exports = override(
   // 配置路径别名
   addWebpackAlias({
@@ -12,7 +14,8 @@ module.exports = override(
     store: path.resolve(__dirname, 'src/store'),
     actions: path.resolve(__dirname, 'src/actions'),
     reducers: path.resolve(__dirname, 'src/reducers'),
-    json: path.resolve(__dirname, 'src/json')
+    json: path.resolve(__dirname, 'src/json'),
+    assets: path.resolve(__dirname, 'src/assets')
   }),
   // // antd按需加载
   // fixBabelImports('import', {

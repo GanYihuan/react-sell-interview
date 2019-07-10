@@ -21,10 +21,11 @@ class ListItem extends Component {
     return num
   }
   renderMeituanFlag(data) {
-    if (data > 0) {
+    if (data === 1) {
+      return <div className='highlight'>美团专送</div>
+    } else {
       return <div className='item-delivery-type'>美团专送</div>
     }
-    return null
   }
   goMenu() {
     this.props.history.push(`/restanurant`) // withRouter
@@ -38,7 +39,7 @@ class ListItem extends Component {
         <div className='item-info'>
           <p className='item-title'>{itemData.name}</p>
           <div className='item-desc clearfix'>
-            <div className='item-score'><StarScore score={itemData.wm_poi_score}/></div>
+            <div className='item-score'><StarScore score={itemData.wm_poi_score} size={24}/></div>
             <div className='item-count'>月售{this.renderMonthNum(itemData.month_sale_num)}</div>
             <div className='item-distance'>&nbsp;{itemData.distance}</div>
             <div className='item-time'>{itemData.mt_delivery_time}&nbsp;|</div>

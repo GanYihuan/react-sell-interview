@@ -4,7 +4,7 @@ import PropTypes from 'prop-types'
 import BScroll from 'better-scroll'
 import styles from './scroll.styl'
 
-class Scroll extends React.Component {
+class Scroll extends Component {
   static defaultProps = {
     click: true, // 页面是否可以点击,
     tap: true,
