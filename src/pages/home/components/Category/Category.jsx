@@ -1,7 +1,8 @@
 ﻿import React, { Component } from 'react'
 import { connect } from 'react-redux' // 将 store 中的数据作为 props 绑定到组件上
 import { actionCreators } from 'home/store/index'
-import Carousel from 'nuka-carousel' // 实现轮播图组件功能, 首页里的图标轮播组件
+// import Carousel from 'nuka-carousel' // 实现轮播图组件功能, 首页里的图标轮播组件
+import { Carousel } from 'antd'
 import './Category.styl'
 
 class Category extends Component {
@@ -15,8 +16,8 @@ class Category extends Component {
     } = this.props
     const newList = items.toJS() // toJS() immutable对象转原生js
     return (
-      <div className='category-content'>
-        <Carousel className='slider' dots={false}>
+      <div>
+        {/* <Carousel className='slider' dots={false}>
           <div>
             {
               newList.splice(7, 8).map((item, index) => {
@@ -36,6 +37,36 @@ class Category extends Component {
                   <div className='category-item' key={index}>
                     <img className='item-icon' src={item.url} />
                     <p className='item-name'>{item.name}</p>
+                  </div>
+                )
+              })
+            }
+          </div>
+        </Carousel> */}
+        <Carousel>
+          <div className='category'>
+            {
+              newList.splice(7, 8).map((item, index) => {
+                return (
+                  <div className='category-item' key={index}>
+                    <div className='icon-img'>
+                      <img className='icon-img-content' src={item.url} />
+                    </div>
+                    <p className='icon-desc'>{item.name}</p>
+                  </div>
+                )
+              })
+            }
+          </div>
+          <div className='category'>
+            {
+              newList.splice(0, 8).map((item, index) => {
+                return (
+                  <div className='category-item' key={index}>
+                    <div className='icon-img'>
+                      <img className='icon-img-content' src={item.url} />
+                    </div>
+                    <p className='icon-desc'>{item.name}</p>
                   </div>
                 )
               })

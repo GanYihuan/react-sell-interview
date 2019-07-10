@@ -1,21 +1,49 @@
-﻿.category-content
-  padding-bottom: .625rem
+﻿@import '../../../../assets/stylus/mixin'
+@import '../../../../assets/stylus/variable'
+
+.category
+  margin-top: .1rem
   .category-item
     display: flex
     flex-direction: column
-    align-items: center
+    justify-content: space-between
     float: left
+    position: relative
     width: 25%
-    padding-top: .875rem
-    font-size: .8125rem
-  .item-icon
-    width: 2.9375rem
-  .item-name
-    margin-top: .875rem
-.slider
-  .slider-control-centerright
-    display: none
-  .slider-control-centerleft
-    display: none
-  .slider-control-bottomcenter
-    display: none
+    height: 0
+    padding-bottom: 25%
+    overflow: hidden
+    .icon-img
+      box-sizing: border-box
+      position: absolute
+      left: 0
+      right: 0
+      top: 50%
+      margin-top: -3rem
+      height: 3.5rem
+      @media screen and (max-width: 23.4375rem)
+        margin-top: -2.4rem
+        height: 3rem
+      .icon-img-content
+        display: block
+        margin: 0 auto
+        height: 100%
+    .icon-desc
+      position: absolute
+      left: 0
+      right: 0
+      bottom: .3rem
+      height: 1rem
+      line-height: 1rem
+      text-align: center
+      font-size: .5rem
+      font-weight: 800
+      color: $color-text
+      ellipsis()
+/* For demo */
+.ant-carousel .slick-slide
+  text-align: center
+  height: 10rem
+  line-height: 10rem
+  background: $color-white
+  overflow: hidden
