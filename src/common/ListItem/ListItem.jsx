@@ -7,7 +7,7 @@ import './ListItem.styl'
 @withRouter
 class ListItem extends Component {
   renderBrand(data) {
-    if (data) {
+    if (data > 0) {
       return <div className='brand brand-pin'>品牌</div>
     } else {
       return <div className='brand brand-xin'>新到</div>
@@ -35,7 +35,7 @@ class ListItem extends Component {
     return (
       <div className='item border-bottom' onClick={() => this.goMenu()}>
         <img className='item-img' src={itemData.pic_url} />
-        {this.renderBrand(itemData.brand_type)}
+        {this.renderBrand(itemData.delivery_type)}
         <div className='item-info'>
           <p className='item-title'>{itemData.name}</p>
           <div className='item-desc clearfix'>
