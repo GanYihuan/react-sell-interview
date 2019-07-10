@@ -5,6 +5,7 @@ import { reducer as mainReducer } from '../common/NavHeader/store'
 import { reducer as menuReducer } from '../pages/menu/store'
 import { reducer as restanurantReducer } from '../pages/restanurant/store'
 import { reducer as ratingsReducer } from '../pages/rating/store'
+import { reducer as cityReducer } from '../pages/city/store'
 
 const reducer = combineReducers({
   home: homeReducer,
@@ -12,7 +13,8 @@ const reducer = combineReducers({
   main: mainReducer,
   menu: menuReducer,
   restanurant: restanurantReducer,
-  ratings: ratingsReducer
+  ratings: ratingsReducer,
+  city: cityReducer
 })
 
 export default reducer
