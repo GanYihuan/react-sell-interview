@@ -1,4 +1,6 @@
-﻿.my
+﻿@import '../../assets/stylus/mixin.styl'
+@import '../../assets/stylus/variable.styl'
+.my
   .header
     display: flex
     flex: 1
@@ -15,17 +17,16 @@
     height: 5rem
     background-size: cover
     background-image: url("img/usericon.png")
-    border-radius: 50%
   .nickname
     margin-top: .9375rem
     text-align: center
     font-size: 1rem
-    color: #333
+    color: $color-black-s
   .content
     min-height: 31.6875rem
-    background-color: #eee
+    background-color: $color-white-s
   .items
-    background-color: #fff
+    background-color: $color-white
     position relative
     &:after
       display: block
@@ -33,13 +34,13 @@
       right: 0
       bottom: 0
       width: 96%
-      border-top: .0625rem solid #eee
+      border-top: .0625rem solid $color-white-s
       content: ''
     li
       position: relative
       padding-left: 1.625rem
       margin-left: .9375rem
-      border-bottom: .0625rem solid #e4e4e4
+      border-bottom: .0625rem solid $color-white-s
       height: 2.8125rem
       line-height: 2.8125rem
       font-size: .875rem
@@ -64,7 +65,7 @@
         top: 0
         width: 1rem
         height: 1rem
-        color: #aaa
+        color: $color-gray
     .address
       &:before
         background-image: url("./img/address.png")
@@ -77,17 +78,21 @@
     .question
       &:before
         background-image: url("./img/question.png")
-  .tel
-    position: relative
-    top: 11.2rem
-    height: 2.875rem
-    line-height: 2.875rem
-    text-align: center
-    font-size: .9375rem
-    // color: #ffb000
-    background-color: #fff
-  .time
-    margin-top: .8125rem
-    text-align: center
-    font-size: .875rem
-    color: #999
+    .login
+      color $color-black
+    .register
+      color $color-black
+  .btn
+    &.register
+      position absolute
+      bottom 2rem
+      // margin: .625rem 0 0 0
+      width: 100%
+    &.login
+      position absolute
+      bottom 5rem
+      width: 100%
+    &.logout
+      position absolute
+      bottom 8rem
+      width: 100%

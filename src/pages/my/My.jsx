@@ -1,11 +1,13 @@
 ﻿import React, { Component } from 'react'
-import { Link } from 'react-router-dom'
+import { Link, withRouter } from 'react-router-dom'
 import axios from 'axios'
-import { Layout } from 'element-react'
+import { Layout, Button } from 'element-react'
+import { Notyf } from 'notyf' // Pure js message notification plugin
 import 'element-theme-default'
 import BottomBar from 'BottomBar/BottomBar'
 import './My.styl'
 
+@withRouter
 class My extends Component {
   constructor(props) {
     super(props)
@@ -57,10 +59,44 @@ class My extends Component {
               </li>
             </ul>
           </div>
+          <Layout.Row>
+            <Layout.Col span='16'>
+              <Button className='btn login' type='warning' onClick={() => this.login()}>登录</Button>
+            </Layout.Col>
+          </Layout.Row>
+          <Layout.Row>
+            <Layout.Col span='16'>
+              <Button className='btn logout' type='warning' onClick={() => this.logout()}>登出</Button>
+            </Layout.Col>
+          </Layout.Row>
+          <Layout.Row>
+            <Layout.Col span='16'>
+              <Button className='btn register' type='warning' onClick={() => this.register()}>注册</Button>
+            </Layout.Col>
+          </Layout.Row>
         </div>
         <BottomBar/>
       </div>
     )
+  }
+  login() {
+    this.props.history.push('/login')
+  }
+  async logout() {
+    const { status, data } = await axios.get('/users/exit')
+    const notyf = new Notyf()
+    if (status === 200 && data && data.code === 0) {
+      this.setState(() => {
+        return {
+          user: '',
+          email: ''
+        }
+      })
+      notyf.success(`登出操作`)
+    }
+  }
+  register() {
+    this.props.history.push('/register')
   }
 }
 
