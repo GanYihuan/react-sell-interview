@@ -1,1 +1,80 @@
-﻿
+﻿@import '../../assets/stylus/mixin.styl'
+@import '../../assets/stylus/variable.styl'
+.header
+  border-1px($color-black-ss)
+  width: 100%
+  height: 4rem
+  line-height: 4rem
+  text-align: center
+  font-size: 1.0625rem
+  font-weight: bold
+  background-color: $color-white
+  .arrow
+    display inline-block
+    position absolute
+    left 0
+    width 4rem
+    height 100%
+    color: $color-black
+  .icon-arrow_lift
+    position absolute
+    left 50%
+    top 50%
+    transform: translate(-50%, -50%)
+.icon-arrow_lift
+  position relative
+  left -10rem
+.evalutate
+  height: 100%
+  .eva-content
+    border-top: .8125rem solid $color-gray-s
+    overflow: hidden
+    background-color: $color-white
+  .star-area
+    margin-top: 1.875rem
+    text-align: center
+  .star-item
+    display: inline-block
+    margin-right: .625rem
+    width: 2rem
+    height: 2rem
+    background-size: cover
+    background-image: url('./img/gray-star.png');
+    &.highlight
+      background-image: url('./img/light-star.png');
+  .comment
+    position: relative
+    margin-top: 1.25rem
+    margin-left: .625rem
+    margin-right: .625rem
+    padding-bottom:.8125rem
+    border-bottom: .0625rem solid $color-gray-s
+    .count
+      position: absolute
+      bottom: 1.5rem
+      right: .5625rem
+      font-size: .6875rem
+      color: $color-gray
+    .comment-input
+      box-sizing: border-box
+      padding: .625rem
+      border-radius: 0
+      border: .0625rem solid $color-gray-s
+      width: 100%
+      height: 6.25rem
+      font-size: 1rem
+      background-color: $color-white-ss
+      outline: none
+      -webkit-appearance: none
+  .product-name
+    padding-top: 1.25rem
+    padding-bottom: 1.25rem
+    padding-left: 1.25rem
+    text-align: left
+    font-size: 1rem
+.btn
+  box-sizing: border-box
+  margin: .625rem 0
+  width: 100%
+  height: 2.5rem
+  background-color: $color-yellow

@@ -11,7 +11,25 @@ class Evaluate extends Component {
   constructor(props) {
     super(props)
     this.state = {
-      list: []
+      maxCount: 50,
+      starIndex: 0,
+      stars: [
+        {
+          num: 0
+        },
+        {
+          num: 1
+        },
+        {
+          num: 2
+        },
+        {
+          num: 3
+        },
+        {
+          num: 4
+        }
+      ]
     }
   }
   render() {
@@ -24,13 +42,19 @@ class Evaluate extends Component {
           >
             <i className='icon-arrow_lift' />
           </NavLink>
-        评价
+          评价
         </div>
         <div className='eva-content'>
           <div className='star-area'>
-            <div
-              className='star-item'
-            />
+            {
+              this.state.stars.map((item, index) => {
+                return (
+                  item.num <= this.state.starIndex
+                    ? <div className='star-item highlight' key={item.num} onClick={() => { this.addStar(index) }}></div>
+                    : <div className='star-item' key={item.num} onClick={() => { this.addStar(index) }}></div>
+                )
+              })
+            }
           </div>
           <div className='comment'>
             <textarea
@@ -39,7 +63,7 @@ class Evaluate extends Component {
               placeholder='请写下你的评价。4星或4星以上好评, 3星或3星以下差评'
               maxLength='50'
             />
-            <span className='count'>maxCount</span>
+            <span className='count'>{ this.state.maxCount }</span>
           </div>
         </div>
         <Layout.Row>
@@ -47,8 +71,9 @@ class Evaluate extends Component {
             <Button
               className='btn'
               type='warning'
-              plain
+              plain={true}
               size='large'
+              onClick={() => { this.submit() }}
             >
             提交评价
             </Button>
@@ -57,6 +82,14 @@ class Evaluate extends Component {
       </div>
     )
   }
+  addStar(index) {
+    this.setState(() => {
+      return {
+        starIndex: index
+      }
+    })
+  }
+  submit() {}
 }
 
 const mapState = state => ({

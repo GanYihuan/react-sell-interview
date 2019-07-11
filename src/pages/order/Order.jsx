@@ -77,6 +77,7 @@ class Order extends Component {
                       <div className='evaluation clearfix'>
                         <div
                           className='evaluation-btn'
+                          onClick={() => { this.comment() }}
                         >
                          待评价
                         </div>
@@ -107,6 +108,9 @@ class Order extends Component {
     }
   }
   deleteComment() {}
+  comment() {
+    this.props.history.push('/evaluate')
+  }
 }
 
 const mapState = state => ({
