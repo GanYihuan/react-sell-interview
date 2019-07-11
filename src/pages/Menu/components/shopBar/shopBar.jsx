@@ -24,7 +24,7 @@ class ShopBar extends Component {
     const { shopCarTotal, navHeader, menuData, shopCarData } = this.props
     const temp = shopCarData.toJS()
     console.log(temp, 'temp..')
-    const shopCarDatas = temp.filter(a => a.chooseCount === Math.max(...temp.filter(b => b.name === a.name).map(({ chooseCount }) => chooseCount))) // .reverse() // .sort(compare('sellCount')) // 选出 同 name 下 chooseCount 最大的
+    const shopCarDatas = temp.filter(a => a.chooseCount === Math.max(...temp.filter(b => b.name === a.name).map(({ chooseCount }) => chooseCount))).reverse() // .sort(compare('sellCount')) // 选出 同 name 下 chooseCount 最大的
     return (
       <Fragment>
         <div className='shopCart'>
@@ -49,7 +49,7 @@ class ShopBar extends Component {
                               <div className='price'>
                                 <span>￥{item.price * item.chooseCount}</span>
                               </div>
-                              <CartControl chooseCount={item.chooseCount} index={item.index} findex={item.findex} shopCarIndex={index}/>
+                              <CartControl chooseCount={item.chooseCount} index={item.index} findex={item.findex} name={item.name}/>
                             </div>
                           )
                         })
@@ -90,13 +90,6 @@ class ShopBar extends Component {
         }
       </Fragment>
     )
-  }
-  componentDidMount() {
-    const { shopCarData } = this.props
-    const temp = shopCarData.toJS()
-    //   const shopCarDatas = temp.filter(a => a.chooseCount === Math.max(...temp.filter(b => b.name === a.name).map(({ chooseCount }) => chooseCount))).reverse() // .sort(compare('sellCount')) // 选出 同 name 下 chooseCount 最大的
-    //   dispathresetshopCarData(shopCarDatas)
-    console.log(temp, 'shopCarData...')
   }
   payDesc() {
     const { shopCarData, navHeader } = this.props

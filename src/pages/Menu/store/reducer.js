@@ -74,8 +74,8 @@ const minusSelectItem = (state, action) => {
 // bug!
 const decshopCarData = (state, action) => {
   return state.merge({
-    // shopCarData: state.get('shopCarData').delete(fromJS(action.shopCarIndex))
-    shopCarData: state.get('shopCarData').insert(0, state.get('menuData').getIn([fromJS(action.index), 'foods', fromJS(action.findex)]))
+    // shopCarData: state.get('shopCarData').filter((value, key) => value.name === fromJS(action.name)).updateIn([0, 'chooseCount'], function(x) { return x - 1 })
+    shopCarData: state.get('shopCarData').filter((value, key) => value.name !== fromJS(action.name)).updateIn([0, 'chooseCount'], function(x) { return x - 1 })
   })
 }
 

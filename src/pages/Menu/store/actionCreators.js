@@ -51,11 +51,10 @@ export const addshopCarData = (index, findex) => (dispatch) => {
   })
 }
 
-export const decshopCarData = (index, findex) => (dispatch) => {
+export const decshopCarData = (name) => (dispatch) => {
   dispatch({
     type: constants.DECSHOPCARDATA,
-    index: index,
-    findex: findex
+    name: name
   })
 }
 

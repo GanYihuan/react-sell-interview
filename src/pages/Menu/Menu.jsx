@@ -77,7 +77,7 @@ class Menu extends Component {
                                     <span className='now'>￥{fitem.price}</span>
                                     <span className='old'>￥{fitem.oldPrice}</span>
                                   </div>
-                                  <CartControl chooseCount={fitem.chooseCount} index={index} findex={findex} />
+                                  <CartControl chooseCount={fitem.chooseCount} index={index} findex={findex} name={fitem.name}/>
                                 </div>
                               </div>
                             )

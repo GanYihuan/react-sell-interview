@@ -6,7 +6,7 @@ import './cartControl.styl'
 
 class cartControl extends Component {
   render() {
-    const { chooseCount, index, findex } = this.props // chooseCount -> 选择了多少件, index -> 食物是哪组(单人精彩套餐为一组), findex -> 该组中的第几位
+    const { chooseCount, index, findex, name } = this.props // chooseCount -> 选择了多少件, index -> 食物是哪组(单人精彩套餐为一组), findex -> 该组中的第几位
     return (
       <div className='cartControl-wrapper'>
         {
@@ -17,7 +17,7 @@ class cartControl extends Component {
             >
               <Fragment>
                 <div className='cart-decrease'>
-                  <span className='inner icon-remove_circle_outline' onClick={() => this.minusSelectItem(index, findex)}></span>
+                  <span className='inner icon-remove_circle_outline' onClick={() => this.minusSelectItem(index, findex, name)}></span>
                 </div>
                 <span className='cart-count'>{chooseCount}</span>
               </Fragment>
@@ -34,11 +34,11 @@ class cartControl extends Component {
     dispathaddshopCarTotal()
     dispatchaddshopCarData(index, findex)
   }
-  minusSelectItem(index, findex) {
+  minusSelectItem(index, findex, name) {
     const { dispathminusSelectItem, dispathdecshopCarTotal, dispatchdecshopCarData } = this.props
     dispathminusSelectItem(index, findex)
     dispathdecshopCarTotal()
-    dispatchdecshopCarData(index, findex)
+    dispatchdecshopCarData(name)
   }
 }
 
@@ -61,8 +61,8 @@ const mapDispatch = dispatch => ({
   dispatchaddshopCarData(index, findex) {
     dispatch(actionCreators.addshopCarData(index, findex))
   },
-  dispatchdecshopCarData(index, findex) {
-    dispatch(actionCreators.decshopCarData())
+  dispatchdecshopCarData(name) {
+    dispatch(actionCreators.decshopCarData(name))
   }
 })
 
