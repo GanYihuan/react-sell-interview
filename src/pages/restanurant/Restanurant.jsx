@@ -90,14 +90,14 @@ class Restanurant extends Component {
             <Split/>
             <div className='pics'>
               <div className='title'>商家实景</div>
-              <div className='scroll-view' ref='merchant'>
-                <div className='pic-wrapper'>
+              <div className='pic-wrapper' ref='picWrapper'>
+                <div className='pic-list'>
                   {
                     pics !== undefined
                       ? pics.map((item, index) => {
                         return (
                           <div className='pic-item' key={index}>
-                            <img src={item}/>
+                            <img src={item} alt='pic' />
                           </div>
                         )
                       }) : null
@@ -130,7 +130,7 @@ class Restanurant extends Component {
     const { dispathRestaurantData, restanurantData } = this.props
     dispathRestaurantData()
     if (!this.mScroll) {
-      this.mScroll = new BScroll(this.refs.merchant, {
+      this.mScroll = new BScroll(this.refs.picWrapper, {
         click: true,
         scrollX: true, /* horizontal scroll */
         eventPassthrough: 'vertical' /* ignore vertical scroll */

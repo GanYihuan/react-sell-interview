@@ -10,6 +10,7 @@
   .overview
     position: relative
     padding: 1.125rem
+    border-1px($color-black-ss)
     .title
       margin-bottom: .5rem
       line-height: .875rem
@@ -63,13 +64,14 @@
         font-size: 1.5rem
         color: $color-gray
         &.active
-          color: $color-red
+          color: $color-text-important
       .text
         line-height: .625rem
         font-size: .625rem
         color: $color-gray
   .bulletin
     padding: 1.125rem 1.125rem 0 1.125rem
+    border-1px($color-black-ss)
     .title
       margin-bottom: .5rem
       line-height: .875rem
@@ -81,7 +83,7 @@
       .content
         line-height: 1.5rem
         font-size: .75rem
-        color: $color-red
+        color: $color-text-important
     .supports
       .support-item
         padding: 1rem .75rem
@@ -119,9 +121,11 @@
       font-size: .875rem
       color: $color-black
     .pic-wrapper
-      // width: 100%
+      width: 100%
       white-space: nowrap
-      // overflow: hidden
+      overflow: hidden
+    .pic-list
+      font-size: 0
     .pic-item
       display: inline-block
       margin-right: .375rem
@@ -147,7 +151,3 @@
       font-size: .75rem
     &:last-child
       border-none()
-.scroll-view
-  width: 100%
-  height: 100%
-  overflow: hidden
