@@ -1,7 +1,9 @@
 ﻿import React, { Component } from 'react'
 import { withRouter, NavLink } from 'react-router-dom'
+import moment from 'moment' // Time format processing
 import { Button, Layout } from 'element-react'
 import { connect } from 'react-redux'
+import { actionCreators } from '../../store'
 import './Evaluate.styl'
 
 @withRouter
@@ -9,6 +11,7 @@ class Evaluate extends Component {
   constructor(props) {
     super(props)
     this.state = {
+      user: '默认用户名',
       maxCount: 50,
       starIndex: 0,
       stars: [
@@ -88,7 +91,7 @@ class Evaluate extends Component {
     })
   }
   submit() {
-    const { evaluate } = this.props
+    const { evaluate, dispathSubmit } = this.props
     const evaluates = evaluate.toJS()
 
     const score = this.state.starIndex + 1
@@ -100,6 +103,23 @@ class Evaluate extends Component {
     }
     const text = this.second.value
     console.log(evaluates, 'evaluates..')
+    const username = this.state.user
+    const commentTime = new Date()
+    const time = moment(commentTime).format(this.dateType)
+    const oldTime = (new Date(time)).getTime()
+    const avatar = './img/avatar.png'
+    const recommend = []
+    for (const i of evaluates) {
+      recommend.push(i.name)
+    }
+    dispathSubmit(username, oldTime, score, rateType, text, avatar, recommend)
+    // username: username,
+    // rateTime: oldTime,
+    // score: score,
+    // rateType: rateType,
+    // text: text,
+    // avatar: avatar,
+    // recommend: recommend
   }
 }
 
@@ -110,6 +130,9 @@ const mapState = state => ({
 })
 
 const mapDispatch = dispatch => ({
+  dispathSubmit(username, oldTime, score, rateType, text, avatar, recommend) {
+    dispatch(actionCreators.submit(username, oldTime, score, rateType, text, avatar, recommend))
+  }
 })
 
 export default connect(
