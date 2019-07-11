@@ -31,8 +31,10 @@ export default (state = initState, action) => {
       return addshopCarData(state, action)
     case constants.DECSHOPCARDATA:
       return decshopCarData(state, action)
-    case constants.CLEARSHOPCARTDATA:
-      return clearShopCarData(state, action)
+    case constants.RESETSHOPCARDATA:
+      return state.set('shopCarData', fromJS(action.shopCarDatas))
+    // case constants.CLEARSHOPCARTDATA:
+    //   return clearShopCarData(state, action)
     case constants.CHANGELEFTINDEX:
       return state.set('currentLeftIndex', fromJS(action.index))
     case 'GET_LIST_DATA':
@@ -65,13 +67,15 @@ const addshopCarData = (state, action) => {
 const minusSelectItem = (state, action) => {
   return state.merge({
     menuData: state.get('menuData').updateIn([fromJS(action.index), 'foods', fromJS(action.findex), 'chooseCount'], function(x) { return x - 1 })
-    // shopCarData: state.get('shopCarData').shift(state.get('menuData').getIn([fromJS(action.index), 'foods', fromJS(action.findex)]))
+    // shopCarData: state.get('shopCarData').updateIn(index, state.get('menuData').getIn([fromJS(action.index), 'foods', fromJS(action.findex)]))
   })
 }
 
+// bug!
 const decshopCarData = (state, action) => {
   return state.merge({
-    shopCarData: state.get('shopCarData').delete(fromJS(action.shopCarIndex))
+    // shopCarData: state.get('shopCarData').delete(fromJS(action.shopCarIndex))
+    shopCarData: state.get('shopCarData').insert(0, state.get('menuData').getIn([fromJS(action.index), 'foods', fromJS(action.findex)]))
   })
 }
 
@@ -81,9 +85,9 @@ const getListData = (state, action) => {
   })
 }
 
-const clearShopCarData = (state, action) => {
-  return state.merge({
-    shopCarData: state.get('shopCarData').clear(),
-    shopCarTotal: state.set('shopCarTotal', 0)
-  })
-}
+// const clearShopCarData = (state, action) => {
+//   return state.merge({
+//     shopCarData: state.get('shopCarData').clear(),
+//     shopCarTotal: state.set('shopCarTotal', 0)
+//   })
+// }

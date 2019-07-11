@@ -14,16 +14,17 @@ class ShopBar extends Component {
     }
   }
   render() {
-    function compare(property) {
-      return function(a, b) {
-        var value1 = a[property]
-        var value2 = b[property]
-        return value2 - value1
-      }
-    }
+    // function compare(property) {
+    //   return function(a, b) {
+    //     var value1 = a[property]
+    //     var value2 = b[property]
+    //     return value2 - value1
+    //   }
+    // }
     const { shopCarTotal, navHeader, menuData, shopCarData } = this.props
     const temp = shopCarData.toJS()
-    const shopCarDatas = temp.filter(a => a.chooseCount === Math.max(...temp.filter(b => b.name === a.name).map(({ chooseCount }) => chooseCount))).sort(compare('sellCount'))
+    console.log(temp, 'temp..')
+    const shopCarDatas = temp.filter(a => a.chooseCount === Math.max(...temp.filter(b => b.name === a.name).map(({ chooseCount }) => chooseCount))) // .reverse() // .sort(compare('sellCount')) // 选出 同 name 下 chooseCount 最大的
     return (
       <Fragment>
         <div className='shopCart'>
@@ -90,6 +91,13 @@ class ShopBar extends Component {
       </Fragment>
     )
   }
+  componentDidMount() {
+    const { shopCarData } = this.props
+    const temp = shopCarData.toJS()
+    //   const shopCarDatas = temp.filter(a => a.chooseCount === Math.max(...temp.filter(b => b.name === a.name).map(({ chooseCount }) => chooseCount))).reverse() // .sort(compare('sellCount')) // 选出 同 name 下 chooseCount 最大的
+    //   dispathresetshopCarData(shopCarDatas)
+    console.log(temp, 'shopCarData...')
+  }
   payDesc() {
     const { shopCarData, navHeader } = this.props
     const temp = shopCarData.toJS()
@@ -123,8 +131,9 @@ class ShopBar extends Component {
     })
   }
   clearCar() {
-    const { dispathClearShopCarData } = this.props
-    dispathClearShopCarData()
+  //   const { dispathClearShopCarData } = this.props
+  //   dispathClearShopCarData()
+    console.log('clear car!')
   }
   pay() {
     const { dispathPay, name, img, shopCarTotal, shopCarData } = this.props
@@ -133,7 +142,7 @@ class ShopBar extends Component {
       return
     }
     const totalPrice = this.getTotalPrice()
-    // console.log(name, img, shopCarDatas, shopCarTotal, totalPrice, 'xxxx')
+    console.log(name, img, shopCarDatas, shopCarTotal, totalPrice, 'xxxx')
     dispathPay(name, img, shopCarDatas, shopCarTotal, totalPrice)
   }
 }
@@ -160,6 +169,9 @@ const mapDispatch = dispatch => ({
     // number: this.totalCount,
     // price: this.totalPrice
     dispatch(actionCreators.Pay(sellerName, sellerImage, menu, number, price))
+  },
+  dispathresetshopCarData(shopCarDatas) {
+    dispatch(actionCreators.resetshopCarData(shopCarDatas))
   }
 })
 

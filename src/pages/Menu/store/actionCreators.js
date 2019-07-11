@@ -51,10 +51,11 @@ export const addshopCarData = (index, findex) => (dispatch) => {
   })
 }
 
-export const decshopCarData = (shopCarIndex) => (dispatch) => {
+export const decshopCarData = (index, findex) => (dispatch) => {
   dispatch({
     type: constants.DECSHOPCARDATA,
-    shopCarIndex: shopCarIndex
+    index: index,
+    findex: findex
   })
 }
 
@@ -70,11 +71,11 @@ export const decshopCarTotal = () => (dispatch) => {
   })
 }
 
-export const clearShopCartData = () => (dispatch) => {
-  dispatch({
-    type: constants.CLEARSHOPCARTDATA
-  })
-}
+// export const clearShopCartData = () => (dispatch) => {
+//   dispatch({
+//     type: constants.CLEARSHOPCARTDATA
+//   })
+// }
 
 export const getChangeLeftIndex = (index) => (dispatch) => {
   dispatch({
@@ -104,4 +105,11 @@ export const Pay = (sellerName, sellerImage, menu, number, price) => (dispatch) 
         notyf.error(`服务器出错，错误码:${status}`)
       }
     })
+}
+
+export const resetshopCarData = (shopCarDatas) => (dispatch) => {
+  dispatch({
+    type: constants.RESETSHOPCARDATA,
+    shopCarDatas: shopCarDatas
+  })
 }

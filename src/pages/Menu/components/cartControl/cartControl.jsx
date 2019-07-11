@@ -6,7 +6,7 @@ import './cartControl.styl'
 
 class cartControl extends Component {
   render() {
-    const { chooseCount, index, findex } = this.props
+    const { chooseCount, index, findex } = this.props // chooseCount -> 选择了多少件, index -> 食物是哪组(单人精彩套餐为一组), findex -> 该组中的第几位
     return (
       <div className='cartControl-wrapper'>
         {
@@ -28,26 +28,17 @@ class cartControl extends Component {
       </div>
     )
   }
-  shouldComponentUpdate(nextProps, nextState) {
-    if (nextProps.chooseCount !== this.props.chooseCount) {
-      return true
-    } else {
-      return false
-    }
-  }
   addSelectItem(index, findex) {
-    const { dispathaddSelectItem, dispathaddshopCarTotal, dispathdecaddshopCarData } = this.props
+    const { dispathaddSelectItem, dispathaddshopCarTotal, dispatchaddshopCarData } = this.props
     dispathaddSelectItem(index, findex)
     dispathaddshopCarTotal()
-    dispathdecaddshopCarData(index, findex)
+    dispatchaddshopCarData(index, findex)
   }
   minusSelectItem(index, findex) {
-    const { dispathminusSelectItem, dispathdecshopCarTotal, dispathdecdecshopCarData, chooseCount, shopCarIndex } = this.props
+    const { dispathminusSelectItem, dispathdecshopCarTotal, dispatchdecshopCarData } = this.props
     dispathminusSelectItem(index, findex)
     dispathdecshopCarTotal()
-    if (chooseCount === 1) {
-      dispathdecdecshopCarData(shopCarIndex)
-    }
+    dispatchdecshopCarData(index, findex)
   }
 }
 
@@ -67,11 +58,11 @@ const mapDispatch = dispatch => ({
   dispathdecshopCarTotal() {
     dispatch(actionCreators.decshopCarTotal())
   },
-  dispathdecaddshopCarData(index, findex) {
+  dispatchaddshopCarData(index, findex) {
     dispatch(actionCreators.addshopCarData(index, findex))
   },
-  dispathdecdecshopCarData(shopCarIndex) {
-    dispatch(actionCreators.decshopCarData(shopCarIndex))
+  dispatchdecshopCarData(index, findex) {
+    dispatch(actionCreators.decshopCarData())
   }
 })
 

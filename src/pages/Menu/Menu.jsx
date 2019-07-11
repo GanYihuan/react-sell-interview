@@ -77,7 +77,7 @@ class Menu extends Component {
                                     <span className='now'>￥{fitem.price}</span>
                                     <span className='old'>￥{fitem.oldPrice}</span>
                                   </div>
-                                  <CartControl chooseCount={fitem.chooseCount} index={index} findex={findex}/>
+                                  <CartControl chooseCount={fitem.chooseCount} index={index} findex={findex} />
                                 </div>
                               </div>
                             )
@@ -97,8 +97,6 @@ class Menu extends Component {
   }
   componentDidMount() {
     const { dispathMenuData, dispatchgetFoodData, match } = this.props
-    console.log(match.params.name, 'name..')
-    console.log(decodeURIComponent(match.params.img), 'img..')
     const name = match.params.name
     const img = decodeURIComponent(match.params.img)
     this.setState(() => {

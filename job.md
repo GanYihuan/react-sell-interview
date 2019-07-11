@@ -33,3 +33,18 @@ notyf 用于实现提示信息的插件, 当注册界面或者登录界面有错
 本人有着对前端和后端不懈的追求, 喜欢不断学习，热衷技术，努力想成为全栈开发者。
 
 home better-scroll bug! styl bug!
+chooseCount -> 点击添加的位置
+1 -> 7 (totalCount - 1)
+2 -> 6
+3 -> 5 (果汁)
+
+1 -> 4
+2 -> 3 (红枣)
+
+1 -> 2
+2 -> 1
+3 -> 0 (红豆)
+pass name
+shopCarData: state.get('shopCarData').updateIn(['index', 'chooseCount'], function(x) { return x - 1 })
+
+state.get('shopCarData').filter((value, key) => value.name === pass_name).updateIn([0, 'chooseCount'], function(x) { return x - 1 })
