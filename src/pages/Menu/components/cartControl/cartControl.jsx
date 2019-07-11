@@ -24,15 +24,15 @@ class cartControl extends Component {
             </CSSTransition>
             : null
         }
-        <span className='cart-add icon-add_circle' onClick={() => this.addSelectItem(index, findex)}></span>
+        <span className='cart-add icon-add_circle' onClick={() => this.addSelectItem(index, findex, name)}></span>
       </div>
     )
   }
-  addSelectItem(index, findex) {
+  addSelectItem(index, findex, name) {
     const { dispathaddSelectItem, dispathaddshopCarTotal, dispatchaddshopCarData } = this.props
     dispathaddSelectItem(index, findex)
     dispathaddshopCarTotal()
-    dispatchaddshopCarData(index, findex)
+    dispatchaddshopCarData(index, findex, name)
   }
   minusSelectItem(index, findex, name) {
     const { dispathminusSelectItem, dispathdecshopCarTotal, dispatchdecshopCarData } = this.props
@@ -58,8 +58,8 @@ const mapDispatch = dispatch => ({
   dispathdecshopCarTotal() {
     dispatch(actionCreators.decshopCarTotal())
   },
-  dispatchaddshopCarData(index, findex) {
-    dispatch(actionCreators.addshopCarData(index, findex))
+  dispatchaddshopCarData(index, findex, name) {
+    dispatch(actionCreators.addshopCarData(index, findex, name))
   },
   dispatchdecshopCarData(name) {
     dispatch(actionCreators.decshopCarData(name))
