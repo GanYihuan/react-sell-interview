@@ -29,7 +29,7 @@ class NavHeader extends Component {
             className='btn-Item'
             activeClassName='activeDes'
             replace={true}
-            to={'/' + item.key}
+            to={`/${item.key}`}
           >
             <div className='icon' />
             <div className='des'>{item.name}</div>
@@ -47,7 +47,6 @@ class NavHeader extends Component {
         detailShow: !this.state.detailShow
       }
     })
-    console.log(this.state.detailShow, 'detailshow---')
   }
   hideDetail() {
     this.setState(() => {

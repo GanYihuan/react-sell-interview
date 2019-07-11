@@ -2,54 +2,50 @@
 @import '../../assets/stylus/variable.styl'
 .header
   position: relative
-  // .background: position:absolute
   color: $color-white
   background: $color-black-s
   overflow: hidden
 .content-wrapper
   position: relative
-  padding: 24px 12px 18px 24px
-  // Eliminate gaps, parent element settings font-size: 0
+  padding: 1.5rem .75rem 1.125rem 1.5rem
   font-size: 0
   .avatar
     display: inline-block
     vertical-align: top
     img
-      width: 64px
-      height: 64px
-      border-radius: 4px
+      width: 4rem
+      height: 4rem
+      border-radius: .25rem
   .content
     display: inline-block
-    margin-left: 16px
+    margin-left: 1rem
     .title
-      margin: 2px 0 8px 0
+      margin: .125rem 0 .5rem 0
       .brand
         display: inline-block
-        // span become block element, can set width & height
-        width: 30px
-        height: 18px
+        width: 1.875rem
+        height: 1.125rem
         vertical-align: top
         bg-image("./img/brand")
-        // 2x3x image
-        background-size: 30px 18px
+        background-size: 1.875rem 1.125rem
         background-repeat: no-repeat
       .name
-        margin-left: 6px
-        line-height: 18px
-        font-size: 16px
+        margin-left: .375rem
+        line-height: 1.125rem
+        font-size: 1rem
         font-weight: bold
     .description
-      margin-bottom: 10px
-      line-height: 12px
-      font-size: 12px
+      margin-bottom: .625rem
+      line-height: .75rem
+      font-size: .75rem
     .support
       .icon
         display: inline-block
-        margin-right: 4px
-        width: 12px
-        height: 12px
+        margin-right: .25rem
+        width: .75rem
+        height: .75rem
         vertical-align: top
-        background-size: 12px 12px
+        background-size: .75rem .75rem
         background-repeat: no-repeat
         &.decrease
           bg-image("./img/decrease_1")
@@ -62,63 +58,63 @@
         &.special
           bg-image("./img/special_1")
       .text
-        line-height: 12px
-        font-size: 10px
+        line-height: .75rem
+        font-size: .625rem
   .support-count
     position: absolute
-    right: 12px
-    bottom: 14px
-    padding: 0 8px
-    border-radius: 14px
-    height: 24px
-    line-height: 24px
+    right: .75rem
+    bottom: .875rem
+    padding: 0 .5rem
+    border-radius: .875rem
+    height: 1.5rem
+    line-height: 1.5rem
     text-align: center
-    background: $color-black-s
+    color: $color-black
+    background: $color-theme
     .count
       vertical-align: top
-      font-size: 10px
+      font-size: .625rem
     .icon-keyboard_arrow_right
-      margin-left: 2px
-      line-height: 24px
-      font-size: 10px
+      margin-left: .125rem
+      line-height: 1.5rem
+      font-size: .625rem
   .back
     position: absolute
-    top: 10px
+    top: .625rem
     right: 0
     .icon-arrow_lift
       display: block
-      padding: 10px
-      font-size: 20px
+      padding: .625rem
+      font-size: 1.25rem
       color: $color-white
 .bulletin-wrapper
   position: relative
-  padding: 0 22px 0 12px
-  height: 28px
-  line-height: 28px
-  background: $color-black-ss
-  // ...
+  padding: 0 1.375rem 0 .75rem
+  height: 1.75rem
+  line-height: 1.75rem
+  color: $color-text-d
+  background: $color-theme
   text-overflow: ellipsis
   white-space: nowrap
   overflow: hidden
-  // ...
   .bulletin-title
     display: inline-block
-    margin: 8px 0 0 0
-    width: 22px
-    height: 12px
+    margin: .5rem 0 0 0
+    width: 1.375rem
+    height: .75rem
     vertical-align: top
     bg-image("./img/bulletin")
-    background-size: 22px 12px
+    background-size: 1.375rem .75rem
     background-repeat: no-repeat
   .bulletin-text
-    margin: 0 4px
+    margin: 0 .25rem
     vertical-align: top
-    font-size: 10px
+    font-size: .625rem
   .icon-keyboard_arrow_right
     position: absolute
-    top: 8px
-    right: 12px
-    font-size: 10px
+    top: .5rem
+    right: .75rem
+    font-size: .625rem
 .background
   z-index: -1
   position: absolute
@@ -126,11 +122,26 @@
   left: 0
   width: 100%
   height: 100%
-  // blurry background img
-  filter: blur(10px)
+  filter: blur(.625rem)
   img
     width: 100%
     height: 100%
+.tab
+  display: flex
+  width: 100%
+  height: 2.5rem
+  line-height: 2.5rem
+  border-1px($color-black-ss)
+  background: $color-white
+  .tab-item
+    flex: 1
+    text-align: center
+    a
+      display: block
+      font-size: .875rem
+      color: $color-gray-ss
+      &.activeDes
+        color: $color-text-important
 .detail
   z-index: 100
   position: fixed
@@ -141,7 +152,6 @@
   background: $color-black-s
   overflow: auto
   transition: all 0.5s
-  // ios blurry
   backdrop-filter: blur(.625rem)
   &.fade-transition
     background: $color-black-s
@@ -213,7 +223,6 @@
             font-size: .75rem
       .bulletin
         margin: 0 auto
-        // Horizontally centered
         width: 80%
         .content
           padding: 0 .75rem
@@ -229,34 +238,3 @@
     // Fork size
     clear: both
     /* 6: B clear: both */
-.tab
-  display: flex
-  border-1px($color-text, bottom)
-  width: 100%
-  height: 40px
-  line-height: 40px
-  background: #fff
-  .tab-item
-    flex: 1
-    text-align: center
-    .btn-Item
-      display: block
-      font-size: 14px
-      text-decoration: none
-      color: rgb(77, 85, 93)
-      &.activeDes
-        color: rgb(240, 20, 20)
-// .fade-enter,
-// .fade-appear
-//   opacity: 0
-// .fade-enter-active,
-// .fade-appear-active
-//   opacity: 1
-//   transition: opacity 1s ease-in
-// .fade-enter-done
-//   opacity: 1
-// .fade-exit
-//   opacity: 1
-// .fade-exit-active
-//   opacity: 0
-//   transition: opacity 1s ease-in

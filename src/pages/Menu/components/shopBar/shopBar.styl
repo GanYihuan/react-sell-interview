@@ -1,4 +1,4 @@
-﻿@import '../../../../assets/stylus/mixin.styl'
+﻿@import '../../../../assets//stylus/mixin'
 @import '../../../../assets/stylus/variable.styl'
 .shopCart
   z-index: 50
@@ -38,16 +38,16 @@
           font-size: .5625rem
           font-weight: 700
           color: $color-white
-          background: $color-red
+          background: $color-text-important
           box-shadow: 0 .25rem .5rem 0 $color-black
         .logo
           border-radius: 50%
           width: 100%
           height: 100%
           text-align: center
-          background: #2b343c
+          background: $color-black-sss
           &.highlight
-            background: $color-blue
+            background: $color-theme
           .icon-shopping_cart
             line-height: 2.75rem
             font-size: 1.5rem
@@ -85,9 +85,10 @@
         font-size: .75rem
         font-weight: 700
         color: $color-gray
-        background: $color-light-blue
+        background: $color-theme
         &.not-enough
-          background: $color-light-blue
+          color: $color-black
+          background: $color-theme
         &.enough
           color: $color-white
           background: $color-green
@@ -102,7 +103,7 @@
         border-radius: 50%
         width: 1rem
         height: 1rem
-        background: $color-blue
+        background: $color-theme
         transition: all 0.5s linear
   .shopCart-list
     z-index: -1
@@ -119,7 +120,7 @@
       transform: translate3d(0, 0, 0)
     .list-header
       padding: 0 1.125rem
-      border-bottom: .0625rem solid $color-gray
+      border-1px($color-gray-s)
       height: 2.5rem
       line-height: 2.5rem
       background: $color-white
@@ -140,7 +141,7 @@
         box-sizing: border-box
         position: relative
         padding: .75rem 0
-        border-1px($color-gray)
+        border-1px($color-gray-s)
         .name
           line-height: 1.5rem
           font-size: .875rem
@@ -152,7 +153,7 @@
           line-height: 1.5rem
           font-size: .875rem
           font-weight: 700
-          color: $color-red
+          color: $color-text-important
         .cartControl-wrapper
           position: absolute
           right: 0
@@ -169,22 +170,12 @@
   -webkit-backdrop-filter: blur(.625rem)
   background: $color-black-s
   opacity: 1
-&.fade-enter-active,
-&.fade-leave-active
-  background: $color-black-s
-  transition: all 0.5s linear
-  opacity: 1
-&.fade-enter,
-&.fade-leave-active
-  background: $color-black-s
-  opacity: 0
-&.fold-enter-active,
-&.fold-leave-active
-  transition: all 0.5s
-&.fold-enter,
-&.fold-leave-active
-  transform: translate3d(0, 0, 0)
-.scroll-view
-  width: 100%
-  height: 100%
-  overflow: hidden
+  &.fade-enter-active,
+  &.fade-leave-active
+    background: $color-black-s
+    transition: all 0.5s linear
+    opacity: 1
+  &.fade-enter,
+  &.fade-leave-active
+    background: $color-black-s
+    opacity: 0

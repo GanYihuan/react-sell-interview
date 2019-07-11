@@ -10,19 +10,19 @@
   .menu-wrapper
     flex: 0 0 5rem
     width: 5rem
-    background: #f3f5f7
+    background: $color-theme-d
     .menu-item
-      display: table
+      display: table // 多行文本居中 1
       padding: 0 .75rem
       width: 3.5rem
-      height: 3.125rem
+      height: 3.375rem
       line-height: .875rem
       &.current
         z-index: 10
         position: relative
         margin-top: -0.0625rem
         font-weight: 700
-        background: #fff
+        background: $color-theme-l
         .text
           border-none()
       .icon
@@ -44,29 +44,27 @@
         &.special
           bg-image("./img/special_3")
       .text
-        display: table-cell
-        // father element: display: table
-        border-1px($color-black-ss)
+        display: table-cell // 多行文本居中 2
+        border-1px($color-theme, bottom)
         width: 3.5rem
-        vertical-align: middle
-        // Multi-line text Vertical centering
+        vertical-align: middle // 多行文本居中 3
         font-size: .75rem
   .foods-wrapper
     flex: 1
     .food-list
       .title
         padding-left: .875rem
-        border-left: .125rem solid #d9dde1
+        border-left: .125rem solid $color-theme
         height: 1.625rem
         line-height: 1.625rem
         font-size: .75rem
-        color: rgb(147, 153, 159)
-        background: #f3f5f7
+        color: $color-text-l
+        background: $color-theme-d
       .food-item
         display: flex
         margin: 1.125rem
         padding-bottom: 1.125rem
-        border-1px($color-black-ss)
+        border-1px($color-theme, bottom)
         &:last-child
           margin-bottom: 0
           border-none()
@@ -83,13 +81,13 @@
             height: .875rem
             line-height: .875rem
             font-size: .875rem
-            color: rgb(7, 17, 27)
+            color: $color-black
           .desc,
           .extra
             margin: .5rem 0
             line-height: .875rem
             font-size: .625rem
-            color: rgb(147, 153, 159)
+            color: $color-text-l
           .extra
             .count
               margin-right: .75rem
@@ -99,16 +97,12 @@
             .now
               margin-right: .5rem
               font-size: .875rem
-              color: rgb(240, 20, 20)
+              color: $color-text-important
             .old
               font-size: .625rem
               text-decoration: line-through
-              color: rgb(147, 153, 159)
+              color: $color-text-l
           .cartControl-wrapper
             position: absolute
             right: 0
             bottom: .75rem
-.scroll-view
-  width: 100%
-  height: 100%
-  overflow: hidden
