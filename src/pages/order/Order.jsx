@@ -112,7 +112,9 @@ class Order extends Component {
       })
     }
   }
-  deleteComment() {}
+  deleteComment() {
+    console.log('deleteComment')
+  }
   comment(menu) {
     const { dispathEvaluate } = this.props
     dispathEvaluate(menu)
