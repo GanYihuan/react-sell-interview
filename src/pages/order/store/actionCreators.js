@@ -10,3 +10,10 @@ export const getOrderData = () => async(dispatch) => { // redux-thunk, action di
     })
   }
 }
+
+export const getEvaluate = (menu) => async(dispatch) => { // redux-thunk, action dispatch 之后，到达 reducer 之前, 调用异步接口请求数据
+  dispatch({
+    type: constants.EVALUATE,
+    menu: menu
+  })
+}

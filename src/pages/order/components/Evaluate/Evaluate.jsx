@@ -1,9 +1,7 @@
 ﻿import React, { Component } from 'react'
-import { NavLink, withRouter } from 'react-router-dom'
-import { Button, Layout, Input, Checkbox } from 'element-react'
-import BScroll from 'better-scroll'
+import { withRouter, NavLink } from 'react-router-dom'
+import { Button, Layout } from 'element-react'
 import { connect } from 'react-redux'
-import { actionCreators } from './store'
 import './Evaluate.styl'
 
 @withRouter
@@ -58,10 +56,10 @@ class Evaluate extends Component {
           </div>
           <div className='comment'>
             <textarea
-              v-model='textarea'
               className='comment-input'
               placeholder='请写下你的评价。4星或4星以上好评, 3星或3星以下差评'
               maxLength='50'
+              ref={input => (this.second = input)}
             />
             <span className='count'>{ this.state.maxCount }</span>
           </div>
@@ -89,10 +87,26 @@ class Evaluate extends Component {
       }
     })
   }
-  submit() {}
+  submit() {
+    const { evaluate } = this.props
+    const evaluates = evaluate.toJS()
+
+    const score = this.state.starIndex + 1
+    let rateType = 0 // 0 -> good comment, 1 -> bad comment
+    if (score >= 4) {
+      rateType = 0
+    } else {
+      rateType = 1
+    }
+    const text = this.second.value
+    console.log(evaluates, 'evaluates..')
+  }
 }
 
 const mapState = state => ({
+  order: state.getIn(['order', 'order']),
+  evaluate: state.getIn(['order', 'evaluate']),
+  tabs: state.getIn(['main', 'tabs'])
 })
 
 const mapDispatch = dispatch => ({
