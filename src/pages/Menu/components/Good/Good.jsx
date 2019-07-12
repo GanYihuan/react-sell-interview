@@ -1,8 +1,8 @@
 ﻿import React, { Component, Fragment } from 'react'
 import { connect } from 'react-redux'
 import BScroll from 'better-scroll'
-import ShopBar from '../ShopBar/ShopBar'
 import Control from '../Control/Control'
+import ShopBar from '../ShopBar/ShopBar'
 import { actionCreators } from './store'
 import './Good.styl'
 
