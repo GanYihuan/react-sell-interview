@@ -5,7 +5,7 @@ const defaultState = fromJS({
   tabs: [
     {
       name: '点菜',
-      key: 'menu'
+      key: 'good'
     },
     {
       name: '评价',

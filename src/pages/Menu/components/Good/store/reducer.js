@@ -10,9 +10,7 @@ const initState = fromJS({
   chooseCount: 0,
   currentLeftIndex: 0,
   shopCarTotal: 0,
-  shopCarData: [],
-  name: '',
-  img: ''
+  shopCarData: []
 })
 
 export default (state = initState, action) => {
@@ -45,8 +43,6 @@ export default (state = initState, action) => {
       return resetMenuData(state, action)
     case constants.CHANGELEFTINDEX:
       return state.set('currentLeftIndex', fromJS(action.index))
-    case constants.SAVESELLERINFO:
-      return saveSellerInfo(state, action)
     case 'GET_LIST_DATA':
       return getListData(state, action)
     default:
@@ -111,12 +107,5 @@ const resetMenuData = (state, action) => {
 const deleteSelectItem = (state, action) => {
   return state.merge({
     shopCarData: state.get('shopCarData').filter(value => value.get('name') !== fromJS(action.name))
-  })
-}
-
-const saveSellerInfo = (state, action) => {
-  return state.merge({
-    name: action.name,
-    img: action.img
   })
 }

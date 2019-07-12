@@ -1,10 +1,8 @@
 ﻿import React, { Component, Fragment } from 'react'
 import { connect } from 'react-redux'
 import BScroll from 'better-scroll'
-import NavHeader from 'NavHeader/NavHeader'
 import StarScore from 'StarScore/StarScore'
 import Split from 'Split/Split'
-// import Scroll from 'Scroll/scroll'
 import { actionCreators } from './store'
 import { saveToLocal, loadFromLocal } from 'storage'
 import './Restanurant.styl'
@@ -24,9 +22,7 @@ class Restanurant extends Component {
     const infos = restanurantData.toJS().infos
     return (
       <div>
-        <NavHeader/>
         <div className='seller' ref='seller'>
-          {/* <Scroll> */}
           <div className='seller-wrapper'>
             <div className='seller-content'>
               <div className='overview'>
@@ -121,7 +117,6 @@ class Restanurant extends Component {
               }
             </div>
           </div>
-          {/* </Scroll> */}
         </div>
       </div>
     )

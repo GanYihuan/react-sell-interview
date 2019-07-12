@@ -4,7 +4,7 @@ import { CSSTransition } from 'react-transition-group'
 import BScroll from 'better-scroll'
 import CartControl from '../cartControl/cartControl'
 import { actionCreators } from '../../store'
-import './shopBar.styl'
+import './ShopBar.styl'
 
 class ShopBar extends Component {
   constructor(props) {
@@ -23,8 +23,6 @@ class ShopBar extends Component {
     }
     const { shopCarTotal, navHeader, menuData, shopCarData } = this.props
     const shopCarDatas = shopCarData.toJS().sort(compare('sellCount'))
-    // console.log(temp, 'temp..')
-    console.log(shopCarDatas, 'shopCarDatas..')
     // const shopCarDatas = temp.filter(a => a.chooseCount === Math.max(...temp.filter(b => b.name === a.name).map(({ chooseCount }) => chooseCount))).reverse() // .sort(compare('sellCount')) // 选出 同 name 下 chooseCount 最大的
     return (
       <Fragment>
@@ -153,7 +151,9 @@ const mapState = state => ({
   shopCarTotal: state.getIn(['menu', 'shopCarTotal']),
   navHeader: state.getIn(['main', 'navHeader']),
   menuData: state.getIn(['menu', 'menuData']),
-  shopCarData: state.getIn(['menu', 'shopCarData'])
+  shopCarData: state.getIn(['menu', 'shopCarData']),
+  name: state.getIn(['menu', 'name']),
+  img: state.getIn(['menu', 'img'])
 })
 
 const mapDispatch = dispatch => ({

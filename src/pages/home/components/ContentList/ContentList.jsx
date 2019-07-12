@@ -72,8 +72,10 @@ class ContentList extends Component {
     const { dispatchsellerInfo } = this.props
     console.log(name, img, 'sss..')
     dispatchsellerInfo(name, img)
-    this.props.history.push(`/menu/${name}&${img}`) // withRouter
-    // this.props.history.push(`/menu`) // withRouter
+    // this.props.history.push(`/menu/${name}&${img}`) // withRouter
+    // this.props.history.push(`/rating/${name}&${img}`) // withRouter
+    // this.props.history.push(`/restanurant/${name}&${img}`) // withRouter
+    this.props.history.push(`/good/${name}&${img}`) // withRouter
   }
 }
 

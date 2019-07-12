@@ -1,9 +1,15 @@
 ﻿import React, { Component } from 'react'
+import { Route, withRouter, NavLink } from 'react-router-dom'
+import { connect } from 'react-redux'
 import NavHeader from 'NavHeader/NavHeader'
-import ShopBar from './components/shopBar/shopBar'
+// import ShopBar from './components/ShopBar/ShopBar'
 import CartControl from './components/cartControl/cartControl'
 import Good from './components/Good/Good'
+import Rating from './components/Rating/Rating'
+import Restanurant from './components/Restanurant/Restanurant'
+import { actionCreators } from './store'
 
+@withRouter
 class Menu extends Component {
   constructor(props) {
     super(props)
@@ -16,13 +22,14 @@ class Menu extends Component {
     return (
       <div>
         <NavHeader name={this.state.name} img={this.state.img} />
-        <Good />
-        <ShopBar name={this.state.name} img={this.state.img} />
+        <Route path='/good' component={Good}/>
+        <Route path='/rating' component={Rating}/>
+        <Route path='/restanurant' component={Restanurant}/>
       </div>
     )
   }
   componentDidMount() {
-    const { match } = this.props
+    const { match, dispathSaveSellerInfo } = this.props
     const name = match.params.name
     const img = decodeURIComponent(match.params.img)
     this.setState(() => {
@@ -31,7 +38,20 @@ class Menu extends Component {
         img: img
       }
     })
+    dispathSaveSellerInfo(name, img)
   }
 }
 
-export default Menu
+const mapState = state => ({
+})
+
+const mapDispatch = dispatch => ({
+  dispathSaveSellerInfo(name, img) {
+    dispatch(actionCreators.saveSellerInfo(name, img))
+  }
+})
+
+export default connect(
+  mapState,
+  mapDispatch
+)(Menu)

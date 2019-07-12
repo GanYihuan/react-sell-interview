@@ -1,10 +1,9 @@
-﻿import React, { Component } from 'react'
+﻿import React, { Component, Fragment } from 'react'
 import { connect } from 'react-redux'
 import BScroll from 'better-scroll'
-import NavHeader from 'NavHeader/NavHeader'
-import ShopBar from '../shopBar/shopBar'
 import CartControl from '../cartControl/cartControl'
-import { actionCreators } from '../../store'
+import ShopBar from '../ShopBar/ShopBar'
+import { actionCreators } from './store'
 import './Good.styl'
 
 class Good extends Component {
@@ -20,73 +19,76 @@ class Good extends Component {
     const { menuData, currentLeftIndex } = this.props
     const menuDatas = menuData.toJS()
     return (
-      <div className='goods'>
-        <div className='menu-wrapper'>
-          <div className='left-bar'>
-            <div className='scroll-view' ref='menuWrapper'>
-              <div className='menu-wrapper'>
-                {
-                  menuDatas.map((item, index) => {
-                    const cls = index === currentLeftIndex ? 'menu-item current' : 'menu-item'
-                    const iconF = (type) => {
-                      const mapN = this.state.classMap[type]
+      <Fragment>
+        <div className='goods'>
+          <div className='menu-wrapper'>
+            <div className='left-bar'>
+              <div className='scroll-view' ref='menuWrapper'>
+                <div className='menu-wrapper'>
+                  {
+                    menuDatas.map((item, index) => {
+                      const cls = index === currentLeftIndex ? 'menu-item current' : 'menu-item'
+                      const iconF = (type) => {
+                        const mapN = this.state.classMap[type]
+                        return (
+                          `icon ${mapN}`
+                        )
+                      }
                       return (
-                        `icon ${mapN}`
+                        <div className={cls} key={index} onClick={() => this.itemClick(index)}>
+                          <div className='text border-1px'>{item.type > 0 ? <img className={iconF(item.type)} /> : null}{item.name}</div>
+                        </div>
                       )
-                    }
-                    return (
-                      <div className={cls} key={index} onClick={() => this.itemClick(index)}>
-                        <div className='text border-1px'>{item.type > 0 ? <img className={iconF(item.type)} /> : null}{item.name}</div>
-                      </div>
-                    )
-                  })
-                }
+                    })
+                  }
+                </div>
               </div>
             </div>
           </div>
-        </div>
-        <div className='scroll-view' ref='foodsWrapper'>
-          <div className='foods-wrapper'>
-            {
-              menuDatas.map((item, index) => {
-                return (
-                  <div className='food-list food-list-hook' key={index}>
-                    <h1 className='title'>{item.name}</h1>
-                    <div>
-                      {
-                        item.foods.map((fitem, findex) => {
-                          return (
-                            <div
-                              className='food-item border-1px'
-                              key={findex}
-                            >
-                              <div className='icon'>
-                                <img src={fitem.icon}/>
-                              </div>
-                              <div className='content'>
-                                <h2 className='name'>{fitem.name}</h2>
-                                <p className='desc'>{fitem.description}</p>
-                                <div className='extra'>
-                                  <span className='count'>月售 {fitem.sellCount} 份</span><span>好评率 {fitem.rating}%</span>
+          <div className='scroll-view' ref='foodsWrapper'>
+            <div className='foods-wrapper'>
+              {
+                menuDatas.map((item, index) => {
+                  return (
+                    <div className='food-list food-list-hook' key={index}>
+                      <h1 className='title'>{item.name}</h1>
+                      <div>
+                        {
+                          item.foods.map((fitem, findex) => {
+                            return (
+                              <div
+                                className='food-item border-1px'
+                                key={findex}
+                              >
+                                <div className='icon'>
+                                  <img src={fitem.icon}/>
                                 </div>
-                                <div className='price'>
-                                  <span className='now'>￥{fitem.price}</span>
-                                  <span className='old'>￥{fitem.oldPrice}</span>
+                                <div className='content'>
+                                  <h2 className='name'>{fitem.name}</h2>
+                                  <p className='desc'>{fitem.description}</p>
+                                  <div className='extra'>
+                                    <span className='count'>月售 {fitem.sellCount} 份</span><span>好评率 {fitem.rating}%</span>
+                                  </div>
+                                  <div className='price'>
+                                    <span className='now'>￥{fitem.price}</span>
+                                    <span className='old'>￥{fitem.oldPrice}</span>
+                                  </div>
+                                  <CartControl chooseCount={fitem.chooseCount} index={index} findex={findex} name={fitem.name}/>
                                 </div>
-                                <CartControl chooseCount={fitem.chooseCount} index={index} findex={findex} name={fitem.name}/>
                               </div>
-                            </div>
-                          )
-                        })
-                      }
+                            )
+                          })
+                        }
+                      </div>
                     </div>
-                  </div>
-                )
-              })
-            }
+                  )
+                })
+              }
+            </div>
           </div>
         </div>
-      </div>
+        <ShopBar/>
+      </Fragment>
     )
   }
   componentDidMount() {

@@ -1,11 +1,9 @@
 ﻿import React, { Component } from 'react'
 import { connect } from 'react-redux'
 import moment from 'moment'
-import NavHeader from 'NavHeader/NavHeader'
 import Split from 'Split/Split'
 import RatingSelect from 'RatingSelect/RatingSelect'
 import StarScore from 'StarScore/StarScore'
-// import Scroll from 'Scroll/scroll' // delete
 import BScroll from 'better-scroll'
 import { actionCreators } from './store'
 import './Rating.styl'
@@ -30,9 +28,7 @@ class Rating extends Component {
     ratingSelectType === 1 ? showComment = badComment : ratingSelectType === 0 ? showComment = goodComment : showComment = commentDatas
     return (
       <div>
-        <NavHeader/>
         <div className='ratings' ref='ratings'>
-          {/* <Scroll> */}
           <div className='ratings-content'>
             <div className='overview'>
               <div className='overview-left'>
@@ -129,7 +125,6 @@ class Rating extends Component {
               </ul>
             </div>
           </div>
-          {/* </Scroll> */}
           <div className='seller'></div>
         </div>
       </div>
