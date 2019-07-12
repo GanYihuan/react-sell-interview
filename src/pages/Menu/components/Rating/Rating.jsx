@@ -72,21 +72,21 @@ class Rating extends Component {
                   className={allClassName}
                   onClick={() => { this.select(2) }}
                 >
-            全部
+                  全部
                   <span className='count'>{commentDatas.length}</span>
                 </span>
                 <span
                   className={goodClassName}
                   onClick={() => { this.select(0) }}
                 >
-            好评
+                  好评
                   <span className='count'>{goodComment.length}</span>
                 </span>
                 <span
                   className={badClassName}
                   onClick={() => { this.select(1) }}
                 >
-            差评
+                  差评
                   <span className='count'>{badComment.length}</span>
                 </span>
               </div>
