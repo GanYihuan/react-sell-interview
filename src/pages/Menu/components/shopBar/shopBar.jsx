@@ -2,7 +2,7 @@
 import { connect } from 'react-redux'
 import { CSSTransition } from 'react-transition-group'
 import BScroll from 'better-scroll'
-import CartControl from '../CartControl/CartControl'
+import Control from '../Control/Control'
 import { actionCreators } from '../../store'
 import './ShopBar.styl'
 
@@ -48,7 +48,7 @@ class ShopBar extends Component {
                               <div className='price'>
                                 <span>￥{item.price * item.chooseCount}</span>
                               </div>
-                              <CartControl chooseCount={item.chooseCount} index={item.index} findex={item.findex} name={item.name}/>
+                              <Control chooseCount={item.chooseCount} index={item.index} findex={item.findex} name={item.name}/>
                             </div>
                             : null
                           return dom

@@ -1,10 +1,11 @@
 ﻿import React, { Component, Fragment } from 'react'
 import { connect } from 'react-redux'
 import BScroll from 'better-scroll'
-import CartControl from '../CartControl/CartControl'
+// import CartControl from '../CartControl/CartControl'
 import ShopBar from '../ShopBar/ShopBar'
 import { actionCreators } from './store'
 import './Good.styl'
+import Control from '../Control/Control'
 
 class Good extends Component {
   constructor(props) {
@@ -73,7 +74,7 @@ class Good extends Component {
                                     <span className='now'>￥{fitem.price}</span>
                                     <span className='old'>￥{fitem.oldPrice}</span>
                                   </div>
-                                  <CartControl chooseCount={fitem.chooseCount} index={index} findex={findex} name={fitem.name}/>
+                                  <Control chooseCount={fitem.chooseCount} index={index} findex={findex} name={fitem.name}/>
                                 </div>
                               </div>
                             )

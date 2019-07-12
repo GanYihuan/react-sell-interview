@@ -2,9 +2,9 @@
 import { connect } from 'react-redux'
 import { CSSTransition } from 'react-transition-group'
 import { actionCreators } from '../../store/index'
-import './CartControl'
+import './Control.styl'
 
-class cartControl extends Component {
+class Control extends Component {
   render() {
     const { chooseCount, index, findex, name } = this.props // chooseCount -> 选择了多少件, index -> 食物是哪组(单人精彩套餐为一组), findex -> 该组中的第几位
     return (
@@ -75,4 +75,4 @@ const mapDispatch = dispatch => ({
 export default connect(
   mapState,
   mapDispatch
-)(cartControl)
+)(Control)

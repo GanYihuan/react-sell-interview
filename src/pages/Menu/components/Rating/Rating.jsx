@@ -5,7 +5,8 @@ import Split from 'Split/Split'
 // import RatingSelect from 'RatingSelect/RatingSelect'
 import StarScore from 'StarScore/StarScore'
 import BScroll from 'better-scroll'
-import { actionCreators } from './store'
+import RatingSelect from '../RatingSelect/RatingSelect'
+import { actionCreators } from '../Rating/store'
 import './Rating.styl'
 
 class Rating extends Component {
@@ -66,9 +67,7 @@ class Rating extends Component {
               </div>
             </div>
             <Split/>
-            {/* <RatingSelect
-              onClick={() => { this.toggleContent() }}
-            /> */}
+            <RatingSelect onClick={() => { this.toggleContent() }} />
             <div className='rating-wrapper border-1px'>
               <ul>
                 {
