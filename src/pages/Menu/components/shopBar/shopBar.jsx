@@ -111,10 +111,10 @@ class ShopBar extends Component {
   }
   getTotalPrice() {
     const { shopCarData } = this.props
-    const temp = shopCarData.toJS()
+    const shopCarDatas = shopCarData.toJS()
     let totalPrice = 0
-    for (const i of temp) {
-      totalPrice = totalPrice + i.price
+    for (const i of shopCarDatas) {
+      totalPrice = totalPrice + i.price * i.chooseCount
     }
     return totalPrice
   }
