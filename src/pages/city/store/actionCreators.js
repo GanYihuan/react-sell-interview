@@ -11,3 +11,10 @@ export const getCityData = () => async(dispatch) => { // redux-thunk, action dis
     })
   }
 }
+
+export const setCurrentCity = (city) => (dispatch) => { // redux-thunk, action dispatch 之后，到达 reducer 之前, 调用异步接口请求数据
+  dispatch({
+    type: constants.SETCURRENTCITY,
+    city: city
+  })
+}

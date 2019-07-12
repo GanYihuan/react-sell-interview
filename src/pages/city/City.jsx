@@ -18,7 +18,8 @@ class City extends Component {
   render() {
     const {
       city,
-      hotCity
+      hotCity,
+      currentCity
     } = this.props
     const hotCitys = hotCity.toJS()
     const citys = city.toJS()
@@ -84,7 +85,7 @@ class City extends Component {
               <div className='button-list current'>
                 <div className='button-wrapper'>
                   <div className='button'>
-                    city
+                    {currentCity}
                   </div>
                 </div>
               </div>
@@ -100,6 +101,7 @@ class City extends Component {
                       <div
                         className='button-wrapper'
                         key={index}
+                        onClick={() => { this.setCurrentCity(item.name) }}
                       >
                         <div className='button'>
                           {item.name}
@@ -214,16 +216,24 @@ class City extends Component {
       })
     }, 100)
   }
+  setCurrentCity(city) {
+    const { dispathSetCurrentCity } = this.props
+    dispathSetCurrentCity(city)
+  }
 }
 
 const mapState = state => ({
   city: state.getIn(['city', 'city']),
-  hotCity: state.getIn(['city', 'hotCity'])
+  hotCity: state.getIn(['city', 'hotCity']),
+  currentCity: state.getIn(['city', 'currentCity'])
 })
 
 const mapDispatch = dispatch => ({
   dispathCity() {
     dispatch(actionCreators.getCityData())
+  },
+  dispathSetCurrentCity(city) {
+    dispatch(actionCreators.setCurrentCity(city))
   }
 })
 

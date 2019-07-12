@@ -3,14 +3,6 @@ import { Provider } from 'react-redux'
 import { BrowserRouter, Route, Switch, Redirect } from 'react-router-dom'
 import store from './store'
 
-// import Home from 'home/Home'
-// import My from 'my/My'
-// import Login from 'login/Login'
-// import Register from 'register/Register'
-// import Menu from 'menu/Menu'
-// import Restanurant from 'restanurant/Restanurant'
-// import Rating from 'rating/Rating'
-
 const Home = lazy(() => import(/* webpackChunkName: "Home" */ 'home/Home')) // lazy & Suspense 实现代码拆分
 const City = lazy(() => import(/* webpackChunkName: "Home" */ 'city/City')) // lazy & Suspense 实现代码拆分
 const My = lazy(() => import(/* webpackChunkName: "My" */ 'my/My'))
