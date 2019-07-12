@@ -44,15 +44,16 @@ class ShopBar extends Component {
                     <div className='list-content'>
                       {
                         shopCarDatas.map((item, index) => {
-                          return (
-                            <div className='shopCart-food' key={index}>
+                          const dom = item.chooseCount > 0
+                            ? <div className='shopCart-food' key={index}>
                               <span className='name'>{ item.name }</span>
                               <div className='price'>
                                 <span>￥{item.price * item.chooseCount}</span>
                               </div>
                               <CartControl chooseCount={item.chooseCount} index={item.index} findex={item.findex} name={item.name}/>
                             </div>
-                          )
+                            : null
+                          return dom
                         })
                       }
                     </div>
