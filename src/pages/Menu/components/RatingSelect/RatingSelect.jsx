@@ -1,6 +1,6 @@
 ﻿import React, { Component, Fragment } from 'react'
 import { connect } from 'react-redux'
-import { actionCreators } from '../Rating/store'
+import { actionCreators } from './store'
 import './RatingSelect.styl'
 
 class RatingSelect extends Component {
@@ -74,6 +74,7 @@ class RatingSelect extends Component {
     }
   }
   select(type) {
+    console.log('dispatchratingSelectTypeBad..')
     const { dispatchratingSelectTypeBad } = this.props
     this.setState(() => {
       return {

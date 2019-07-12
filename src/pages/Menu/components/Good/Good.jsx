@@ -1,11 +1,10 @@
 ﻿import React, { Component, Fragment } from 'react'
 import { connect } from 'react-redux'
 import BScroll from 'better-scroll'
-// import CartControl from '../CartControl/CartControl'
 import ShopBar from '../ShopBar/ShopBar'
+import Control from '../Control/Control'
 import { actionCreators } from './store'
 import './Good.styl'
-import Control from '../Control/Control'
 
 class Good extends Component {
   constructor(props) {

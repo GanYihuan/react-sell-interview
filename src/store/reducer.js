@@ -3,10 +3,11 @@ import { reducer as homeReducer } from '../pages/home/store'
 import { reducer as bottombarReducer } from '../common/BottomBar/store'
 import { reducer as mainReducer } from '../common/NavHeader/store'
 import { reducer as menuReducer } from '../pages/menu/store'
-import { reducer as restanurantReducer } from '../pages/menu/components/Restanurant/store'
-import { reducer as ratingsReducer } from '../pages/menu/components/Rating/store'
 import { reducer as cityReducer } from '../pages/city/store'
 import { reducer as orderReducer } from '../pages/order/store'
+import { reducer as restanurantReducer } from '../pages/menu/components/Restanurant/store'
+import { reducer as ratingsReducer } from '../pages/menu/components/Rating/store'
+import { reducer as ratingSelectReducer } from '../pages/menu/components/RatingSelect/store'
 
 const reducer = combineReducers({
   home: homeReducer,
@@ -16,7 +17,8 @@ const reducer = combineReducers({
   restanurant: restanurantReducer,
   ratings: ratingsReducer,
   city: cityReducer,
-  order: orderReducer
+  order: orderReducer,
+  ratingSelect: ratingSelectReducer
 })
 
 export default reducer

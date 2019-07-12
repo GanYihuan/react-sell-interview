@@ -3,8 +3,7 @@ import * as constants from './constants'
 
 const defaultState = fromJS({
   commentData: [],
-  ratingData: {},
-  ratingSelectType: 2
+  ratingData: {}
 })
 
 export default (state = defaultState, action) => {
@@ -13,8 +12,6 @@ export default (state = defaultState, action) => {
       return getCommentListData(state, action)
     case constants.RATING_DATA:
       return getRatingtData(state, action)
-    case constants.RATINGSELECTTYPEBAD:
-      return state.set('ratingSelectType', fromJS(action.number))
     default:
       return state
   }

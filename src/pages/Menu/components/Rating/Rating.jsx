@@ -2,7 +2,6 @@
 import { connect } from 'react-redux'
 import moment from 'moment'
 import Split from 'Split/Split'
-// import RatingSelect from 'RatingSelect/RatingSelect'
 import StarScore from 'StarScore/StarScore'
 import BScroll from 'better-scroll'
 import RatingSelect from '../RatingSelect/RatingSelect'
@@ -10,16 +9,6 @@ import { actionCreators } from '../Rating/store'
 import './Rating.styl'
 
 class Rating extends Component {
-  componentDidMount() { // async, get ajax async data
-    const { dispathgetListData, dispathgetRatingData } = this.props
-    dispathgetListData()
-    dispathgetRatingData()
-    if (!this.rScroll) {
-      this.rScroll = new BScroll(this.refs.ratings, {
-        click: true
-      })
-    }
-  }
   render() {
     const { commentData, ratingData, ratingSelectType } = this.props
     const commentDatas = commentData.toJS()
@@ -67,7 +56,7 @@ class Rating extends Component {
               </div>
             </div>
             <Split/>
-            <RatingSelect onClick={() => { this.toggleContent() }} />
+            <RatingSelect />
             <div className='rating-wrapper border-1px'>
               <ul>
                 {
@@ -129,6 +118,16 @@ class Rating extends Component {
       </div>
     )
   }
+  componentDidMount() {
+    const { dispathgetListData, dispathgetRatingData } = this.props
+    dispathgetListData()
+    dispathgetRatingData()
+    if (!this.rScroll) {
+      this.rScroll = new BScroll(this.refs.ratings, {
+        click: true
+      })
+    }
+  }
   formatDate(time) {
     return moment(time).format('YYYY-MM-DD hh:mm:ss')
   }
@@ -137,7 +136,7 @@ class Rating extends Component {
 const mapState = state => ({
   commentData: state.getIn(['ratings', 'commentData']),
   ratingData: state.getIn(['ratings', 'ratingData']),
-  ratingSelectType: state.getIn(['ratings', 'ratingSelectType'])
+  ratingSelectType: state.getIn(['ratingSelect', 'ratingSelectType'])
 })
 
 const mapDispatch = dispatch => ({
