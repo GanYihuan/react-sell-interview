@@ -71,11 +71,23 @@ export const decshopCarTotal = () => (dispatch) => {
   })
 }
 
-// export const clearShopCartData = () => (dispatch) => {
-//   dispatch({
-//     type: constants.CLEARSHOPCARTDATA
-//   })
-// }
+export const clearShopCartData = () => (dispatch) => {
+  dispatch({
+    type: constants.CLEARSHOPCARTDATA
+  })
+}
+
+export const clearShopCartTotal = () => (dispatch) => {
+  dispatch({
+    type: constants.CLEARSHOPCARTOTAL
+  })
+}
+
+export const resetMenuData = () => (dispatch) => {
+  dispatch({
+    type: constants.RESETMENUDATA
+  })
+}
 
 export const getChangeLeftIndex = (index) => (dispatch) => {
   dispatch({

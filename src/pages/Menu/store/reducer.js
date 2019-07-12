@@ -35,8 +35,12 @@ export default (state = initState, action) => {
       return state.set('shopCarData', fromJS(action.shopCarDatas))
     case constants.DELETESELECTITEM:
       return deleteSelectItem(state, action)
-    // case constants.CLEARSHOPCARTDATA:
-    //   return clearShopCarData(state, action)
+    case constants.CLEARSHOPCARTOTAL:
+      return state.set('shopCarTotal', 0)
+    case constants.CLEARSHOPCARTDATA:
+      return clearShopCarData(state, action)
+    case constants.RESETMENUDATA:
+      return resetMenuData(state, action)
     case constants.CHANGELEFTINDEX:
       return state.set('currentLeftIndex', fromJS(action.index))
     case 'GET_LIST_DATA':
@@ -88,12 +92,17 @@ const getListData = (state, action) => {
   })
 }
 
-// const clearShopCarData = (state, action) => {
-//   return state.merge({
-//     shopCarData: state.get('shopCarData').clear(),
-//     shopCarTotal: state.set('shopCarTotal', 0)
-//   })
-// }
+const clearShopCarData = (state, action) => {
+  return state.merge({
+    shopCarData: state.get('shopCarData').clear()
+  })
+}
+
+const resetMenuData = (state, action) => {
+  return state.merge({
+    shopCarData: state.get('shopCarData').clear()
+  })
+}
 
 const deleteSelectItem = (state, action) => {
   return state.merge({

@@ -126,9 +126,15 @@ class ShopBar extends Component {
     })
   }
   clearCar() {
-  //   const { dispathClearShopCarData } = this.props
-  //   dispathClearShopCarData()
-    console.log('clear car!')
+    const { dispathClearShopCarData, dispathClearShopCarTotal, dispathResetMenuData } = this.props
+    dispathClearShopCarData()
+    dispathClearShopCarTotal()
+    dispathResetMenuData()
+    this.setState(() => {
+      return {
+        showChoose: false
+      }
+    })
   }
   pay() {
     const { dispathPay, name, img, shopCarTotal, shopCarData } = this.props
@@ -156,6 +162,12 @@ const mapDispatch = dispatch => ({
   },
   dispathClearShopCarData() {
     dispatch(actionCreators.clearShopCartData())
+  },
+  dispathClearShopCarTotal() {
+    dispatch(actionCreators.clearShopCartTotal())
+  },
+  dispathResetMenuData() {
+    dispatch(actionCreators.resetMenuData())
   },
   dispathPay(sellerName, sellerImage, menu, number, price) {
     // sellerName: this.sellerName,
