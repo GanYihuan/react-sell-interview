@@ -20,10 +20,10 @@ export const getMenuData = () => async(dispatch) => {
   // })
 }
 
-export const getLeftItemIndex = (index) => (dispatch) => {
+export const setLeftItemIndex = (index) => (dispatch) => {
   dispatch({
     type: constants.LEFT_ITEM_INDEX,
-    obj: index
+    index: index
   })
 }
 

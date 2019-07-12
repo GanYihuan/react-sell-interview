@@ -31,7 +31,7 @@ class Menu extends Component {
                 <div className='menu-wrapper'>
                   {
                     menuDatas.map((item, index) => {
-                      const cls = currentLeftIndex === index ? 'menu-item current' : 'menu-item'
+                      const cls = index === currentLeftIndex ? 'menu-item current' : 'menu-item'
                       const iconF = (type) => {
                         const mapN = this.state.classMap[type]
                         return (
@@ -106,7 +106,6 @@ class Menu extends Component {
       }
     })
     dispathMenuData()
-    // dispatchgetFoodData()
     if (!this.mScroll) {
       this.mScroll = new BScroll(this.refs.menuWrapper, {
         click: true
@@ -125,15 +124,15 @@ class Menu extends Component {
           scrollY: Math.abs(Math.round(pos.y))
         }
       })
-      this.changeLeftIndex()
+      // this.changeLeftIndex()
     })
   }
   itemClick(index) {
-    const { dispathLeftItemClick, currentLeftIndex } = this.props
-    dispathLeftItemClick(index)
+    const { dispathSetLeftItemIndex } = this.props
     const foodList = this.refs.foodsWrapper.getElementsByClassName('food-list-hook')
-    const el = foodList[currentLeftIndex]
+    const el = foodList[index]
     this.fScroll.scrollToElement(el, 300)
+    dispathSetLeftItemIndex(index)
   }
   foodsWrapperHeight() {
     const foodList = this.refs.foodsWrapper.getElementsByClassName('food-list-hook')
@@ -160,7 +159,6 @@ class Menu extends Component {
         dispatchChangeLeftIndex(i)
       }
     }
-    dispatchChangeLeftIndex(0)
   }
 }
 
@@ -173,15 +171,12 @@ const mapDispatch = dispatch => ({
   dispathMenuData() {
     dispatch(actionCreators.getMenuData())
   },
-  dispathLeftItemClick(index) {
-    dispatch(actionCreators.getLeftItemIndex(index))
+  dispathSetLeftItemIndex(index) {
+    dispatch(actionCreators.setLeftItemIndex(index))
   },
   dispatchChangeLeftIndex(index) {
     dispatch(actionCreators.getChangeLeftIndex(index))
   }
-  // dispatchgetFoodData() {
-  //   dispatch(actionCreators.getFoodData())
-  // }
 })
 
 export default connect(
