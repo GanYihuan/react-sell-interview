@@ -2,7 +2,7 @@
 import { connect } from 'react-redux'
 import { CSSTransition } from 'react-transition-group'
 import BScroll from 'better-scroll'
-import CartControl from '../cartControl/cartControl'
+import CartControl from '../CartControl/CartControl'
 import { actionCreators } from '../../store'
 import './ShopBar.styl'
 

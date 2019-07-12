@@ -2,7 +2,7 @@
 import { connect } from 'react-redux'
 import { CSSTransition } from 'react-transition-group'
 import { actionCreators } from '../../store/index'
-import './cartControl.styl'
+import './CartControl'
 
 class cartControl extends Component {
   render() {

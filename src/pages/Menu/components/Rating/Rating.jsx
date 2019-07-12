@@ -2,7 +2,7 @@
 import { connect } from 'react-redux'
 import moment from 'moment'
 import Split from 'Split/Split'
-import RatingSelect from 'RatingSelect/RatingSelect'
+// import RatingSelect from 'RatingSelect/RatingSelect'
 import StarScore from 'StarScore/StarScore'
 import BScroll from 'better-scroll'
 import { actionCreators } from './store'
@@ -66,9 +66,9 @@ class Rating extends Component {
               </div>
             </div>
             <Split/>
-            <RatingSelect
+            {/* <RatingSelect
               onClick={() => { this.toggleContent() }}
-            />
+            /> */}
             <div className='rating-wrapper border-1px'>
               <ul>
                 {
