@@ -44,9 +44,21 @@ export const submit = (username, oldTime, score, rateType, text, avatar, recomme
     })
 }
 
-export const deleteComment = (index) => (dispatch) => { // redux-thunk, action dispatch 之后，到达 reducer 之前, 调用异步接口请求数据
-  dispatch({
-    type: constants.DELETCOMMENT,
-    index: index
-  })
+export const deleteComment = (sellerName) => async(dispatch) => { // redux-thunk, action dispatch 之后，到达 reducer 之前, 调用异步接口请求数据
+  axios
+    .post('/orders/deleteOrder', {
+      sellerName: sellerName
+    })
+    .then(({ status, data }) => {
+      const notyf = new Notyf()
+      if (status === 200) {
+        if (data && data.code === 0) {
+          notyf.success(`${data.msg} 删除订单成功!`)
+        } else {
+          notyf.error(`${data.msg} 删除订单失败!`)
+        }
+      } else {
+        notyf.error(`服务器出错，错误码:${status}`)
+      }
+    })
 }

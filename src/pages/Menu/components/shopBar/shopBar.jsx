@@ -1,4 +1,5 @@
 ﻿import React, { Component, Fragment } from 'react'
+import { withRouter } from 'react-router-dom'
 import { connect } from 'react-redux'
 import { CSSTransition } from 'react-transition-group'
 import BScroll from 'better-scroll'
@@ -6,6 +7,7 @@ import CartControl from '../cartControl/cartControl'
 import { actionCreators } from '../../store'
 import './shopBar.styl'
 
+@withRouter
 class ShopBar extends Component {
   constructor(props) {
     super(props)
@@ -145,6 +147,12 @@ class ShopBar extends Component {
     const totalPrice = this.getTotalPrice()
     console.log(name, img, shopCarDatas, shopCarTotal, totalPrice, 'xxxx')
     dispathPay(name, img, shopCarDatas, shopCarTotal, totalPrice)
+    if (this.timer) {
+      clearTimeout(this.timer)
+    }
+    this.timer = setTimeout(() => {
+      this.props.history.push('/order')
+    }, 2000)
   }
 }
 
