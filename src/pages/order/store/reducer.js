@@ -12,7 +12,8 @@ export default (state = initState, action) => {
       return getOrderData(state, action)
     case constants.EVALUATE:
       return state.set('evaluate', fromJS(action.menu))
-      // return getEvaluate(state, action)
+    case constants.DELETCOMMENT:
+      return deleteComment(state, action)
     default:
       return state
   }
@@ -24,8 +25,8 @@ const getOrderData = (state, action) => {
   })
 }
 
-// const getEvaluate = (state, action) => {
-//   return state.merge({
-//     evaluate: state.get('evaluate').concat(fromJS(action.menu))
-//   })
-// }
+const deleteComment = (state, action) => {
+  return state.merge({
+    order: state.get('order').delete(fromJS(action.index))
+  })
+}

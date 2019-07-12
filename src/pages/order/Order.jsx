@@ -23,13 +23,13 @@ class Order extends Component {
         {
           this.state.showEvaluate
             ? <Evaluate/>
-            : <div className='s'>
+            : <div className='wrapper'>
               <div className='order'>
                 <div className='header'>
                   订单
                 </div>
                 <div
-                  ref='order'
+                  ref='orderWrapper'
                   className='orderWrapper'
                 >
                   <div className='order-list'>
@@ -53,7 +53,7 @@ class Order extends Component {
                                   </p>
                                   <div
                                     className='close'
-                                    onClick={() => { this.deleteComment() }}
+                                    onClick={() => { this.deleteComment(index) }}
                                   >
                                     <i className='icon-close' />
                                   </div>
@@ -65,7 +65,7 @@ class Order extends Component {
                                         <div className='product-item' key={mindex}>
                                           {mitem.name}
                                           <div className='p-count'>
-                                            x {mitem.count}
+                                            x {mitem.chooseCount}
                                           </div>
                                         </div>
                                       )
@@ -107,13 +107,14 @@ class Order extends Component {
     const { dispathOrder } = this.props
     dispathOrder()
     if (!this.Scroll) {
-      this.Scroll = new BScroll(this.refs.order, {
+      this.Scroll = new BScroll(this.refs.orderWrapper, {
         click: true
       })
     }
   }
-  deleteComment() {
-    console.log('deleteComment')
+  deleteComment(index) {
+    const { dispathDeleteComment } = this.props
+    dispathDeleteComment(index)
   }
   comment(menu) {
     const { dispathEvaluate } = this.props
@@ -136,6 +137,9 @@ const mapDispatch = dispatch => ({
   },
   dispathEvaluate(menu) {
     dispatch(actionCreators.getEvaluate(menu))
+  },
+  dispathDeleteComment(index) {
+    dispatch(actionCreators.deleteComment(index))
   }
 })
 
