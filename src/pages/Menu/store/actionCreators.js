@@ -113,3 +113,10 @@ export const resetshopCarData = (shopCarDatas) => (dispatch) => {
     shopCarDatas: shopCarDatas
   })
 }
+
+export const deleteSelectItem = (name) => (dispatch) => {
+  dispatch({
+    type: constants.DELETESELECTITEM,
+    name: name
+  })
+}

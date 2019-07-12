@@ -33,6 +33,8 @@ export default (state = initState, action) => {
       return decshopCarData(state, action)
     case constants.RESETSHOPCARDATA:
       return state.set('shopCarData', fromJS(action.shopCarDatas))
+    case constants.DELETESELECTITEM:
+      return deleteSelectItem(state, action)
     // case constants.CLEARSHOPCARTDATA:
     //   return clearShopCarData(state, action)
     case constants.CHANGELEFTINDEX:
@@ -92,3 +94,9 @@ const getListData = (state, action) => {
 //     shopCarTotal: state.set('shopCarTotal', 0)
 //   })
 // }
+
+const deleteSelectItem = (state, action) => {
+  return state.merge({
+    shopCarData: state.get('shopCarData').filter(value => value.get('name') !== fromJS(action.name))
+  })
+}
