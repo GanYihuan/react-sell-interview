@@ -93,7 +93,7 @@ export const resetMenuData = () => async(dispatch) => {
   }
 }
 
-export const getChangeLeftIndex = (index) => (dispatch) => {
+export const changeLeftIndex = (index) => (dispatch) => {
   dispatch({
     type: constants.CHANGELEFTINDEX,
     index: index

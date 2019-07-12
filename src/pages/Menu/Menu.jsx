@@ -175,7 +175,7 @@ const mapDispatch = dispatch => ({
     dispatch(actionCreators.setLeftItemIndex(index))
   },
   dispatchChangeLeftIndex(index) {
-    dispatch(actionCreators.getChangeLeftIndex(index))
+    dispatch(actionCreators.changeLeftIndex(index))
   }
 })
 
