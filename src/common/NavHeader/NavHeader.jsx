@@ -20,7 +20,8 @@ class NavHeader extends Component {
     addArticleList()
   }
   renderTabs() {
-    const { tabs } = this.props
+    const { tabs, name, img } = this.props
+    console.log(name, img, 'header...')
     const newList = tabs.toJS()
     return newList.map((item) => {
       return (
@@ -29,7 +30,7 @@ class NavHeader extends Component {
             className='btn-Item'
             activeClassName='activeDes'
             replace={true}
-            to={`/${item.key}`}
+            to={`/${item.key}/${name}&${encodeURIComponent(img)}`}
           >
             <div className='icon' />
             <div className='des'>{item.name}</div>

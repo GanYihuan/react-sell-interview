@@ -36,3 +36,11 @@ export const getListData = () => async(dispatch) => { // page: CommentList.jsx ä
   //   obj: resp.data
   // })
 }
+
+export const sellerInfo = (name, img) => (dispatch) => {
+  dispatch({
+    type: constants.SELLERINFO,
+    name: name,
+    img: img
+  })
+}

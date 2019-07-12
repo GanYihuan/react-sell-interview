@@ -23,32 +23,15 @@ class Home extends Component {
             <Category/>
             <Split/>
             <ContentList/>
-            <div
-              className='back-to-ceiling'
-            >
+            <div className='back-to-ceiling'>
               <i className='icon-circle-up' />
             </div>
           </div>
         </div>
         <BottomBar/>
       </div>
-
     )
   }
-  // componentDidMount() {
-  //   if (!this.Scroll) {
-  //     this.Scroll = new BScroll(this.refs.home, {
-  //       click: true,
-  //       probeType: 3
-  //     }).on('scroll', pos => {
-  //       this.setState(() => {
-  //         return {
-  //           ScrollY: pos.y
-  //         }
-  //       })
-  //     })
-  //   }
-  // }
 }
 
 export default Home

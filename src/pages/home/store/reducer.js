@@ -18,7 +18,9 @@ const defaultState = fromJS({
   ],
   articlePage: 'home',
   items: [],
-  list: []
+  list: [],
+  sellerName: '',
+  sellerImg: ''
 })
 
 export default (state = defaultState, action) => {
@@ -27,6 +29,8 @@ export default (state = defaultState, action) => {
       return getCategory(state, action)
     case constants.LIST_DATA:
       return getContentListData(state, action)
+    case constants.SELLERINFO:
+      return sellerInfo(state, action)
     default:
       return state
   }
@@ -43,5 +47,12 @@ const getContentListData = (state, action) => {
   return state.merge({
     // list: state.get('list').concat(fromJS(action.obj.data.poilist))
     list: state.get('list').concat(fromJS(action.obj))
+  })
+}
+
+const sellerInfo = (state, action) => {
+  return state.merge({
+    sellerName: action.name,
+    sellerImg: action.img
   })
 }

@@ -15,7 +15,7 @@ class Menu extends Component {
   render() {
     return (
       <div>
-        <NavHeader/>
+        <NavHeader name={this.state.name} img={this.state.img} />
         <Good />
         <ShopBar name={this.state.name} img={this.state.img} />
       </div>
