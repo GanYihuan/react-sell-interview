@@ -98,7 +98,7 @@ class ShopBar extends Component {
     const temp = shopCarData.toJS()
     let totalPrice = 0
     for (const i of temp) {
-      totalPrice = totalPrice + i.price
+      totalPrice = totalPrice + i.price * i.chooseCount
     }
     if (totalPrice === 0) {
       return `￥${navHeader.get('minPrice')}元起送`
