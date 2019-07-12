@@ -100,7 +100,7 @@ const clearShopCarData = (state, action) => {
 
 const resetMenuData = (state, action) => {
   return state.merge({
-    shopCarData: state.get('shopCarData').clear()
+    menuData: state.get('menuData').clear().concat(fromJS(action.menuData))
   })
 }
 

@@ -83,10 +83,14 @@ export const clearShopCartTotal = () => (dispatch) => {
   })
 }
 
-export const resetMenuData = () => (dispatch) => {
-  dispatch({
-    type: constants.RESETMENUDATA
-  })
+export const resetMenuData = () => async(dispatch) => {
+  const { status, data: { goods }} = await axios.get('/goods/getGood')
+  if (status === 200) {
+    dispatch({
+      type: constants.RESETMENUDATA,
+      menuData: goods
+    })
+  }
 }
 
 export const getChangeLeftIndex = (index) => (dispatch) => {
