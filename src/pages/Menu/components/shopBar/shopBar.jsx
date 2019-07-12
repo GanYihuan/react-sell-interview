@@ -22,9 +22,10 @@ class ShopBar extends Component {
     //   }
     // }
     const { shopCarTotal, navHeader, menuData, shopCarData } = this.props
-    const temp = shopCarData.toJS()
-    console.log(temp, 'temp..')
-    const shopCarDatas = temp.filter(a => a.chooseCount === Math.max(...temp.filter(b => b.name === a.name).map(({ chooseCount }) => chooseCount))).reverse() // .sort(compare('sellCount')) // 选出 同 name 下 chooseCount 最大的
+    const shopCarDatas = shopCarData.toJS()
+    // console.log(temp, 'temp..')
+    console.log(shopCarDatas, 'shopCarDatas..')
+    // const shopCarDatas = temp.filter(a => a.chooseCount === Math.max(...temp.filter(b => b.name === a.name).map(({ chooseCount }) => chooseCount))).reverse() // .sort(compare('sellCount')) // 选出 同 name 下 chooseCount 最大的
     return (
       <Fragment>
         <div className='shopCart'>

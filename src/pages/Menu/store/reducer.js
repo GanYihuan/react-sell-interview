@@ -60,7 +60,8 @@ const addSelectItem = (state, action) => {
 
 const addshopCarData = (state, action) => {
   return state.merge({
-    shopCarData: state.get('shopCarData').insert(0, state.get('menuData').getIn([fromJS(action.index), 'foods', fromJS(action.findex)])).filter(value => value.name === fromJS(action.name))
+    // shopCarData: state.get('shopCarData').insert(0, state.get('menuData').getIn([fromJS(action.index), 'foods', fromJS(action.findex)])).filter(value => value.name === fromJS(action.name))
+    shopCarData: state.get('shopCarData').filter(value => value.get('name') !== fromJS(action.name)).insert(0, state.get('menuData').getIn([fromJS(action.index), 'foods', fromJS(action.findex)]))
   })
 }
 
