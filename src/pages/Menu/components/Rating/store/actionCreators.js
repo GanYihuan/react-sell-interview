@@ -20,3 +20,10 @@ export const getRatingsData = () => async(dispatch) => {
     })
   }
 }
+
+export const ratingSelectTypeBad = (number) => async(dispatch) => {
+  dispatch({
+    type: constants.RATINGSELECTTYPEBAD,
+    number: number
+  })
+}
