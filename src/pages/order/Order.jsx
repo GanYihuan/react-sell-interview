@@ -1,6 +1,5 @@
 ﻿import React, { Component } from 'react'
 import BScroll from 'better-scroll'
-import { withRouter } from 'react-router-dom'
 import { connect } from 'react-redux'
 import { actionCreators } from './store'
 import BottomBar from 'BottomBar/BottomBar'
@@ -8,7 +7,6 @@ import Evaluate from './components/Evaluate/Evaluate'
 import Split from 'Split/Split'
 import './Order.styl'
 
-@withRouter
 class Order extends Component {
   constructor(props) {
     super(props)
@@ -55,7 +53,7 @@ class Order extends Component {
                                   </p>
                                   <div
                                     className='close'
-                                    onClick={() => { this.deleteComment(item.sellerName) }}
+                                    onClick={() => { this.deleteComment(item.sellerName, item.number, item.price) }}
                                   >
                                     <i className='icon-close' />
                                   </div>
@@ -114,15 +112,9 @@ class Order extends Component {
       })
     }
   }
-  deleteComment(sellerName) {
+  deleteComment(sellerName, number, price) {
     const { dispathDeleteComment } = this.props
-    dispathDeleteComment(sellerName)
-    if (this.timer) {
-      clearTimeout(this.timer)
-    }
-    this.timer = setTimeout(() => {
-      this.props.history.push('/order')
-    }, 2000)
+    dispathDeleteComment(sellerName, number, price)
   }
   comment(menu) {
     const { dispathEvaluate } = this.props
@@ -146,8 +138,8 @@ const mapDispatch = dispatch => ({
   dispathEvaluate(menu) {
     dispatch(actionCreators.getEvaluate(menu))
   },
-  dispathDeleteComment(sellerName) {
-    dispatch(actionCreators.deleteComment(sellerName))
+  dispathDeleteComment(sellerName, number, price) {
+    dispatch(actionCreators.deleteComment(sellerName, number, price))
   }
 })
 

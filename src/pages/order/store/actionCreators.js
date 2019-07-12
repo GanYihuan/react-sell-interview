@@ -44,10 +44,12 @@ export const submit = (username, oldTime, score, rateType, text, avatar, recomme
     })
 }
 
-export const deleteComment = (sellerName) => async(dispatch) => { // redux-thunk, action dispatch 之后，到达 reducer 之前, 调用异步接口请求数据
+export const deleteComment = (sellerName, number, price) => async(dispatch) => { // redux-thunk, action dispatch 之后，到达 reducer 之前, 调用异步接口请求数据
   axios
     .post('/orders/deleteOrder', {
-      sellerName: sellerName
+      sellerName: sellerName,
+      number: number,
+      price: price
     })
     .then(({ status, data }) => {
       const notyf = new Notyf()
