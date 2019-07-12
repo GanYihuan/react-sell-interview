@@ -72,14 +72,11 @@ const minusSelectItem = (state, action) => {
   })
 }
 
-// bug!
 const decshopCarData = (state, action) => {
   return state.merge({
-    // shopCarData: state.get('shopCarData').filter((value, key) => value.get(name) === fromJS(action.name)).updateIn([0, 'chooseCount'], function(x) { return x - 1 })
-    // shopCarData: state.get('shopCarData').filter(value => value.get(name) !== fromJS(action.name)).updateIn([0, 'chooseCount'], function(x) { return x - 1 })
-    // shopCarData: state.get('shopCarData').filter(value => value.get('name') !== fromJS(action.name)).update('chooseCount', function(x) { return x - 1 })
     // shopCarData: state.get('shopCarData').updateIn([0, 'chooseCount'], function(x) { return x - 1 }).filter(value => value.get('name') !== fromJS(action.name))
-    // shopCarData: state.get('shopCarData').filter(value => value.get('name') === fromJS(action.name)).updateIn([0, 'chooseCount'], function(x) { return x - 1 })
+    // shopCarData: state.get('shopCarData').filter(value => value.get('name') === fromJS(action.name)).updateIn([0, 'chooseCount'], function(x) { return x - 1 }) // 购物车里 减少 对应食品 数量 操作
+    shopCarData: state.get('shopCarData').filter(value => value.get('name') !== fromJS(action.name)).concat(state.get('shopCarData').filter(value => value.get('name') === fromJS(action.name)).updateIn([0, 'chooseCount'], function(x) { return x - 1 }))
   })
 }
 
