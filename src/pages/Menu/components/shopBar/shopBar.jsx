@@ -14,15 +14,15 @@ class ShopBar extends Component {
     }
   }
   render() {
-    // function compare(property) {
-    //   return function(a, b) {
-    //     var value1 = a[property]
-    //     var value2 = b[property]
-    //     return value2 - value1
-    //   }
-    // }
+    function compare(property) {
+      return function(a, b) {
+        var value1 = a[property]
+        var value2 = b[property]
+        return value2 - value1
+      }
+    }
     const { shopCarTotal, navHeader, menuData, shopCarData } = this.props
-    const shopCarDatas = shopCarData.toJS()
+    const shopCarDatas = shopCarData.toJS().sort(compare('sellCount'))
     // console.log(temp, 'temp..')
     console.log(shopCarDatas, 'shopCarDatas..')
     // const shopCarDatas = temp.filter(a => a.chooseCount === Math.max(...temp.filter(b => b.name === a.name).map(({ chooseCount }) => chooseCount))).reverse() // .sort(compare('sellCount')) // 选出 同 name 下 chooseCount 最大的
