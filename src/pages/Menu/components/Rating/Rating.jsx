@@ -4,7 +4,6 @@ import moment from 'moment'
 import Split from 'Split/Split'
 import StarScore from 'StarScore/StarScore'
 import BScroll from 'better-scroll'
-import RatingSelect from '../RatingSelect/RatingSelect'
 import { actionCreators } from '../Rating/store'
 import './Rating.styl'
 

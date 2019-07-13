@@ -7,7 +7,6 @@ import { reducer as cityReducer } from '../pages/city/store'
 import { reducer as orderReducer } from '../pages/order/store'
 import { reducer as restanurantReducer } from '../pages/menu/components/Restanurant/store'
 import { reducer as ratingsReducer } from '../pages/menu/components/Rating/store'
-import { reducer as ratingSelectReducer } from '../pages/menu/components/RatingSelect/store'
 import { reducer as goodReducer } from '../pages/menu/components/Good/store'
 
 const reducer = combineReducers({
@@ -19,7 +18,6 @@ const reducer = combineReducers({
   ratings: ratingsReducer,
   city: cityReducer,
   order: orderReducer,
-  ratingSelect: ratingSelectReducer,
   good: goodReducer
 })
 
