@@ -106,13 +106,15 @@ class Good extends Component {
     }
     dispathMenuData()
     this.calculateHeight()
+    let posY
     this.fScroll.on('scroll', pos => {
-      this.setState(() => {
-        return {
-          scrollY: Math.abs(Math.round(pos.y))
-        }
-      })
-      // this.currentIndex()
+      posY = pos.y
+      // this.currentIndex() // 调用时机不对!
+    })
+    this.setState(() => {
+      return {
+        scrollY: Math.abs(Math.round(posY))
+      }
     })
   }
   itemClick(index) {
