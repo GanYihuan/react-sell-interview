@@ -92,8 +92,7 @@ class Good extends Component {
     )
   }
   componentDidMount() {
-    const { dispathMenuData, dispatchgetFoodData } = this.props
-    dispathMenuData()
+    const { dispathMenuData } = this.props
     if (!this.mScroll) {
       this.mScroll = new BScroll(this.refs.menuWrapper, {
         click: true
@@ -105,14 +104,15 @@ class Good extends Component {
         probeType: 3
       })
     }
-    this.foodsWrapperHeight()
+    dispathMenuData()
+    this.calculateHeight()
     this.fScroll.on('scroll', pos => {
       this.setState(() => {
         return {
           scrollY: Math.abs(Math.round(pos.y))
         }
       })
-      // this.changeLeftIndex()
+      // this.currentIndex()
     })
   }
   itemClick(index) {
@@ -122,7 +122,7 @@ class Good extends Component {
     this.fScroll.scrollToElement(el, 300)
     dispathSetLeftItemIndex(index)
   }
-  foodsWrapperHeight() {
+  calculateHeight() {
     const foodList = this.refs.foodsWrapper.getElementsByClassName('food-list-hook')
     let height = 0
     const setlistHeight = []
@@ -138,21 +138,21 @@ class Good extends Component {
       }
     })
   }
-  changeLeftIndex() {
-    const { dispatchChangeLeftIndex } = this.props
+  currentIndex() {
+    const { dispathSetLeftItemIndex } = this.props
     for (let i = 0; i < this.state.listHeight.length; i++) {
       const height1 = this.state.listHeight[i] /* The height of the current index value */
       const height2 = this.state.listHeight[i + 1] /* Next height */
       if (!height2 || (this.state.scrollY >= height1 && this.state.scrollY < height2)) {
-        dispatchChangeLeftIndex(i)
+        dispathSetLeftItemIndex(i)
       }
     }
   }
 }
 
 const mapState = state => ({
-  menuData: state.getIn(['menu', 'menuData']),
-  currentLeftIndex: state.getIn(['menu', 'currentLeftIndex'])
+  menuData: state.getIn(['good', 'menuData']),
+  currentLeftIndex: state.getIn(['good', 'currentLeftIndex'])
 })
 
 const mapDispatch = dispatch => ({
@@ -161,9 +161,6 @@ const mapDispatch = dispatch => ({
   },
   dispathSetLeftItemIndex(index) {
     dispatch(actionCreators.setLeftItemIndex(index))
-  },
-  dispatchChangeLeftIndex(index) {
-    dispatch(actionCreators.changeLeftIndex(index))
   }
 })
 

@@ -43,6 +43,18 @@ export const minusSelectItem = (index, findex) => (dispatch) => {
   })
 }
 
+export const addshopCarTotal = () => (dispatch) => {
+  dispatch({
+    type: constants.ADDSHOPCARTOTAL
+  })
+}
+
+export const decshopCarTotal = () => (dispatch) => {
+  dispatch({
+    type: constants.DECSHOPCARTOTAL
+  })
+}
+
 export const addshopCarData = (index, findex, name) => (dispatch) => {
   dispatch({
     type: constants.ADDSHOPCARDATA,
@@ -59,27 +71,29 @@ export const decshopCarData = (name) => (dispatch) => {
   })
 }
 
-export const addshopCarTotal = () => (dispatch) => {
+export const resetshopCarData = (shopCarDatas) => (dispatch) => {
   dispatch({
-    type: constants.ADDSHOPCARTOTAL
+    type: constants.RESETSHOPCARDATA,
+    shopCarDatas: shopCarDatas
   })
 }
 
-export const decshopCarTotal = () => (dispatch) => {
+export const deleteSelectItem = (name) => (dispatch) => {
   dispatch({
-    type: constants.DECSHOPCARTOTAL
-  })
-}
-
-export const clearShopCartData = () => (dispatch) => {
-  dispatch({
-    type: constants.CLEARSHOPCARTDATA
+    type: constants.DELETESELECTITEM,
+    name: name
   })
 }
 
 export const clearShopCartTotal = () => (dispatch) => {
   dispatch({
     type: constants.CLEARSHOPCARTOTAL
+  })
+}
+
+export const clearShopCartData = () => (dispatch) => {
+  dispatch({
+    type: constants.CLEARSHOPCARTDATA
   })
 }
 
@@ -91,13 +105,6 @@ export const resetMenuData = () => async(dispatch) => {
       menuData: goods
     })
   }
-}
-
-export const changeLeftIndex = (index) => (dispatch) => {
-  dispatch({
-    type: constants.CHANGELEFTINDEX,
-    index: index
-  })
 }
 
 export const Pay = (sellerName, sellerImage, menu, number, price) => (dispatch) => {
@@ -121,18 +128,4 @@ export const Pay = (sellerName, sellerImage, menu, number, price) => (dispatch) 
         notyf.error(`服务器出错，错误码:${status}`)
       }
     })
-}
-
-export const resetshopCarData = (shopCarDatas) => (dispatch) => {
-  dispatch({
-    type: constants.RESETSHOPCARDATA,
-    shopCarDatas: shopCarDatas
-  })
-}
-
-export const deleteSelectItem = (name) => (dispatch) => {
-  dispatch({
-    type: constants.DELETESELECTITEM,
-    name: name
-  })
 }
