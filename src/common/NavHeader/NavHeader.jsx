@@ -15,47 +15,6 @@ class NavHeader extends Component {
       classMap: ['decrease', 'discount', 'special', 'invoice', 'guarantee']
     }
   }
-  componentDidMount() { // async, get ajax async data
-    const { addArticleList } = this.props
-    addArticleList()
-  }
-  renderTabs() {
-    const { tabs, name, img } = this.props
-    console.log(name, img, 'header...')
-    const newList = tabs.toJS()
-    return newList.map((item) => {
-      return (
-        <div className='tab-item' key={item.key}>
-          <NavLink
-            className='btn-Item'
-            activeClassName='activeDes'
-            replace={true}
-            to={`/${item.key}/${name}&${encodeURIComponent(img)}`}
-          >
-            <div className='icon' />
-            <div className='des'>{item.name}</div>
-          </NavLink>
-        </div>
-      )
-    })
-  }
-  goBack() {
-    this.props.history.push(`/home`)
-  }
-  showDetail() {
-    this.setState(() => {
-      return {
-        detailShow: !this.state.detailShow
-      }
-    })
-  }
-  hideDetail() {
-    this.setState(() => {
-      return {
-        detailShow: !this.state.detailShow
-      }
-    })
-  }
   render() {
     const { tabs, navHeader } = this.props
     const tabsArray = tabs.toJS()
@@ -164,6 +123,46 @@ class NavHeader extends Component {
         }
       </div>
     )
+  }
+  componentDidMount() { // async, get ajax async data
+    const { addArticleList } = this.props
+    addArticleList()
+  }
+  renderTabs() {
+    const { tabs, name, img } = this.props
+    const newList = tabs.toJS()
+    return newList.map((item) => {
+      return (
+        <div className='tab-item' key={item.key}>
+          <NavLink
+            className='btn-Item'
+            activeClassName='activeDes'
+            replace={true}
+            to={`/${item.key}/${name}&${encodeURIComponent(img)}`}
+          >
+            <div className='icon' />
+            <div className='des'>{item.name}</div>
+          </NavLink>
+        </div>
+      )
+    })
+  }
+  goBack() {
+    this.props.history.push(`/home`)
+  }
+  showDetail() {
+    this.setState(() => {
+      return {
+        detailShow: !this.state.detailShow
+      }
+    })
+  }
+  hideDetail() {
+    this.setState(() => {
+      return {
+        detailShow: !this.state.detailShow
+      }
+    })
   }
 }
 
