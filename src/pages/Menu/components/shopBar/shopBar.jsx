@@ -3,7 +3,7 @@ import { connect } from 'react-redux'
 import { CSSTransition } from 'react-transition-group'
 import BScroll from 'better-scroll'
 import Control from '../Control/Control'
-import { actionCreators } from '../../store'
+import { actionCreators } from '../Good/store'
 import './ShopBar.styl'
 
 class ShopBar extends Component {
@@ -21,7 +21,7 @@ class ShopBar extends Component {
         return value2 - value1
       }
     }
-    const { shopCarTotal, navHeader, menuData, shopCarData } = this.props
+    const { shopCarTotal, navHeader, shopCarData } = this.props
     const shopCarDatas = shopCarData.toJS().sort(compare('sellCount'))
     // const shopCarDatas = temp.filter(a => a.chooseCount === Math.max(...temp.filter(b => b.name === a.name).map(({ chooseCount }) => chooseCount))).reverse() // .sort(compare('sellCount')) // 选出 同 name 下 chooseCount 最大的
     return (
@@ -141,25 +141,19 @@ class ShopBar extends Component {
       return
     }
     const totalPrice = this.getTotalPrice()
-    console.log(name, img, shopCarDatas, shopCarTotal, totalPrice, 'xxxx')
     dispathPay(name, img, shopCarDatas, shopCarTotal, totalPrice)
   }
 }
 
 const mapState = state => ({
-  showChooseContent: state.getIn(['menu', 'showChooseContent']),
-  shopCarTotal: state.getIn(['menu', 'shopCarTotal']),
   navHeader: state.getIn(['main', 'navHeader']),
-  menuData: state.getIn(['menu', 'menuData']),
-  shopCarData: state.getIn(['menu', 'shopCarData']),
+  shopCarTotal: state.getIn(['good', 'shopCarTotal']),
+  shopCarData: state.getIn(['good', 'shopCarData']),
   name: state.getIn(['menu', 'name']),
   img: state.getIn(['menu', 'img'])
 })
 
 const mapDispatch = dispatch => ({
-  dispathshowChoose() {
-    dispatch(actionCreators.showChoose())
-  },
   dispathClearShopCarData() {
     dispatch(actionCreators.clearShopCartData())
   },
@@ -169,6 +163,9 @@ const mapDispatch = dispatch => ({
   dispathResetMenuData() {
     dispatch(actionCreators.resetMenuData())
   },
+  dispathresetshopCarData(shopCarDatas) {
+    dispatch(actionCreators.resetshopCarData(shopCarDatas))
+  },
   dispathPay(sellerName, sellerImage, menu, number, price) {
     // sellerName: this.sellerName,
     // sellerImage: this.sellerImage,
@@ -176,9 +173,6 @@ const mapDispatch = dispatch => ({
     // number: this.totalCount,
     // price: this.totalPrice
     dispatch(actionCreators.Pay(sellerName, sellerImage, menu, number, price))
-  },
-  dispathresetshopCarData(shopCarDatas) {
-    dispatch(actionCreators.resetshopCarData(shopCarDatas))
   }
 })
 

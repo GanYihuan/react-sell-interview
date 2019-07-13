@@ -48,3 +48,5 @@ pass name
 shopCarData: state.get('shopCarData').updateIn(['index', 'chooseCount'], function(x) { return x - 1 })
 
 state.get('shopCarData').filter((value, key) => value.name === pass_name).updateIn([0, 'chooseCount'], function(x) { return x - 1 })
+
+Control ShopBar 使用 Good store

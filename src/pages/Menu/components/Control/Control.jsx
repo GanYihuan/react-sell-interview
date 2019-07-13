@@ -1,7 +1,7 @@
 ﻿import React, { Component, Fragment } from 'react'
 import { connect } from 'react-redux'
 import { CSSTransition } from 'react-transition-group'
-import { actionCreators } from '../../store/index'
+import { actionCreators } from '../Good/store'
 import './Control.styl'
 
 class Control extends Component {

@@ -2,6 +2,7 @@
 import * as constants from './constants'
 import { Notyf } from 'notyf' // 纯js消息通知插件
 
+// Good.jsx
 export const getMenuData = () => async(dispatch) => {
   const { status, data: { goods }} = await axios.get('/goods/getGood')
   if (status === 200) {
@@ -26,7 +27,9 @@ export const setLeftItemIndex = (index) => (dispatch) => {
     index: index
   })
 }
+// Good.jsx
 
+// Control.jsx
 export const addSelectItem = (index, findex) => (dispatch) => {
   dispatch({
     type: constants.ADD_SELECTI_ITEM,
@@ -71,29 +74,24 @@ export const decshopCarData = (name) => (dispatch) => {
   })
 }
 
-export const resetshopCarData = (shopCarDatas) => (dispatch) => {
-  dispatch({
-    type: constants.RESETSHOPCARDATA,
-    shopCarDatas: shopCarDatas
-  })
-}
-
 export const deleteSelectItem = (name) => (dispatch) => {
   dispatch({
     type: constants.DELETESELECTITEM,
     name: name
   })
 }
+// Control.jsx
+
+// ShopBar.jsx
+export const clearShopCartData = () => (dispatch) => {
+  dispatch({
+    type: constants.CLEARSHOPCARTDATA
+  })
+}
 
 export const clearShopCartTotal = () => (dispatch) => {
   dispatch({
     type: constants.CLEARSHOPCARTOTAL
-  })
-}
-
-export const clearShopCartData = () => (dispatch) => {
-  dispatch({
-    type: constants.CLEARSHOPCARTDATA
   })
 }
 
@@ -105,6 +103,13 @@ export const resetMenuData = () => async(dispatch) => {
       menuData: goods
     })
   }
+}
+
+export const resetshopCarData = (shopCarDatas) => (dispatch) => {
+  dispatch({
+    type: constants.RESETSHOPCARDATA,
+    shopCarDatas: shopCarDatas
+  })
 }
 
 export const Pay = (sellerName, sellerImage, menu, number, price) => (dispatch) => {
@@ -129,3 +134,4 @@ export const Pay = (sellerName, sellerImage, menu, number, price) => (dispatch) 
       }
     })
 }
+// ShopBar.jsx

@@ -26,16 +26,16 @@ export default (state = initState, action) => {
       return addshopCarData(state, action)
     case constants.DECSHOPCARDATA:
       return decshopCarData(state, action)
-    case constants.RESETSHOPCARDATA:
-      return state.set('shopCarData', fromJS(action.shopCarDatas))
     case constants.DELETESELECTITEM:
       return deleteSelectItem(state, action)
-    case constants.CLEARSHOPCARTOTAL:
-      return state.set('shopCarTotal', 0)
     case constants.CLEARSHOPCARTDATA:
       return clearShopCarData(state, action)
+    case constants.CLEARSHOPCARTOTAL:
+      return state.set('shopCarTotal', 0)
     case constants.RESETMENUDATA:
       return resetMenuData(state, action)
+    case constants.RESETSHOPCARDATA:
+      return state.set('shopCarData', fromJS(action.shopCarDatas))
     default:
       return state
   }
@@ -53,15 +53,15 @@ const addSelectItem = (state, action) => {
   })
 }
 
-const addshopCarData = (state, action) => {
-  return state.merge({
-    shopCarData: state.get('shopCarData').filter(value => value.get('name') !== fromJS(action.name)).insert(0, state.get('menuData').getIn([fromJS(action.index), 'foods', fromJS(action.findex)]))
-  })
-}
-
 const minusSelectItem = (state, action) => {
   return state.merge({
     menuData: state.get('menuData').updateIn([fromJS(action.index), 'foods', fromJS(action.findex), 'chooseCount'], function(x) { return x - 1 })
+  })
+}
+
+const addshopCarData = (state, action) => {
+  return state.merge({
+    shopCarData: state.get('shopCarData').filter(value => value.get('name') !== fromJS(action.name)).insert(0, state.get('menuData').getIn([fromJS(action.index), 'foods', fromJS(action.findex)]))
   })
 }
 
@@ -69,6 +69,12 @@ const decshopCarData = (state, action) => {
   return state.merge({
     // shopCarData: state.get('shopCarData').filter(value => value.get('name') === fromJS(action.name)).updateIn([0, 'chooseCount'], function(x) { return x - 1 }) // 购物车里 减少 对应食品 数量 操作
     shopCarData: state.get('shopCarData').filter(value => value.get('name') !== fromJS(action.name)).concat(state.get('shopCarData').filter(value => value.get('name') === fromJS(action.name)).updateIn([0, 'chooseCount'], function(x) { return x - 1 }))
+  })
+}
+
+const deleteSelectItem = (state, action) => {
+  return state.merge({
+    shopCarData: state.get('shopCarData').filter(value => value.get('name') !== fromJS(action.name))
   })
 }
 
@@ -81,11 +87,5 @@ const clearShopCarData = (state, action) => {
 const resetMenuData = (state, action) => {
   return state.merge({
     menuData: state.get('menuData').clear().concat(fromJS(action.menuData))
-  })
-}
-
-const deleteSelectItem = (state, action) => {
-  return state.merge({
-    shopCarData: state.get('shopCarData').filter(value => value.get('name') !== fromJS(action.name))
   })
 }
