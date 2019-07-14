@@ -1,0 +1,176 @@
+﻿@import '../../../../assets/stylus/mixin'
+@import '../../../../assets/stylus/variable'
+.food
+  z-index: 30
+  position: fixed
+  left: 0
+  top: 0
+  bottom: 3rem
+  width: 100%
+  background: $color-white
+  &.fade-enter-active,
+  &.fade-leave-active
+    transition: all 0.2s linear
+    transform: translate3d(0, 0, 0)
+  &.fade-enter,
+  &.fade-leave-active
+    opacity: 0
+    transform: translate3d(100%, 0, 0)
+  &.move-enter-active,
+  &.move-leave-active
+    transition: all 0.2s linear
+    transform: translate3d(0, 0, 0)
+  &.move-enter,
+  &.move-leave-active
+    opacity: 0
+    transform: translate3d(100%, 0, 0)
+  .image-header
+    // children element img: position: absolute, father element: position: relative
+    /* Fixed width to height ratio 9:10 */
+    position: relative
+    padding-top: 90%
+    width: 100%
+    height: 0
+    /* Fixed width to height ratio 8: 10 */
+    img
+      position: absolute
+      top: 0
+      width: 100%
+      height: 100%
+    .back
+      position: absolute
+      top: .625rem
+      left: 0
+      .icon-arrow_lift
+        display: block
+        padding: .625rem
+        font-size: 1.25rem
+        color: $color-white
+  .content
+    position: relative
+    padding: 1.125rem
+    &.fade-enter-active,
+    &.fade-leave-active
+      transition: all 0.2s
+    &.fade-enter,
+    &.fade-leave-active
+      opacity: 0
+      z-index: -1
+    .title
+      line-height: .875rem
+      font-size: .875rem
+      font-weight: 700
+      color: $color-black
+    .detail
+      position: relative
+      margin: 0 0 .625rem
+      height: 1.875rem
+      line-height: .625rem
+      font-size: 0
+      color: $color-black
+      background: $color-white
+      .sell-count,
+      .rating
+        display: inline-block
+        font-size: .625rem
+        color: $color-gray
+      .sell-count
+        margin-right: .75rem
+    .price
+      line-height: 1.5rem
+      font-weight: 700
+      .now
+        margin-right: .5rem
+        font-size: .875rem
+        color: $color-text-important
+      .old
+        font-size: .625rem
+        text-decoration: line-through
+        color: $color-gray
+    .cartControl-wrapper
+      position: absolute
+      right: .75rem
+      bottom: .75rem
+    .buy
+      box-sizing: border-box
+      z-index: 10
+      position: absolute
+      right: 1.125rem
+      bottom: 1.125rem
+      padding: 0 .75rem
+      border-radius: .75rem
+      height: 1.5rem
+      line-height: 1.5rem
+      font-size: .625rem
+      color: $color-white
+      background-color: $color-blue
+      opacity: 1
+      &.fade-enter-active,
+      &.fade-leave-active
+        transition: all 0.2s
+      &.fade-enter,
+      &.fade-leave-active
+        opacity: 0
+        z-index: -1
+  .info
+    padding: 1.125rem
+    .title
+      margin-bottom: .375rem
+      line-height: .875rem
+      font-size: .875rem
+      color: $color-black
+    .text
+      padding: 0 .5rem
+      line-height: 1.5rem
+      font-size: .75rem
+      color: $color-gray
+  .rating
+    padding: 1.125rem 0 0 0
+    .title
+      margin-left: 1.125rem
+      line-height: .875rem
+      font-size: .875rem
+      color: $color-black
+    .rating-wrapper
+      padding: 0 1.125rem
+      .rating-item
+        position: relative
+        padding: 1rem 0
+        border-1px($color-black-ss, bottom)
+        .user
+          position: absolute
+          right: 0
+          top: 1rem
+          line-height: .75rem
+          font-size: 0
+          .name
+            display: inline-block
+            margin-right: .375rem
+            vertical-align: top
+            font-size: .625rem
+            color: $color-gray
+          .avatar
+            border-radius: 50%
+            width: .75rem
+            height: .75rem
+        .time
+          margin-bottom: .375rem
+          line-height: .75rem
+          font-size: .625rem
+          color: $color-gray
+        .text
+          line-height: 1rem
+          font-size: .75rem
+          color: $color-black
+          .iconfont
+            margin-right: .25rem
+            line-height: 1rem
+            font-size: .75rem
+          .icon-up
+            color: $color-blue
+          .icon-down
+            color: $color-gray
+      .no-rating
+        padding: 1rem 0
+        font-size: .75rem
+        color: $color-gray
