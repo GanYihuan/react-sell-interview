@@ -14,7 +14,11 @@ class Good extends Component {
     this.state = {
       classMap: ['decrease', 'discount', 'special', 'invoice', 'guarantee'],
       listHeight: [], /* An array of the heights of each element on the right side */
-      scrollY: 0 // foodsScroll Real-time scroll position scrollY
+      scrollY: 0, // foodsScroll Real-time scroll position scrollY
+      chooseCount: 0,
+      index: 0,
+      findex: 0,
+      name: ''
     }
   }
   render() {
@@ -25,7 +29,7 @@ class Good extends Component {
       <Fragment>
         {
           showFoods
-            ? <Food/>
+            ? <Food chooseCount={this.state.chooseCount} index={this.state.index} findex={this.state.findex} name={this.state.name} />
             : <Fragment>
               <div className='goods'>
                 <div className='menu-wrapper'>
@@ -66,7 +70,7 @@ class Good extends Component {
                                     <div
                                       className='food-item border-1px'
                                       key={findex}
-                                      onClick={() => { this.selectFood(fitem, findex) }}
+                                      onClick={() => { this.selectFood(fitem, fitem.chooseCount, index, findex, fitem.name) }}
                                     >
                                       <div className='icon'>
                                         <img src={fitem.icon}/>
@@ -160,10 +164,18 @@ class Good extends Component {
       }
     }
   }
-  selectFood(fitem, findex) {
+  selectFood(fitem, chooseCount, index, findex, name) {
     const { dispathFoodData, dispathShowFood } = this.props
     dispathShowFood(true)
     dispathFoodData(fitem)
+    this.setState(() => {
+      return {
+        chooseCount: chooseCount,
+        index: index,
+        findex: findex,
+        name: name
+      }
+    })
   }
 }
 

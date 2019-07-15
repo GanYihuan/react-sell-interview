@@ -5,6 +5,7 @@ import NavHeader from 'NavHeader/NavHeader'
 import Good from './components/Good/Good'
 import Rating from './components/Rating/Rating'
 import Restanurant from './components/Restanurant/Restanurant'
+import Food from './components/Food/Food'
 import { actionCreators } from './store'
 
 @withRouter
@@ -23,6 +24,7 @@ class Menu extends Component {
         <Route path='/good' component={Good}/>
         <Route path='/rating' component={Rating}/>
         <Route path='/restanurant' component={Restanurant}/>
+        <Route path='/food' component={Food}/>
       </div>
     )
   }

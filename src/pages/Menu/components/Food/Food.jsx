@@ -5,6 +5,7 @@ import BScroll from 'better-scroll'
 import Split from 'Split/Split'
 import RatingSelect from '../RatingSelect/RatingSelect'
 import Control from '../Control/Control'
+import ShopBar from '../ShopBar/ShopBar'
 import { actionCreators } from '../Good/store'
 import './Food.styl'
 
@@ -16,7 +17,7 @@ class Food extends Component {
     }
   }
   render() {
-    const { commentData, ratingSelectType, foodData, showFood } = this.props
+    const { commentData, ratingSelectType, foodData, showFood, chooseCount, index, findex, name } = this.props
     const showFoods = showFood
     const commentDatas = commentData.toJS()
     const goodComment = commentDatas.filter(a => a.rateType === Math.max(0))
@@ -61,15 +62,8 @@ class Food extends Component {
                       >￥ {foodData.get('oldPrice')} </span>
                     </div>
                     {/* <div className='cartControl-wrapper'>
-                        <Control/>
-                      </div> */}
-                    {/* <transition name="fade"> */}
-                    {/* <div
-                        className='buy'
-                      >
-                        加入购物车
-                      </div> */}
-                    {/* </transition> */}
+                      <Control chooseCount={chooseCount} index={index} findex={findex} name={name}/>
+                    </div> */}
                   </div>
                   <Split />
                   <div className='rating'>
@@ -120,6 +114,7 @@ class Food extends Component {
                   </div>
                 </div>
               </div>
+              <ShopBar/>
             </Fragment>
             : null
         }
