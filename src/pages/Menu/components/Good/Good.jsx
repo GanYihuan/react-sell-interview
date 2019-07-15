@@ -110,8 +110,7 @@ class Good extends Component {
     }
     if (!this.fScroll) {
       this.fScroll = new BScroll(this.refs.foodsWrapper, {
-        click: true,
-        probeType: 3
+        click: true
       })
     }
     dispathMenuData()
