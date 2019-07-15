@@ -102,24 +102,16 @@ class Evaluate extends Component {
       rateType = 1
     }
     const text = this.second.value
-    console.log(evaluates, 'evaluates..')
     const username = this.state.user
     const commentTime = new Date()
     const time = moment(commentTime).format(this.dateType)
     const oldTime = (new Date(time)).getTime()
-    const avatar = './img/avatar.png'
+    const avatar = 'http://static.galileo.xiaojukeji.com/static/tms/default_header.png'
     const recommend = []
     for (const i of evaluates) {
       recommend.push(i.name)
     }
     dispathSubmit(username, oldTime, score, rateType, text, avatar, recommend)
-    // username: username,
-    // rateTime: oldTime,
-    // score: score,
-    // rateType: rateType,
-    // text: text,
-    // avatar: avatar,
-    // recommend: recommend
   }
 }
 

@@ -18,9 +18,9 @@ class Rating extends Component {
   }
   render() {
     const { commentData, ratingData, ratingSelectType } = this.props
-    const commentDatas = commentData.toJS()
-    const goodComment = commentDatas.filter(a => a.rateType === Math.max(0))
-    const badComment = commentDatas.filter(a => a.rateType === Math.max(1))
+    const commentDatas = commentData.toJS().reverse()
+    const goodComment = commentDatas.reverse().filter(a => a.rateType === Math.max(0))
+    const badComment = commentDatas.reverse().filter(a => a.rateType === Math.max(1))
     let showComment = []
     ratingSelectType === 1 ? showComment = badComment : ratingSelectType === 0 ? showComment = goodComment : showComment = commentDatas
     return (
