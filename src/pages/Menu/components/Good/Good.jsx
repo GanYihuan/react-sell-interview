@@ -14,17 +14,17 @@ class Good extends Component {
     this.state = {
       classMap: ['decrease', 'discount', 'special', 'invoice', 'guarantee'],
       listHeight: [], /* An array of the heights of each element on the right side */
-      scrollY: 0, // foodsScroll Real-time scroll position scrollY
-      showFood: false
+      scrollY: 0 // foodsScroll Real-time scroll position scrollY
     }
   }
   render() {
-    const { menuData, currentLeftIndex } = this.props
+    const { menuData, currentLeftIndex, showFood } = this.props
     const menuDatas = menuData.toJS()
+    const showFoods = showFood
     return (
       <Fragment>
         {
-          this.state.showFood
+          showFoods
             ? <Food/>
             : <Fragment>
               <div className='goods'>
@@ -102,7 +102,7 @@ class Good extends Component {
     )
   }
   componentDidMount() {
-    const { dispathMenuData } = this.props
+    const { dispathMenuData, dispathShowFood } = this.props
     if (!this.mScroll) {
       this.mScroll = new BScroll(this.refs.menuWrapper, {
         click: true
@@ -126,6 +126,7 @@ class Good extends Component {
         scrollY: Math.abs(Math.round(posY))
       }
     })
+    // dispathShowFood(this.state.showFood)
   }
   itemClick(index) {
     const { dispathSetLeftItemIndex } = this.props
@@ -160,19 +161,17 @@ class Good extends Component {
       }
     }
   }
-  selectFood() {
-    this.setState(() => {
-      return {
-        showFood: !this.state.showFood
-      }
-    })
-    console.log(this.state.showFood, 'showFood...')
+  selectFood(fitem, findex) {
+    const { dispathFoodData, dispathShowFood } = this.props
+    dispathShowFood(true)
+    dispathFoodData(fitem)
   }
 }
 
 const mapState = state => ({
   menuData: state.getIn(['good', 'menuData']),
-  currentLeftIndex: state.getIn(['good', 'currentLeftIndex'])
+  currentLeftIndex: state.getIn(['good', 'currentLeftIndex']),
+  showFood: state.getIn(['good', 'showFood'])
 })
 
 const mapDispatch = dispatch => ({
@@ -181,6 +180,12 @@ const mapDispatch = dispatch => ({
   },
   dispathSetLeftItemIndex(index) {
     dispatch(actionCreators.setLeftItemIndex(index))
+  },
+  dispathShowFood(bool) {
+    dispatch(actionCreators.showFood(bool))
+  },
+  dispathFoodData(food) {
+    dispatch(actionCreators.foodData(food))
   }
 })
 

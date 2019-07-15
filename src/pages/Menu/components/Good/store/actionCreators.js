@@ -135,3 +135,17 @@ export const Pay = (sellerName, sellerImage, menu, number, price) => (dispatch) 
     })
 }
 // ShopBar.jsx
+
+export const showFood = (bool) => (dispatch) => {
+  dispatch({
+    type: constants.SHOWFOOD,
+    bool: bool
+  })
+}
+
+export const foodData = (food) => (dispatch) => {
+  dispatch({
+    type: constants.FOODDATA,
+    food: food
+  })
+}

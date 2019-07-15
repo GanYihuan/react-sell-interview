@@ -5,7 +5,9 @@ const initState = fromJS({
   menuData: [],
   currentLeftIndex: 0,
   shopCarTotal: 0,
-  shopCarData: []
+  shopCarData: [],
+  showFood: false,
+  foodData: {}
 })
 
 export default (state = initState, action) => {
@@ -36,6 +38,10 @@ export default (state = initState, action) => {
       return resetMenuData(state, action)
     case constants.RESETSHOPCARDATA:
       return state.set('shopCarData', fromJS(action.shopCarDatas))
+    case constants.SHOWFOOD:
+      return state.set('showFood', fromJS(action.bool))
+    case constants.FOODDATA:
+      return foodData(state, action)
     default:
       return state
   }
@@ -87,5 +93,11 @@ const clearShopCarData = (state, action) => {
 const resetMenuData = (state, action) => {
   return state.merge({
     menuData: state.get('menuData').clear().concat(fromJS(action.menuData))
+  })
+}
+
+const foodData = (state, action) => {
+  return state.merge({
+    foodData: state.get('foodData').concat(fromJS(action.food))
   })
 }
