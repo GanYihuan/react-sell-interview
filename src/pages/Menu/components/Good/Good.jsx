@@ -70,9 +70,8 @@ class Good extends Component {
                                     <div
                                       className='food-item border-1px'
                                       key={findex}
-                                      onClick={() => { this.selectFood(fitem, fitem.chooseCount, index, findex, fitem.name) }}
                                     >
-                                      <div className='icon'>
+                                      <div className='icon' onClick={() => { this.selectFood(fitem, fitem.chooseCount, index, findex, fitem.name) }}>
                                         <img src={fitem.icon}/>
                                       </div>
                                       <div className='content'>
