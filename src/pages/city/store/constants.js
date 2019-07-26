@@ -1,2 +1,3 @@
 ﻿export const CITY_DATA = 'CITY_DATA'
 export const SETCURRENTCITY = 'SETCURRENTCITY'
+export const CLEARCITY = 'CLEARCITY'

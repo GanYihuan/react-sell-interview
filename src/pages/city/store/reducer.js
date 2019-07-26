@@ -13,6 +13,8 @@ export default (state = initState, action) => {
       return getCityData(state, action)
     case constants.SETCURRENTCITY:
       return state.set('currentCity', fromJS(action.city))
+    case constants.CLEARCITY:
+      return state.set('city', fromJS([]))
     default:
       return state
   }

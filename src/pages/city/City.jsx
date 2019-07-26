@@ -178,6 +178,10 @@ class City extends Component {
       })
     }
   }
+  componentWillUnmount() {
+    const { dispathClearCity } = this.props
+    dispathClearCity()
+  }
   goBack() {
     this.props.history.push('/home')
   }
@@ -236,6 +240,9 @@ const mapDispatch = dispatch => ({
   },
   dispathSetCurrentCity(city) {
     dispatch(actionCreators.setCurrentCity(city))
+  },
+  dispathClearCity() {
+    dispatch(actionCreators.clearCity())
   }
 })
 

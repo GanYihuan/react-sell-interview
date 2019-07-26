@@ -18,3 +18,9 @@ export const setCurrentCity = (city) => (dispatch) => {
     city: city
   })
 }
+
+export const clearCity = () => (dispatch) => {
+  dispatch({
+    type: constants.CLEARCITY
+  })
+}
