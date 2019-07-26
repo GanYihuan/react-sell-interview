@@ -5,7 +5,6 @@ import Split from 'Split/Split'
 import Header from './components/Header/Header'
 import Category from './components/Category/Category'
 import ContentList from './components/ContentList/ContentList'
-import './style'
 
 class Home extends Component {
   constructor(props) {

@@ -2,9 +2,6 @@
 import { NavLink } from 'react-router-dom'
 import { connect } from 'react-redux'
 import './Header.styl'
-// import {
-//   SearchWrapper
-// } from '../../style'
 
 class Header extends PureComponent {
   render() {
