@@ -60,8 +60,8 @@ class App extends Component {
         {/* <BrowserRouter forceRefresh={!supportsHistory}> */}
         <BrowserRouter>
           {/* <Suspense fallback={<div>Loading...</div>}> */}
+          {/* <Switch> 组件可将多个 <Route> “包裹”在一起 */}
           <Switch>
-            {/* <Switch> 组件可将多个 <Route> “包裹”在一起 */}
             {/* <Route> 组件路由匹配 */}
             <Route path='/home' exact component={Home} />
             <Route path='/city' exact component={City} />
@@ -72,8 +72,6 @@ class App extends Component {
             <Route path='/good/:name&:img' component={Menu}/>
             <Route path='/rating/:name&:img' component={Menu}/>
             <Route path='/restanurant/:name&:img' component={Menu}/>
-            {/* <Route path='/rating/:name&:img' component={Rating}/> */}
-            {/* <Route path='/restanurant/:name&:img' component={Restanurant}/> */}
             {/* <Redirect> 用于页面重定向 */}
             <Redirect to='/home' />
           </Switch>

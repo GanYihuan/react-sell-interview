@@ -1,4 +1,4 @@
-﻿import React, { Component } from 'react'
+﻿import React, { PureComponent } from 'react'
 import { connect } from 'react-redux'
 import { withRouter } from 'react-router-dom'
 import StarScore from 'StarScore/StarScore'
@@ -6,7 +6,7 @@ import { actionCreators } from 'home/store'
 import './ContentList.styl'
 
 @withRouter
-class ContentList extends Component {
+class ContentList extends PureComponent {
   render() {
     const { list } = this.props
     const listArray = list.toJS()

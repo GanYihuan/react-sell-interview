@@ -35,7 +35,7 @@ class My extends Component {
     return (
       <div>
         <div className='my'>
-          <div className='header'>
+          <div className='myHeader'>
             <Link to={'/login'}>
               <img className='icon'/>
             </Link>

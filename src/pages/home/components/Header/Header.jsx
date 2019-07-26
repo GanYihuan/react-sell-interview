@@ -1,10 +1,12 @@
-﻿import React, { Component } from 'react'
-import { withRouter } from 'react-router-dom'
+﻿import React, { PureComponent } from 'react'
+import { NavLink } from 'react-router-dom'
 import { connect } from 'react-redux'
 import './Header.styl'
+// import {
+//   SearchWrapper
+// } from '../../style'
 
-@withRouter
-class Header extends Component {
+class Header extends PureComponent {
   render() {
     const { currentCity } = this.props
     return (
@@ -16,23 +18,20 @@ class Header extends Component {
               {currentCity}
             </div>
           </div>
-          <div
+          <NavLink
             className='search-btn'
-            onClick={() => this.goCity()}
+            to={'/city'}
           >
             <input
               className='place-holder'
               type='text'
               placeholder='搜索'
             />
-          </div>
+          </NavLink>
         </div>
         <div className='banner-img'></div>
       </div>
     )
-  }
-  goCity() {
-    this.props.history.push('/city')
   }
 }
 

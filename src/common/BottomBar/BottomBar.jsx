@@ -9,7 +9,7 @@ class BottomBar extends Component {
       articlePage,
       tabs
     } = this.props
-    const tabsArray = tabs.toJS() // immutable 对象转原生 js
+    const tabsArray = tabs.toJS()
     return (
       <div className='bottom-bar'>
         {
