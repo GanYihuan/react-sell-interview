@@ -20,19 +20,19 @@ class NavHeader extends Component {
     const tabsArray = tabs.toJS()
     const supports = navHeader.toJS().supports
     return (
-      <div className='header'>
+      <div className='navHeader'>
         <div className='content-wrapper'>
           <div
             className='back'
             onClick={() => this.goBack()}
           >
-            <i className='icon-arrow_lift' />
+            <i className='icon-close' />
           </div>
           <div className='avatar'>
             <img src={navHeader.get('avatar')} />
           </div>
           <div className='content'>
-            <div className='title'>
+            <div className='brand-wrapper'>
               <span className='brand' />
               <span className='name'>{navHeader.get('name')}</span>
             </div>

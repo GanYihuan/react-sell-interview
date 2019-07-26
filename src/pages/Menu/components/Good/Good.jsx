@@ -32,10 +32,10 @@ class Good extends Component {
             ? <Food chooseCount={this.state.chooseCount} index={this.state.index} findex={this.state.findex} name={this.state.name} />
             : <Fragment>
               <div className='goods'>
-                <div className='menu-wrapper'>
+                <div className='menu-left-wrapper'>
                   <div className='left-bar'>
                     <div className='scroll-view' ref='menuWrapper'>
-                      <div className='menu-wrapper'>
+                      <div>
                         {
                           menuDatas.map((item, index) => {
                             const cls = index === currentLeftIndex ? 'menu-item current' : 'menu-item'

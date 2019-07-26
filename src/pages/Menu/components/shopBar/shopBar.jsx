@@ -35,7 +35,7 @@ class ShopBar extends Component {
               >
                 <div className='shopCart-list'>
                   <div className='list-header'>
-                    <h1 className='title'>购物车里面</h1>
+                    <h1 className='shopCart-title'>购物车里面</h1>
                     <div className='empty' onClick={() => this.clearCar()}>清空购物车</div>
                   </div>
                   <div className='scroll-view' ref='listContent'>
