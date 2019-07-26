@@ -4,8 +4,7 @@ import * as constants from './constants'
 const initState = fromJS({
   city: [],
   hotCity: [],
-  currentCity: '深圳',
-  alphabet: ['A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', 'I', 'J', 'K', 'L', 'M', 'N', 'O', 'P', 'Q', 'R', 'S', 'T', 'U', 'V', 'W', 'X', 'Y', 'Z']
+  currentCity: '深圳'
 })
 
 export default (state = initState, action) => {

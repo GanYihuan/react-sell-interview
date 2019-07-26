@@ -11,7 +11,7 @@ class City extends Component {
     super(props)
     this.state = {
       keyword: '',
-      letter: '',
+      scrollIndex: 1,
       list: []
     }
   }
@@ -19,12 +19,14 @@ class City extends Component {
     const {
       city,
       hotCity,
-      currentCity,
-      alphabet
+      currentCity
     } = this.props
-    const alphabets = alphabet.toJS()
     const hotCitys = hotCity.toJS()
     const citys = city.toJS()
+    const cityAlphabet = []
+    for (const item of citys) {
+      cityAlphabet.push(item[0])
+    }
     return (
       <div className='City'>
         <div className='cityHeader'>
@@ -75,7 +77,7 @@ class City extends Component {
               : <div ref='searchList'><div></div></div>
           }
         </div>
-        <div className='list' ref={ div => { this.list = div }} ref='list'>
+        <div className='list' ref='list'>
           <div>
             <div className='area'>
               <div className='title border-topbottom'>
@@ -117,8 +119,9 @@ class City extends Component {
                   <div
                     className='area cities'
                     key={index}
+                    ref='cities'
                   >
-                    <div className='title border-topbottom'>
+                    <div className='title border-topbottom' ref={(citiesItem) => { this.citiesItem = citiesItem }} ref='citiesItems'>
                       {item[0]}
                     </div>
                     <div className='item-list'>
@@ -145,13 +148,12 @@ class City extends Component {
           {
             this.state.keyword !== ''
               ? null
-              : alphabets.map((item, index) => {
+              : cityAlphabet.map((item, index) => {
                 return (
                   <div
-                    ref='item'
                     className='alphabet-item'
                     key={index}
-                    onClick={() => { this.handleLetterClick(item) }}
+                    onClick={() => { this.handleLetterClick(index) }}
                   >
                     {item}
                   </div>
@@ -179,14 +181,10 @@ class City extends Component {
   goBack() {
     this.props.history.push('/home')
   }
-  handleLetterClick(item) {
-    // this.setState(() => {
-    //   return {
-    //     letter: item
-    //   }
-    // })
-    // const element = this.refs[item][0]
-    // this.sScroll.scrollToElement(this.list[item])
+  handleLetterClick(index) {
+    const cities = this.refs.list.getElementsByClassName('cities')
+    const el = cities[index]
+    this.sScroll.scrollToElement(el, 300)
   }
   handleInputChange() {
     const { city } = this.props
@@ -229,8 +227,7 @@ class City extends Component {
 const mapState = state => ({
   city: state.getIn(['city', 'city']),
   hotCity: state.getIn(['city', 'hotCity']),
-  currentCity: state.getIn(['city', 'currentCity']),
-  alphabet: state.getIn(['city', 'alphabet'])
+  currentCity: state.getIn(['city', 'currentCity'])
 })
 
 const mapDispatch = dispatch => ({
