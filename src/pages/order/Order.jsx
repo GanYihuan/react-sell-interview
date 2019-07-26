@@ -25,7 +25,7 @@ class Order extends Component {
             ? <Evaluate/>
             : <div className='wrapper'>
               <div className='order'>
-                <div className='header'>
+                <div className='orderTitle'>
                   订单
                 </div>
                 <div

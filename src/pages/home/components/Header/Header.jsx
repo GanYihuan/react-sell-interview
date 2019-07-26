@@ -8,7 +8,7 @@ class Header extends Component {
   render() {
     const { currentCity } = this.props
     return (
-      <div className='header'>
+      <div className='search'>
         <div className='search-bar'>
           <div className='bar-location'>
             <div className='location-icon' />
@@ -27,7 +27,7 @@ class Header extends Component {
             />
           </div>
         </div>
-        <img className='banner-img' src='//xs01.meituan.net/waimai_i/img/bannertemp.e8a6fa63.jpg'/>
+        <div className='banner-img'></div>
       </div>
     )
   }

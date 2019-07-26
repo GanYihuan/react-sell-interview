@@ -2,8 +2,8 @@ import React, { Component } from 'react'
 // import React, { Component, lazy, Suspense } from 'react'
 import { Provider } from 'react-redux'
 import { BrowserRouter, Route, Switch, Redirect } from 'react-router-dom'
-import store from './store'
 import Loadable from 'react-loadable'
+import store from './store'
 
 function Loading({ error }) {
   if (error) {
@@ -57,7 +57,8 @@ class App extends Component {
       <Provider store={store}>
         {/* 与 Redux 绑定, 通过 Provider 为整个 App 传递 store */}
         {/* 对 Router 的封装, 服务器响应 web 请求 */}
-        <BrowserRouter forceRefresh={!supportsHistory}>
+        {/* <BrowserRouter forceRefresh={!supportsHistory}> */}
+        <BrowserRouter>
           {/* <Suspense fallback={<div>Loading...</div>}> */}
           <Switch>
             {/* <Switch> 组件可将多个 <Route> “包裹”在一起 */}

@@ -5,7 +5,6 @@ import Split from 'Split/Split'
 import Header from './components/Header/Header'
 import Category from './components/Category/Category'
 import ContentList from './components/ContentList/ContentList'
-import './Home.styl'
 
 class Home extends Component {
   constructor(props) {
@@ -23,9 +22,9 @@ class Home extends Component {
             <Category/>
             <Split/>
             <ContentList/>
-            <div className='back-to-ceiling'>
+            {/* <div className='back-to-ceiling'>
               <i className='icon-circle-up' />
-            </div>
+            </div> */}
           </div>
         </div>
         <BottomBar/>
