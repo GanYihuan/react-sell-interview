@@ -26,7 +26,7 @@ class ShopBar extends Component {
     // const shopCarDatas = temp.filter(a => a.chooseCount === Math.max(...temp.filter(b => b.name === a.name).map(({ chooseCount }) => chooseCount))).reverse() // .sort(compare('sellCount')) // 选出 同 name 下 chooseCount 最大的
     return (
       <Fragment>
-        <div className='shopCart'>
+        <div className='shopCar'>
           {
             this.state.showChoose
               ? <CSSTransition
