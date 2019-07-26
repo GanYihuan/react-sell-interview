@@ -28,7 +28,7 @@ export default (state = defaultState, action) => {
     case constants.HEAD_DATA:
       return getCategory(state, action)
     case constants.LIST_DATA:
-      return getContentListData(state, action)
+      return state.set('list', fromJS(action.obj))
     case constants.SELLERINFO:
       return sellerInfo(state, action)
     default:
@@ -40,13 +40,6 @@ const getCategory = (state, action) => {
   return state.merge({
     // items: state.get('items').concat(fromJS(action.obj.data.primary_filter))
     items: state.get('items').concat(fromJS(action.obj))
-  })
-}
-
-const getContentListData = (state, action) => {
-  return state.merge({
-    // list: state.get('list').concat(fromJS(action.obj.data.poilist))
-    list: state.get('list').concat(fromJS(action.obj))
   })
 }
 

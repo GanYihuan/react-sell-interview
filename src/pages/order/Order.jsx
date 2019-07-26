@@ -105,12 +105,12 @@ class Order extends Component {
   }
   componentDidMount() {
     const { dispathOrder } = this.props
-    dispathOrder()
     if (!this.Scroll) {
       this.Scroll = new BScroll(this.refs.orderWrapper, {
         click: true
       })
     }
+    dispathOrder()
   }
   deleteComment(sellerName, number, price) {
     const { dispathDeleteComment } = this.props

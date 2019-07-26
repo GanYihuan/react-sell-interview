@@ -19,14 +19,12 @@ class City extends Component {
     const {
       city,
       hotCity,
-      currentCity
+      currentCity,
+      alphabet
     } = this.props
+    const alphabets = alphabet.toJS()
     const hotCitys = hotCity.toJS()
     const citys = city.toJS()
-    const temp = []
-    for (const item of citys) {
-      temp.push(item[0])
-    }
     return (
       <div className='City'>
         <div className='cityHeader'>
@@ -60,6 +58,7 @@ class City extends Component {
                           <div
                             key={index}
                             className='search-item border-bottom'
+                            onClick={() => { this.setCurrentCity(item) }}
                           >
                             {item}
                           </div>
@@ -146,11 +145,11 @@ class City extends Component {
           {
             this.state.keyword !== ''
               ? null
-              : temp.map((item, index) => {
+              : alphabets.map((item, index) => {
                 return (
                   <div
                     ref='item'
-                    className='item'
+                    className='alphabet-item'
                     key={index}
                     onClick={() => { this.handleLetterClick(item) }}
                   >
@@ -219,13 +218,19 @@ class City extends Component {
   setCurrentCity(city) {
     const { dispathSetCurrentCity } = this.props
     dispathSetCurrentCity(city)
+    this.setState(() => {
+      return {
+        keyword: ''
+      }
+    })
   }
 }
 
 const mapState = state => ({
   city: state.getIn(['city', 'city']),
   hotCity: state.getIn(['city', 'hotCity']),
-  currentCity: state.getIn(['city', 'currentCity'])
+  currentCity: state.getIn(['city', 'currentCity']),
+  alphabet: state.getIn(['city', 'alphabet'])
 })
 
 const mapDispatch = dispatch => ({

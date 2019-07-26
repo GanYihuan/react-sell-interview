@@ -4,7 +4,8 @@ import * as constants from './constants'
 const initState = fromJS({
   city: [],
   hotCity: [],
-  currentCity: '深圳'
+  currentCity: '深圳',
+  alphabet: ['A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', 'I', 'J', 'K', 'L', 'M', 'N', 'O', 'P', 'Q', 'R', 'S', 'T', 'U', 'V', 'W', 'X', 'Y', 'Z']
 })
 
 export default (state = initState, action) => {
@@ -21,6 +22,6 @@ export default (state = initState, action) => {
 const getCityData = (state, action) => {
   return state.merge({
     city: state.get('city').concat(fromJS(action.city)),
-    hotCity: state.get('hotCity').concat(fromJS(action.hotCity))
+    hotCity: fromJS(action.hotCity)
   })
 }
