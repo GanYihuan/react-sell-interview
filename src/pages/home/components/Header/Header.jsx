@@ -7,7 +7,7 @@ class Header extends PureComponent {
   render() {
     const { currentCity } = this.props
     return (
-      <div className='search'>
+      <div className='homeSearch'>
         <div className='search-bar'>
           <div className='bar-location'>
             <div className='location-icon' />

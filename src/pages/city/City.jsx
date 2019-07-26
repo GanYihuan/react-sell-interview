@@ -29,7 +29,7 @@ class City extends Component {
     }
     return (
       <div className='City'>
-        <div className='header'>
+        <div className='cityHeader'>
           城市选择
           <div className='iconfont header-back' onClick={() => this.goBack()}>
             <i className='icon-arrow_lift' />

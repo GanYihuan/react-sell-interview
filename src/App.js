@@ -41,6 +41,10 @@ const Order = Loadable({
   loader: () => import('order/Order'),
   loading: Loading
 })
+const Main = Loadable({
+  loader: () => import('main/Main'),
+  loading: Loading
+})
 
 // const Home = lazy(() => import(/* webpackChunkName: "Home" */ 'home/Home')) // lazy & Suspense 实现代码拆分
 // const City = lazy(() => import(/* webpackChunkName: "Home" */ 'city/City')) // lazy & Suspense 实现代码拆分
@@ -58,15 +62,18 @@ class App extends Component {
         {/* 与 Redux 绑定, 通过 Provider 为整个 App 传递 store */}
         {/* 对 Router 的封装, 服务器响应 web 请求 */}
         {/* <BrowserRouter forceRefresh={!supportsHistory}> */}
-        <BrowserRouter>
+        <BrowserRouter basename='/sell'>
           {/* <Suspense fallback={<div>Loading...</div>}> */}
           {/* <Switch> 组件可将多个 <Route> “包裹”在一起 */}
           <Switch>
             {/* <Route> 组件路由匹配 */}
-            <Route path='/home' exact component={Home} />
+            {/* <Route path='/home' exact component={Home} /> */}
+            {/* <Route path='/order' exact component={Order} /> */}
+            {/* <Route path='/my' exact component={My} /> */}
+            <Route path='/home' exact component={Main} />
+            <Route path='/order' exact component={Main} />
+            <Route path='/my' exact component={Main} />
             <Route path='/city' exact component={City} />
-            <Route path='/order' exact component={Order} />
-            <Route path='/my' exact component={My} />
             <Route path='/login' exact component={Login} />
             <Route path='/register' exact component={Register} />
             <Route path='/good/:name&:img' component={Menu}/>
