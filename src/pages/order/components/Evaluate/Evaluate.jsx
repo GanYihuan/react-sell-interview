@@ -4,7 +4,7 @@ import moment from 'moment' // Time format processing
 import { Button, Layout } from 'element-react'
 import { connect } from 'react-redux'
 import { actionCreators } from '../../store'
-import './Evaluate.styl'
+import './evaluate.styl'
 
 @withRouter
 class Evaluate extends Component {
@@ -36,12 +36,13 @@ class Evaluate extends Component {
   render() {
     return (
       <div className='evalutate'>
-        <div className='header'>
+        <div className='evalutateHeader'>
           <NavLink
             to={'/order'}
-            className='arrow'
+            className='evalutateArrow'
+            onClick={() => { this.closeEvaluate() }}
           >
-            <i className='icon-arrow_lift' />
+            <i className='icon-close' />
           </NavLink>
           评价
         </div>
@@ -70,7 +71,7 @@ class Evaluate extends Component {
         <Layout.Row>
           <Layout.Col>
             <Button
-              className='btn'
+              className='submitComment'
               type='warning'
               plain={true}
               size='large'
@@ -93,7 +94,6 @@ class Evaluate extends Component {
   submit() {
     const { evaluate, dispathSubmit } = this.props
     const evaluates = evaluate.toJS()
-
     const score = this.state.starIndex + 1
     let rateType = 0 // 0 -> good comment, 1 -> bad comment
     if (score >= 4) {
@@ -113,17 +113,25 @@ class Evaluate extends Component {
     }
     dispathSubmit(username, oldTime, score, rateType, text, avatar, recommend)
   }
+  closeEvaluate() {
+    const { dispathShowEvaluate } = this.props
+    dispathShowEvaluate(false)
+  }
 }
 
 const mapState = state => ({
   order: state.getIn(['order', 'order']),
   evaluate: state.getIn(['order', 'evaluate']),
-  tabs: state.getIn(['main', 'tabs'])
+  tabs: state.getIn(['main', 'tabs']),
+  showEvaluate: state.getIn(['order', 'showEvaluate'])
 })
 
 const mapDispatch = dispatch => ({
   dispathSubmit(username, oldTime, score, rateType, text, avatar, recommend) {
     dispatch(actionCreators.submit(username, oldTime, score, rateType, text, avatar, recommend))
+  },
+  dispathShowEvaluate(bool) {
+    dispatch(actionCreators.showEvaluate(bool))
   }
 })
 

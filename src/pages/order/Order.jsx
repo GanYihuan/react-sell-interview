@@ -8,20 +8,13 @@ import Split from 'Split/Split'
 import './Order.styl'
 
 class Order extends Component {
-  constructor(props) {
-    super(props)
-    this.state = {
-      list: [],
-      showEvaluate: false
-    }
-  }
   render() {
-    const { order } = this.props
+    const { order, showEvaluate } = this.props
     const orders = order.toJS()
     return (
       <div>
         {
-          this.state.showEvaluate
+          showEvaluate
             ? <Evaluate/>
             : <div className='wrapper'>
               <div className='order'>
@@ -117,18 +110,15 @@ class Order extends Component {
     dispathDeleteComment(sellerName, number, price)
   }
   comment(menu) {
-    const { dispathEvaluate } = this.props
+    const { dispathEvaluate, dispathShowEvaluate, showEvaluate } = this.props
     dispathEvaluate(menu)
-    this.setState(() => {
-      return {
-        showEvaluate: true
-      }
-    })
+    dispathShowEvaluate(true)
   }
 }
 
 const mapState = state => ({
-  order: state.getIn(['order', 'order'])
+  order: state.getIn(['order', 'order']),
+  showEvaluate: state.getIn(['order', 'showEvaluate'])
 })
 
 const mapDispatch = dispatch => ({
@@ -140,6 +130,9 @@ const mapDispatch = dispatch => ({
   },
   dispathDeleteComment(sellerName, number, price) {
     dispatch(actionCreators.deleteComment(sellerName, number, price))
+  },
+  dispathShowEvaluate(bool) {
+    dispatch(actionCreators.showEvaluate(bool))
   }
 })
 

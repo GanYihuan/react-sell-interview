@@ -64,3 +64,10 @@ export const deleteComment = (sellerName, number, price) => async(dispatch) => {
       }
     })
 }
+
+export const showEvaluate = (bool) => (dispatch) => {
+  dispatch({
+    type: constants.SHOWEVALUATE,
+    bool: bool
+  })
+}

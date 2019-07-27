@@ -3,7 +3,8 @@ import * as constants from './constants'
 
 const initState = fromJS({
   order: [],
-  evaluate: []
+  evaluate: [],
+  showEvaluate: false
 })
 
 export default (state = initState, action) => {
@@ -12,6 +13,8 @@ export default (state = initState, action) => {
       return state.set('order', fromJS(action.order))
     case constants.EVALUATE:
       return state.set('evaluate', fromJS(action.menu))
+    case constants.SHOWEVALUATE:
+      return state.set('showEvaluate', fromJS(action.bool))
     default:
       return state
   }
