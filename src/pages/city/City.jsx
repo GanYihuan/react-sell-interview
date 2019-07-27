@@ -2,8 +2,9 @@
 import { withRouter } from 'react-router-dom'
 import BScroll from 'better-scroll'
 import { connect } from 'react-redux'
+import Scroll from 'Scroll/Scroll'
 import { actionCreators } from './store'
-import './City.styl'
+import './city.styl'
 
 @withRouter
 class City extends Component {

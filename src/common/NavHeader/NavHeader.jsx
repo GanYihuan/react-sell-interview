@@ -4,7 +4,7 @@ import { NavLink, withRouter } from 'react-router-dom'
 import { CSSTransition, TransitionGroup } from 'react-transition-group'
 import StarScore from 'StarScore/StarScore'
 import { actionCreators } from './store'
-import './NavHeader.styl'
+import './navHeader.styl'
 
 @withRouter
 class NavHeader extends Component {

@@ -1,6 +1,6 @@
 ﻿import React, { Component } from 'react'
 import { connect } from 'react-redux'
-import './Split.styl'
+import './split.styl'
 
 class Split extends Component {
   render() {

@@ -1,5 +1,5 @@
 ﻿import React, { Component } from 'react'
-import './StarScore.styl'
+import './starScore.styl'
 
 class StarScore extends Component {
   render() {

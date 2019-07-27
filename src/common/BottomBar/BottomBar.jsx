@@ -1,7 +1,7 @@
 ﻿import React, { Component } from 'react'
 import { Link, NavLink } from 'react-router-dom'
 import { connect } from 'react-redux'
-import './BottomBar.styl'
+import './bottomBar.styl'
 
 class BottomBar extends Component {
   render() {
