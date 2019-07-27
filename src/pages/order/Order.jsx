@@ -75,7 +75,7 @@ class Order extends Component {
                                 className='evaluation-btn'
                                 onClick={() => { this.comment(item.menu) }}
                               >
-                                待评价
+                                评价
                               </div>
                             </div>
                           </div>
@@ -83,9 +83,7 @@ class Order extends Component {
                       })
                     }
                   </div>
-                  <div
-                    className='back-to-ceiling'
-                  >
+                  <div className='back-to-ceiling'>
                     <i className='icon-circle-up' />
                   </div>
                 </div>
@@ -108,6 +106,7 @@ class Order extends Component {
   deleteComment(sellerName, number, price) {
     const { dispathDeleteComment } = this.props
     dispathDeleteComment(sellerName, number, price)
+    location.reload([false]) // false，从客户端缓存里取当前页。true, 则以 GET 方式，从服务端取最新的页面, 相当于客户端点击 F5
   }
   comment(menu) {
     const { dispathEvaluate, dispathShowEvaluate, showEvaluate } = this.props

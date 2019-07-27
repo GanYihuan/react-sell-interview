@@ -75,7 +75,6 @@ class ContentList extends PureComponent {
   }
   goMenu(name, img) {
     const { dispatchsellerInfo } = this.props
-    console.log(name, img, 'sss..')
     dispatchsellerInfo(name, img)
     this.props.history.push(`/good/${name}&${img}`) // withRouter
   }
