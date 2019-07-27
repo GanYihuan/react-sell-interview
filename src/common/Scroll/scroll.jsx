@@ -1,101 +1,58 @@
-﻿import React, { Component } from 'react'
+﻿import React from 'react'
 import ReactDOM from 'react-dom'
 import PropTypes from 'prop-types'
 import BScroll from 'better-scroll'
-import styles from './scroll.styl'
+import './Scroll.styl'
 
-class Scroll extends Component {
-  static defaultProps = {
-    click: true, // 页面是否可以点击,
-    tap: true,
-    refresh: false, // 刷新Scroll
-    onScroll: null, // scroll 回调事件,
-    scrollTo: null, // 滚动到固定位置
-    initScrollTop: null, // 滚动到固定位置之后，回调重置scrollTop
-    pullingDown: null, // 下拉刷新 回调
-    pullingUp: null, // 上拉加载 回调函数
-    scrollToEle: null
-  }
+class Scroll extends React.Component {
   componentDidUpdate() {
-    if (this.bScroll && this.props.refresh === true) {
+    if (this.bScroll && this.props.refresh === true) { // 组件更新后，如果实例化了better-scroll并且需要刷新就调用refresh()函数
       this.bScroll.refresh()
-    }
-    if (this.bScroll && this.props.scrollTo === 0 && this.bScroll.y !== 0) {
-      this.bScroll.scrollTo(0, this.props.scrollTo)
-      this.props.initScrollTop()
-    }
-    if (this.bScroll && this.props.scrollToEle) {
-      this.bScroll.scrollToElement(this.props.scrollToEle, 200)
-      this.props.initScrollTop()
     }
   }
   componentDidMount() {
-    this.scrollView = ReactDOM.findDOMNode(this.refs.scrollView)
+    this.scrollView = ReactDOM.findDOMNode(this.refs.scrollView) // 获取dom对象
     if (!this.bScroll) {
-      console.log(this.props.pullDownRefresh, this.props.pullUpLoad)
       this.bScroll = new BScroll(this.scrollView, {
-        probeType: 3,
-        click: this.props.click ? this.iScrollClick() : false,
-        taps: this.props.tap
+        probeType: 3, // 实时派发scroll事件
+        click: this.props.click
       })
-      // 滑动时间
       if (this.props.onScroll) {
         this.bScroll.on('scroll', (scroll) => {
           this.props.onScroll(scroll)
         })
       }
-      // 下拉刷新
-      if (this.props.pullingDown) {
-        this.bScroll.on('touchEnd', (pos) => {
-          if (pos.y > 200) {
-            this.props.pullingDown()
-          }
-        })
-      }
-      // 上拉加载
-      if (this.props.pullingUp) {
-        this.bScroll.on('scrollEnd', () => {
-          if (this.bScroll.y <= (this.bScroll.maxScrollY + 50)) {
-            this.props.pullingUp()
-          }
-        })
-      }
-    }
-  }
-  /**
-   * 解决ios上需要点击两次才能触发点击事件
-   *  */
-  iScrollClick() {
-    if (/iPhone|iPad|iPod|Macintosh/i.test(navigator.userAgent)) return false
-    if (/Chrome/i.test(navigator.userAgent)) return (/Android/i.test(navigator.userAgent))
-    if (/Silk/i.test(navigator.userAgent)) return false
-    if (/Android/i.test(navigator.userAgent)) {
-      var s = navigator.userAgent.substr(navigator.userAgent.indexOf('Android') + 8, 3)
-      return !(parseFloat(s[0] + s[3]) < 44)
     }
   }
   componentWillUnmount() {
     this.bScroll.off('scroll')
     this.bScroll = null
   }
-  // 捕获错误
-  componentDidCatch(error, info) {
-    console.log(`componentDidCatch:${error}+${info}`)
+  refresh() {
+    if (this.bScroll) {
+      this.bScroll.refresh()
+    }
   }
   render() {
     return (
-      <div className={styles.scrollView} ref='scrollView'>
+      <div className='scroll-view' ref='scrollView'>
+        {/* 获取子组件*/}
         {this.props.children}
       </div>
     )
   }
 }
+
+Scroll.defaultProps = {
+  click: true,
+  refresh: false,
+  onScroll: null
+}
+
 Scroll.propTypes = {
-  click: PropTypes.bool,
-  refresh: PropTypes.bool,
-  pullingDown: PropTypes.func,
-  initScrollTop: PropTypes.func,
-  pullingUp: PropTypes.func,
+  click: PropTypes.bool, // 是否启用点击
+  refresh: PropTypes.bool, // 是否刷新
   onScroll: PropTypes.func
 }
+
 export default Scroll
