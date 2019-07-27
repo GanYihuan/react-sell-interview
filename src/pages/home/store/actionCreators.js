@@ -19,8 +19,8 @@ export const getHeaderData = () => async(dispatch) => {
   // })
 }
 
-export const getListData = () => async(dispatch) => { // page: CommentList.jsx 传递过来的参数
-  const { status, data: { merchants }} = await axios.get('/merchants/getMerchant')
+export const getListData = (data) => async(dispatch) => { // page: CommentList.jsx 传递过来的参数
+  const { status, data: { merchants }} = await axios.get(`/${data}/getMerchant`)
   if (status === 200) {
     dispatch({
       type: constants.LIST_DATA,

@@ -44,8 +44,13 @@ class ContentList extends PureComponent {
     )
   }
   componentDidMount() { // async, get ajax async data
-    const { addArticleList } = this.props
-    addArticleList()
+    const { addArticleList, currentCity } = this.props
+    if (currentCity === '广州') {
+      addArticleList('cmerchants')
+    }
+    if (currentCity === '深圳') {
+      addArticleList('merchants')
+    }
   }
   renderBrand(data) {
     if (data > 0) {
@@ -72,20 +77,18 @@ class ContentList extends PureComponent {
     const { dispatchsellerInfo } = this.props
     console.log(name, img, 'sss..')
     dispatchsellerInfo(name, img)
-    // this.props.history.push(`/menu/${name}&${img}`) // withRouter
-    // this.props.history.push(`/rating/${name}&${img}`) // withRouter
-    // this.props.history.push(`/restanurant/${name}&${img}`) // withRouter
     this.props.history.push(`/good/${name}&${img}`) // withRouter
   }
 }
 
 const mapState = state => ({
-  list: state.getIn(['home', 'list'])
+  list: state.getIn(['home', 'list']),
+  currentCity: state.getIn(['city', 'currentCity'])
 })
 
 const mapDispatch = dispatch => ({
-  addArticleList() {
-    dispatch(actionCreators.getListData())
+  addArticleList(merchants) {
+    dispatch(actionCreators.getListData(merchants))
   },
   dispatchsellerInfo(name, img) {
     dispatch(actionCreators.sellerInfo(name, img))
