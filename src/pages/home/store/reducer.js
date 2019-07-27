@@ -20,7 +20,8 @@ const defaultState = fromJS({
   items: [],
   list: [],
   sellerName: '',
-  sellerImg: ''
+  sellerImg: '',
+  showScroll: false
 })
 
 export default (state = defaultState, action) => {
@@ -31,6 +32,8 @@ export default (state = defaultState, action) => {
       return state.set('list', fromJS(action.obj))
     case constants.SELLERINFO:
       return sellerInfo(state, action)
+    case constants.TOGGLE_SCROLL_TOP:
+      return state.set('showScroll', fromJS(action.flag))
     default:
       return state
   }

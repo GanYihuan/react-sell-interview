@@ -44,3 +44,10 @@ export const sellerInfo = (name, img) => (dispatch) => {
     img: img
   })
 }
+
+export const toggleTopShow = (flag) => (dispatch) => {
+  dispatch({
+    type: constants.TOGGLE_SCROLL_TOP,
+    flag: flag
+  })
+}
