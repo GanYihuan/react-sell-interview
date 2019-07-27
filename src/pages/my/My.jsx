@@ -61,17 +61,17 @@ class My extends Component {
           </div>
           <Layout.Row>
             <Layout.Col span='16'>
-              <Button className='btn login' type='warning' onClick={() => this.login()}>登录</Button>
+              <Button className='button login' type='warning' onClick={() => this.login()}>登录</Button>
             </Layout.Col>
           </Layout.Row>
           <Layout.Row>
             <Layout.Col span='16'>
-              <Button className='btn logout' type='warning' onClick={() => this.logout()}>登出</Button>
+              <Button className='button logout' type='warning' onClick={() => this.logout()}>登出</Button>
             </Layout.Col>
           </Layout.Row>
           <Layout.Row>
             <Layout.Col span='16'>
-              <Button className='btn register' type='warning' onClick={() => this.register()}>注册</Button>
+              <Button className='button register' type='warning' onClick={() => this.register()}>注册</Button>
             </Layout.Col>
           </Layout.Row>
         </div>
