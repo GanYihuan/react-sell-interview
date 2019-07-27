@@ -6,7 +6,7 @@ import Header from 'home/components/Header/Header'
 import CryptoJS from 'crypto-js'
 import { Notyf } from 'notyf'
 import 'element-theme-default'
-import './Login.styl'
+import './login.styl'
 
 @withRouter
 class Login extends Component {

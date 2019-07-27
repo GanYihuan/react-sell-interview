@@ -2,7 +2,7 @@
 import { connect } from 'react-redux'
 import { CSSTransition } from 'react-transition-group'
 import { actionCreators } from '../Good/store'
-import './Control.styl'
+import './control.styl'
 
 class Control extends Component {
   render() {

@@ -4,7 +4,7 @@ import { CSSTransition } from 'react-transition-group'
 import BScroll from 'better-scroll'
 import Control from '../Control/Control'
 import { actionCreators } from '../Good/store'
-import './ShopBar.styl'
+import './shopBar.styl'
 
 class ShopBar extends Component {
   constructor(props) {

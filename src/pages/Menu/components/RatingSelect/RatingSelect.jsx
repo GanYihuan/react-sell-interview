@@ -1,7 +1,7 @@
 ﻿import React, { Component } from 'react'
 import { connect } from 'react-redux'
 import { actionCreators } from '../Rating/store'
-import './RatingSelect.styl'
+import './ratingSelect.styl'
 
 class RatingSelect extends Component {
   constructor(props) {

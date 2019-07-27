@@ -3,7 +3,7 @@ import { connect } from 'react-redux'
 import { withRouter } from 'react-router-dom'
 import StarScore from 'StarScore/StarScore'
 import { actionCreators } from 'home/store'
-import './ContentList.styl'
+import './contentList.styl'
 
 @withRouter
 class ContentList extends PureComponent {

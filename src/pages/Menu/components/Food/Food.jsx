@@ -7,7 +7,7 @@ import RatingSelect from '../RatingSelect/RatingSelect'
 import Control from '../Control/Control'
 import ShopBar from '../ShopBar/ShopBar'
 import { actionCreators } from '../Good/store'
-import './Food.styl'
+import './food.styl'
 
 class Food extends Component {
   constructor(props) {

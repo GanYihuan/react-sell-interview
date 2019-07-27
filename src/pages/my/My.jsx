@@ -5,7 +5,7 @@ import { Layout, Button } from 'element-react'
 import { Notyf } from 'notyf' // Pure js message notification plugin
 import 'element-theme-default'
 import BottomBar from 'BottomBar/BottomBar'
-import './My.styl'
+import './my.styl'
 
 @withRouter
 class My extends Component {

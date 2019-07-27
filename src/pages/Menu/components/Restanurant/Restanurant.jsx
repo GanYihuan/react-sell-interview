@@ -5,7 +5,7 @@ import StarScore from 'StarScore/StarScore'
 import Split from 'Split/Split'
 import { actionCreators } from './store'
 import { saveToLocal, loadFromLocal } from 'storage'
-import './Restanurant.styl'
+import './restanurant.styl'
 
 class Restanurant extends Component {
   constructor(props) {

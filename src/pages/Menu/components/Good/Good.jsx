@@ -6,7 +6,7 @@ import Control from '../Control/Control'
 import ShopBar from '../ShopBar/ShopBar'
 import Food from '../Food/Food'
 import { actionCreators } from './store'
-import './Good.styl'
+import './good.styl'
 
 class Good extends Component {
   constructor(props) {

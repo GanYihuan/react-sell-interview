@@ -5,7 +5,7 @@ import { actionCreators } from './store'
 import BottomBar from 'BottomBar/BottomBar'
 import Evaluate from './components/Evaluate/Evaluate'
 import Split from 'Split/Split'
-import './Order.styl'
+import './order.styl'
 
 class Order extends Component {
   render() {

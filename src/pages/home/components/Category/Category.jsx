@@ -2,7 +2,7 @@
 import { connect } from 'react-redux' // 将 store 中的数据作为 props 绑定到组件上
 import { actionCreators } from 'home/store/index'
 import { Carousel } from 'antd'
-import './Category.styl'
+import './category.styl'
 
 class Category extends PureComponent {
   componentDidMount() { // async, get ajax async data

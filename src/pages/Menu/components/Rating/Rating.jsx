@@ -6,7 +6,7 @@ import StarScore from 'StarScore/StarScore'
 import RatingSelect from '../RatingSelect/RatingSelect'
 import BScroll from 'better-scroll'
 import { actionCreators } from '../Rating/store'
-import './Rating.styl'
+import './rating.styl'
 
 class Rating extends Component {
   constructor(props) {

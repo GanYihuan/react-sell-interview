@@ -1,7 +1,7 @@
 ﻿import React, { PureComponent } from 'react'
 import { NavLink } from 'react-router-dom'
 import { connect } from 'react-redux'
-import './Header.styl'
+import './header.styl'
 
 class Header extends PureComponent {
   render() {
