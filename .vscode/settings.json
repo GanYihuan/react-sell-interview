@@ -46,17 +46,17 @@
     "menubar.selectionForeground": "#2979FF",
     "editor.findMatchBorder": "#2979FF",
     "selection.background": "#2979FF40",
-    "activityBar.background": "#434343",
+    "activityBar.background": "#424242",
     "activityBar.foreground": "#e7e7e7",
     "activityBar.inactiveForeground": "#e7e7e799",
     "activityBarBadge.background": "#000000",
     "activityBarBadge.foreground": "#e7e7e7",
-    "titleBar.activeBackground": "#2a2a2a",
-    "titleBar.inactiveBackground": "#2a2a2a99",
+    "titleBar.activeBackground": "#292929",
+    "titleBar.inactiveBackground": "#29292999",
     "titleBar.activeForeground": "#e7e7e7",
     "titleBar.inactiveForeground": "#e7e7e799",
-    "statusBar.background": "#2a2a2a",
-    "statusBarItem.hoverBackground": "#434343",
+    "statusBar.background": "#292929",
+    "statusBarItem.hoverBackground": "#424242",
     "statusBar.foreground": "#e7e7e7"
   }
 }
