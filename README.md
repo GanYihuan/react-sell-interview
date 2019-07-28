@@ -2,17 +2,20 @@
 
 ## 运行界面
 
-![首页](https://i.loli.net/2019/07/04/5d1d4f015690842261.png)
-![我的](https://i.loli.net/2019/07/04/5d1d4f141fb5d77037.png)
-![登录](https://i.loli.net/2019/07/04/5d1d4e71ac17883368.png)
-![注册](https://i.loli.net/2019/07/04/5d1d4f235b41891804.png)
-![点菜](https://i.loli.net/2019/07/04/5d1d4e94a0aee27856.png)
-![弹层](https://i.loli.net/2019/07/04/5d1d4e3cd2f7d33727.png)
-![购物车](https://i.loli.net/2019/07/04/5d1d4eb13c15f42999.png)
-![食物](https://i.loli.net/2019/07/04/5d1d4ef1a9ed494271.png)
-![评价](https://i.loli.net/2019/07/04/5d1d4ec34a76c97586.png)
-![商家2](https://i.loli.net/2019/07/04/5d1d5399df6c598562.png)
-![商家](https://i.loli.net/2019/07/04/5d1d4ed3d288f28791.png)
+![首页](https://i.loli.net/2019/07/07/5d21dcb8ec98213034.png)
+![我的](https://i.loli.net/2019/07/07/5d21dcc8187b090045.png)
+![订单](https://i.loli.net/2019/07/07/5d21ddfe3953132679.png)
+![评价](https://i.loli.net/2019/07/07/5d21de109e60c60434.png)
+![登录](https://i.loli.net/2019/07/07/5d21dde55a95667685.png)
+![注册](https://i.loli.net/2019/07/07/5d21ddd7c135584780.png)
+![城市选择](https://i.loli.net/2019/07/07/5d21dcdccdd8e17054.png)
+![搜索](https://i.loli.net/2019/07/07/5d21dcfa7599180670.png)
+![点菜](https://i.loli.net/2019/07/07/5d21dd3cac9b233136.png)
+![弹层](https://i.loli.net/2019/07/07/5d21dd967e11592097.png)
+![购物车](https://i.loli.net/2019/07/07/5d21dd864f1d082015.png)
+![食物](https://i.loli.net/2019/07/07/5d21ddc04587a74086.png)
+![商家评价](https://i.loli.net/2019/07/07/5d21dd1e48ba716486.png)
+![商家](https://i.loli.net/2019/07/07/5d21dd0e5ad8351348.png)
 
 ## 介绍
 
@@ -30,21 +33,20 @@
 ## 前端部分
 
 1. http-proxy-middleware 配置代理， 代理到后端接口上
-2. react lazy & Suspense 实现代码拆分。lazy 懒加载组件, Suspense 维护子组件的 loading
+2. react-loadable 实现代码拆分。懒加载组件
 3. react-router-dom, `<BrowserRouter>` 对 Router 的封装, `<Switch>` 将多个 `<Route>` 包裹在一起, `<Route>` 路由匹配, `<Redirect>` 页面重定向, `<Link>` 锚点连接, `<NavLink>` 自定义样式锚点连接, `<withRouter>` 函数返回一个组件。返回的组件外层是 Route
 4. react-redux, `<Provider>` 为整个 App 传递 store, mapStateToProps 将 store 中的数据作为 props 绑定到组件上， mapDispatchToProps 将 action 作为 props 绑定到组件上, connect() 调用 mapStateToProps, mapDispatchToProps
 5. redux-thunk, action dispatch 之后，到达 reducer 之前, 调用异步接口请求数据, 项目里请求的是 koa2 提供的接口
 6. redux, 实现数据共享, compose 开启 chrome redux 插件, applyMiddleware 将所有中间件组成一个数组，依次执行, createStore 创建 store
-7. immutable 数据被修改时仍然能够保持修改前的状态, 省去拷贝操作, redux-immutable 提供的 combineReducers 实现 immutable, fromJS() redux 数据使其成为 immutable 数据, 组件中通过 getIn() & get() 获取 redux 的数据, reducer 里 toJS() 将 immutable 对象转原生 js, merge() 合并处理 immutable 的数据
-8. nuka-carousel 实现图标轮播图功能
-9. better-scroll 实现界面卷轴滚动功能
-10. moment 评论界面的时间格式处理
-11. axios 前端请求，后端配置了数据接口, 前端请求该接口
-12. element-react, 实现 Layout 布局, 表单验证. 用于注册界面填写的密码，邮箱，验证码的验证功能
-13. crypto-js 用于注册界面, 注册时输入密码需要加密传输到后端数据接口里
-14. prop-types 对父组件传来的 props 进行检查
-15. react-transition-group, CSSTransition 用于编写商家界面的动画
-16. notyf 用于实现提示信息的插件, 当注册界面或者登录界面有错误信息时要显示提示
+7. immutable 数据被修改时仍然能够保持修改前的状态, 省去拷贝操作, redux-immutable 提供的 combineReducers 实现 immutable
+8. better-scroll 实现界面卷轴滚动功能
+9. moment 评论界面的时间格式处理
+10. axios 前端请求，后端配置了数据接口, 前端请求该接口
+11. element-react, 实现 Layout 布局, 表单验证. 用于注册界面填写的密码，邮箱，验证码的验证功能
+12. crypto-js 用于注册界面, 注册时输入密码需要加密传输到后端数据接口里
+13. prop-types 对父组件传来的 props 进行检查
+14. react-transition-group, CSSTransition 用于编写商家界面的动画
+15. notyf 用于实现提示信息的插件, 当注册界面或者登录界面有错误信息时要显示提示
 
 ## 后端部分
 
