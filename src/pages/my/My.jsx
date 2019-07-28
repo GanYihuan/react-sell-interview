@@ -57,23 +57,21 @@ class My extends Component {
                   <Layout.Col span='5' offset='1'>{this.state.email}</Layout.Col>
                 </Layout.Row>
               </li>
+              <li>
+                <Layout.Row>
+                  <Layout.Col span='8'>
+                    <Button className='button login' type='warning' onClick={() => this.login()}>登录</Button>
+                  </Layout.Col>
+                  <Layout.Col span='8'>
+                    <Button className='button logout' type='warning' onClick={() => this.logout()}>登出</Button>
+                  </Layout.Col>
+                  <Layout.Col span='8'>
+                    <Button className='button register' type='warning' onClick={() => this.register()}>注册</Button>
+                  </Layout.Col>
+                </Layout.Row>
+              </li>
             </ul>
           </div>
-          <Layout.Row>
-            <Layout.Col span='16'>
-              <Button className='button login' type='warning' onClick={() => this.login()}>登录</Button>
-            </Layout.Col>
-          </Layout.Row>
-          <Layout.Row>
-            <Layout.Col span='16'>
-              <Button className='button logout' type='warning' onClick={() => this.logout()}>登出</Button>
-            </Layout.Col>
-          </Layout.Row>
-          <Layout.Row>
-            <Layout.Col span='16'>
-              <Button className='button register' type='warning' onClick={() => this.register()}>注册</Button>
-            </Layout.Col>
-          </Layout.Row>
         </div>
         <BottomBar/>
       </div>
