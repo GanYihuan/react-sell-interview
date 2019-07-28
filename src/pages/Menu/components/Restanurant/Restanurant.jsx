@@ -126,7 +126,6 @@ class Restanurant extends Component {
     dispathRestaurantData()
     if (!this.mScroll) {
       this.mScroll = new BScroll(this.refs.picWrapper, {
-        click: true,
         scrollX: true, /* horizontal scroll */
         eventPassthrough: 'vertical' /* ignore vertical scroll */
       })
