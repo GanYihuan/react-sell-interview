@@ -20,11 +20,20 @@
       &.off
         bg-image("./img/star48_off")
   &.star-36
-    // margin: 0 .375rem 0 0
     .star-item
       width: .9375rem
       height: .9375rem
       background-size: .9375rem .9375rem
+      @media only screen and (max-width: 320px)
+        width: .625rem
+        height: .625rem
+        background-size: .625rem .625rem
+        &.on
+          bg-image("./img/star24_on")
+        &.half
+          bg-image("./img/star24_half")
+        &.off
+          bg-image("./img/star24_off")
       &:last-child
         margin: 0
       &.on

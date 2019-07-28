@@ -44,7 +44,7 @@ class NavHeader extends Component {
             >
               <span className='icon decrease'/>
               <span className='text'>
-                {navHeader.getIn(['infos', 0])}
+                {navHeader.getIn(['supports', 0, 'description'])}
               </span>
             </div>
             <div
