@@ -33,26 +33,24 @@ class Good extends Component {
             : <Fragment>
               <div className='goods'>
                 <div className='menu-left-wrapper'>
-                  <div className='left-bar'>
-                    <div className='scroll-view' ref='menuWrapper'>
-                      <div>
-                        {
-                          menuDatas.map((item, index) => {
-                            const cls = index === currentLeftIndex ? 'menu-item current' : 'menu-item'
-                            const iconF = (type) => {
-                              const mapN = this.state.classMap[type]
-                              return (
-                                `icon ${mapN}`
-                              )
-                            }
+                  <div className='scroll-view' ref='menuWrapper'>
+                    <div className='menu-wrapper'>
+                      {
+                        menuDatas.map((item, index) => {
+                          const cls = index === currentLeftIndex ? 'menu-item current' : 'menu-item'
+                          const iconF = (type) => {
+                            const mapN = this.state.classMap[type]
                             return (
-                              <div className={cls} key={index} onClick={() => this.itemClick(index)}>
-                                <div className='text border-1px'>{item.type > 0 ? <img className={iconF(item.type)} /> : null}{item.name}</div>
-                              </div>
+                              `icon ${mapN}`
                             )
-                          })
-                        }
-                      </div>
+                          }
+                          return (
+                            <div className={cls} key={index} onClick={() => this.itemClick(index)}>
+                              <div className='text border-1px'>{item.type > 0 ? <img className={iconF(item.type)} /> : null}{item.name}</div>
+                            </div>
+                          )
+                        })
+                      }
                     </div>
                   </div>
                 </div>
