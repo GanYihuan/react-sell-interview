@@ -34,26 +34,30 @@ class ShopBar extends Component {
                 classNames='fade'
               >
                 <div className='shopCart-list'>
-                  <div className='list-header'>
-                    <div className='shopCart-title'>购物车里面</div>
-                    <div className='empty' onClick={() => this.clearCar()}>清空购物车</div>
-                  </div>
-                  <div className='scroll-view' ref='listContent'>
-                    <div className='list-content'>
-                      {
-                        shopCarDatas.map((item, index) => {
-                          const dom = item.chooseCount > 0
-                            ? <div className='shopCart-food' key={index}>
-                              <span className='name'>{ item.name }</span>
-                              <div className='price'>
-                                <span>￥{item.price * item.chooseCount}</span>
-                              </div>
-                              <Control chooseCount={item.chooseCount} index={item.index} findex={item.findex} name={item.name}/>
-                            </div>
-                            : null
-                          return dom
-                        })
-                      }
+                  <div className='shopCart-scroll' ref='shopCar'>
+                    <div>
+                      <div className='list-header'>
+                        <div className='shopCart-title'>购物车里面</div>
+                        <div className='empty' onClick={() => this.clearCar()}>清空购物车</div>
+                      </div>
+                      <div className='scroll-view'>
+                        <div className='list-content'>
+                          {
+                            shopCarDatas.map((item, index) => {
+                              const dom = item.chooseCount > 0
+                                ? <div className='shopCart-food' key={index}>
+                                  <span className='name'>{ item.name }</span>
+                                  <div className='price'>
+                                    <span>￥{item.price * item.chooseCount}</span>
+                                  </div>
+                                  <Control chooseCount={item.chooseCount} index={item.index} findex={item.findex} name={item.name}/>
+                                </div>
+                                : null
+                              return dom
+                            })
+                          }
+                        </div>
+                      </div>
                     </div>
                   </div>
                 </div>
@@ -90,6 +94,13 @@ class ShopBar extends Component {
         }
       </Fragment>
     )
+  }
+  componentDidUpdate() {
+    if (this.state.showChoose) {
+      this.shopCarScroll = new BScroll(this.refs.shopCar, {
+        click: true
+      })
+    }
   }
   payDesc() {
     const { shopCarData, navHeader } = this.props
