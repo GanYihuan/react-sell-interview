@@ -2,7 +2,7 @@ import React, { Component } from 'react'
 // import React, { Component, lazy, Suspense } from 'react'
 import { Provider } from 'react-redux'
 import { BrowserRouter, Route, Switch, Redirect } from 'react-router-dom'
-import Loadable from 'react-loadable'
+import Loadable from 'react-loadable' // lazy load
 import store from './store'
 
 function Loading({ error }) {
