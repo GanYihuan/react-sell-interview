@@ -3,7 +3,6 @@ import { connect } from 'react-redux'
 import BScroll from 'better-scroll'
 import StarScore from 'StarScore/StarScore'
 import Split from 'Split/Split'
-import { actionCreators } from './store'
 import { saveToLocal, loadFromLocal } from 'storage'
 import './restanurant.styl'
 
@@ -122,8 +121,7 @@ class Restanurant extends Component {
     )
   }
   componentDidMount() { // async, get ajax async data
-    const { dispathRestaurantData, restanurantData } = this.props
-    dispathRestaurantData()
+    const { restanurantData } = this.props
     if (!this.mScroll) {
       this.mScroll = new BScroll(this.refs.picWrapper, {
         scrollX: true, /* horizontal scroll */
@@ -154,13 +152,10 @@ class Restanurant extends Component {
 }
 
 const mapState = state => ({
-  restanurantData: state.getIn(['restanurant', 'restanurantData'])
+  restanurantData: state.getIn(['main', 'navHeader'])
 })
 
 const mapDispatch = dispatch => ({
-  dispathRestaurantData() {
-    dispatch(actionCreators.getRestanurantData())
-  }
 })
 
 export default connect(
