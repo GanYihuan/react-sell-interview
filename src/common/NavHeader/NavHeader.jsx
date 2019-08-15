@@ -125,8 +125,9 @@ class NavHeader extends Component {
     )
   }
   componentDidMount() { // async, get ajax async data
-    const { addArticleList } = this.props
-    addArticleList()
+    const { addArticleList, match } = this.props
+    const name = match.params.name
+    addArticleList(name)
   }
   renderTabs() {
     const { tabs, name, img } = this.props
@@ -172,8 +173,8 @@ const mapState = state => ({
 })
 
 const mapDispatch = dispatch => ({
-  addArticleList() {
-    dispatch(actionCreators.getNavHeaderData())
+  addArticleList(name) {
+    dispatch(actionCreators.getNavHeaderData(name))
   }
 })
 
