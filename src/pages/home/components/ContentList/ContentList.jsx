@@ -1,15 +1,18 @@
 ﻿import React, { PureComponent } from 'react'
 import { connect } from 'react-redux'
 import { withRouter } from 'react-router-dom'
-import StarScore from 'StarScore/StarScore'
 import { actionCreators } from 'home/store'
+import StarScore from 'StarScore/StarScore'
 import './contentList.styl'
 
 @withRouter
 class ContentList extends PureComponent {
   render() {
-    const { list } = this.props
-    const listArray = list.toJS()
+    const { list, currentCity } = this.props
+    const cityArray = list.toJS()
+    const listArray = cityArray.filter((item, index) => {
+      return item.city === currentCity
+    })
     return (
       <div className='list-content'>
         <h4 className='list-title'>
@@ -45,12 +48,7 @@ class ContentList extends PureComponent {
   }
   componentDidMount() { // async, get ajax async data
     const { addArticleList, currentCity } = this.props
-    if (currentCity === '广州') {
-      addArticleList('cmerchants')
-    }
-    if (currentCity === '深圳') {
-      addArticleList('merchants')
-    }
+    addArticleList('cmerchants')
   }
   renderBrand(data) {
     if (data > 0) {
