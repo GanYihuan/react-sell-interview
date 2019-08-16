@@ -1,18 +1,12 @@
 ﻿import React, { PureComponent } from 'react'
 import { connect } from 'react-redux' // 将 store 中的数据作为 props 绑定到组件上
+import { Carousel } from 'antd' // 轮播图
 import { actionCreators } from 'home/store/index'
-import { Carousel } from 'antd'
 import './category.styl'
 
 class Category extends PureComponent {
-  componentDidMount() { // async, get ajax async data
-    const { addArticleList } = this.props
-    addArticleList()
-  }
   render() {
-    const {
-      items
-    } = this.props
+    const { items } = this.props
     const newList = items.toJS() // toJS() immutable对象转原生js
     return (
       <div>
@@ -48,6 +42,10 @@ class Category extends PureComponent {
         </Carousel>
       </div>
     )
+  }
+  componentDidMount() { // 异步, 获取ajax异步数据
+    const { addArticleList } = this.props
+    addArticleList()
   }
 }
 

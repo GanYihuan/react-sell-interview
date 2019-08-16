@@ -130,8 +130,10 @@ class NavHeader extends Component {
     addArticleList(name)
   }
   renderTabs() {
-    const { tabs, name, img } = this.props
+    const { tabs, name, img, match } = this.props
     const newList = tabs.toJS()
+    const cname = match.params.name
+    const cimg = decodeURIComponent(match.params.img)
     return newList.map((item) => {
       return (
         <div className='tab-item' key={item.key}>
@@ -139,7 +141,7 @@ class NavHeader extends Component {
             className='btn-Item'
             activeClassName='activeDes'
             replace={true}
-            to={`/${item.key}/${name}&${encodeURIComponent(img)}`}
+            to={`/${item.key}/${cname}&${encodeURIComponent(cimg)}`}
           >
             <div className='icon' />
             <div className='des'>{item.name}</div>

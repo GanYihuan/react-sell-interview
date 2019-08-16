@@ -46,9 +46,9 @@ class ContentList extends PureComponent {
       </div>
     )
   }
-  componentDidMount() { // async, get ajax async data
-    const { addArticleList, currentCity } = this.props
-    addArticleList('cmerchants')
+  componentDidMount() {
+    const { addArticleList } = this.props
+    addArticleList()
   }
   renderBrand(data) {
     if (data > 0) {
@@ -84,8 +84,8 @@ const mapState = state => ({
 })
 
 const mapDispatch = dispatch => ({
-  addArticleList(merchants) {
-    dispatch(actionCreators.getListData(merchants))
+  addArticleList() {
+    dispatch(actionCreators.getListData())
   },
   dispatchsellerInfo(name, img) {
     dispatch(actionCreators.sellerInfo(name, img))

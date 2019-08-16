@@ -1,4 +1,12 @@
-﻿import axios from 'axios'
+﻿/*
+ * @Description:
+ * @version:
+ * @Author: GanEhank
+ * @Date: 2019-07-27 21:21:52
+ * @LastEditors: GanEhank
+ * @LastEditTime: 2019-08-16 12:35:27
+ */
+import axios from 'axios' // Promise based HTTP client for the browser and node.js
 import * as constants from './constants'
 
 export const getHeaderData = () => async(dispatch) => {
@@ -19,8 +27,8 @@ export const getHeaderData = () => async(dispatch) => {
   // })
 }
 
-export const getListData = (data) => async(dispatch) => { // page: CommentList.jsx 传递过来的参数
-  const { status, data: { merchants }} = await axios.get(`/${data}/getMerchant`)
+export const getListData = () => async(dispatch) => { // page: CommentList.jsx 传递过来的参数
+  const { status, data: { merchants }} = await axios.get('/cmerchants/getMerchant')
   if (status === 200) {
     dispatch({
       type: constants.LIST_DATA,

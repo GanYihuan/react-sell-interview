@@ -10,17 +10,10 @@ import { actionCreators } from './store'
 
 @withRouter
 class Menu extends Component {
-  constructor(props) {
-    super(props)
-    this.state = {
-      name: '',
-      img: ''
-    }
-  }
   render() {
     return (
       <div>
-        <NavHeader name={this.state.name} img={this.state.img} />
+        <NavHeader />
         <Route path='/good' component={Good}/>
         <Route path='/rating' component={Rating}/>
         <Route path='/restanurant' component={Restanurant}/>
@@ -32,12 +25,6 @@ class Menu extends Component {
     const { match, dispathSaveSellerInfo } = this.props
     const name = match.params.name
     const img = decodeURIComponent(match.params.img)
-    this.setState(() => {
-      return {
-        name: name,
-        img: img
-      }
-    })
     dispathSaveSellerInfo(name, img)
   }
 }

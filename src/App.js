@@ -1,8 +1,16 @@
+/*
+ * @Description:
+ * @version:
+ * @Author: GanEhank
+ * @Date: 2019-07-27 21:21:52
+ * @LastEditors: GanEhank
+ * @LastEditTime: 2019-08-16 11:52:30
+ */
 import React, { Component } from 'react'
 // import React, { Component, lazy, Suspense } from 'react'
-import { Provider } from 'react-redux'
-import { BrowserRouter, Route, Switch, Redirect } from 'react-router-dom'
-import Loadable from 'react-loadable' // lazy load
+import { Provider } from 'react-redux' // react 绑定 redux
+import { BrowserRouter, Route, Switch, Redirect } from 'react-router-dom' // 路由
+import Loadable from 'react-loadable' // 懒加载
 import store from './store'
 
 function Loading({ error }) {
@@ -55,12 +63,12 @@ class App extends Component {
   render() {
     return (
       <Provider store={store}>
-        {/* 与 Redux 绑定, 通过 Provider 为整个 App 传递 store */}
-        {/* 对 Router 的封装, 服务器响应 web 请求 */}
+        {/* Provider -> 与 Redux 绑定, 为整个 App 传递 store */}
+        {/* <BrowserRouter> -> 对 Router 封装, 服务器响应 web 请求 */}
         {/* <BrowserRouter forceRefresh={!supportsHistory}> */}
         <BrowserRouter basename='/sell'>
           {/* <Suspense fallback={<div>Loading...</div>}> */}
-          {/* <Switch> 组件可将多个 <Route> “包裹”在一起 */}
+          {/* <Switch> 将多个 <Route> 包裹在一起 */}
           <Switch>
             {/* <Route> 组件路由匹配 */}
             <Route path='/home' exact component={Home} />
