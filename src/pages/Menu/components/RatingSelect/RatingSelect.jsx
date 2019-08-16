@@ -12,8 +12,8 @@ class RatingSelect extends Component {
     }
   }
   render() {
-    const { commentData } = this.props
-    const commentDatas = commentData.toJS()
+    const { commentData, sellerName } = this.props
+    const commentDatas = commentData.toJS().filter(item => item.sellername === sellerName)
     const goodComment = commentDatas.filter(a => a.rateType === Math.max(0))
     const badComment = commentDatas.filter(a => a.rateType === Math.max(1))
     const allClassName = this.state.selectType === 2 ? 'block active' : 'block'
@@ -104,7 +104,8 @@ class RatingSelect extends Component {
 }
 
 const mapState = state => ({
-  commentData: state.getIn(['ratings', 'commentData'])
+  commentData: state.getIn(['ratings', 'commentData']),
+  sellerName: state.getIn(['home', 'sellerName'])
 })
 
 const mapDispatch = dispatch => ({

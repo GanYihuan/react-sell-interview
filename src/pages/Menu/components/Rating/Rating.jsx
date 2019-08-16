@@ -17,8 +17,8 @@ class Rating extends Component {
     }
   }
   render() {
-    const { commentData, ratingData, ratingSelectType } = this.props
-    const commentDatas = commentData.toJS().reverse()
+    const { commentData, ratingData, ratingSelectType, sellerName } = this.props
+    const commentDatas = commentData.toJS().filter(item => item.sellername === sellerName).reverse()
     const goodComment = commentDatas.reverse().filter(a => a.rateType === Math.max(0))
     const badComment = commentDatas.reverse().filter(a => a.rateType === Math.max(1))
     let showComment = []
@@ -141,7 +141,8 @@ class Rating extends Component {
 const mapState = state => ({
   commentData: state.getIn(['ratings', 'commentData']),
   ratingData: state.getIn(['main', 'navHeader']),
-  ratingSelectType: state.getIn(['ratings', 'ratingSelectType'])
+  ratingSelectType: state.getIn(['ratings', 'ratingSelectType']),
+  sellerName: state.getIn(['home', 'sellerName'])
 })
 
 const mapDispatch = dispatch => ({
