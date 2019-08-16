@@ -1,6 +1,6 @@
 ﻿import React, { PureComponent } from 'react'
 import { connect } from 'react-redux'
-import { withRouter } from 'react-router-dom'
+import { withRouter } from 'react-router-dom' // withRouter 是高阶组件，即一个函数返回一个组件。返回的组件外层是 Route ， Route 的 children 属性里渲染接收到的组件
 import { actionCreators } from 'home/store'
 import StarScore from 'StarScore/StarScore'
 import './contentList.styl'

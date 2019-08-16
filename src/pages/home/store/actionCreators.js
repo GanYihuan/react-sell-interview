@@ -4,7 +4,7 @@
  * @Author: GanEhank
  * @Date: 2019-07-27 21:21:52
  * @LastEditors: GanEhank
- * @LastEditTime: 2019-08-16 12:35:27
+ * @LastEditTime: 2019-08-16 23:19:53
  */
 import axios from 'axios' // Promise based HTTP client for the browser and node.js
 import * as constants from './constants'
@@ -27,7 +27,7 @@ export const getHeaderData = () => async(dispatch) => {
   // })
 }
 
-export const getListData = () => async(dispatch) => { // page: CommentList.jsx 传递过来的参数
+export const getListData = () => async(dispatch) => {
   const { status, data: { merchants }} = await axios.get('/cmerchants/getMerchant')
   if (status === 200) {
     dispatch({
