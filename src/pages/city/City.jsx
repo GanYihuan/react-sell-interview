@@ -1,9 +1,9 @@
 ﻿import React, { Component } from 'react'
-import { withRouter } from 'react-router-dom'
-import BScroll from 'better-scroll'
+import { withRouter } from 'react-router-dom' // withRouter 是高阶组件，即一个函数返回一个组件。返回的组件外层是 Route ， Route 的 children 属性里渲染接收到的组件
 import { connect } from 'react-redux'
-import Scroll from 'Scroll/Scroll'
+import BScroll from 'better-scroll'
 import { actionCreators } from './store'
+import Scroll from 'Scroll/Scroll'
 import './city.styl'
 
 @withRouter
@@ -11,17 +11,12 @@ class City extends Component {
   constructor(props) {
     super(props)
     this.state = {
-      keyword: '',
-      scrollIndex: 1,
-      list: []
+      keyword: '', // 搜索关键字
+      list: [] // 搜索结果
     }
   }
   render() {
-    const {
-      city,
-      hotCity,
-      currentCity
-    } = this.props
+    const { city, hotCity, currentCity } = this.props
     const hotCitys = hotCity.toJS()
     const citys = city.toJS()
     const cityAlphabet = []
@@ -218,7 +213,7 @@ class City extends Component {
       })
     }, 100)
   }
-  setCurrentCity(city) {
+  clearCity(city) {
     const { dispathSetCurrentCity } = this.props
     dispathSetCurrentCity(city)
     this.setState(() => {
