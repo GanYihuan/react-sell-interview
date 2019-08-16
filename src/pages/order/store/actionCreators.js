@@ -1,4 +1,12 @@
-﻿import axios from 'axios'
+﻿/*
+ * @Description:
+ * @version:
+ * @Author: GanEhank
+ * @Date: 2019-07-27 21:21:52
+ * @LastEditors: GanEhank
+ * @LastEditTime: 2019-08-16 14:25:37
+ */
+import axios from 'axios'
 import { Notyf } from 'notyf' // Pure js message notification plugin
 import * as constants from './constants'
 
@@ -19,9 +27,10 @@ export const getEvaluate = (menu) => async(dispatch) => { // redux-thunk, action
   })
 }
 
-export const submit = (username, oldTime, score, rateType, text, avatar, recommend) => async(dispatch) => { // redux-thunk, action dispatch 之后，到达 reducer 之前, 调用异步接口请求数据
+export const submit = (evaluateSellerNames, username, oldTime, score, rateType, text, avatar, recommend) => async(dispatch) => { // redux-thunk, action dispatch 之后，到达 reducer 之前, 调用异步接口请求数据
   axios
     .post('/ratings/addRating', {
+      sellername: evaluateSellerNames,
       username: username,
       rateTime: oldTime,
       score: score,
@@ -69,5 +78,12 @@ export const showEvaluate = (bool) => (dispatch) => {
   dispatch({
     type: constants.SHOWEVALUATE,
     bool: bool
+  })
+}
+
+export const evaluateSellerName = (sellerName) => (dispatch) => {
+  dispatch({
+    type: constants.EVALUEATESELLERNAME,
+    sellerName: sellerName
   })
 }

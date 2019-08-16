@@ -1,10 +1,10 @@
 ﻿import React, { Component } from 'react'
 import { connect } from 'react-redux'
+import BScroll from 'better-scroll'
 import moment from 'moment'
 import Split from 'Split/Split'
 import StarScore from 'StarScore/StarScore'
 import RatingSelect from '../RatingSelect/RatingSelect'
-import BScroll from 'better-scroll'
 import { actionCreators } from '../Rating/store'
 import './rating.styl'
 

@@ -92,7 +92,7 @@ class Evaluate extends Component {
     })
   }
   submit() {
-    const { evaluate, dispathSubmit } = this.props
+    const { evaluate, dispathSubmit, evaluateSellerName } = this.props
     const evaluates = evaluate.toJS()
     const score = this.state.starIndex + 1
     let rateType = 0 // 0 -> good comment, 1 -> bad comment
@@ -111,7 +111,7 @@ class Evaluate extends Component {
     for (const i of evaluates) {
       recommend.push(i.name)
     }
-    dispathSubmit(username, oldTime, score, rateType, text, avatar, recommend)
+    dispathSubmit(evaluateSellerName, username, oldTime, score, rateType, text, avatar, recommend)
   }
   closeEvaluate() {
     const { dispathShowEvaluate } = this.props
@@ -123,12 +123,13 @@ const mapState = state => ({
   order: state.getIn(['order', 'order']),
   evaluate: state.getIn(['order', 'evaluate']),
   tabs: state.getIn(['main', 'tabs']),
-  showEvaluate: state.getIn(['order', 'showEvaluate'])
+  showEvaluate: state.getIn(['order', 'showEvaluate']),
+  evaluateSellerName: state.getIn(['order', 'evaluateSellerName'])
 })
 
 const mapDispatch = dispatch => ({
-  dispathSubmit(username, oldTime, score, rateType, text, avatar, recommend) {
-    dispatch(actionCreators.submit(username, oldTime, score, rateType, text, avatar, recommend))
+  dispathSubmit(evaluateSellerNames, username, oldTime, score, rateType, text, avatar, recommend) {
+    dispatch(actionCreators.submit(evaluateSellerNames, username, oldTime, score, rateType, text, avatar, recommend))
   },
   dispathShowEvaluate(bool) {
     dispatch(actionCreators.showEvaluate(bool))

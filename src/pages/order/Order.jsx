@@ -73,7 +73,7 @@ class Order extends Component {
                             <div className='evaluation clearfix'>
                               <div
                                 className='evaluation-btn'
-                                onClick={() => { this.comment(item.menu) }}
+                                onClick={() => { this.comment(item.menu, item.sellerName) }}
                               >
                                 评价
                               </div>
@@ -108,10 +108,11 @@ class Order extends Component {
     dispathDeleteComment(sellerName, number, price)
     location.reload([false]) // false，从客户端缓存里取当前页。true, 则以 GET 方式，从服务端取最新的页面, 相当于客户端点击 F5
   }
-  comment(menu) {
-    const { dispathEvaluate, dispathShowEvaluate, showEvaluate } = this.props
+  comment(menu, sellerName) {
+    const { dispathEvaluate, dispathShowEvaluate, showEvaluate, dispathEvaluateSellerName } = this.props
     dispathEvaluate(menu)
     dispathShowEvaluate(true)
+    dispathEvaluateSellerName(sellerName)
   }
 }
 
@@ -132,6 +133,9 @@ const mapDispatch = dispatch => ({
   },
   dispathShowEvaluate(bool) {
     dispatch(actionCreators.showEvaluate(bool))
+  },
+  dispathEvaluateSellerName(sellerName) {
+    dispatch(actionCreators.evaluateSellerName(sellerName))
   }
 })
 
