@@ -5,7 +5,7 @@ import axios from 'axios'
 import CryptoJS from 'crypto-js' // 加密
 import { Notyf } from 'notyf' // 提示插件
 import Header from 'home/components/Header/Header'
-import 'element-theme-default'
+// import 'element-theme-default'
 import './login.styl'
 
 @withRouter

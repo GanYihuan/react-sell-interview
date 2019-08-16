@@ -2,10 +2,10 @@
 import { Link } from 'react-router-dom'
 import { Button, Layout, Input, Checkbox, Form } from 'element-react'
 import axios from 'axios'
-import Header from 'home/components/Header/Header'
 import CryptoJS from 'crypto-js'
 import { Notyf } from 'notyf'
-import 'element-theme-default'
+import Header from 'home/components/Header/Header'
+// import 'element-theme-default'
 import './register.styl'
 
 class Register extends Component {

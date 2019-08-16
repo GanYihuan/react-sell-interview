@@ -1,10 +1,10 @@
 ﻿import React, { Component } from 'react'
-import BScroll from 'better-scroll'
 import { connect } from 'react-redux'
+import BScroll from 'better-scroll'
 import { actionCreators } from './store'
 import BottomBar from 'BottomBar/BottomBar'
-import Evaluate from './components/Evaluate/Evaluate'
 import Split from 'Split/Split'
+import Evaluate from './components/Evaluate/Evaluate'
 import './order.styl'
 
 class Order extends Component {
