@@ -125,9 +125,8 @@ class Rating extends Component {
     )
   }
   componentDidMount() {
-    const { dispathgetListData, dispathgetRatingData } = this.props
+    const { dispathgetListData } = this.props
     dispathgetListData()
-    dispathgetRatingData()
     if (!this.rScroll) {
       this.rScroll = new BScroll(this.refs.ratings, {
         click: true
@@ -141,16 +140,13 @@ class Rating extends Component {
 
 const mapState = state => ({
   commentData: state.getIn(['ratings', 'commentData']),
-  ratingData: state.getIn(['ratings', 'ratingData']),
+  ratingData: state.getIn(['main', 'navHeader']),
   ratingSelectType: state.getIn(['ratings', 'ratingSelectType'])
 })
 
 const mapDispatch = dispatch => ({
   dispathgetListData() {
     dispatch(actionCreators.getCommentData())
-  },
-  dispathgetRatingData() {
-    dispatch(actionCreators.getRatingsData())
   },
   dispatchratingSelectTypeBad(number) {
     dispatch(actionCreators.ratingSelectTypeBad(number))

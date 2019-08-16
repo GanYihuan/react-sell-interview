@@ -1,9 +1,16 @@
-﻿import { fromJS } from 'immutable'
+﻿/*
+ * @Description:
+ * @version:
+ * @Author: GanEhank
+ * @Date: 2019-07-13 00:14:12
+ * @LastEditors: GanEhank
+ * @LastEditTime: 2019-08-16 12:49:13
+ */
+import { fromJS } from 'immutable'
 import * as constants from './constants'
 
 const defaultState = fromJS({
   commentData: [],
-  ratingData: {},
   ratingSelectType: 2
 })
 
@@ -11,8 +18,6 @@ export default (state = defaultState, action) => {
   switch (action.type) {
     case constants.COMMENT_LIST_DATA:
       return getCommentListData(state, action)
-    case constants.RATING_DATA:
-      return getRatingtData(state, action)
     case constants.RATINGSELECTTYPEBAD:
       return state.set('ratingSelectType', fromJS(action.number))
     default:
@@ -27,8 +32,3 @@ const getCommentListData = (state, action) => {
   })
 }
 
-const getRatingtData = (state, action) => {
-  return state.merge({
-    ratingData: state.get('ratingData').concat(fromJS(action.obj))
-  })
-}
