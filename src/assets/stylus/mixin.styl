@@ -24,3 +24,13 @@ ellipsis()
   overflow: hidden
   white-space: nowrap
   text-overflow: ellipsis
+/* clear float */
+.clearfix
+  display: inline-block
+  &:after
+    display: block
+    height: 0
+    line-height: 0
+    visibility: hidden
+    clear: both
+    content: ''

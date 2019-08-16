@@ -142,99 +142,98 @@
         color: $color-gray-ss
         &.activeDes
           color: $color-text-important
-  .detail
-    z-index: 100
-    position: fixed
-    top: 0
-    left: 0
-    width: 100%
-    height: 100%
+.detail
+  z-index: 100
+  position: fixed
+  top: 0
+  left: 0
+  width: 100%
+  height: 100%
+  background: $color-black-s
+  overflow: auto
+  transition: all 0.5s
+  backdrop-filter: blur(.625rem)
+  &.fade-transition
     background: $color-black-s
-    overflow: auto
-    transition: all 0.5s
-    backdrop-filter: blur(.625rem)
-    &.fade-transition
-      background: $color-black-s
-      opacity: 1
-    &.fade-enter,
-    &.fade-leave-to
-      background: $color-black-s
-      opacity: 0
-    .detail-wrapper
-      width: 100%
-      min-height: 100%
-      /* 3: A The length of the package content will change */
-      .detail-main
-        margin-top: 1.25rem
-        padding-bottom: 4rem
-        /* 4: A give B Reserved space */
-        .name
-          line-height: 1rem
-          text-align: center
-          font-size: 1rem
+    opacity: 1
+  &.fade-enter,
+  &.fade-leave-to
+    background: $color-black-s
+    opacity: 0
+  .detail-wrapper
+    width: 100%
+    min-height: 100%
+    /* 3: A The length of the package content will change */
+    .detail-main
+      margin-top: 1.25rem
+      padding-bottom: 4rem
+      /* 4: A give B Reserved space */
+      .name
+        line-height: 1rem
+        text-align: center
+        font-size: 1rem
+        font-weight: 700
+      .star-wrapper
+        margin-top: 1.125rem
+        padding: .125rem 0
+        text-align: center
+      .title
+        display: flex
+        margin: 1.75rem auto
+        width: 80%
+        .line
+          flex: 1
+          position: relative
+          top: -0.375rem
+          border-bottom: .0625rem solid $color-theme
+        .text
+          padding: 0 .75rem
+          font-size: .875rem
           font-weight: 700
-        .star-wrapper
-          margin-top: 1.125rem
-          padding: .125rem 0
-          text-align: center
-        .title
-          display: flex
-          margin: 1.75rem auto
-          // block elment, Horizontally centered
-          width: 80%
-          .line
-            flex: 1
-            position: relative
-            top: -0.375rem
-            border-bottom: .0625rem solid $color-light-blue
+      .supports
+        margin: 0 auto
+        width: 80%
+        .support-item
+          margin-bottom: .75rem
+          padding: 0 .75rem
+          font-size: 0
+          &:last-child
+            margin-bottom: 0
+          .icon
+            display: inline-block
+            margin-right: .375rem
+            width: 1rem
+            height: 1rem
+            vertical-align: top
+            background-size: 1rem 1rem
+            background-repeat: no-repeat
+            &.decrease
+              bg-image("./img/decrease_2")
+            &.discount
+              bg-image("./img/discount_2")
+            &.guarantee
+              bg-image("./img/guarantee_2")
+            &.invoice
+              bg-image("./img/invoice_2")
+            &.special
+              bg-image("./img/special_2")
           .text
-            padding: 0 .75rem
-            font-size: .875rem
-            font-weight: 700
-        .supports
-          margin: 0 auto
-          width: 80%
-          .support-item
-            margin-bottom: .75rem
-            padding: 0 .75rem
-            font-size: 0
-            &:last-child
-              margin-bottom: 0
-            .icon
-              display: inline-block
-              margin-right: .375rem
-              width: 1rem
-              height: 1rem
-              vertical-align: top
-              background-size: 1rem 1rem
-              background-repeat: no-repeat
-              &.decrease
-                bg-image("./img/decrease_2")
-              &.discount
-                bg-image("./img/discount_2")
-              &.guarantee
-                bg-image("./img/guarantee_2")
-              &.invoice
-                bg-image("./img/invoice_2")
-              &.special
-                bg-image("./img/special_2")
-            .text
-              line-height: 1rem
-              font-size: .75rem
-        .bulletin
-          margin: 0 auto
-          width: 80%
-          .content
-            padding: 0 .75rem
-            line-height: 1.5rem
+            line-height: 1rem
             font-size: .75rem
-    .detail-close
-      position: relative
-      margin: -4rem auto 0
-      /* 5: B Embed A give B reserved space */
-      width: 2rem
-      height: 2rem
-      font-size: 2rem
-      // Fork size
-      clear: both
-      /* 6: B clear: both */
+      .bulletin
+        margin: 0 auto
+        width: 80%
+        .content
+          padding: 0 .75rem
+          line-height: 1.5rem
+          font-size: .75rem
+  .detail-close
+    position: relative
+    margin: -4rem auto 0
+    /* 5: B Embed A give B reserved space */
+    width: 2rem
+    height: 2rem
+    font-size: 2rem
+    // Fork size
+    clear: both
+    /* 6: B clear: both */
