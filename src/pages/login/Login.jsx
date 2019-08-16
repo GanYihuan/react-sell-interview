@@ -2,9 +2,9 @@
 import { Link, withRouter } from 'react-router-dom'
 import { Button, Layout, Input, Checkbox } from 'element-react'
 import axios from 'axios'
+import CryptoJS from 'crypto-js' // 加密
+import { Notyf } from 'notyf' // 提示插件
 import Header from 'home/components/Header/Header'
-import CryptoJS from 'crypto-js'
-import { Notyf } from 'notyf'
 import 'element-theme-default'
 import './login.styl'
 
@@ -18,11 +18,6 @@ class Login extends Component {
         pwd: ''
       }
     }
-  }
-  onChange(key, value) {
-    this.setState({
-      form: Object.assign(this.state.form, { [key]: value })
-    })
   }
   render() {
     return (
@@ -57,6 +52,11 @@ class Login extends Component {
         </Layout.Row>
       </div>
     )
+  }
+  onChange(key, value) {
+    this.setState({
+      form: Object.assign(this.state.form, { [key]: value })
+    })
   }
   register() {
     this.props.history.push('/register')
