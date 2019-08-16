@@ -133,6 +133,10 @@ class Rating extends Component {
       })
     }
   }
+  componentWillUnmount() {
+    const { dispathclearListData } = this.props
+    dispathclearListData()
+  }
   formatDate(time) {
     return moment(time).format('YYYY-MM-DD hh:mm:ss')
   }
@@ -148,6 +152,9 @@ const mapState = state => ({
 const mapDispatch = dispatch => ({
   dispathgetListData() {
     dispatch(actionCreators.getCommentData())
+  },
+  dispathclearListData() {
+    dispatch(actionCreators.clearCommentData())
   },
   dispatchratingSelectTypeBad(number) {
     dispatch(actionCreators.ratingSelectTypeBad(number))

@@ -4,7 +4,7 @@
  * @Author: GanEhank
  * @Date: 2019-07-13 00:14:12
  * @LastEditors: GanEhank
- * @LastEditTime: 2019-08-16 12:50:30
+ * @LastEditTime: 2019-08-16 14:51:09
  */
 import { fromJS } from 'immutable'
 import * as constants from './constants'
@@ -20,6 +20,8 @@ export default (state = defaultState, action) => {
       return getCommentListData(state, action)
     case constants.RATINGSELECTTYPEBAD:
       return state.set('ratingSelectType', fromJS(action.number))
+    case constants.CLEAR_COMMENT_LIST_DATA:
+      return state.set('commentData', fromJS(action.array))
     default:
       return state
   }
