@@ -4,7 +4,7 @@
  * @Author: GanEhank
  * @Date: 2019-07-13 09:09:12
  * @LastEditors: GanEhank
- * @LastEditTime: 2019-08-19 15:56:59
+ * @LastEditTime: 2019-08-19 16:46:26
  -->
 
 # 简介：使用 react, 实现餐馆点餐 App
@@ -33,3 +33,6 @@ notyf 用于实现提示信息的插件, 当注册界面或者登录界面有错
 
 bottombar
 my
+order -> evalue
+city
+home -> header \ Category \ ContentList

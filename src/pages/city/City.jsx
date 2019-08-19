@@ -1,6 +1,6 @@
 ﻿import React, { Component } from 'react'
 import { withRouter } from 'react-router-dom' // withRouter 是高阶组件，即一个函数返回一个组件。返回的组件外层是 Route ， Route 的 children 属性里渲染接收到的组件
-import { connect } from 'react-redux'
+import { connect } from 'react-redux' // react 绑定 redux
 import BScroll from 'better-scroll'
 import { actionCreators } from './store'
 import Scroll from 'Scroll/Scroll'
@@ -212,15 +212,6 @@ class City extends Component {
         }
       })
     }, 100)
-  }
-  clearCity(city) {
-    const { dispathSetCurrentCity } = this.props
-    dispathSetCurrentCity(city)
-    this.setState(() => {
-      return {
-        keyword: ''
-      }
-    })
   }
   setCurrentCity(city) {
     const { dispathSetCurrentCity } = this.props
