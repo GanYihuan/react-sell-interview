@@ -222,6 +222,15 @@ class City extends Component {
       }
     })
   }
+  setCurrentCity(city) {
+    const { dispathSetCurrentCity } = this.props
+    dispathSetCurrentCity(city)
+    this.setState(() => {
+      return {
+        keyword: ''
+      }
+    })
+  }
 }
 
 const mapState = state => ({
