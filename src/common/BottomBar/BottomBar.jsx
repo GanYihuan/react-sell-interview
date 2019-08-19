@@ -1,14 +1,11 @@
 ﻿import React, { Component } from 'react'
-import { Link, NavLink } from 'react-router-dom'
-import { connect } from 'react-redux'
+import { Link, NavLink } from 'react-router-dom' // 路由
+import { connect } from 'react-redux' // react 绑定 redux
 import './bottomBar.styl'
 
 class BottomBar extends Component {
   render() {
-    const {
-      articlePage,
-      tabs
-    } = this.props
+    const { articlePage, tabs } = this.props
     const tabsArray = tabs.toJS()
     return (
       <div className='bottom-bar'>

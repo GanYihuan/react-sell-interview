@@ -1,4 +1,12 @@
-﻿import { fromJS } from 'immutable'
+﻿/*
+ * @Description:
+ * @version:
+ * @Author: GanEhank
+ * @Date: 2019-06-10 13:44:22
+ * @LastEditors: GanEhank
+ * @LastEditTime: 2019-08-19 15:37:30
+ */
+import { fromJS } from 'immutable' // immutable 限制对 state 的修改
 
 const defaultState = fromJS({ // 原生js转immutable对象
   tabs: [
