@@ -1,8 +1,8 @@
 ﻿import React, { Component } from 'react'
-import { Link, withRouter } from 'react-router-dom'
-import axios from 'axios'
+import { Link, withRouter } from 'react-router-dom' // 路由
+import { Notyf } from 'notyf' // 提示插件
+import axios from 'axios' // Promise based HTTP client for the browser and node.js
 import { Layout, Button } from 'element-react'
-import { Notyf } from 'notyf' // Pure js message notification plugin
 import 'element-theme-default'
 import BottomBar from 'BottomBar/BottomBar'
 import './my.styl'
@@ -16,20 +16,6 @@ class My extends Component {
       email: ''
     }
     this.request = this.request.bind(this)
-  }
-  componentDidMount() {
-    this.request()
-  }
-  async request() {
-    const { status, data: { user, email }} = await axios.get('/users/getUser')
-    if (status === 200) {
-      this.setState(() => {
-        return {
-          user: user,
-          email: email
-        }
-      })
-    }
   }
   render() {
     return (
@@ -77,8 +63,19 @@ class My extends Component {
       </div>
     )
   }
-  login() {
-    this.props.history.push('/login')
+  componentDidMount() {
+    this.request()
+  }
+  async request() {
+    const { status, data: { user, email }} = await axios.get('/users/getUser')
+    if (status === 200) {
+      this.setState(() => {
+        return {
+          user: user,
+          email: email
+        }
+      })
+    }
   }
   async logout() {
     const { status, data } = await axios.get('/users/exit')
@@ -92,6 +89,9 @@ class My extends Component {
       })
       notyf.success(`登出操作`)
     }
+  }
+  login() {
+    this.props.history.push('/login')
   }
   register() {
     this.props.history.push('/register')

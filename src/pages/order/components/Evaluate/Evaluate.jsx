@@ -1,8 +1,8 @@
 ﻿import React, { Component } from 'react'
-import { withRouter, NavLink } from 'react-router-dom'
-import moment from 'moment' // Time format processing
+import { withRouter, NavLink } from 'react-router-dom' // 路由
+import moment from 'moment' // 时间格式处理
 import { Button, Layout } from 'element-react'
-import { connect } from 'react-redux'
+import { connect } from 'react-redux' // react 绑定 redux
 import { actionCreators } from '../../store'
 import './evaluate.styl'
 

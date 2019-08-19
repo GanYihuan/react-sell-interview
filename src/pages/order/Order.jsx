@@ -1,5 +1,5 @@
 ﻿import React, { Component } from 'react'
-import { connect } from 'react-redux'
+import { connect } from 'react-redux' // react 绑定 redux
 import BScroll from 'better-scroll'
 import { actionCreators } from './store'
 import BottomBar from 'BottomBar/BottomBar'
