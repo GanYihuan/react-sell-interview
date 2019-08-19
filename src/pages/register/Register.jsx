@@ -2,8 +2,8 @@
 import { Link } from 'react-router-dom'
 import { Button, Layout, Input, Checkbox, Form } from 'element-react'
 import axios from 'axios'
-import CryptoJS from 'crypto-js'
-import { Notyf } from 'notyf'
+import CryptoJS from 'crypto-js' // 加密
+import { Notyf } from 'notyf' // 提示插件
 import Header from 'home/components/Header/Header'
 // import 'element-theme-default'
 import './register.styl'
